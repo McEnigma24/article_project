@@ -5,3 +5,7 @@
 [submodule "external/highway"]
 	path = external/highway
 	url = https://github.com/google/highway.git
+
+[submodule "external/moviemaker-cpp"]
+	path = external/moviemaker-cpp
+	url = https://github.com/apc-llc/moviemaker-cpp.git
