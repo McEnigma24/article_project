@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     const unsigned int height = 768;
     const unsigned int nframes = 64;
 
-    MovieWriter movie_writer("random_pixels.mp4", width, height, 1);
+    MovieWriter movie_writer("random_pixels.mp4", width, height, 2);
 
     vector<uint8_t> pixels(4 * width * height);
 	for (unsigned int iframe = 0; iframe < nframes; iframe++)
@@ -91,9 +91,9 @@ int main(int argc, char* argv[])
 			for (unsigned int i = 0; i < width; i++)
 			{
 				pixels[4 * width * j + 4 * i + 0] = 0;        // blue
-				pixels[4 * width * j + 4 * i + 1] = 255;        // green
+				pixels[4 * width * j + 4 * i + 1] = 255;      // green
 				pixels[4 * width * j + 4 * i + 2] = 0;        // red
-				pixels[4 * width * j + 4 * i + 3] = 255;        // alpha
+				pixels[4 * width * j + 4 * i + 3] = 255;      // alpha
 			}	
 
             movie_writer.addFrame(&pixels[0]);
