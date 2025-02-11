@@ -85,15 +85,15 @@ int main(int argc, char* argv[])
     MovieWriter movie_writer("random_pixels.mp4", width, height, 2);
 
     vector<uint8_t> pixels(4 * width * height);
+    memset(pixels.data(), 0, 4 * width * height);
 	for (unsigned int iframe = 0; iframe < nframes; iframe++)
 	{
 		for (unsigned int j = 0; j < height; j++)
 			for (unsigned int i = 0; i < width; i++)
 			{
-				pixels[4 * width * j + 4 * i + 0] = 0;        // blue
-				pixels[4 * width * j + 4 * i + 1] = 255;      // green
 				pixels[4 * width * j + 4 * i + 2] = 0;        // red
-				pixels[4 * width * j + 4 * i + 3] = 255;      // alpha
+				pixels[4 * width * j + 4 * i + 1] = 255;      // green
+				pixels[4 * width * j + 4 * i + 0] = 0;        // blue
 			}	
 
             movie_writer.addFrame(&pixels[0]);
