@@ -1,25 +1,53 @@
 cmake_minimum_required(VERSION 3.18)
-project(MyProject LANGUAGES CXX)
+project(MyProject LANGUAGES CXX CUDA)
+
+find_program(NVIDIA_SMI_EXECUTABLE nvidia-smi)
+find_package(CUDAToolkit REQUIRED)
+find_package(OpenMP REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CUDA_STANDARD 20)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-include_directories(_inc)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CAIRO REQUIRED cairo)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GDKPIXBUF REQUIRED gdk-pixbuf-2.0)
+
+
+# Ścieżka do biblioteki
+set(MOVIEMAKER_CPP_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
+
+# Dodajemy ścieżkę do katalogu, w którym jest ta biblioteka
+link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
+
+
+# include_directories(_inc external/moviemaker-cpp/include /usr/include/librsvg-2.0)
+include_directories(_inc external/moviemaker-cpp/include)
 aux_source_directory(_src SOURCES)
 aux_source_directory(_src TEST_SOURCES)
-list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.cpp")
+list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
 aux_source_directory(_test TEST_SOURCES)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -fopenmp -w")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
 
-set(EXE_NAME "out.exe")
-add_executable(${EXE_NAME} ${SOURCES})
-target_compile_definitions(${EXE_NAME} PRIVATE LINUX)
-set_target_properties(${EXE_NAME} PROPERTIES COMPILE_FLAGS "-m64" LINK_FLAGS "-m64")
+set(target_name "gpu_CUDA_f.exe")
+add_executable(${target_name} ${SOURCES})
+target_include_directories(${target_name} PRIVATE)
+target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
+target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so)
+
+# set(target_name "gpu_CUDA_d.exe")
+# add_executable(${target_name} ${SOURCES})
+# target_include_directories(${target_name} PRIVATE)
+# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
+# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so)
+
 
 # Włączenie testów
 enable_testing()

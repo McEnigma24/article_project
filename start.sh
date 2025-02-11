@@ -67,7 +67,18 @@ install_packages()
         g++
         libstdc++-11-dev
         gcc-multilib
-        g++-multilib        
+        g++-multilib
+        libssl-dev
+        libcairo2-dev
+        libx264-dev
+        libswscale-dev
+        libavcodec-dev
+        libavutil-dev
+        libavformat-dev
+        librsvg2-dev
+        libgdk-pixbuf2.0-dev
+        libgtk-3-dev
+        libavfilter-dev
     )
 
     # Aktualizacja listy pakietów

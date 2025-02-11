@@ -43,29 +43,28 @@ typedef int64_t i64;
 #define member_assign(a, b, member) a.member = b.member;
 #define THIS_OTHER(x) this->x = other.x;
 
-#define add_endl(string, how_many)                                             \
-    for (u16 i{}; i < how_many; i++)                                           \
+#define add_endl(string, how_many)                                                                                     \
+    for (u16 i{}; i < how_many; i++)                                                                                   \
         string += "\n";
 
-#define OUTPUT_TO_FILE(path, content)                                          \
-    {                                                                          \
-        ofstream file(path);                                                   \
-        file << content;                                                       \
-        file.close();                                                          \
+#define OUTPUT_TO_FILE(path, content)                                                                                  \
+    {                                                                                                                  \
+        ofstream file(path);                                                                                           \
+        file << content;                                                                                               \
+        file.close();                                                                                                  \
     }
 
-#define FATAL_ERROR(x)                                                         \
-    {                                                                          \
-        const string fatal = "FATAL ERROR - " + std::to_string(__LINE__) +     \
-                             " : " + __FILE__ + " -> " + x + "\n";             \
-        cout << fatal;                                                         \
-        exit(EXIT_FAILURE);                                                    \
+#define FATAL_ERROR(x)                                                                                                 \
+    {                                                                                                                  \
+        const string fatal = "FATAL ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + " -> " + x + "\n";       \
+        cout << fatal;                                                                                                 \
+        exit(EXIT_FAILURE);                                                                                            \
     }
-#define ASSERT_ER_IF_TRUE(x)                                                   \
-    if (x)                                                                     \
+#define ASSERT_ER_IF_TRUE(x)                                                                                           \
+    if (x)                                                                                                             \
     FATAL_ERROR(#x)
-#define ASSERT_ER_IF_NULL(x)                                                   \
-    if (x == null)                                                             \
+#define ASSERT_ER_IF_NULL(x)                                                                                           \
+    if (x == null)                                                                                                     \
     FATAL_ERROR(#x)
 
 #define SAFETY_CHECK(x) x;
@@ -87,8 +86,7 @@ struct UTILS
 
     struct str
     {
-        static std::vector<std::string> split_string(const std::string& input,
-                                                     char delimiter)
+        static std::vector<std::string> split_string(const std::string& input, char delimiter)
         {
             std::vector<std::string> result;
             std::string segment;
@@ -107,8 +105,7 @@ struct UTILS
             result.reserve(input.size());
             for (char c : input)
             {
-                result += static_cast<char>(
-                    std::tolower(static_cast<unsigned char>(c)));
+                result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
             }
 
             return result;
@@ -145,7 +142,7 @@ struct UTILS
     };
 };
 
-#define OPERATION_COUNTER
+// #define OPERATION_COUNTER
 // #define OPERATION_COUNTER_SHOW_LOG
 
 #include "__operations_counter__.h"
