@@ -6,6 +6,9 @@
 
 #include "movie.h"
 
+#include "RT_Renderer.h"
+#include "CTRL_Setuper.h"
+
 #define CCE(x) { cudaError_t err = x;  if (err != cudaSuccess) { const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n"; cout << error; exit(EXIT_FAILURE);} }
 
 __global__ void test(int* a, int* b, int* result, int ARRAY_SIZE)
@@ -78,26 +81,39 @@ int main(int argc, char* argv[])
 
     // OpenMP_GPU_test();
 
-    const unsigned int width = 1024;
-    const unsigned int height = 768;
-    const unsigned int nframes = 64;
+    MovieWriter movie_writer("random_pixels.mp4", def_WIDTH, def_HEIGHT, 1);
+    vector<uint8_t> frame_buffer(4 * def_WIDTH * def_HEIGHT);
+    memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
 
-    MovieWriter movie_writer("random_pixels.mp4", width, height, 2);
+    G::PIXEL_ARRAY_SIZE = def_PIXEL_ARRAY_SIZE;
+    Renderer render;
+    RGB* output{};
 
-    vector<uint8_t> pixels(4 * width * height);
-    memset(pixels.data(), 0, 4 * width * height);
-	for (unsigned int iframe = 0; iframe < nframes; iframe++)
-	{
-		for (unsigned int j = 0; j < height; j++)
-			for (unsigned int i = 0; i < width; i++)
-			{
-				pixels[4 * width * j + 4 * i + 2] = 0;        // red
-				pixels[4 * width * j + 4 * i + 1] = 255;      // green
-				pixels[4 * width * j + 4 * i + 0] = 0;        // blue
-			}	
 
-            movie_writer.addFrame(&pixels[0]);
-	}
+
+    for(int i=0; i<4; i++)
+    {
+        render.RENDER();
+        output = render.get_my_pixel();
+
+    }
+    
+    
+
+    
+
+
+
+    for (unsigned int j = 0; j < def_HEIGHT; j++)
+        for (unsigned int i = 0; i < def_WIDTH; i++)
+        {
+            frame_buffer[4 * def_WIDTH * j + 4 * i + 2] = 0;        // red
+            frame_buffer[4 * def_WIDTH * j + 4 * i + 1] = 255;      // green
+            frame_buffer[4 * def_WIDTH * j + 4 * i + 0] = 0;        // blue
+        }
+
+    movie_writer.addFrame(&frame_buffer[0]);
+
 
     return 0;
 }

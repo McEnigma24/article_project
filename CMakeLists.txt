@@ -27,8 +27,10 @@ link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
 
 
 # include_directories(_inc external/moviemaker-cpp/include /usr/include/librsvg-2.0)
-include_directories(_inc external/moviemaker-cpp/include)
+include_directories(_inc external/moviemaker-cpp/include _Ray_Tracer/inc)
 aux_source_directory(_src SOURCES)
+aux_source_directory(_Ray_Tracer/src/CUDA SOURCES)
+
 aux_source_directory(_src TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
 aux_source_directory(_test TEST_SOURCES)
