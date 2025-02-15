@@ -174,7 +174,7 @@ int main(int argc, char* argv[])
         G::Render::current_scene = &scene;
 
         render.RENDER();
-        maker.add_new_frame(render.get_my_pixels_vec());
+        maker.add_new_frame(render.get_my_pixel_vec());
         line("here");
     }
 

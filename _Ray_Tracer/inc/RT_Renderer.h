@@ -20,6 +20,7 @@ public:
 
     GPU_LINE(__host__ __device__)
     RGB* get_my_pixel() { return my_pixel.data(); }
+    vector<RGB>& get_my_pixel_vec() { return my_pixel; }
 
     void RENDER();
     bool test_is_finished();
