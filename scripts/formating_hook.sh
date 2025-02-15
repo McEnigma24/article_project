@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(c|cpp)$') # Nokia
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(c|cpp|h|hpp)$')
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(c|cpp|h|hpp|cu)$')
 
 if [ -z "$FILES" ]; then
     echo "Brak plików do formatowania."
