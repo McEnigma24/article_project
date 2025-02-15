@@ -32,8 +32,7 @@
 #define pow2(x) ((x) * (x))
 #define base_0(x) (x - 1)
 #define convert_2d_to_1d(x, y) ((y * G::WIDTH) + x)
-#define def_convert_2d_to_1d(x, y) ((y * G::WIDTH) + x)
-#define def_convert_2d_to_1d_WIDTH(x, y, WIDTH) ((y * WIDTH) + x)
+#define def_convert_2d_to_1d(x, y) ((y * def_WIDTH) + x)
 
 #define c_init(x) x(_##x)
 #define member_assign(a, b, member) a.member = b.member;

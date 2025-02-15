@@ -1,11 +1,10 @@
-#include "CTRL_Scene_Controller.h"
 #include "CTRL_Scene.h"
+#include "CTRL_Scene_Controller.h"
 #include "CTRL_Setuper.h"
-
 
 void Scene_Controller::setup_scenes()
 {
-    #define setup_scene_index(x, name) Setuper::setup_scene_##x(&(scenes[x]), name);
+#define setup_scene_index(x, name) Setuper::setup_scene_##x(&(scenes[x]), name);
 
     setup_scene_index(0, "FIRST");
     setup_scene_index(1, "BOX_1_LIGHT");
@@ -25,60 +24,54 @@ void Scene_Controller::setup_scenes()
 
 void Scene_Controller::calculate_progress_all()
 {
-    for(auto& scene : scenes)
+    for (auto& scene : scenes)
     {
-        G::PROGRESS_ALL += scene.how_many_details_scene() CPU_LINE(* scene.how_many_details_exe());
+        G::PROGRESS_ALL += scene.how_many_details_scene() CPU_LINE(*scene.how_many_details_exe());
     }
 }
 
-void Scene_Controller::next_scene()
-{
-    G::Render::current_scene = &(scenes[++scene_index]);
-}
+void Scene_Controller::next_scene() { G::Render::current_scene = &(scenes[++scene_index]); }
 
-
-
-Scene_Controller::Scene_Controller(u16 how_many_scenes)
-    :scene_index(0), scenes(how_many_scenes), all_gathered_stats()
+Scene_Controller::Scene_Controller(u16 how_many_scenes) : scene_index(0), scenes(how_many_scenes), all_gathered_stats()
 {
     setup_scenes();
 }
 
 Scene_Controller::~Scene_Controller()
 {
-    // string file_output;
+    string file_output;
 
-    // line("Saving collected stats");
+    line("Saving collected stats");
 
-    // for (auto& stat : all_gathered_stats)
-    // {
-    //     stat.save(file_output);
-    // }
+    for (auto& stat : all_gathered_stats)
+    {
+        stat.save(file_output);
+    }
 
-    // string stat_destination = "output/";
+    string stat_destination = "output/";
 
-    // CPU_LINE(stat_destination += "CPU");
-    // GPU_LINE(stat_destination += "GPU");
+    CPU_LINE(stat_destination += "CPU");
+    GPU_LINE(stat_destination += "GPU");
 
-    // stat_destination += "_";
-    // CPU_LINE(stat_destination += G::MODEL_NAME);
-    // GPU_LINE(stat_destination += G::MODEL_NAME);
+    stat_destination += "_";
+    CPU_LINE(stat_destination += G::MODEL_NAME);
+    GPU_LINE(stat_destination += G::MODEL_NAME);
 
-    // #ifdef CPU
+#ifdef CPU
 
-    //     stat_destination += "_";
-    //     ARCH_X86_LINE(stat_destination += "x86");
-    //     ARCH_X64_LINE(stat_destination += "x64");
+    stat_destination += "_";
+    ARCH_X86_LINE(stat_destination += "x86");
+    ARCH_X64_LINE(stat_destination += "x64");
 
-    // #endif
+#endif
 
-    // stat_destination += "_";
-    // UNIT_FLOAT_LINE(stat_destination += "float");
-    // UNIT_DOUBLE_LINE(stat_destination += "double");
+    stat_destination += "_";
+    UNIT_FLOAT_LINE(stat_destination += "float");
+    UNIT_DOUBLE_LINE(stat_destination += "double");
 
-    // stat_destination += "_SAVED_STAT.txt";
+    stat_destination += "_SAVED_STAT.txt";
 
-    // OUTPUT_TO_FILE(stat_destination, file_output);
+    OUTPUT_TO_FILE(stat_destination, file_output);
 }
 
 void Scene_Controller::add_current_stats_to_list()
@@ -92,18 +85,18 @@ void Scene_Controller::add_current_stats_to_list()
     G::Render::current_scene_stats = null;
 }
 
-void Scene_Controller::choose_first_scene(u16 index)
-{
-    G::Render::current_scene = &(scenes[index]);
-}
+void Scene_Controller::choose_first_scene(u16 index) { G::Render::current_scene = &(scenes[index]); }
 
 bool Scene_Controller::next_iteration()
 {
-    if(log_terminal_off) { line("next_iteration()") };
+    if (log_terminal_off)
+    {
+        line("next_iteration()")
+    };
 
     if (G::Render::current_scene->check_if_first_run())
     {
-        if(log_terminal_off)
+        if (log_terminal_off)
         {
             nline;
             var(G::Render::current_scene->get_name());
@@ -111,19 +104,21 @@ bool Scene_Controller::next_iteration()
     }
     CPU_LINE(else { )
         add_current_stats_to_list();
-    CPU_LINE(});
-
+    CPU_LINE(
+    });
 
     if (!G::Render::current_scene->is_SCENE_COMPLETED())
     {
-        if(log_terminal_off) line("turning next setting");
+        if (log_terminal_off)
+            line("turning next setting");
         G::Render::current_scene->next_settings();
 
         return true;
     }
     else
     {
-        if(log_terminal_off) line("completed");
+        if (log_terminal_off)
+            line("completed");
         next_scene();
 
         // scene could be empty, cause there are more tab elements than Setupper scene functions

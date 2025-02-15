@@ -21,7 +21,7 @@ pkg_check_modules(GDKPIXBUF REQUIRED gdk-pixbuf-2.0)
 
 # Ścieżka do biblioteki
 set(MOVIEMAKER_CPP_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
-set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/_Ray_Tracer/build/)
+set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
 
 # Dodajemy ścieżkę do katalogu, w którym jest ta biblioteka
 link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
@@ -31,7 +31,6 @@ link_directories(${MY_RAY_TRACER_CUDA_LIBRARY_PATH})
 # include_directories(_inc external/moviemaker-cpp/include /usr/include/librsvg-2.0)
 include_directories(_inc external/moviemaker-cpp/include _Ray_Tracer/inc)
 aux_source_directory(_src SOURCES)
-# aux_source_directory(_Ray_Tracer/src/CUDA SOURCES)
 
 aux_source_directory(_src TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")

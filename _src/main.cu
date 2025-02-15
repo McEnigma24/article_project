@@ -1,6 +1,5 @@
 #include "__preprocessor__.h"
 #include "__time_stamp__.h"
-#include <list>
 
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
@@ -111,9 +110,9 @@ void OpenMP_GPU_test()
 class Movie_Maker_Controller
 {
     vector<uint8_t> frame_buffer;
-    list<vector<RGB>> saved_frames;
+    vector<vector<RGB>> saved_frames;
 
-    void fill_frame_buffer(RGB* render_output, vector<u8>& frame_buffer)
+    void fill_frame_buffer(RGB* render_output)
     {
         ASSERT_ER_IF_NULL(render_output);
 
@@ -138,20 +137,22 @@ public:
 
         int how_many_added_frames{};
         int i{};
-        for (auto& frame : saved_frames)
+
+        // for(int i=0; i<saved_frames.size(); i++)
         {
-            fill_frame_buffer(frame.data(), frame_buffer);
+            // fill_frame_buffer(frame.data());
 
-            if (i == 0 || i == saved_frames.size() - 1)
-                how_many_added_frames = 30;
-            else
-                how_many_added_frames = 5;
+            // if (i == 0 || i == saved_frames.size() - 1)
+            //     how_many_added_frames = 30;
+            // else
+            //     how_many_added_frames = 5;
 
-            for (int ii; ii < FRAMES * how_many_added_frames; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
+            // for (int ii; ii < FRAMES * how_many_added_frames; ii++)
+            //     movie_writer.addFrame(&frame_buffer[0]);
 
-            i++;
+            line("here 10");
         }
+        line("here 1");
     }
 
     void delete_all_collected_frames() { saved_frames.clear(); }
@@ -184,7 +185,7 @@ int main(int argc, char* argv[])
         G::Render::current_scene = &scene;
 
         render.RENDER();
-        maker.add_new_frame(render.get_my_pixels_vec());
+        maker.add_new_frame(render.get_my_pixel_vec());
     }
 
     {
@@ -193,7 +194,7 @@ int main(int argc, char* argv[])
         G::Render::current_scene = &scene;
 
         render.RENDER();
-        maker.add_new_frame(render.get_my_pixels_vec());
+        maker.add_new_frame(render.get_my_pixel_vec());
     }
 
     {
@@ -202,11 +203,14 @@ int main(int argc, char* argv[])
         G::Render::current_scene = &scene;
 
         render.RENDER();
-        maker.add_new_frame(render.get_my_pixels_vec());
+        maker.add_new_frame(render.get_my_pixel_vec());
     }
 
+    line("here 1");
     maker.combine_to_movie("my_maker.mp4");
+    line("here 2");
     maker.delete_all_collected_frames();
+    line("here 3");
 
     return 0;
 }
