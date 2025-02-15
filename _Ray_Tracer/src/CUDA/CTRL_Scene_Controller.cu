@@ -46,39 +46,39 @@ Scene_Controller::Scene_Controller(u16 how_many_scenes)
 
 Scene_Controller::~Scene_Controller()
 {
-    string file_output;
+    // string file_output;
 
-    line("Saving collected stats");
+    // line("Saving collected stats");
 
-    for (auto& stat : all_gathered_stats)
-    {
-        stat.save(file_output);
-    }
+    // for (auto& stat : all_gathered_stats)
+    // {
+    //     stat.save(file_output);
+    // }
 
-    string stat_destination = "output/";
+    // string stat_destination = "output/";
 
-    CPU_LINE(stat_destination += "CPU");
-    GPU_LINE(stat_destination += "GPU");
+    // CPU_LINE(stat_destination += "CPU");
+    // GPU_LINE(stat_destination += "GPU");
 
-    stat_destination += "_";
-    CPU_LINE(stat_destination += G::MODEL_NAME);
-    GPU_LINE(stat_destination += G::MODEL_NAME);
+    // stat_destination += "_";
+    // CPU_LINE(stat_destination += G::MODEL_NAME);
+    // GPU_LINE(stat_destination += G::MODEL_NAME);
 
-    #ifdef CPU
+    // #ifdef CPU
 
-        stat_destination += "_";
-        ARCH_X86_LINE(stat_destination += "x86");
-        ARCH_X64_LINE(stat_destination += "x64");
+    //     stat_destination += "_";
+    //     ARCH_X86_LINE(stat_destination += "x86");
+    //     ARCH_X64_LINE(stat_destination += "x64");
 
-    #endif
+    // #endif
 
-    stat_destination += "_";
-    UNIT_FLOAT_LINE(stat_destination += "float");
-    UNIT_DOUBLE_LINE(stat_destination += "double");
+    // stat_destination += "_";
+    // UNIT_FLOAT_LINE(stat_destination += "float");
+    // UNIT_DOUBLE_LINE(stat_destination += "double");
 
-    stat_destination += "_SAVED_STAT.txt";
+    // stat_destination += "_SAVED_STAT.txt";
 
-    OUTPUT_TO_FILE(stat_destination, file_output);
+    // OUTPUT_TO_FILE(stat_destination, file_output);
 }
 
 void Scene_Controller::add_current_stats_to_list()

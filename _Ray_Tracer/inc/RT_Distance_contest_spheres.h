@@ -5,17 +5,25 @@
 
 class Distance_contest_spheres
 {
+    u64 WIDTH;
+    u64 HEIGHT;
+
     u8 counter;
     unit current_closest_distance;
     Hit_sphere current_closest_hit_sphere;
 
 public:
     GPU_LINE(__host__ __device__)
-    Distance_contest_spheres() : counter(0), current_closest_distance(-1), current_closest_hit_sphere(false) {}
+    Distance_contest_spheres()
+        : WIDTH(0), HEIGHT(0), counter(0), current_closest_distance(-1), current_closest_hit_sphere(false)
+    {
+    }
 
     GPU_LINE(__host__ __device__)
-    static void init(Distance_contest_spheres& obj)
+    static void init(Distance_contest_spheres& obj, u64 _WIDTH, u64 _HEIGHT)
     {
+        obj.WIDTH = _WIDTH;
+        obj.HEIGHT = _HEIGHT;
         obj.counter = 0;
         obj.current_closest_distance = -1;
         Hit_sphere::init(obj.current_closest_hit_sphere);

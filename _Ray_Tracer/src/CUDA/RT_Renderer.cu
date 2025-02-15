@@ -8,17 +8,24 @@
 #include <cstdlib>
 
 
-Renderer::Renderer(WIN_LINE(sf::RenderWindow& w))
+Renderer::Renderer(const u64& _WIDTH, const u64& _HEIGHT)
 	:
-	WIN_LINE(window(w), sfml_pixels(sf::Points, G::PIXEL_ARRAY_SIZE), )
-	CPU_LINE(parallel_controller(this), )
+	c_init(WIDTH)
+	,c_init(HEIGHT)
+	,PIXEL_ARRAY_SIZE(WIDTH * HEIGHT)
 
-	my_pixel(G::PIXEL_ARRAY_SIZE),
-	scene_controller(SCENE_MAX_NUM)
+	,my_pixel(PIXEL_ARRAY_SIZE)
+	,scene_controller(SCENE_MAX_NUM)
 {
-	WIN_LINE(setup_all_pixels();)
-
+	Setuper::setup_Global_Variables___and___Clear_Stats();
+	
+	cudaFree(0);
 	choose_first_scene(0); // scene_controller
+
+	G::WIDTH = WIDTH;
+	G::HEIGHT = HEIGHT;
+	G::PIXEL_ARRAY_SIZE = PIXEL_ARRAY_SIZE;
+	G::REP_NUMBER = 1;
 }
 
 bool Renderer::test_is_finished()
@@ -33,14 +40,17 @@ void Renderer::choose_first_scene(u16 index)
 #define CCE(x) { cudaError_t err = x;  if (err != cudaSuccess) { const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n"; cout << error; exit(EXIT_FAILURE);} }
 
 #ifdef GPU
-__global__ void render_kernel(Renderer* dev_Renderer, RGB* dev_My_Pixels, Scene* dev_Current_Scene, Light_point* dev_Current_Scene_lights, Sphere* dev_Current_Scene_spheres, details* dev_Current_Scene_details)
+__global__ void render_kernel(const i64 def_CAM_POS_X, const i64 def_CAM_POS_Y, const i64 def_CAM_POS_Z, const u64 WIDTH, const u64 PIXEL_ARRAY_SIZE, Renderer* dev_Renderer, RGB* dev_My_Pixels, Scene* dev_Current_Scene, Light_point* dev_Current_Scene_lights, Sphere* dev_Current_Scene_spheres, details* dev_Current_Scene_details)
 {
 	int i = threadIdx.x + blockIdx.x * blockDim.x;
-	if(!(i < def_PIXEL_ARRAY_SIZE)) return;
+	if(!(i < PIXEL_ARRAY_SIZE)) return;
 
-	dev_Renderer->per_pixel
+	dev_Renderer->per_pixel_starting
 	(
-		i, dev_Current_Scene, dev_My_Pixels,
+		def_CAM_POS_X
+		,def_CAM_POS_Y
+		,def_CAM_POS_Z
+		,WIDTH, i, dev_Current_Scene, dev_My_Pixels,
 		dev_Current_Scene_lights, dev_Current_Scene_spheres, dev_Current_Scene_details
 	);
 }
@@ -66,71 +76,71 @@ float calculate_progress()
 	return ret;
 }
 
-string get_current_local_time_Ray_Tracer()
-{
-    ostringstream oss;
+// string get_current_local_time()
+// {
+//     ostringstream oss;
 
-    if(G::REP_NUMBER == 1)
-    {
-        auto now = std::chrono::system_clock::now();
-        std::time_t czas = std::chrono::system_clock::to_time_t(now);
+//     if(G::REP_NUMBER == 1)
+//     {
+//         auto now = std::chrono::system_clock::now();
+//         std::time_t czas = std::chrono::system_clock::to_time_t(now);
 
-        std::tm* aktualnyCzas = std::localtime(&czas);
+//         std::tm* aktualnyCzas = std::localtime(&czas);
 
-        oss << std::put_time(aktualnyCzas, "%H:%M:%S") << std::endl;
-    }
-    else
-    {
-        auto now = std::chrono::system_clock::now();
-        std::time_t current_time = std::chrono::system_clock::to_time_t(now);
-        std::tm* current_tm = std::localtime(&current_time);
+//         oss << std::put_time(aktualnyCzas, "%H:%M:%S") << std::endl;
+//     }
+//     else
+//     {
+//         auto now = std::chrono::system_clock::now();
+//         std::time_t current_time = std::chrono::system_clock::to_time_t(now);
+//         std::tm* current_tm = std::localtime(&current_time);
 
-        std::ifstream file("../_run_time_config_/estimated_finish_date.txt");
-        if (!file.is_open()) {
-            std::cerr << "Nie mo?na otworzy? pliku: " << "../_run_time_config_/estimated_finish_date.txt" << std::endl;
-            exit(0);
-        }
+//         std::ifstream file("../_run_time_config_/estimated_finish_date.txt");
+//         if (!file.is_open()) {
+//             std::cerr << "Nie mo?na otworzy? pliku: " << "../_run_time_config_/estimated_finish_date.txt" << std::endl;
+//             exit(0);
+//         }
 
-        int year, month, day, hour, minute, second; // 2024 11 15 10 48 02
-        file >> year >> month >> day >> hour >> minute >> second;
-        file.close();
+//         int year, month, day, hour, minute, second; // 2024 11 15 10 48 02
+//         file >> year >> month >> day >> hour >> minute >> second;
+//         file.close();
 
-        std::tm target_tm = {};
-        target_tm.tm_year = year - 1900;
-        target_tm.tm_mon = month - 1;
-        target_tm.tm_mday = day;
-        target_tm.tm_hour = hour;
-        target_tm.tm_min = minute;
-        target_tm.tm_sec = second;
+//         std::tm target_tm = {};
+//         target_tm.tm_year = year - 1900;
+//         target_tm.tm_mon = month - 1;
+//         target_tm.tm_mday = day;
+//         target_tm.tm_hour = hour;
+//         target_tm.tm_min = minute;
+//         target_tm.tm_sec = second;
 
-        std::time_t target_time = std::mktime(&target_tm);
-        if (target_time == -1) {
-            std::cerr << "Nieprawid?owa data w pliku." << std::endl;
-            return "error";
-        }
+//         std::time_t target_time = std::mktime(&target_tm);
+//         if (target_time == -1) {
+//             std::cerr << "Nieprawid?owa data w pliku." << std::endl;
+//             return "error";
+//         }
 
-        auto diff = std::difftime(target_time, current_time);
-        if (diff < 0) {
-            return "very close to finishing...\n";
-        }
+//         auto diff = std::difftime(target_time, current_time);
+//         if (diff < 0) {
+//             return "very close to finishing...\n";
+//         }
 
-        auto diff_seconds = static_cast<int>(diff);
-        int days = diff_seconds / (24 * 3600);
-        diff_seconds %= (24 * 3600);
-        int hours = diff_seconds / 3600;
-        diff_seconds %= 3600;
-        int minutes = diff_seconds / 60;
-        int seconds = diff_seconds % 60;
+//         auto diff_seconds = static_cast<int>(diff);
+//         int days = diff_seconds / (24 * 3600);
+//         diff_seconds %= (24 * 3600);
+//         int hours = diff_seconds / 3600;
+//         diff_seconds %= 3600;
+//         int minutes = diff_seconds / 60;
+//         int seconds = diff_seconds % 60;
         
-        if(days != 0) oss << days << "d ";
-        if(hours != 0) oss << hours << "h ";
-        if(minutes != 0) oss << minutes << "m ";
-        if(seconds != 0) oss << seconds << "s";
-        oss << "\n";
-    }
+//         if(days != 0) oss << days << "d ";
+//         if(hours != 0) oss << hours << "h ";
+//         if(minutes != 0) oss << minutes << "m ";
+//         if(seconds != 0) oss << seconds << "s";
+//         oss << "\n";
+//     }
 
-	return oss.str();
-}
+// 	return oss.str();
+// }
 
 // MULTI THREADED
 void Renderer::RENDER()
@@ -151,11 +161,11 @@ void Renderer::RENDER()
 	#endif
 
 	#ifdef GPU
-
+		
 		// MAIN //
 		
 		int BLOCK_SIZE = def_BLOCK_SIZE;
-		int NUMBER_OF_BLOCKS = def_PIXEL_ARRAY_SIZE / BLOCK_SIZE + 1; // zeby pokrywalo wszystko -> przez to musi byc warunek
+		int NUMBER_OF_BLOCKS = PIXEL_ARRAY_SIZE / BLOCK_SIZE + 1; // zeby pokrywalo wszystko -> przez to musi byc warunek
 		size_t size;
 
 		size = sizeof(*this);
@@ -163,7 +173,7 @@ void Renderer::RENDER()
     	CCE(cudaMalloc((void**)&dev_Renderer, size));
 		CCE(cudaMemcpy(dev_Renderer, this, size, cudaMemcpyHostToDevice));
 		
-		size = sizeof(RGB) * def_PIXEL_ARRAY_SIZE;
+		size = sizeof(RGB) * PIXEL_ARRAY_SIZE;
 		RGB* dev_My_Pixels{};
 		CCE(cudaMalloc((void**)&dev_My_Pixels, size));
 		CCE(cudaMemcpy(dev_My_Pixels, get_my_pixel(), size, cudaMemcpyHostToDevice));
@@ -207,7 +217,14 @@ void Renderer::RENDER()
 
 			kernel_timer.start();
 			{
-				render_kernel<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(dev_Renderer, dev_My_Pixels, dev_Current_Scene, dev_Current_Scene_lights, dev_Current_Scene_spheres, dev_Current_Scene_details);
+				render_kernel<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>
+				(
+					(G::WIDTH / 2)
+					,(G::HEIGHT / 2)
+					,(-10000.0)
+					,WIDTH, PIXEL_ARRAY_SIZE, dev_Renderer, dev_My_Pixels, dev_Current_Scene, 
+					dev_Current_Scene_lights, dev_Current_Scene_spheres, dev_Current_Scene_details
+				);
 				CCE(cudaDeviceSynchronize());
 			}
 			kernel_timer.end();
@@ -215,7 +232,7 @@ void Renderer::RENDER()
 			G::Render::current_scene_stats->get_stats().push_whole(kernel_timer.get_all_in_nano());
 		}
 
-		CCE(cudaMemcpy(get_my_pixel(), dev_My_Pixels, sizeof(RGB) * def_PIXEL_ARRAY_SIZE, cudaMemcpyDeviceToHost));
+		CCE(cudaMemcpy(get_my_pixel(), dev_My_Pixels, sizeof(RGB) * PIXEL_ARRAY_SIZE, cudaMemcpyDeviceToHost));
 
 		// zwalnia od razu wszystko
 		//CCE(cudaDeviceReset());
@@ -229,129 +246,19 @@ void Renderer::RENDER()
 
 	#endif
 
-	// deleting Stat_Record after exiting this function in Main -> test_is_finished()
-
-	printf("[%.0f%]", (100.0f * calculate_progress()));
-	cout << "       " << get_current_local_time_Ray_Tracer();
-	G::PROGRESS_COUNTER++;
-
-	if(((G::SCALING_MULTI == -1.0f) && (G::SCALING_ADD == -1.0f)))
-	{
-		line("SAVING FRAME - only when starting without params to save benchmark time");
-		WIN_LINE(show_frame());
-		save_frame();
-	}
-}
-
-// MULTI THREADED
-void Renderer::RENDER()
-{
-	//							 get's current scene (automatically)
-	G::Render::current_scene_stats = new Stat_Record();
-	
-	#ifdef CPU
-		// SAME scene and details for couple rounds for avg stat
-		parallel_controller.thread_group_host_and_round_keeper
-		(
-			G::REP_NUMBER,
-			G::Render::current_scene->get_details_exe_num_of_threads(),
-			G::Render::current_scene->get_details_exe_schema(),
-			G::Render::current_scene->get_details_exe_block_size(),
-			(G::Render::current_scene_stats->get_stats())
-		);
-	#endif
-
-	#ifdef GPU
-
-		// MAIN //
-		
-		int BLOCK_SIZE = def_BLOCK_SIZE;
-		int NUMBER_OF_BLOCKS = def_PIXEL_ARRAY_SIZE / BLOCK_SIZE + 1; // zeby pokrywalo wszystko -> przez to musi byc warunek
-		size_t size;
-
-		size = sizeof(*this);
-		Renderer* dev_Renderer{};
-    	CCE(cudaMalloc((void**)&dev_Renderer, size));
-		CCE(cudaMemcpy(dev_Renderer, this, size, cudaMemcpyHostToDevice));
-		
-		size = sizeof(RGB) * def_PIXEL_ARRAY_SIZE;
-		RGB* dev_My_Pixels{};
-		CCE(cudaMalloc((void**)&dev_My_Pixels, size));
-		CCE(cudaMemcpy(dev_My_Pixels, get_my_pixel(), size, cudaMemcpyHostToDevice));
-		
-		size = sizeof(*(G::Render::current_scene));
-		Scene* dev_Current_Scene{};
-		CCE(cudaMalloc((void**)&dev_Current_Scene, size));
-		CCE(cudaMemcpy(dev_Current_Scene, G::Render::current_scene, size, cudaMemcpyHostToDevice));
-
-		Light_point* dev_Current_Scene_lights{};
-		{
-			Light_point* host_ptr = G::Render::current_scene->get_lights_ptr();
-			auto& host_vec_ref = G::Render::current_scene->get_lights();
-			size = sizeof(Light_point) * host_vec_ref.size();
-			CCE(cudaMalloc((void**)&dev_Current_Scene_lights, size));
-			CCE(cudaMemcpy(dev_Current_Scene_lights, host_ptr, size, cudaMemcpyHostToDevice));
-		}
-
-		Sphere* dev_Current_Scene_spheres{};
-		{
-			Sphere* host_ptr = G::Render::current_scene->get_spheres_ptr();
-			auto& host_vec_ref = G::Render::current_scene->get_spheres();
-			size = sizeof(Sphere) * host_vec_ref.size();
-			CCE(cudaMalloc((void**)&dev_Current_Scene_spheres, size));
-			CCE(cudaMemcpy(dev_Current_Scene_spheres, host_ptr, size, cudaMemcpyHostToDevice));
-		}
-
-		details* dev_Current_Scene_details{};
-		{
-			details* host_ptr = G::Render::current_scene->get_details_ptr();
-			auto& host_vec_ref = G::Render::current_scene->get_details();
-			size = sizeof(details) * host_vec_ref.size();
-			CCE(cudaMalloc((void**)&dev_Current_Scene_details, size));
-			CCE(cudaMemcpy(dev_Current_Scene_details, host_ptr, size, cudaMemcpyHostToDevice));
-		}
-
-		CCE(cudaDeviceSynchronize());
-		for(int i=0; i < G::REP_NUMBER; i++)
-		{
-			Timer kernel_timer;
-
-			kernel_timer.start();
-			{
-				render_kernel<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(dev_Renderer, dev_My_Pixels, dev_Current_Scene, dev_Current_Scene_lights, dev_Current_Scene_spheres, dev_Current_Scene_details);
-				CCE(cudaDeviceSynchronize());
-			}
-			kernel_timer.end();
-
-			G::Render::current_scene_stats->get_stats().push_whole(kernel_timer.get_all_in_nano());
-		}
-
-		CCE(cudaMemcpy(get_my_pixel(), dev_My_Pixels, sizeof(RGB) * def_PIXEL_ARRAY_SIZE, cudaMemcpyDeviceToHost));
-
-		// zwalnia od razu wszystko
-		//CCE(cudaDeviceReset());
-
-	    CCE(cudaFree(dev_Renderer));
-	    CCE(cudaFree(dev_My_Pixels));
-	    CCE(cudaFree(dev_Current_Scene));
-	    CCE(cudaFree(dev_Current_Scene_lights));
-	    CCE(cudaFree(dev_Current_Scene_spheres));
-	    CCE(cudaFree(dev_Current_Scene_details));
-
-	#endif
 
 	// deleting Stat_Record after exiting this function in Main -> test_is_finished()
 
-	printf("[%.0f%]", (100.0f * calculate_progress()));
-	cout << "       " << get_current_local_time_Ray_Tracer();
-	G::PROGRESS_COUNTER++;
+	// printf("[%.0f%]", (100.0f * calculate_progress()));
+	// cout << "       " << get_current_local_time();
+	// G::PROGRESS_COUNTER++;
 
-	if(((G::SCALING_MULTI == -1.0f) && (G::SCALING_ADD == -1.0f)))
-	{
-		line("SAVING FRAME - only when starting without params to save benchmark time");
-		WIN_LINE(show_frame());
+	// if(((G::SCALING_MULTI == -1.0f) && (G::SCALING_ADD == -1.0f)))
+	// {
+	// 	line("SAVING FRAME - only when starting without params to save benchmark time");
+	// 	WIN_LINE(show_frame());
 		save_frame();
-	}
+	// }
 }
 
 void Renderer::save_frame()
@@ -359,7 +266,7 @@ void Renderer::save_frame()
 	static u64 gen_frame_counter = 0;
 
 	gen_frame_counter++;
-	string file_name = "output/img/";
+	string file_name = "output/";
 
 	#ifdef CPU
 		file_name += "cpu_";
@@ -432,7 +339,7 @@ void Renderer::set_pixel_hack_for_showing_schema(const u64& coord, const Color& 
 // Korzysta caly czas z ( G::Render::current_scene )
 
 GPU_LINE(__host__ __device__)
-void coordinates_for_camera_point(Ray& camera_ray, const u64& x, const u64& y)
+void coordinates_for_camera_point(const i64 def_CAM_POS_X, const i64 def_CAM_POS_Y, const i64 def_CAM_POS_Z, Ray& camera_ray, const u64& x, const u64& y)
 {
 	d3 starting_point( 
 		(def_CAM_POS_X),
@@ -492,21 +399,20 @@ void coordinates_for_parallel(Ray& camera_ray, const u64& x, const u64& y)
 
 
 
-
 GPU_LINE(__host__ __device__)
-void Renderer::per_pixel(const u64& coord, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details)
+void Renderer::per_pixel_starting(const i64 def_CAM_POS_X, const i64 def_CAM_POS_Y, const i64 def_CAM_POS_Z, const u64& WIDTH, const u64& coord, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details)
 {
-	const u64 x = static_cast<u64>(static_cast<u64>(coord) % def_WIDTH);
-	const u64 y = static_cast<u64>(static_cast<u64>(coord) / def_WIDTH);
+	const u64 x = static_cast<u64>(static_cast<u64>(coord) % WIDTH);
+	const u64 y = static_cast<u64>(static_cast<u64>(coord) / WIDTH);
 
-	per_pixel(x, y, current_scene, my_pixel, current_scene_lights, current_scene_spheres, current_scene_details);
+	per_pixel(WIDTH, def_CAM_POS_X, def_CAM_POS_Y, def_CAM_POS_Z, x, y, current_scene, my_pixel, current_scene_lights, current_scene_spheres, current_scene_details);
 }
 
 #define DEB_end my_pixel[def_convert_2d_to_1d(x, y)].r = 0; my_pixel[def_convert_2d_to_1d(x, y)].g = 0;	my_pixel[def_convert_2d_to_1d(x, y)].b = 255; return;
 #define DEB_hit my_pixel[def_convert_2d_to_1d(x, y)].r = 0; my_pixel[def_convert_2d_to_1d(x, y)].g = 255;	my_pixel[def_convert_2d_to_1d(x, y)].b = 0; return;
 #define DEB_miss my_pixel[def_convert_2d_to_1d(x, y)].r = 255; my_pixel[def_convert_2d_to_1d(x, y)].g = 0;	my_pixel[def_convert_2d_to_1d(x, y)].b = 0; return;
 
-#define COLOR_ASSIGN_END my_pixel[def_convert_2d_to_1d(x, y)] = end_color; return;
+#define COLOR_ASSIGN_END my_pixel[def_convert_2d_to_1d_WIDTH(x, y, WIDTH)] = end_color; return;
 
 struct path_info_entry
 {
@@ -661,7 +567,7 @@ const Surface_type& surface_type
 }
 
 GPU_LINE(__host__ __device__)
-void Renderer::per_pixel(const u64& x, const u64& y, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details)
+void Renderer::per_pixel(const u64 WIDTH, const i64 def_CAM_POS_X, const i64 def_CAM_POS_Y, const i64 def_CAM_POS_Z, const u64& x, const u64& y, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details)
 {
 	Ray ray;
 	RGB_float end_color;
@@ -670,7 +576,7 @@ void Renderer::per_pixel(const u64& x, const u64& y, Scene* current_scene, RGB* 
 
 
 	// SETTING UP PRIMARY RAY //
-	coordinates_for_camera_point(ray, x, y);
+	coordinates_for_camera_point(def_CAM_POS_X, def_CAM_POS_Y, def_CAM_POS_Z, ray, x, y);
 	//coordinates_for_parallel(ray, x, y);
 
 	const u16 BOUNCE_LIMIT = current_scene->get_details_scene_bounces(GPU_LINE(current_scene_details));
@@ -766,7 +672,7 @@ void Renderer::ray_looking_for_sphere(Hit_sphere& hit, const Ray& ray, Scene* cu
 {
 	Hit_sphere tmp_info;
 	Distance_contest_spheres distance_contest;
-	Distance_contest_spheres::init(distance_contest);
+	Distance_contest_spheres::init(distance_contest, WIDTH, HEIGHT);
 
 	CPU_LINE(SAFETY_CHECK(ASSERT_ER_IF_NULL((current_scene))));
 

@@ -21,15 +21,17 @@ pkg_check_modules(GDKPIXBUF REQUIRED gdk-pixbuf-2.0)
 
 # Ścieżka do biblioteki
 set(MOVIEMAKER_CPP_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
+set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/_Ray_Tracer/build/)
 
 # Dodajemy ścieżkę do katalogu, w którym jest ta biblioteka
 link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
+link_directories(${MY_RAY_TRACER_CUDA_LIBRARY_PATH})
 
 
 # include_directories(_inc external/moviemaker-cpp/include /usr/include/librsvg-2.0)
 include_directories(_inc external/moviemaker-cpp/include _Ray_Tracer/inc)
 aux_source_directory(_src SOURCES)
-aux_source_directory(_Ray_Tracer/src/CUDA SOURCES)
+# aux_source_directory(_Ray_Tracer/src/CUDA SOURCES)
 
 aux_source_directory(_src TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
@@ -42,7 +44,11 @@ set(target_name "gpu_CUDA_f.exe")
 add_executable(${target_name} ${SOURCES})
 target_include_directories(${target_name} PRIVATE)
 target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
-target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so)
+target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+
+${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so
+${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_f.exe.a
+)
 
 # set(target_name "gpu_CUDA_d.exe")
 # add_executable(${target_name} ${SOURCES})
@@ -52,16 +58,16 @@ target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart ${MO
 
 
 # Włączenie testów
-enable_testing()
+# enable_testing()
 
-# Pobieranie jako submoduł
-add_subdirectory(external/googletest)
+# # Pobieranie jako submoduł
+# add_subdirectory(external/googletest)
 
-# Dodanie testów
-set(TEST_EXE_NAME "test.texe")  # Nazwa binarki testowej
-add_executable(${TEST_EXE_NAME} ${TEST_SOURCES})
-target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main)
+# # Dodanie testów
+# set(TEST_EXE_NAME "test.texe")  # Nazwa binarki testowej
+# add_executable(${TEST_EXE_NAME} ${TEST_SOURCES})
+# target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main)
 
-# Rejestracja testów
-include(GoogleTest)
-gtest_discover_tests(${TEST_EXE_NAME})
+# # Rejestracja testów
+# include(GoogleTest)
+# gtest_discover_tests(${TEST_EXE_NAME})

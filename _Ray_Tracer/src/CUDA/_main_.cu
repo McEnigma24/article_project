@@ -96,7 +96,7 @@ void macros_check()
 #define exiting_app { WIN_LINE(window.close()); return 0; }
 bool display_controller = false;
 
-int main_main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     good_to_go(argc, argv);
     macros_check();
@@ -105,13 +105,17 @@ int main_main(int argc, char* argv[])
     Setuper::setup_Global_Variables___and___Clear_Stats();
 
     #ifdef LINUX
-        Renderer render;
+        Renderer render(1000, 1000);
 
-        for (;;)
+        Scene scene;
+        Setuper::setup_scene_0(&scene, "first");
+
+        // for (;;)
         {
+            G::Render::current_scene = &scene;
             render.RENDER();
 
-            if (render.test_is_finished()) { exiting_app; }
+            // if (render.test_is_finished()) { exiting_app; }
         }
 
     #endif

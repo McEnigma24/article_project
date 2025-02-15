@@ -1,10 +1,11 @@
 #include "CTRL_Bmp.h"
+#include "_global_variables_.h"
 
 
 void BMP_static::save(const string& file_name, const vector<RGB>& my_pixel)
 {
-    u32 width = def_WIDTH;
-    u32 height = def_HEIGHT;
+    u64 width = G::WIDTH;
+    u64 height = G::HEIGHT;
 
 	ofstream f;
 	f.open(file_name.c_str(), std::ios::out | std::ios::binary);	

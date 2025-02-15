@@ -66,7 +66,7 @@ float calculate_progress()
     return ret;
 }
 
-string get_current_local_time_Ray_Tracer()
+string get_current_local_time()
 {
     ostringstream oss;
 
@@ -239,7 +239,7 @@ void Renderer::RENDER()
     // deleting Stat_Record after exiting this function in Main -> test_is_finished()
 
     printf("[%.0f%]", (100.0f * calculate_progress()));
-    cout << "       " << get_current_local_time_Ray_Tracer();
+    cout << "       " << get_current_local_time();
     G::PROGRESS_COUNTER++;
 
     if (((G::SCALING_MULTI == -1.0f) && (G::SCALING_ADD == -1.0f)))
