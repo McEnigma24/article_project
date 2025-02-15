@@ -107,32 +107,32 @@ void OpenMP_GPU_test()
 
 #define FRAMES (1)
 
-void fill_frame_buffer(RGB* render_output, vector<u8>& frame_buffer)
-{
-    ASSERT_ER_IF_NULL(render_output);
-
-    for (unsigned int y = 0; y < def_HEIGHT; y++)
-        for (unsigned int x = 0; x < def_WIDTH; x++)
-        {
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
-        }
-}
-
 class Movie_Maker_Controller
 {
+    vector<uint8_t> frame_buffer;
     list<vector<RGB>> saved_frames;
 
 public:
-    Movie_Maker_Controller() {}
+    Movie_Maker_Controller() : frame_buffer(4 * def_WIDTH * def_HEIGHT) {}
 
-    void add_new_frame(const vector < RGB >> &saved_frames) { saved_frames.push_back(saved_frames); }
+    void add_new_frame(const vector<RGB>& saved_frames) { saved_frames.push_back(saved_frames); }
+
+    void fill_frame_buffer(RGB* render_output, vector<u8>& frame_buffer)
+    {
+        ASSERT_ER_IF_NULL(render_output);
+
+        for (unsigned int y = 0; y < def_HEIGHT; y++)
+            for (unsigned int x = 0; x < def_WIDTH; x++)
+            {
+                frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
+                frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
+                frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
+            }
+    }
 
     void combine_to_movie(const string& name, int frame_rate)
     {
         MovieWriter movie_writer(name, def_WIDTH, def_HEIGHT, frame_rate);
-        vector<uint8_t> frame_buffer(4 * def_WIDTH * def_HEIGHT);
         memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
 
         int how_many_added_frames{};
