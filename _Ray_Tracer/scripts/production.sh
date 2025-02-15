@@ -62,7 +62,7 @@ if [ "$DONT_CLEAR" != "log_to_terminal" ]; then clear; fi
 
 clean_env
 
-prep_env
+# prep_env
 
 build_all
 

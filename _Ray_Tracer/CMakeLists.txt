@@ -66,8 +66,8 @@ if (NVIDIA_SMI_EXECUTABLE)
 
     # Target dla CUDA na Linuxie (64-bit GPU) - double
     set(target_name "gpu_CUDA_d.exe")
-    add_executable(${target_name} ${CUDA_SOURCES})
-    # add_library(${target_name} SHARED ${CUDA_SOURCES})
+    # add_executable(${target_name} ${CUDA_SOURCES})
+    add_library(${target_name} STATIC ${CUDA_SOURCES})
     target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
     target_link_libraries(${target_name} CUDA::cudart)
 endif()
