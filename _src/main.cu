@@ -6,16 +6,26 @@
 
 #include "movie.h"
 
-#include "RT_Renderer.h"
-#include "CTRL_Setuper.h"
 #include "CTRL_Scene.h"
+#include "CTRL_Setuper.h"
+#include "RT_Renderer.h"
 
-#define CCE(x) { cudaError_t err = x;  if (err != cudaSuccess) { const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n"; cout << error; exit(EXIT_FAILURE);} }
+#define CCE(x)                                                                                                         \
+    {                                                                                                                  \
+        cudaError_t err = x;                                                                                           \
+        if (err != cudaSuccess)                                                                                        \
+        {                                                                                                              \
+            const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n";                 \
+            cout << error;                                                                                             \
+            exit(EXIT_FAILURE);                                                                                        \
+        }                                                                                                              \
+    }
 
 __global__ void test(int* a, int* b, int* result, int ARRAY_SIZE)
 {
     int i = threadIdx.x + blockIdx.x * blockDim.x;
-    if(!(i < ARRAY_SIZE)) return;
+    if (!(i < ARRAY_SIZE))
+        return;
 
     result[i] = a[i] + b[i];
 }
@@ -27,7 +37,7 @@ void OpenMP_GPU_test()
     int* b = new int[size];
     int* result = new int[size];
 
-    for(int i=0; i<size; i++)
+    for (int i = 0; i < size; i++)
     {
         a[i] = i;
         b[i] = size - i;
@@ -35,19 +45,19 @@ void OpenMP_GPU_test()
 
     time_stamp_reset();
 
-    for(int i=0; i<size; i++)
+    for (int i = 0; i < size; i++)
     {
         result[i] = a[i] + b[i];
     }
     time_stamp("Iterative");
 
-    #pragma omp parallel for schedule(static)
-    for(int i=0; i<size; i++)
+#pragma omp parallel for schedule(static)
+    for (int i = 0; i < size; i++)
     {
         result[i] = a[i] + b[i];
     }
     time_stamp("Parallel");
-        
+
     int byte_size = size * sizeof(int);
     int* dev_a{};
     int* dev_b{};
@@ -62,9 +72,8 @@ void OpenMP_GPU_test()
 
     int BLOCK_SIZE = 64;
     int NUMBER_OF_BLOCKS = size / BLOCK_SIZE + 1;
-    
-    time_stamp_reset()
-    test<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(dev_a, dev_b, dev_result, size);
+
+    time_stamp_reset() test<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(dev_a, dev_b, dev_result, size);
     CCE(cudaDeviceSynchronize());
     time_stamp("GPU");
 
@@ -96,19 +105,19 @@ void OpenMP_GPU_test()
 #define def_HEIGHT (1000)
 #define def_convert_2d_to_1d(x, y) (y * def_WIDTH + x)
 
-#define FRAMES ( 1 )
+#define FRAMES (1)
 
 void fill_frame_buffer(RGB* render_output, vector<u8>& frame_buffer)
 {
     ASSERT_ER_IF_NULL(render_output);
 
     for (unsigned int y = 0; y < def_HEIGHT; y++)
-    for (unsigned int x = 0; x < def_WIDTH; x++)
-    {
-        frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
-        frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
-        frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
-    }
+        for (unsigned int x = 0; x < def_WIDTH; x++)
+        {
+            frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
+            frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
+            frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
+        }
 }
 
 class Movie_Maker_Controller
@@ -116,14 +125,9 @@ class Movie_Maker_Controller
     list<vector<RGB>> saved_frames;
 
 public:
-    Movie_Maker_Controller()
-    {
-    }
+    Movie_Maker_Controller() {}
 
-    void add_new_frame(const vector<RGB>>& saved_frames)
-    {
-        saved_frames.push_back(saved_frames);
-    }
+    void add_new_frame(const vector < RGB >> &saved_frames) { saved_frames.push_back(saved_frames); }
 
     void combine_to_movie(const string& name, int frame_rate)
     {
@@ -132,21 +136,21 @@ public:
         memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
 
         int how_many_added_frames{};
-        for(int i=0; i<list.count(); i++)
+        for (int i = 0; i < list.count(); i++)
         {
             fill_frame_buffer(list[i].data(), frame_buffer);
 
-            if(i == 0 || i == list.count() - 1) how_many_added_frames = 30;
-            else how_many_added_frames = 5;
+            if (i == 0 || i == list.count() - 1)
+                how_many_added_frames = 30;
+            else
+                how_many_added_frames = 5;
 
-            for(int ii; ii < FRAMES * how_many_added_frames; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * how_many_added_frames; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
     }
 
-    void delete_all_collected_frames()
-    {
-        saved_frames.clear();
-    }
+    void delete_all_collected_frames() { saved_frames.clear(); }
 };
 
 int main(int argc, char* argv[])
@@ -157,7 +161,7 @@ int main(int argc, char* argv[])
 
     // OpenMP_GPU_test();
 
-    if(true)
+    if (true)
     {
         MovieWriter movie_writer("random_pixels.mp4", def_WIDTH, def_HEIGHT, 2);
         vector<uint8_t> frame_buffer(4 * def_WIDTH * def_HEIGHT);
@@ -165,16 +169,14 @@ int main(int argc, char* argv[])
 
         Setuper::setup_Global_Variables___and___Clear_Stats();
         Renderer render(def_WIDTH, def_HEIGHT);
-        
-        // Ona zbiera na wszystkie moje framy, a kiedy trzeba to tworzy ten obiekt na stosie lub kontroluje go przez new i delete
-        
+
+        // Ona zbiera na wszystkie moje framy, a kiedy trzeba to tworzy ten obiekt na stosie lub kontroluje go przez new
+        // i delete
+
         // Będzie widać wtedy, który jest pierwszy, który ostatni
         // pierwsz i ostatni po 30, reszta po 5
 
         // a po nim calluje delete na Movie Makerze
-
-
-        
 
         {
             Scene scene;
@@ -185,7 +187,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 30; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 30; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
 
         {
@@ -197,7 +200,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 5; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 5; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
 
         {
@@ -209,7 +213,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 5; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 5; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
 
         {
@@ -221,7 +226,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 5; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 5; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
 
         {
@@ -233,7 +239,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 5; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 5; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
 
         {
@@ -245,7 +252,8 @@ int main(int argc, char* argv[])
             line("rendering");
             RGB* render_output = render.get_my_pixel();
             render_and_fill_frame_buffer(render_output, frame_buffer);
-            for(int ii; ii < FRAMES * 30; ii++) movie_writer.addFrame(&frame_buffer[0]);
+            for (int ii; ii < FRAMES * 30; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
         }
     }
 
