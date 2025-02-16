@@ -1,8 +1,12 @@
+// MOVE lib
 #include "movie.h"
 
+// MY Ray Tracing lib
 #include "CTRL_Scene.h"
 #include "CTRL_Setuper.h"
 #include "RT_Renderer.h"
+
+// BMP lib
 
 class Movie_Maker_Controller
 {
@@ -11,7 +15,7 @@ class Movie_Maker_Controller
     vector<uint8_t> frame_buffer;
     vector<vector<RGB>> saved_frames;
 
-#define convert_2d_to_1d(x, y) (y * movie_WIDTH + x)
+    u64 convert_2d_to_1d_func(u64 x, u64 y) const { return y * movie_WIDTH + x; }
 
     void fill_frame_buffer(const vector<RGB>& render_output)
     {
@@ -20,9 +24,9 @@ class Movie_Maker_Controller
         for (unsigned int y = 0; y < movie_HEIGHT; y++)
             for (unsigned int x = 0; x < movie_WIDTH; x++)
             {
-                frame_buffer[4 * movie_WIDTH * y + 4 * x + 2] = render_output[convert_2d_to_1d(x, y)].get_r();
-                frame_buffer[4 * movie_WIDTH * y + 4 * x + 1] = render_output[convert_2d_to_1d(x, y)].get_g();
-                frame_buffer[4 * movie_WIDTH * y + 4 * x + 0] = render_output[convert_2d_to_1d(x, y)].get_b();
+                frame_buffer[4 * movie_WIDTH * y + 4 * x + 2] = render_output[convert_2d_to_1d_func(x, y)].get_r();
+                frame_buffer[4 * movie_WIDTH * y + 4 * x + 1] = render_output[convert_2d_to_1d_func(x, y)].get_g();
+                frame_buffer[4 * movie_WIDTH * y + 4 * x + 0] = render_output[convert_2d_to_1d_func(x, y)].get_b();
             }
     }
 
@@ -74,6 +78,7 @@ public:
     {
         G::Render::current_scene = scene;
         render.RENDER();
+
         maker.add_new_frame(render.get_my_pixel_vec());
     }
 

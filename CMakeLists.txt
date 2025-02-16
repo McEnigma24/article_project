@@ -27,10 +27,12 @@ set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
 link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
 link_directories(${MY_RAY_TRACER_CUDA_LIBRARY_PATH})
 
-include_directories(_inc external/moviemaker-cpp/include _Ray_Tracer/inc)
+include_directories(_inc _inc/base external/_Ray_Tracer/inc external/moviemaker-cpp/include)
 aux_source_directory(_src SOURCES)
+aux_source_directory(_src/base SOURCES)
 
 aux_source_directory(_src TEST_SOURCES)
+aux_source_directory(_src/base TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
 aux_source_directory(_test TEST_SOURCES)
 
