@@ -7,6 +7,7 @@
 #include "RT_Renderer.h"
 
 // BMP lib
+#include "Bmp.h"
 
 class Movie_Maker_Controller
 {

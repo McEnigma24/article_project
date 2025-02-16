@@ -20,14 +20,16 @@ pkg_check_modules(GDKPIXBUF REQUIRED gdk-pixbuf-2.0)
 
 
 # Ścieżka do biblioteki
-set(MOVIEMAKER_CPP_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
-set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
+set(LIBRARY_PATH_MOVIEMAKER_CPP ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
+set(LIBRARY_PATH_BMP ${CMAKE_CURRENT_SOURCE_DIR}/external/BMP_lib/build/)
+set(LIBRARY_PATH_MY_RAY_TRACER_CUDA ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
 
 # Dodajemy ścieżkę do katalogu, w którym jest ta biblioteka
-link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
-link_directories(${MY_RAY_TRACER_CUDA_LIBRARY_PATH})
+link_directories(${LIBRARY_PATH_MOVIEMAKER_CPP})
+link_directories(${LIBRARY_PATH_BMP})
+link_directories(${LIBRARY_PATH_MY_RAY_TRACER_CUDA})
 
-include_directories(_inc _inc/base external/_Ray_Tracer/inc external/moviemaker-cpp/include)
+include_directories(_inc _inc/base external/_Ray_Tracer/inc external/BMP_lib/_inc external/moviemaker-cpp/include)
 aux_source_directory(_src SOURCES)
 aux_source_directory(_src/base SOURCES)
 
@@ -55,8 +57,9 @@ target_include_directories(${target_name} PRIVATE)
 target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
-${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so
-${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_f.exe.a
+${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+${LIBRARY_PATH_BMP}/libbmp.exe.a
+${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_f.exe.a
 )
 
 # set(target_name "gpu_CUDA_d.exe")
@@ -65,8 +68,8 @@ ${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_f.exe.a
 # target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
 # target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
-# ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so
-# ${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_d.exe.a
+# ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
 # )
 
 

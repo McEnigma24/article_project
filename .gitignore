@@ -1,4 +1,4 @@
-external/
+# external/
 
 core_dump*
 build/

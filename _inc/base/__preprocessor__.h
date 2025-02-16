@@ -43,6 +43,8 @@ typedef int64_t i64;
 #define member_assign(a, b, member) a.member = b.member;
 #define THIS_OTHER(x) this->x = other.x;
 
+#define call_print(x) x.print(#x);
+
 #define add_endl(string, how_many)                                                                                     \
     for (u16 i{}; i < how_many; i++)                                                                                   \
         string += "\n";
@@ -74,7 +76,6 @@ typedef int64_t i64;
 
 struct UTILS
 {
-
     static void clear_terminal()
     {
 #ifdef _WIN32
@@ -83,6 +84,8 @@ struct UTILS
         int status = std::system("clear"); // Linux / macOS
 #endif
     }
+
+    static u64 convert_2d_to_1d(u64 x, u64 y, u64 WIDTH) { return (y * WIDTH) + x; }
 
     struct str
     {
