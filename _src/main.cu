@@ -132,6 +132,21 @@ public:
     {
         MovieWriter movie_writer(name, def_WIDTH, def_HEIGHT, frame_rate);
 
+        Setuper::setup_Global_Variables___and___Clear_Stats();
+        Renderer render(def_WIDTH, def_HEIGHT);
+
+        {
+            Scene scene;
+            Setuper::setup_scene_0(&scene, "first");
+            G::Render::current_scene = &scene;
+            render.RENDER();
+            line("rendering");
+
+            fill_frame_buffer(render.get_my_pixel_vec());
+            for (int ii; ii < FRAMES * 30; ii++)
+                movie_writer.addFrame(&frame_buffer[0]);
+        }
+
         // int how_many_added_frames{};
         // for (int i = 0; i < saved_frames.size(); i++)
         // {
@@ -173,8 +188,6 @@ int main(int argc, char* argv[])
     srand(time(NULL));
     time_stamp("It just works");
     Movie_Maker_Controller maker;
-
-    crash_function();
 
     maker.combine_to_movie("my_maker.mp4");
 
