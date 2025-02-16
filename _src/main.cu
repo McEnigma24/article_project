@@ -114,6 +114,8 @@ class Movie_Maker_Controller
 
     void fill_frame_buffer(const vector<RGB>& render_output)
     {
+        memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
+
         for (unsigned int y = 0; y < def_HEIGHT; y++)
             for (unsigned int x = 0; x < def_WIDTH; x++)
             {
@@ -132,35 +134,19 @@ public:
     {
         MovieWriter movie_writer(name, def_WIDTH, def_HEIGHT, frame_rate);
 
-        Setuper::setup_Global_Variables___and___Clear_Stats();
-        Renderer render(def_WIDTH, def_HEIGHT);
-
+        int how_many_added_frames{};
+        for (int i = 0; i < saved_frames.size(); i++)
         {
-            Scene scene;
-            Setuper::setup_scene_0(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
+            fill_frame_buffer(saved_frames[i]);
 
-            fill_frame_buffer(render.get_my_pixel_vec());
-            for (int ii; ii < FRAMES * 30; ii++)
+            if ((0 == i) || ((saved_frames.size() - 1) == i))
+                how_many_added_frames = 30;
+            else
+                how_many_added_frames = 5;
+
+            for (int x = 0; x < how_many_added_frames; x++)
                 movie_writer.addFrame(&frame_buffer[0]);
         }
-
-        // int how_many_added_frames{};
-        // for (int i = 0; i < saved_frames.size(); i++)
-        // {
-        //     memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
-        //     fill_frame_buffer(saved_frames[i]);
-
-        //     if (i == 0 || i == saved_frames.size() - 1)
-        //         how_many_added_frames = 30;
-        //     else
-        //         how_many_added_frames = 5;
-
-        //     for (int ii; ii < FRAMES * how_many_added_frames; ii++)
-        //         movie_writer.addFrame(&frame_buffer[0]);
-        // }
     }
 
     void delete_all_collected_frames() { saved_frames.clear(); }
@@ -177,141 +163,54 @@ void fill_frame_buffer(const vector<RGB>& render_output, vector<u8>& frame_buffe
         }
 }
 
-void crash_function()
-{
-    int* a{};
-    *a = 0;
-}
-
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
     time_stamp("It just works");
-    Movie_Maker_Controller maker;
-
-    maker.combine_to_movie("my_maker.mp4");
-
-    return 0;
 
     Setuper::setup_Global_Variables___and___Clear_Stats();
     Renderer render(def_WIDTH, def_HEIGHT);
 
-    if (false)
+    Movie_Maker_Controller maker;
+
     {
-        MovieWriter movie_writer("random_pixels.mp4", def_WIDTH, def_HEIGHT, 2);
-        vector<uint8_t> frame_buffer(4 * def_WIDTH * def_HEIGHT);
-        memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
+        Scene scene;
+        Setuper::setup_scene_0(&scene, "first");
+        G::Render::current_scene = &scene;
 
-        Setuper::setup_Global_Variables___and___Clear_Stats();
-        Renderer render(def_WIDTH, def_HEIGHT);
-
-        {
-            Scene scene;
-            Setuper::setup_scene_0(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
-
-            fill_frame_buffer(render.get_my_pixel_vec(), frame_buffer);
-            for (int ii; ii < FRAMES * 30; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_1(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
-
-            fill_frame_buffer(render.get_my_pixel_vec(), frame_buffer);
-            for (int ii; ii < FRAMES * 5; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_2(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
-
-            fill_frame_buffer(render.get_my_pixel_vec(), frame_buffer);
-            for (int ii; ii < FRAMES * 5; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
-
-        movie_writer.addFrame(&frame_buffer[0]);
-        {
-            Scene scene;
-            Setuper::setup_scene_6(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
-
-            fill_frame_buffer(render.get_my_pixel_vec(), frame_buffer);
-            for (int ii; ii < FRAMES * 5; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_3(&scene, "first");
-            G::Render::current_scene = &scene;
-            render.RENDER();
-            line("rendering");
-
-            fill_frame_buffer(render.get_my_pixel_vec(), frame_buffer);
-            for (int ii; ii < FRAMES * 30; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
+        render.RENDER();
+        maker.add_new_frame(render.get_my_pixel_vec());
     }
 
-    if (false)
     {
-        {
-            Scene scene;
-            Setuper::setup_scene_0(&scene, "first");
-            G::Render::current_scene = &scene;
+        Scene scene;
+        Setuper::setup_scene_1(&scene, "first");
+        G::Render::current_scene = &scene;
 
-            render.RENDER();
-            maker.add_new_frame(render.get_my_pixel_vec());
-            line("here");
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_1(&scene, "first");
-            G::Render::current_scene = &scene;
-
-            render.RENDER();
-            maker.add_new_frame(render.get_my_pixel_vec());
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_2(&scene, "first");
-            G::Render::current_scene = &scene;
-
-            render.RENDER();
-            maker.add_new_frame(render.get_my_pixel_vec());
-        }
-
-        {
-            Scene scene;
-            Setuper::setup_scene_3(&scene, "first");
-            G::Render::current_scene = &scene;
-
-            render.RENDER();
-            maker.add_new_frame(render.get_my_pixel_vec());
-        }
-
-        line("here 1");
-        maker.combine_to_movie("my_maker.mp4");
-        line("here 2");
-        maker.delete_all_collected_frames();
-        line("here 3");
+        render.RENDER();
+        maker.add_new_frame(render.get_my_pixel_vec());
     }
+
+    {
+        Scene scene;
+        Setuper::setup_scene_2(&scene, "first");
+        G::Render::current_scene = &scene;
+
+        render.RENDER();
+        maker.add_new_frame(render.get_my_pixel_vec());
+    }
+
+    {
+        Scene scene;
+        Setuper::setup_scene_3(&scene, "first");
+        G::Render::current_scene = &scene;
+
+        render.RENDER();
+        maker.add_new_frame(render.get_my_pixel_vec());
+    }
+
+    maker.combine_to_movie("my_maker.mp4");
+    maker.delete_all_collected_frames();
 
     return 0;
 }
