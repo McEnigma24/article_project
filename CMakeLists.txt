@@ -27,8 +27,6 @@ set(MY_RAY_TRACER_CUDA_LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
 link_directories(${MOVIEMAKER_CPP_LIBRARY_PATH})
 link_directories(${MY_RAY_TRACER_CUDA_LIBRARY_PATH})
 
-
-# include_directories(_inc external/moviemaker-cpp/include /usr/include/librsvg-2.0)
 include_directories(_inc external/moviemaker-cpp/include _Ray_Tracer/inc)
 aux_source_directory(_src SOURCES)
 
@@ -36,8 +34,11 @@ aux_source_directory(_src TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
 aux_source_directory(_test TEST_SOURCES)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -fopenmp -w")
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -w -g")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -w -g")
+
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -fopenmp -w")
+# set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
 
 set(target_name "gpu_CUDA_f.exe")
 add_executable(${target_name} ${SOURCES})

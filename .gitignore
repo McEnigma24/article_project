@@ -1,5 +1,6 @@
 external/
 
+core_dump*
 build/
 exe/
 log/
