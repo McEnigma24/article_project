@@ -5,6 +5,9 @@ DIR_BUILD="build"
 DIR_LOG="log"
 DIR_TARGET="exe"
 DIR_OUTPUT="output"
+DIR_SCRIPTS="scripts"
+
+PATH_CLEANING_CORE_DUMP="$DIR_SCRIPTS/clear_core_dump.sh"
 
 clear_dir() { if [ -d $1 ]; then rm -rf $1; fi; mkdir $1; }
 run_and_collect()
@@ -32,5 +35,6 @@ run_and_collect()
 cd $DIR_ROOT
 clear_dir "$DIR_LOG"
 clear_dir "$DIR_OUTPUT"
+./$PATH_CLEANING_CORE_DUMP
 
 run_and_collect

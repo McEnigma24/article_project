@@ -132,23 +132,20 @@ public:
     {
         MovieWriter movie_writer(name, def_WIDTH, def_HEIGHT, frame_rate);
 
-        int how_many_added_frames{};
-        for (int i = 0; i < saved_frames.size(); i++)
-        {
-            memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
-            fill_frame_buffer(saved_frames[i]);
+        // int how_many_added_frames{};
+        // for (int i = 0; i < saved_frames.size(); i++)
+        // {
+        //     memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
+        //     fill_frame_buffer(saved_frames[i]);
 
-            if (i == 0 || i == saved_frames.size() - 1)
-                how_many_added_frames = 30;
-            else
-                how_many_added_frames = 5;
+        //     if (i == 0 || i == saved_frames.size() - 1)
+        //         how_many_added_frames = 30;
+        //     else
+        //         how_many_added_frames = 5;
 
-            for (int ii; ii < FRAMES * how_many_added_frames; ii++)
-                movie_writer.addFrame(&frame_buffer[0]);
-
-            line("here 10");
-        }
-        line("here 1");
+        //     for (int ii; ii < FRAMES * how_many_added_frames; ii++)
+        //         movie_writer.addFrame(&frame_buffer[0]);
+        // }
     }
 
     void delete_all_collected_frames() { saved_frames.clear(); }
@@ -167,18 +164,24 @@ void fill_frame_buffer(const vector<RGB>& render_output, vector<u8>& frame_buffe
 
 void crash_function()
 {
-    int* ptr{};
-    *ptr = 10;
+    int* a{};
+    *a = 0;
 }
 
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
-
-    // for(;;)
     time_stamp("It just works");
+    Movie_Maker_Controller maker;
 
     crash_function();
+
+    maker.combine_to_movie("my_maker.mp4");
+
+    return 0;
+
+    Setuper::setup_Global_Variables___and___Clear_Stats();
+    Renderer render(def_WIDTH, def_HEIGHT);
 
     if (false)
     {
@@ -253,12 +256,6 @@ int main(int argc, char* argv[])
 
     if (false)
     {
-        Setuper::setup_Global_Variables___and___Clear_Stats();
-        Renderer render(def_WIDTH, def_HEIGHT);
-
-        Movie_Maker_Controller maker;
-        line("here");
-
         {
             Scene scene;
             Setuper::setup_scene_0(&scene, "first");
