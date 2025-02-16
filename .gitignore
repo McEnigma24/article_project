@@ -1,7 +1,5 @@
 external/
 
-_Ray_Tracer/*
-
 core_dump*
 build/
 exe/
