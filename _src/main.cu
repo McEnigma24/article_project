@@ -4,213 +4,100 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#include "movie.h"
-
-#include "CTRL_Scene.h"
-#include "CTRL_Setuper.h"
-#include "RT_Renderer.h"
-
-#define CCE(x)                                                                                                         \
-    {                                                                                                                  \
-        cudaError_t err = x;                                                                                           \
-        if (err != cudaSuccess)                                                                                        \
-        {                                                                                                              \
-            const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n";                 \
-            cout << error;                                                                                             \
-            exit(EXIT_FAILURE);                                                                                        \
-        }                                                                                                              \
-    }
-
-__global__ void test(int* a, int* b, int* result, int ARRAY_SIZE)
-{
-    int i = threadIdx.x + blockIdx.x * blockDim.x;
-    if (!(i < ARRAY_SIZE))
-        return;
-
-    result[i] = a[i] + b[i];
-}
-
-void OpenMP_GPU_test()
-{
-    int size = 1000000;
-    int* a = new int[size];
-    int* b = new int[size];
-    int* result = new int[size];
-
-    for (int i = 0; i < size; i++)
-    {
-        a[i] = i;
-        b[i] = size - i;
-    }
-
-    time_stamp_reset();
-
-    for (int i = 0; i < size; i++)
-    {
-        result[i] = a[i] + b[i];
-    }
-    time_stamp("Iterative");
-
-#pragma omp parallel for schedule(static)
-    for (int i = 0; i < size; i++)
-    {
-        result[i] = a[i] + b[i];
-    }
-    time_stamp("Parallel");
-
-    int byte_size = size * sizeof(int);
-    int* dev_a{};
-    int* dev_b{};
-    int* dev_result{};
-    CCE(cudaSetDevice(0));
-    CCE(cudaMalloc((void**)&dev_a, byte_size));
-    CCE(cudaMalloc((void**)&dev_b, byte_size));
-    CCE(cudaMalloc((void**)&dev_result, byte_size));
-
-    CCE(cudaMemcpy(dev_a, a, byte_size, cudaMemcpyHostToDevice));
-    CCE(cudaMemcpy(dev_b, b, byte_size, cudaMemcpyHostToDevice));
-
-    int BLOCK_SIZE = 64;
-    int NUMBER_OF_BLOCKS = size / BLOCK_SIZE + 1;
-
-    time_stamp_reset() test<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(dev_a, dev_b, dev_result, size);
-    CCE(cudaDeviceSynchronize());
-    time_stamp("GPU");
-
-    CCE(cudaMemcpy(result, dev_result, byte_size, cudaMemcpyDeviceToHost));
-    CCE(cudaFree(dev_a));
-    CCE(cudaFree(dev_b));
-    CCE(cudaFree(dev_result));
-}
-
-// unit z_plane = u(100);
-
-// scene.add_light
-// (
-//     d3(u(G::WIDTH / 2), u(G::HEIGHT / 2), z_plane)
-//     ,RGB(255, 255, 255)
-// );
-
-// scene.add_sphere
-// (
-//     d3(u(G::WIDTH / 2), u(G::HEIGHT / 2), z_plane), u(100),		// DEAD CENTER
-//     0.0f, 0.0f, Surface_type::diffuse,
-//     RGB(0, 255, 0)
-// );
-
-// #define def_WIDTH (1024)
-// #define def_HEIGHT (768)
-
-#define def_WIDTH (1000)
-#define def_HEIGHT (1000)
-#define def_convert_2d_to_1d(x, y) (y * def_WIDTH + x)
-
-#define FRAMES (1)
-
-class Movie_Maker_Controller
-{
-    vector<uint8_t> frame_buffer;
-    vector<vector<RGB>> saved_frames;
-
-    void fill_frame_buffer(const vector<RGB>& render_output)
-    {
-        memset(frame_buffer.data(), 0, 4 * def_WIDTH * def_HEIGHT);
-
-        for (unsigned int y = 0; y < def_HEIGHT; y++)
-            for (unsigned int x = 0; x < def_WIDTH; x++)
-            {
-                frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
-                frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
-                frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
-            }
-    }
-
-public:
-    Movie_Maker_Controller() : frame_buffer(4 * def_WIDTH * def_HEIGHT) {}
-
-    void add_new_frame(const vector<RGB>& frame) { saved_frames.push_back(frame); }
-
-    void combine_to_movie(const string& name, int frame_rate = 1)
-    {
-        MovieWriter movie_writer(name, def_WIDTH, def_HEIGHT, frame_rate);
-
-        int how_many_added_frames{};
-        for (int i = 0; i < saved_frames.size(); i++)
-        {
-            fill_frame_buffer(saved_frames[i]);
-
-            if ((0 == i) || ((saved_frames.size() - 1) == i))
-                how_many_added_frames = 30;
-            else
-                how_many_added_frames = 5;
-
-            for (int x = 0; x < how_many_added_frames; x++)
-                movie_writer.addFrame(&frame_buffer[0]);
-        }
-    }
-
-    void delete_all_collected_frames() { saved_frames.clear(); }
-};
-
-void fill_frame_buffer(const vector<RGB>& render_output, vector<u8>& frame_buffer)
-{
-    for (unsigned int y = 0; y < def_HEIGHT; y++)
-        for (unsigned int x = 0; x < def_WIDTH; x++)
-        {
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 2] = render_output[def_convert_2d_to_1d(x, y)].get_r();
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 1] = render_output[def_convert_2d_to_1d(x, y)].get_g();
-            frame_buffer[4 * def_WIDTH * y + 4 * x + 0] = render_output[def_convert_2d_to_1d(x, y)].get_b();
-        }
-}
+#include "openMP_test.h"
+#include "visualizer.h"
 
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
     time_stamp("It just works");
 
-    Setuper::setup_Global_Variables___and___Clear_Stats();
-    Renderer render(def_WIDTH, def_HEIGHT);
+    const int WIDTH = 1000;
+    const int HEIGHT = 1000;
 
-    Movie_Maker_Controller maker;
+    // const int WIDTH = 1024;
+    // const int HEIGHT = 768;
 
+    INPUT_scene_OUTPUT_movie scene_renderer(WIDTH, HEIGHT, "movie.mp4", 1);
     {
         Scene scene;
-        Setuper::setup_scene_0(&scene, "first");
-        G::Render::current_scene = &scene;
+        // Setuper::setup_scene_0(&scene, "first");
 
-        render.RENDER();
-        maker.add_new_frame(render.get_my_pixel_vec());
+        unit z_plane = u(100);
+        scene.assign_name("scene");
+
+        if (true)
+        {
+            unit z_plane = u(100);
+
+            scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000.0)), RGB(255, 255, 255));
+
+            scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-150))
+                            //, RGB(255, 0, 0));
+                            ,
+                            RGB(255, 255, 255));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2), u(G::HEIGHT / 2), z_plane), u(100), // DEAD CENTER
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(0, 255, 0));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2 + u(100)), u(G::HEIGHT / 2), z_plane + u(100)), u(100), // DEAD CENTER
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(0, 255, 0));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2 + u(75)), u(G::HEIGHT / 2 - 200),
+                                z_plane // little higher - shadow maker
+                                    - u(125)
+                                //- u(50)
+                                ),
+                             u(40), 0.0f, 0.0f, Surface_type::diffuse, RGB(175, 255, 0));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) + 300, u(G::HEIGHT / 2) + 300, z_plane + u(-150)),
+                             u(100), // bottom - right
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(0, 255, 255));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) + 300, u(G::HEIGHT / 2) + 300 + 50, z_plane), u(150), // bottom - right
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(0, 0, 255));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) + 300, u(G::HEIGHT / 2) - 300, z_plane), u(200), // top	  - right
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(255, 0, 255));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) - 300, u(G::HEIGHT / 2) + 300, z_plane), u(100), // bottom - left
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(255, 255, 0));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) - 300, u(G::HEIGHT / 2) - 300, z_plane), u(100), // top	  -	left
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(255, 255, 255));
+
+            scene.add_sphere(d3(u(G::WIDTH / 2) - 300, u(G::HEIGHT / 2) - 300, z_plane - u(25)),
+                             u(80), // top	  -	left
+                             0.0f, 0.0f, Surface_type::diffuse, RGB(255, 0, 0));
+        }
+
+        // scene.add_light
+        // (
+        //     d3(u(WIDTH / 2), u(HEIGHT / 2), z_plane)
+        //     ,RGB(255, 255, 255)
+        // );
+
+        // scene.add_sphere
+        // (
+        //     d3(u(WIDTH / 2), u(HEIGHT / 2), z_plane), u(100),		// DEAD CENTER
+        //     0.0f, 0.0f, Surface_type::diffuse,
+        //     RGB(0, 255, 0)
+        // );
+
+        u16 light_limit = (u16)scene.get_lights().size();
+        u16 sphere_limit = (u16)scene.get_spheres().size();
+        u16 bounce_limit = 5;
+
+        scene.add_scene_detail(light_limit, sphere_limit, bounce_limit);
+        scene.add_thread_group(16, 0, 0);
+
+        scene_renderer.add_scene(&scene);
+        scene_renderer.add_scene(&scene);
+        scene_renderer.add_scene(&scene);
+        scene_renderer.add_scene(&scene);
     }
 
-    {
-        Scene scene;
-        Setuper::setup_scene_1(&scene, "first");
-        G::Render::current_scene = &scene;
-
-        render.RENDER();
-        maker.add_new_frame(render.get_my_pixel_vec());
-    }
-
-    {
-        Scene scene;
-        Setuper::setup_scene_2(&scene, "first");
-        G::Render::current_scene = &scene;
-
-        render.RENDER();
-        maker.add_new_frame(render.get_my_pixel_vec());
-    }
-
-    {
-        Scene scene;
-        Setuper::setup_scene_3(&scene, "first");
-        G::Render::current_scene = &scene;
-
-        render.RENDER();
-        maker.add_new_frame(render.get_my_pixel_vec());
-    }
-
-    maker.combine_to_movie("my_maker.mp4");
-    maker.delete_all_collected_frames();
+    scene_renderer.combine_to_movie();
 
     return 0;
 }

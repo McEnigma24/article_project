@@ -34,27 +34,37 @@ aux_source_directory(_src TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.c*")
 aux_source_directory(_test TEST_SOURCES)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -w -g")
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -w -g")
+# to see everything
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wall -Wextra")
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -fopenmp -w")
-# set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
+# for normal coding
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=uninitialized -Werror=init-self -Werror=reorder")
 
-set(target_name "gpu_CUDA_f.exe")
+# for release
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -O3 -march=native -w")
+
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
+
+
+# set(target_name "gpu_CUDA_f.exe")
+# add_executable(${target_name} ${SOURCES})
+# target_include_directories(${target_name} PRIVATE)
+# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
+# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+
+# ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so
+# ${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_f.exe.a
+# )
+
+set(target_name "gpu_CUDA_d.exe")
 add_executable(${target_name} ${SOURCES})
 target_include_directories(${target_name} PRIVATE)
-target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
+target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so
-${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_f.exe.a
+${MY_RAY_TRACER_CUDA_LIBRARY_PATH}/libgpu_CUDA_d.exe.a
 )
-
-# set(target_name "gpu_CUDA_d.exe")
-# add_executable(${target_name} ${SOURCES})
-# target_include_directories(${target_name} PRIVATE)
-# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
-# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart ${MOVIEMAKER_CPP_LIBRARY_PATH}/libmoviemaker-cpp.so)
 
 
 # Włączenie testów
