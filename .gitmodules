@@ -10,6 +10,3 @@
 	path = external/moviemaker-cpp
 	url = https://github.com/apc-llc/moviemaker-cpp.git
 	
-[submodule "external/BMP_lib"]
-	path = external/BMP_lib
-	url = https://github.com/McEnigma24/BMP_lib.git
