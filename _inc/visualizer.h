@@ -51,10 +51,18 @@ public:
         {
             fill_frame_buffer(saved_frames[i]);
 
-            if ((0 == i) || ((saved_frames.size() - 1) == i))
-                how_many_added_frames = 30;
+            if (0 == i)
+            {
+                how_many_added_frames = 26;
+            }
+            else if ((saved_frames.size() - 1) == i)
+            {
+                how_many_added_frames = 34;
+            }
             else
+            {
                 how_many_added_frames = 5;
+            }
 
             for (int x{}; x < how_many_added_frames; x++)
                 movie_writer.addFrame(&frame_buffer[0]);

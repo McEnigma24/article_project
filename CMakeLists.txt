@@ -51,26 +51,27 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -march=native -w")
 
 
 
-set(target_name "gpu_CUDA_f.exe")
-add_executable(${target_name} ${SOURCES})
-target_include_directories(${target_name} PRIVATE)
-target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
-target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
-
-${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-${LIBRARY_PATH_BMP}/libbmp.exe.so
-${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_f.exe.a
-)
-
-# set(target_name "gpu_CUDA_d.exe")
+# set(target_name "gpu_CUDA_f.exe")
 # add_executable(${target_name} ${SOURCES})
 # target_include_directories(${target_name} PRIVATE)
-# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
+# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
 # target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 # ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+# ${LIBRARY_PATH_BMP}/libbmp.so
+# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_f.exe.a
 # )
+
+set(target_name "gpu_CUDA_d.exe")
+add_executable(${target_name} ${SOURCES})
+target_include_directories(${target_name} PRIVATE)
+target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
+target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+
+${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+${LIBRARY_PATH_BMP}/libbmp.so
+${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+)
 
 
 # Włączenie testów

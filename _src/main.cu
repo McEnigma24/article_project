@@ -18,7 +18,9 @@ int main(int argc, char* argv[])
     // const int WIDTH = 1024;
     // const int HEIGHT = 768;
 
-    INPUT_scene_OUTPUT_movie scene_renderer(WIDTH, HEIGHT, "movie.mp4", 1);
+    INPUT_scene_OUTPUT_movie scene_renderer(WIDTH, HEIGHT, "movie.mp4", 5);
+
+    if (false)
     {
         Scene scene;
         // Setuper::setup_scene_0(&scene, "first");
@@ -95,6 +97,79 @@ int main(int argc, char* argv[])
         scene_renderer.add_scene(&scene);
         scene_renderer.add_scene(&scene);
         scene_renderer.add_scene(&scene);
+    }
+
+    if (true)
+    {
+        {
+            Scene scene;
+            Setuper::setup_scene_0(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_1(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_2(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_3(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_4(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_5(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_6(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_7(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_8(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
+
+        {
+            Scene scene;
+            Setuper::setup_scene_9(&scene, "first");
+
+            scene_renderer.add_scene(&scene);
+        }
     }
 
     scene_renderer.combine_to_movie();
