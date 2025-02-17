@@ -37,6 +37,9 @@ public:
     {
     }
 
+    u64 get_WIDTH() const { return movie_WIDTH; }
+    u64 get_HEIGHT() const { return movie_HEIGHT; }
+
     void add_new_frame(const vector<RGB>& frame) { saved_frames.push_back(frame); }
 
     void combine_to_movie(const string& name, int frame_rate = 1)
@@ -79,6 +82,10 @@ public:
     {
         G::Render::current_scene = scene;
         render.RENDER();
+
+        static u64 frame_counter{};
+        BMP_static::save("output/frame_" + to_string(frame_counter++) + ".bmp",
+                         (Bmp_RGB*)render.get_my_pixel_vec().data(), maker.get_WIDTH(), maker.get_HEIGHT());
 
         maker.add_new_frame(render.get_my_pixel_vec());
     }

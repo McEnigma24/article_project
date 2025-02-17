@@ -58,7 +58,7 @@ target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-${LIBRARY_PATH_BMP}/libbmp.exe.a
+${LIBRARY_PATH_BMP}/libbmp.exe.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_f.exe.a
 )
 
