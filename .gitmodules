@@ -13,3 +13,6 @@
 [submodule "external/BMP_lib"]
 	path = external/BMP_lib
 	url = https://github.com/McEnigma24/BMP_lib.git
+[submodule "external/Timers_lib"]
+	path = external/Timers_lib
+	url = https://github.com/McEnigma24/Timers_lib.git

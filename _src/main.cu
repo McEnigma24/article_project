@@ -7,6 +7,8 @@
 #include "openMP_test.h"
 #include "visualizer.h"
 
+#include "Nano_Timer.h"
+
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
