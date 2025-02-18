@@ -18,6 +18,10 @@ class Sim_sphere
 public:
     Sim_sphere() { memset(this, 0, sizeof(*this)); }
 
+    d3 get_position() const { return position; }
+    unit get_r() const { return r; }
+    unit get_T() const { return T; }
+
     void init(const d3& _position, const unit& _r, const unit& _T)
     {
         position = _position;
@@ -84,6 +88,10 @@ class Computation_Box
     unit initial_radious;
     unit initial_temperature;
 
+    unit SCENE_scale;
+    d3 SCENE_pos;
+    // rotation
+
     v3<Sim_sphere> all_spheres_inside_box;
 
 public:
@@ -92,6 +100,9 @@ public:
         SIM_scale = u(1);
         initial_radious = u(10);
         initial_temperature = u(273.15);
+
+        unit SCENE_scale = u(1);
+        d3 SCENE_pos = d3(u(0), u(0), u(0));
     }
     u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / 2 * initial_radious); }
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
@@ -112,7 +123,6 @@ public:
 
         // po koleji wyznaczamy jeden wymiar na raz, a potem iterujemy po tych odnalezionych wymiarach
         u64 how_many_spheres_fit_in_X = check_how_many_spheres_fit_in_this_dimention(space_WIDTH);
-
         u64 how_many_spheres_fit_in_Y = check_how_many_spheres_fit_in_this_dimention(space_HEIGHT);
         u64 how_many_spheres_fit_in_Z = check_how_many_spheres_fit_in_this_dimention(space_DEPTH);
 
@@ -137,7 +147,46 @@ public:
         }
     }
 
-    Scene transform_to_My_Ray_Tracing_scene() {}
+    tuple<unit, unit> get_smallest_and_larget_temp()
+    {
+        unit smallest = u(1000000);
+        unit largest = u(0);
+
+        for (u64 z{}; z < all_spheres_inside_box.get_depth(); z++)
+            for (u64 y{}; y < all_spheres_inside_box.get_height(); y++)
+                for (u64 x{}; x < all_spheres_inside_box.get_width(); x++)
+                {
+                    Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+
+                    unit current_T = sim_sphere.get_T();
+
+                    if (current_T < smallest)
+                        smallest = current_T;
+                    if (current_T > largest)
+                        largest = current_T;
+                }
+
+        return {smallest, largest};
+    }
+
+    void transform_to_My_Ray_Tracing_scene(Scene& scene)
+    {
+        scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000.0)), RGB(255, 255, 255));
+
+        auto [smallest_T, largest_T] = get_smallest_and_larget_temp();
+
+        for (u64 z{}; z < all_spheres_inside_box.get_depth(); z++)
+            for (u64 y{}; y < all_spheres_inside_box.get_height(); y++)
+                for (u64 x{}; x < all_spheres_inside_box.get_width(); x++)
+                {
+                    Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+
+                    d3 scene_pos = sim_sphere.get_position();
+                    unit scene_r = sim_sphere.get_r() * SCENE_scale;
+
+                    scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, RGB(0, 255, 0));
+                }
+    }
 };
 
 int main(int argc, char* argv[])
