@@ -85,7 +85,7 @@ class Computation_Box
     v3<Sim_sphere> all_spheres_inside_box;
 
 private:
-    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / 2 * initial_radious); }
+    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / (2 * initial_radious)); }
 
     tuple<unit, unit> get_smallest_and_largest_temp()
     {
@@ -125,11 +125,17 @@ public:
     Computation_Box()
     {
         SIM_scale = u(1);
-        initial_radious = u(10);
+        initial_radious = u(22);
         initial_temperature = u(273.15);
 
         unit SCENE_scale = u(1);
-        d3 SCENE_pos_vector = d3(u(0), u(0), u(0));
+        var(G::WIDTH);
+        var(G::HEIGHT);
+
+        var(u(G::WIDTH / 2 - 250 + 50));
+        var(u(G::HEIGHT / 2 - 50));
+        var(u(-5000));
+        d3 SCENE_pos_vector = d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000));
     }
 
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
@@ -153,6 +159,7 @@ public:
         u64 how_many_spheres_fit_in_Y = check_how_many_spheres_fit_in_this_dimention(space_HEIGHT);
         u64 how_many_spheres_fit_in_Z = check_how_many_spheres_fit_in_this_dimention(space_DEPTH);
 
+        nline;
         var(how_many_spheres_fit_in_X);
         var(how_many_spheres_fit_in_Y);
         var(how_many_spheres_fit_in_Z);
@@ -184,9 +191,11 @@ public:
 
     void transform_to_My_Ray_Tracing_scene(Scene& scene)
     {
+        scene.assign_name("iteration");
+
         {
             Bmp_RGB light_color = Bmp_RGB(255, 255, 255);
-            scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000.0)), (*(const RGB*)(&light_color)));
+            scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000)), (*(const RGB*)(&light_color)));
         }
 
         auto [smallest_T, largest_T] = get_smallest_and_largest_temp();
@@ -198,9 +207,22 @@ public:
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
                     d3 scene_pos = sim_sphere.get_position() * SCENE_scale;
+
+                    var(scene_pos.x);
+                    var(scene_pos.y);
+                    var(scene_pos.z);
+
+                    var(SCENE_pos_vector.x);
+                    var(SCENE_pos_vector.y);
+                    var(SCENE_pos_vector.z);
+
                     scene_pos.x += SCENE_pos_vector.x;
                     scene_pos.y += SCENE_pos_vector.y;
                     scene_pos.z += SCENE_pos_vector.z;
+
+                    var(scene_pos.x);
+                    var(scene_pos.y);
+                    var(scene_pos.z);
 
                     unit scene_r = sim_sphere.get_r() * SCENE_scale;
 
@@ -211,5 +233,12 @@ public:
                                      // Bmp_RGB(0, 255, 0)
                                      (*(const RGB*)(&scene_color)));
                 }
+
+        u64 light_limit = (u64)scene.get_lights().size();
+        u64 sphere_limit = (u64)scene.get_spheres().size();
+        u64 bounce_limit = 5;
+
+        scene.add_scene_detail(light_limit, sphere_limit, bounce_limit);
+        scene.add_thread_group(16, 0, 0);
     }
 };

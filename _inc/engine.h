@@ -18,20 +18,24 @@ public:
     {
         for (int i = 0; i < 10; i++)
         {
-            string current_i = "Iteration: " + to_string(i) + " ";
             Scene current_scene;
+            // Setuper::setup_scene_0(&current_scene, "first");
 
-            time_stamp(current_i + "temp_dist");
-            computation_box.temp_dist();
+            string current_i = "Iteration: " + to_string(i) + " ";
 
-            time_stamp(current_i + "collision_resolution");
-            computation_box.collision_resolution();
+            // time_stamp(current_i + "temp_dist");
+            // computation_box.temp_dist();
+
+            // time_stamp(current_i + "collision_resolution");
+            // computation_box.collision_resolution();
 
             time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
             computation_box.transform_to_My_Ray_Tracing_scene(current_scene);
 
             time_stamp(current_i + "add_scene");
             movie.add_scene(current_scene);
+
+            line("end");
         }
 
         time_stamp("combine_to_movie");

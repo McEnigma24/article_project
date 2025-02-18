@@ -11,12 +11,19 @@ int main(int argc, char* argv[])
 {
     srand(time(NULL));
 
-    Engine engine(u(100), u(100), u(100), // sim space params
-                  // 1024, 768,                     // render params
+    // proporcje obszaru obliczeniowego
+    // 10x * 4x * x
+
+    // r = 10;
+    // x = 100;
+    //           -> 40'000 sfer
+
+    Engine engine(u(50), u(50), u(50), // sim space params
+                                       // 1024, 768,                     // render params
                   1000, 1000,    // render params
                   "movie.mp4", 5 // movie params
     );
-    // engine.start();
+    engine.start();
 
     // Computation_Box box;
     // time_stamp("Box created");
