@@ -4,6 +4,8 @@
 ---
 Language:        Cpp
 
+AllowShortBlocksOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
 ColumnLimit:     150
 AccessModifierOffset: -4
 AlwaysBreakTemplateDeclarations: true

@@ -160,10 +160,8 @@ public:
 
                     unit current_T = sim_sphere.get_T();
 
-                    if (current_T < smallest)
-                        smallest = current_T;
-                    if (current_T > largest)
-                        largest = current_T;
+                    if (current_T < smallest) smallest = current_T;
+                    if (current_T > largest) largest = current_T;
                 }
 
         return {smallest, largest};
