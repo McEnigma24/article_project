@@ -121,9 +121,8 @@ public:
         u64 how_many_spheres_fit_in_Y = check_how_many_spheres_fit_in_this_dimention(space_HEIGHT);
         u64 how_many_spheres_fit_in_Z = check_how_many_spheres_fit_in_this_dimention(space_DEPTH);
 
-        all_spheres_inside_box.set_sizes(
-            how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y,
-            how_many_spheres_fit_in_Z); // tutaj już dajemy konkretnie ile się zmieściło sfer w każdym wymiarze
+        all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y,
+                                         how_many_spheres_fit_in_Z);
 
         unit moving_z = starting_z000;
         for (u64 z{}; z < how_many_spheres_fit_in_Z; z++)
