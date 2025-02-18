@@ -32,10 +32,7 @@ class Movie_Maker_Controller
     }
 
 public:
-    Movie_Maker_Controller(u64 _WIDTH, u64 _HEIGHT)
-        : movie_WIDTH(_WIDTH), movie_HEIGHT(_HEIGHT), frame_buffer(4 * movie_WIDTH * movie_HEIGHT)
-    {
-    }
+    Movie_Maker_Controller(u64 _WIDTH, u64 _HEIGHT) : movie_WIDTH(_WIDTH), movie_HEIGHT(_HEIGHT), frame_buffer(4 * movie_WIDTH * movie_HEIGHT) {}
 
     u64 get_WIDTH() const { return movie_WIDTH; }
     u64 get_HEIGHT() const { return movie_HEIGHT; }
@@ -51,18 +48,9 @@ public:
         {
             fill_frame_buffer(saved_frames[i]);
 
-            if (0 == i)
-            {
-                how_many_added_frames = 26;
-            }
-            else if ((saved_frames.size() - 1) == i)
-            {
-                how_many_added_frames = 34;
-            }
-            else
-            {
-                how_many_added_frames = 5;
-            }
+            if (0 == i) { how_many_added_frames = 26; }
+            else if ((saved_frames.size() - 1) == i) { how_many_added_frames = 34; }
+            else { how_many_added_frames = 5; }
 
             for (int x{}; x < how_many_added_frames; x++)
                 movie_writer.addFrame(&frame_buffer[0]);
@@ -86,14 +74,14 @@ public:
         Setuper::setup_Global_Variables___and___Clear_Stats();
     }
 
-    void add_scene(Scene* scene)
+    void add_scene(Scene& scene)
     {
-        G::Render::current_scene = scene;
+        G::Render::current_scene = &scene;
         render.RENDER();
 
         static u64 frame_counter{};
-        BMP_static::save("output/frame_" + to_string(frame_counter++) + ".bmp",
-                         (Bmp_RGB*)render.get_my_pixel_vec().data(), maker.get_WIDTH(), maker.get_HEIGHT());
+        BMP_static::save("output/frame_" + to_string(frame_counter++) + ".bmp", (Bmp_RGB*)render.get_my_pixel_vec().data(), maker.get_WIDTH(),
+                         maker.get_HEIGHT());
 
         maker.add_new_frame(render.get_my_pixel_vec());
     }
