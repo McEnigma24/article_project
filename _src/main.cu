@@ -102,7 +102,7 @@ public:
         initial_temperature = u(273.15);
 
         unit SCENE_scale = u(1);
-        d3 SCENE_pos = d3(u(0), u(0), u(0));
+        d3 SCENE_pos_vector = d3(u(0), u(0), u(0));
     }
     u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / 2 * initial_radious); }
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
@@ -147,7 +147,7 @@ public:
         }
     }
 
-    tuple<unit, unit> get_smallest_and_larget_temp()
+    tuple<unit, unit> get_smallest_and_largest_temp()
     {
         unit smallest = u(1000000);
         unit largest = u(0);
@@ -167,11 +167,25 @@ public:
         return {smallest, largest};
     }
 
+    // Function to interpolate between two colors based on temperature
+    RGB get_color_from_temperature(unit temperature, unit smallest_T, unit largest_T, const RGB& color_min, const RGB& color_max)
+    {
+        // Normalize the temperature value between 0 and 1
+        float normalized_temp = (temperature - smallest_T) / (largest_T - smallest_T);
+
+        // Interpolate between the two colors
+        int r = static_cast<int>(color_min.r + normalized_temp * (color_max.r - color_min.r));
+        int g = static_cast<int>(color_min.g + normalized_temp * (color_max.g - color_min.g));
+        int b = static_cast<int>(color_min.b + normalized_temp * (color_max.b - color_min.b));
+
+        return RGB(r, g, b);
+    }
+
     void transform_to_My_Ray_Tracing_scene(Scene& scene)
     {
         scene.add_light(d3(u(G::WIDTH / 2 - 250 + 50), u(G::HEIGHT / 2 - 50), u(-5000.0)), RGB(255, 255, 255));
 
-        auto [smallest_T, largest_T] = get_smallest_and_larget_temp();
+        auto [smallest_T, largest_T] = get_smallest_and_largest_temp();
 
         for (u64 z{}; z < all_spheres_inside_box.get_depth(); z++)
             for (u64 y{}; y < all_spheres_inside_box.get_height(); y++)
@@ -179,10 +193,16 @@ public:
                 {
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
-                    d3 scene_pos = sim_sphere.get_position();
+                    d3 scene_pos = sim_sphere.get_position() * SCENE_scale;
+                    scene pos += SCENE_pos_vector;
+
                     unit scene_r = sim_sphere.get_r() * SCENE_scale;
 
-                    scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, RGB(0, 255, 0));
+                    RBG scene_color = get_color_from_temperature(sim_sphere.get_T(), smallest_T, largest_T, RGB(0, 0, 255), RGB(255, 0, 0));
+
+                    scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse,
+                                     // RGB(0, 255, 0)
+                                     scene_color);
                 }
     }
 };
