@@ -34,6 +34,13 @@ typedef int16_t i16;
 typedef int32_t i32;
 typedef int64_t i64;
 
+#ifdef UNIT_FLOAT
+typedef float unit;
+#endif
+#ifdef UNIT_DOUBLE
+typedef double unit;
+#endif
+
 #define null nullptr
 #define pow2(x) ((x) * (x))
 #define base_0(x) (x - 1)
