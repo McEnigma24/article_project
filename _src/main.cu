@@ -44,10 +44,7 @@ class v3
     u64 DEPTH;
     vector<T> buffer;
 
-    bool bound_checks(u64 x, u64 y, u64 z)
-    {
-        return (0 <= x && x < WIDTH) && (0 <= y && y < HEIGHT) && (0 <= z && z < DEPTH);
-    }
+    bool bound_checks(u64 x, u64 y, u64 z) { return (0 <= x && x < WIDTH) && (0 <= y && y < HEIGHT) && (0 <= z && z < DEPTH); }
     u64 d3_to_d1(u64 x, u64 y, u64 z) const { return x + y * (HEIGHT) + z * (WIDTH * HEIGHT); }
 
 public:
@@ -96,10 +93,7 @@ public:
         initial_radious = u(10);
         initial_temperature = u(273.15);
     }
-    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention)
-    {
-        return (u64)(space_dimention / 2 * initial_radious);
-    }
+    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / 2 * initial_radious); }
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
     {
         initial_radious *= SIM_scale;
@@ -118,11 +112,11 @@ public:
 
         // po koleji wyznaczamy jeden wymiar na raz, a potem iterujemy po tych odnalezionych wymiarach
         u64 how_many_spheres_fit_in_X = check_how_many_spheres_fit_in_this_dimention(space_WIDTH);
+
         u64 how_many_spheres_fit_in_Y = check_how_many_spheres_fit_in_this_dimention(space_HEIGHT);
         u64 how_many_spheres_fit_in_Z = check_how_many_spheres_fit_in_this_dimention(space_DEPTH);
 
-        all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y,
-                                         how_many_spheres_fit_in_Z);
+        all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
 
         unit moving_z = starting_z000;
         for (u64 z{}; z < how_many_spheres_fit_in_Z; z++)
@@ -133,8 +127,7 @@ public:
                 unit moving_x = starting_x000;
                 for (u64 x{}; x < how_many_spheres_fit_in_X; x++)
                 {
-                    all_spheres_inside_box.get(x, y, z)->init(d3(moving_x, moving_y, moving_z), initial_radious,
-                                                              initial_temperature);
+                    all_spheres_inside_box.get(x, y, z)->init(d3(moving_x, moving_y, moving_z), initial_radious, initial_temperature);
 
                     moving_x += x_adding;
                 }

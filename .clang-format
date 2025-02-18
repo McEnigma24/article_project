@@ -4,7 +4,7 @@
 ---
 Language:        Cpp
 
-ColumnLimit:     120
+ColumnLimit:     150
 AccessModifierOffset: -4
 AlwaysBreakTemplateDeclarations: true
 PointerAlignment: Left
