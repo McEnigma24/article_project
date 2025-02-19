@@ -18,10 +18,10 @@ int main(int argc, char* argv[])
     // x = 100;
     //           -> 40'000 sfer
 
-    Engine engine(u(50), u(50), u(50), // sim space params
-                                       // 1024, 768,                     // render params
-                  1000, 1000,    // render params
-                  "movie.mp4", 5 // movie params
+    Engine engine(u(150), u(150), u(150), // sim space params
+                                          // 1024, 768,                     // render params
+                  1000, 1000,             // render params
+                  "movie.mp4", 5          // movie params
     );
     engine.start();
 

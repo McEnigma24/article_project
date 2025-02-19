@@ -78,18 +78,13 @@ public:
     {
         var(&scene);
         G::Render::current_scene = &scene;
-        line("1");
         render.RENDER();
-        line("2");
 
         static u64 frame_counter{};
-        line("3");
         BMP_static::save("output/frame_" + to_string(frame_counter++) + ".bmp", (Bmp_RGB*)render.get_my_pixel_vec().data(), maker.get_WIDTH(),
                          maker.get_HEIGHT());
-        line("4");
 
         maker.add_new_frame(render.get_my_pixel_vec());
-        line("5");
     }
 
     void combine_to_movie() { maker.combine_to_movie(name, frame_rate); }
