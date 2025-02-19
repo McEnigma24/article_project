@@ -114,10 +114,43 @@ public:
     unit dot_prod(const d3& other) { return (this->x * other.x) + (this->y * other.y) + (this->z * other.z); }
 
     GPU_LINE(__host__ __device__)
-    d3 operator-(const d3& other) { return d3((this->x - other.x), (this->y - other.y), (this->z - other.z)); }
+    d3 operator+(const d3& other) const { return d3((this->x + other.x), (this->y + other.y), (this->z + other.z)); }
 
     GPU_LINE(__host__ __device__)
-    d3 operator*(const unit& mult) { return d3((this->x * mult), (this->y * mult), (this->z * mult)); }
+    d3 operator-(const d3& other) const { return d3((this->x - other.x), (this->y - other.y), (this->z - other.z)); }
+
+    GPU_LINE(__host__ __device__)
+    d3 operator*(const unit& mult) const { return d3((this->x * mult), (this->y * mult), (this->z * mult)); }
+
+    GPU_LINE(__host__ __device__)
+    d3& operator+=(const d3& other)
+    {
+        this->x += other.x;
+        this->y += other.y;
+        this->z += other.z;
+
+        return *this;
+    }
+
+    GPU_LINE(__host__ __device__)
+    d3& operator-=(const d3& other)
+    {
+        this->x -= other.x;
+        this->y -= other.y;
+        this->z -= other.z;
+
+        return *this;
+    }
+
+    GPU_LINE(__host__ __device__)
+    d3& operator*=(const unit& mult)
+    {
+        this->x *= mult;
+        this->y *= mult;
+        this->z *= mult;
+
+        return *this;
+    }
 
     GPU_LINE(__host__ __device__)
     d3& operator=(const d3& other)
@@ -140,16 +173,12 @@ public:
     GPU_LINE(__host__ __device__)
     static unit distance(const d3& not_normalized_vector)
     {
-        unit sum = (not_normalized_vector.x * not_normalized_vector.x) +
-                   (not_normalized_vector.y * not_normalized_vector.y) +
+        unit sum = (not_normalized_vector.x * not_normalized_vector.x) + (not_normalized_vector.y * not_normalized_vector.y) +
                    (not_normalized_vector.z * not_normalized_vector.z);
 
         return sqrt(sum);
     }
 
     GPU_LINE(__host__ __device__)
-    static unit distance_between(const d3& obj1, const d3& obj2)
-    {
-        return distance(d3(obj1.x - obj2.x, obj1.y - obj2.y, obj1.z - obj2.z));
-    }
+    static unit distance_between(const d3& obj1, const d3& obj2) { return distance(d3(obj1.x - obj2.x, obj1.y - obj2.y, obj1.z - obj2.z)); }
 };

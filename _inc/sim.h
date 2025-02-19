@@ -3,22 +3,22 @@
 
 class Sim_sphere
 {
-    d3 position;
+    d3 position[2];
     unit r;
-    unit T;
+    unit T[2];
 
 public:
     Sim_sphere() { memset(this, 0, sizeof(*this)); }
 
-    d3 get_position() const { return position; }
+    d3 get_position(u8 index) const { return position[index]; }
     unit get_r() const { return r; }
-    unit get_T() const { return T; }
+    unit get_T(u8 index) const { return T[index]; }
 
     void init(const d3& _position, const unit& _r, const unit& _T)
     {
-        position = _position;
+        position[0] = _position;
         r = _r;
-        T = _T;
+        T[0] = _T;
     }
 };
 
@@ -56,19 +56,20 @@ public:
     u64 get_width() const { return WIDTH; }
     u64 get_height() const { return HEIGHT; }
     u64 get_depth() const { return DEPTH; }
-
-    T get(u64 x, u64 y, u64 z) const
-    {
-        BOUND_CHECKS_V3(if (!bound_checks(x, y, z)) return T();)
-
-        return buffer[d3_to_d1(x, y, z)];
-    }
+    u64 get_total_number() const { return buffer.size(); }
 
     T* get(u64 x, u64 y, u64 z)
     {
         BOUND_CHECKS_V3(if (!bound_checks(x, y, z)) return nullptr;)
 
         return &buffer[d3_to_d1(x, y, z)];
+    }
+
+    T* get(u64 i)
+    {
+        BOUND_CHECKS_V3(if (!(i < buffer.size())) return nullptr;)
+
+        return &buffer[i];
     }
 };
 
@@ -191,7 +192,53 @@ public:
 
     void temp_dist() {}
 
-    void collision_resolution() {}
+    tuple<d3, unit> get_distance_and_vec_A_to_B(const d3& posA, const d3& posB)
+    {
+        d3 vec_from_A_to_B = posB - posA;
+        unit distance = d3::distance(vec_from_A_to_B);
+
+        return {vec_from_A_to_B, distance};
+    }
+
+    void collision_resolution(u8)
+    {
+        // do zrównoleglenia
+        for (u64 i{}; i < all_spheres_inside_box.get_total_number(); i++)
+        {
+            Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
+
+            d3 wall_correction = d3(0, 0, 0);
+            d3 sphere_correction = d3(0, 0, 0);
+
+            // 1. obliczyć dystans do wszystkich innych sfer -> jeśli trzeba zrobić poprawkę to kalkulujemy vector 3d -> który jest na bieżąco sumowny
+            // 2. obliczyć dystana do ścian -- bez tego się tylko rozepchną i zostaną tak
+
+            for (u64 other_i{}; other_i < all_spheres_inside_box.get_total_number(); other_i++)
+            {
+                if (i == other_i) continue;
+                Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
+
+                auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_sphere.get_position(), other_sp.get_position());
+
+                if (distance < (current_sphere.get_r() + other_sp.get_r()))
+                {
+                    vec_from_A_to_B.normalize();
+                    vec_from_A_to_B.negate();
+
+                    unit correction = (current_sphere.get_r() + other_sp.get_r()) - distance;
+                    vec_from_A_to_B *= correction;
+
+                    sphere_correction += vec_from_A_to_B;
+                }
+            }
+
+            // sprawdzanie ze ścianami
+            {
+            }
+
+            current_sphere.get_position() += sphere_correction;
+        }
+    }
 
     void transform_to_My_Ray_Tracing_scene(Scene& scene)
     {
