@@ -16,6 +16,8 @@ public:
 
     void start()
     {
+        Memory_index memory_index;
+
         for (int i = 0; i < 10; i++)
         {
             Scene current_scene;
@@ -23,22 +25,24 @@ public:
 
             string current_i = "Iteration: " + to_string(i) + " ";
 
+            // computation_box.temp_dist(memory_index.get());
             // time_stamp(current_i + "temp_dist");
-            // computation_box.temp_dist();
 
-            // time_stamp(current_i + "collision_resolution");
-            // computation_box.collision_resolution();
+            computation_box.collision_resolution(memory_index.get());
+            time_stamp(current_i + "collision_resolution");
 
-            time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
             computation_box.transform_to_My_Ray_Tracing_scene(current_scene);
+            time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
 
-            time_stamp(current_i + "add_scene");
             movie.add_scene(current_scene);
+            time_stamp(current_i + "add_scene");
+
+            memory_index.switch_to_next();
 
             line("end");
         }
 
-        time_stamp("combine_to_movie");
         movie.combine_to_movie();
+        time_stamp("combine_to_movie");
     }
 };

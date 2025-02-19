@@ -20,6 +20,9 @@ public:
         r = _r;
         T[0] = _T;
     }
+
+    void set_new_position(const d3& new_pos, u8 index) { position[index] = new_pos; }
+    void set_new_T(const unit& _T, u8 index) { T[index] = _T; }
 };
 
 // na początku można zrobić z tymi prymitywnymi RÓWNOLEGŁYMI //
@@ -72,6 +75,19 @@ public:
         return &buffer[i];
     }
 };
+
+class Memory_index
+{
+    u8 index;
+
+public:
+    Memory_index() : index(0) {}
+
+    u8 get() const { return index; }
+    u8 get_next() const { return (index + 1) % 2; }
+
+    void switch_to_next() { index = (index + 1) % 2; }
+}
 
 class Computation_Box
 {
@@ -200,7 +216,7 @@ public:
         return {vec_from_A_to_B, distance};
     }
 
-    void collision_resolution(u8)
+    void collision_resolution(Memory_index memory_index)
     {
         // do zrównoleglenia
         for (u64 i{}; i < all_spheres_inside_box.get_total_number(); i++)
@@ -218,7 +234,8 @@ public:
                 if (i == other_i) continue;
                 Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
 
-                auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_sphere.get_position(), other_sp.get_position());
+                auto [vec_from_A_to_B, distance] =
+                    get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
 
                 if (distance < (current_sphere.get_r() + other_sp.get_r()))
                 {
@@ -226,6 +243,8 @@ public:
                     vec_from_A_to_B.negate();
 
                     unit correction = (current_sphere.get_r() + other_sp.get_r()) - distance;
+                    // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
+
                     vec_from_A_to_B *= correction;
 
                     sphere_correction += vec_from_A_to_B;
@@ -236,7 +255,11 @@ public:
             {
             }
 
-            current_sphere.get_position() += sphere_correction;
+            d3 old_pos = current_sphere.get_position(memory_index.get());
+            d3 new_pos = old_pos + sphere_correction + wall_correction;
+
+            // nadpisujemy następną pozycję
+            current_sphere.set_new_position(new_pos, memory_index.get_next());
         }
     }
 
