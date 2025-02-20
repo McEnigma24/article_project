@@ -17,25 +17,45 @@ public:
     void start()
     {
         Memory_index memory_index;
+        Nano_Timer::Timer timer_sim_Temp_Dirt;
+        Nano_Timer::Timer timer_sim_Collision_Res;
+        Nano_Timer::Timer timer_Scene_Creation;
+        Nano_Timer::Timer timer_Ray_Tracing;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             Scene current_scene;
             // Setuper::setup_scene_0(&current_scene, "first");
 
             string current_i = "Iteration: " + to_string(i) + " ";
 
-            // computation_box.temp_dist(memory_index.get());
-            // time_stamp(current_i + "temp_dist");
+            timer_sim_Temp_Dirt.start();
+            {
+                // computation_box.temp_dist(memory_index.get());
+                // time_stamp(current_i + "temp_dist");
+            }
+            timer_sim_Temp_Dirt.stop();
 
-            computation_box.collision_resolution(memory_index.get());
-            time_stamp(current_i + "collision_resolution");
+            timer_sim_Collision_Res.start();
+            {
+                computation_box.collision_resolution(memory_index);
+                time_stamp(current_i + "collision_resolution");
+            }
+            timer_sim_Collision_Res.stop();
 
-            computation_box.transform_to_My_Ray_Tracing_scene(current_scene);
-            time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
+            timer_Scene_Creation.start();
+            {
+                computation_box.transform_to_My_Ray_Tracing_scene(current_scene, memory_index);
+                time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
+            }
+            timer_Scene_Creation.stop();
 
-            movie.add_scene(current_scene);
-            time_stamp(current_i + "add_scene");
+            timer_Ray_Tracing.start();
+            {
+                movie.add_scene(current_scene);
+                time_stamp(current_i + "add_scene");
+            }
+            timer_Ray_Tracing.stop();
 
             memory_index.switch_to_next();
 
@@ -44,5 +64,19 @@ public:
 
         movie.combine_to_movie();
         time_stamp("combine_to_movie");
+
+        nline;
+        line("timer_sim_Temp_Dirt");
+        timer_sim_Temp_Dirt.log();
+        nline;
+        line("timer_sim_Collision_Res");
+        timer_sim_Collision_Res.log();
+        nline;
+        line("timer_Scene_Creation");
+        timer_Scene_Creation.log();
+        nline;
+        line("timer_Ray_Tracing");
+        timer_Ray_Tracing.log();
+        nline;
     }
 };
