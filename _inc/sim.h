@@ -149,6 +149,13 @@ private:
         return Bmp_RGB(r, g, b);
     }
 
+    unit my_clamp(unit value, unit low, unit high)
+    {
+        if (high < value) return high;
+        if (value < low) return low;
+        return value;
+    }
+
 public:
     Computation_Box()
     {
@@ -227,7 +234,6 @@ public:
     void per_sphere(const Memory_index& memory_index, const u64& i)
     {
         Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
-        d3 wall_correction = d3(0, 0, 0);
         d3 sphere_correction = d3(0, 0, 0);
 
         for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
@@ -267,12 +273,16 @@ public:
         }
 
 #ifdef COLLISION_RESOLUTION
-        // sprawdzanie ze ścianami
-        {
-        }
 
         d3 old_pos = current_sphere.get_position(memory_index.get());
-        d3 new_pos = old_pos + sphere_correction + wall_correction;
+        d3 new_pos = old_pos + sphere_correction;
+
+        // sprawdzanie ze ścianami
+        {
+            new_pos.x = my_clamp(new_pos.x, 0, space_WIDTH);
+            new_pos.y = my_clamp(new_pos.y, 0, space_WIDTH);
+            new_pos.z = my_clamp(new_pos.z, 0, space_WIDTH);
+        }
 
         // nadpisujemy następną pozycję
         current_sphere.set_new_position(new_pos, memory_index.get_next());

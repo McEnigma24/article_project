@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     // x = 100;
     //           -> 40'000 sfer
 
-    // cout << 35937 * sizeof(Sim_sphere) << endl;
+    show_sizeof_many(Sim_sphere, 36000 * 50);
 
     // Engine engine(sm * u(40), sm * u(100), sm * u(20), // sim space params
     Engine engine(u(200), u(200), u(200), // sim space params

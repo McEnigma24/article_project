@@ -36,7 +36,7 @@ public:
             }
             timer_sim_Collision_Res.stop();
 
-#ifdef RENDER
+#ifdef RENDER_ACTIVE
             timer_Scene_Creation.start();
             {
                 computation_box.transform_to_My_Ray_Tracing_scene(current_scene, memory_index);
@@ -57,7 +57,7 @@ public:
             line("end");
         }
 
-#ifdef RENDER
+#ifdef RENDER_ACTIVE
         movie.combine_to_movie();
         time_stamp("combine_to_movie");
 #endif
