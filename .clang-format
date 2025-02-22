@@ -4,7 +4,6 @@
 ---
 Language:        Cpp
 
-IndentPPDirectives: AfterHash
 AllowShortBlocksOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: true
 ColumnLimit:     150
@@ -12,6 +11,7 @@ AccessModifierOffset: -4
 AlwaysBreakTemplateDeclarations: true
 PointerAlignment: Left
 IndentWidth:     4
+IndentPPDirectives: AfterHash
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: All
 
