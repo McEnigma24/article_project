@@ -246,6 +246,10 @@ public:
                 vec_from_A_to_B.normalize();
                 vec_from_A_to_B.negate();
 
+# if COLLISION_RESOLUTION = 0
+                cout << "chuj" << endl;
+# endif
+
                 unit correction = (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())) - distance;
                 // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
 
