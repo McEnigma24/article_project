@@ -46,7 +46,7 @@ public:
 
             timer_Ray_Tracing.start();
             {
-                // movie.add_scene(current_scene);
+                movie.add_scene(current_scene);
                 time_stamp(current_i + "add_scene");
             }
             timer_Ray_Tracing.stop();
@@ -58,13 +58,10 @@ public:
         }
 
 #ifdef RENDER
-        // movie.combine_to_movie();
+        movie.combine_to_movie();
         time_stamp("combine_to_movie");
 #endif
 
-        nline;
-        line("timer_sim_Temp_Dirt");
-        timer_sim_Temp_Dirt.log();
         nline;
         line("timer_sim_Collision_Res");
         timer_sim_Collision_Res.log();

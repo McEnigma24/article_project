@@ -103,7 +103,10 @@ class Computation_Box
     unit SCENE_scale;
     unit SCENE_sphere_separator;
     d3 SCENE_pos_vector;
-    // rotation
+
+    unit space_WIDTH;
+    unit space_HEIGHT;
+    unit space_DEPTH;
 
     v3<Sim_sphere> all_spheres_inside_box;
 
@@ -162,9 +165,9 @@ public:
     {
         SIM_initial_radious *= SIM_scale;
 
-        unit space_WIDTH = _space_WIDTH * SIM_scale;
-        unit space_HEIGHT = _space_HEIGHT * SIM_scale;
-        unit space_DEPTH = _space_DEPTH * SIM_scale;
+        space_WIDTH = _space_WIDTH * SIM_scale;
+        space_HEIGHT = _space_HEIGHT * SIM_scale;
+        space_DEPTH = _space_DEPTH * SIM_scale;
 
         const unit starting_x000 = SIM_initial_radious;
         const unit starting_y000 = SIM_initial_radious;

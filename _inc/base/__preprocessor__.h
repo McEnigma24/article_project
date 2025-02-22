@@ -50,29 +50,47 @@ typedef double unit;
 #define member_assign(a, b, member) a.member = b.member;
 #define THIS_OTHER(x) this->x = other.x;
 
+#define sizeof_imp(x)                                                                                                                                \
+ {                                                                                                                                                   \
+  cout << ": " << std::setprecision(1) << fixed << (x) / 1000000000 << "gb " << (x) / 1000000 << "mb " << (x) / 1000 << "kb "                        \
+       << std::setprecision(0) << (x) << "b \n";                                                                                                     \
+ }
+#define show_sizeof(class)                                                                                                                           \
+ {                                                                                                                                                   \
+  size_t size = sizeof(class);                                                                                                                       \
+  cout << #class;                                                                                                                                    \
+  sizeof_imp((float)size);                                                                                                                           \
+ }
+#define show_sizeof_many(class, count)                                                                                                               \
+ {                                                                                                                                                   \
+  size_t size = sizeof(class) * count;                                                                                                               \
+  cout << #class;                                                                                                                                    \
+  sizeof_imp((float)size);                                                                                                                           \
+ }
+
 #define call_print(x) x.print(#x);
 
 #define add_endl(string, how_many)                                                                                                                   \
-    for (u16 i = 0; i < how_many; i++)                                                                                                               \
-        string += "\n";
+ for (u16 i = 0; i < how_many; i++)                                                                                                                  \
+  string += "\n";
 
 #define OUTPUT_TO_FILE(path, content)                                                                                                                \
-    {                                                                                                                                                \
-        ofstream file(path);                                                                                                                         \
-        file << content;                                                                                                                             \
-        file.close();                                                                                                                                \
-    }
+ {                                                                                                                                                   \
+  ofstream file(path);                                                                                                                               \
+  file << content;                                                                                                                                   \
+  file.close();                                                                                                                                      \
+ }
 
 #define FATAL_ERROR(x)                                                                                                                               \
-    {                                                                                                                                                \
-        const string fatal = "FATAL ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + " -> " + x + "\n";                                     \
-        cout << fatal;                                                                                                                               \
-        exit(EXIT_FAILURE);                                                                                                                          \
-    }
+ {                                                                                                                                                   \
+  const string fatal = "FATAL ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + " -> " + x + "\n";                                           \
+  cout << fatal;                                                                                                                                     \
+  exit(EXIT_FAILURE);                                                                                                                                \
+ }
 #define ASSERT_ER_IF_TRUE(x)                                                                                                                         \
-    if (x) FATAL_ERROR(#x)
+ if (x) FATAL_ERROR(#x)
 #define ASSERT_ER_IF_NULL(x)                                                                                                                         \
-    if (x == null) FATAL_ERROR(#x)
+ if (x == null) FATAL_ERROR(#x)
 
 #define SAFETY_CHECK(x) x;
 
