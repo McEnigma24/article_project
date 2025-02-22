@@ -12,6 +12,7 @@ AlwaysBreakTemplateDeclarations: true
 PointerAlignment: Left
 IndentWidth:     4
 IndentPPDirectives: AfterHash
+PPIndentWidth: 1
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: All
 

@@ -267,7 +267,7 @@ public:
     {
 
 #ifdef CPU
-#    pragma omp parallel for schedule(static)
+# pragma omp parallel for schedule(static)
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
             per_sphere(memory_index, *all_spheres_inside_box.get(i));
