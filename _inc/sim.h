@@ -280,8 +280,8 @@ public:
         // sprawdzanie ze ścianami
         {
             new_pos.x = my_clamp(new_pos.x, 0, space_WIDTH);
-            new_pos.y = my_clamp(new_pos.y, 0, space_WIDTH);
-            new_pos.z = my_clamp(new_pos.z, 0, space_WIDTH);
+            new_pos.y = my_clamp(new_pos.y, 0, space_HEIGHT);
+            new_pos.z = my_clamp(new_pos.z, 0, space_DEPTH);
         }
 
         // nadpisujemy następną pozycję
