@@ -213,8 +213,6 @@ public:
         }
     }
 
-    void temp_dist() {}
-
     tuple<d3, unit> get_distance_and_vec_A_to_B(const d3& posA, const d3& posB)
     {
         d3 vec_from_A_to_B = posB - posA;
@@ -238,6 +236,14 @@ public:
                 get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
 
 #ifdef TEMP_DISTRIBUTION
+
+            // jeśli dystans się zgadza i jest np. mniejszy niż 2 * r Current_sfery to bierzemy sferę do obliczeń
+            // tak samo jak collision, sumujemy wszystkie zmiany albo jakiś inny mechanizm i pod koniec pętli zmieniamy następny memory index
+            // tak samo promień, zmieniamy tego następnego
+
+            // dla GPU - można wykonać najpierw wszystkie kroki iteracyjne i tylko synchronizować je po przeiterowaniu i wykonaniu jednej per_sphere
+            // + zapis stanu pod koniec do pamięci
+            // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje i później zczyta jako tablica v3)
 
 #endif
 
@@ -270,9 +276,8 @@ public:
 #endif // COLLISION_RESOLUTION
     }
 
-    void collision_resolution(const Memory_index& memory_index)
+    void iteration_step(const Memory_index& memory_index)
     {
-
 #ifdef CPU
 # pragma omp parallel for schedule(static)
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
@@ -318,7 +323,7 @@ public:
                     scene_pos.y += SCENE_pos_vector.y;
                     scene_pos.z += SCENE_pos_vector.z;
 
-                    unit scene_r = sim_sphere.get_r() * SCENE_scale;
+                    unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
 
                     Bmp_RGB scene_color =
                         // get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0,

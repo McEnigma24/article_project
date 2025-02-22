@@ -67,7 +67,8 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -fopenmp -O3 -march=native -w")
 set(target_name "gpu_CUDA_d.exe")
 add_executable(${target_name} ${SOURCES})
 target_include_directories(${target_name} PRIVATE)
-target_compile_definitions(${target_name} PRIVATE LINUX GPU CPU UNIT_DOUBLE)
+target_compile_definitions(${target_name} PRIVATE LINUX COLLISION_RESOLUTION TEMP_DISTRIBUTION CPU UNIT_DOUBLE)
+# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so

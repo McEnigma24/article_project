@@ -18,6 +18,8 @@ int main(int argc, char* argv[])
     // x = 100;
     //           -> 40'000 sfer
 
+    // cout << 35937 * sizeof(Sim_sphere) << endl;
+
     // Engine engine(sm * u(40), sm * u(100), sm * u(20), // sim space params
     Engine engine(u(200), u(200), u(200), // sim space params
                                           // 1024, 768,                     // render params

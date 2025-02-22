@@ -29,20 +29,14 @@ public:
 
             string current_i = "Iteration: " + to_string(i) + " ";
 
-            timer_sim_Temp_Dirt.start();
-            {
-                // computation_box.temp_dist(memory_index.get());
-                // time_stamp(current_i + "temp_dist");
-            }
-            timer_sim_Temp_Dirt.stop();
-
             timer_sim_Collision_Res.start();
             {
-                computation_box.collision_resolution(memory_index);
+                computation_box.iteration_step(memory_index);
                 time_stamp(current_i + "collision_resolution");
             }
             timer_sim_Collision_Res.stop();
 
+#ifdef RENDER
             timer_Scene_Creation.start();
             {
                 computation_box.transform_to_My_Ray_Tracing_scene(current_scene, memory_index);
@@ -56,14 +50,17 @@ public:
                 time_stamp(current_i + "add_scene");
             }
             timer_Ray_Tracing.stop();
+#endif
 
             memory_index.switch_to_next();
 
             line("end");
         }
 
+#ifdef RENDER
         // movie.combine_to_movie();
         time_stamp("combine_to_movie");
+#endif
 
         nline;
         line("timer_sim_Temp_Dirt");
