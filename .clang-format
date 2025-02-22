@@ -4,6 +4,7 @@
 ---
 Language:        Cpp
 
+IndentPPDirectives: AfterHash
 AllowShortBlocksOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: true
 ColumnLimit:     150
