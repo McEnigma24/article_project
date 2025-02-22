@@ -110,7 +110,7 @@ class Computation_Box
 private:
     u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / (2 * SIM_initial_radious)); }
 
-    tuple<unit, unit> get_smallest_and_largest_temp(Memory_index& memory_index)
+    tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index& memory_index)
     {
         unit smallest = u(1000000);
         unit largest = u(0);
@@ -223,14 +223,11 @@ public:
         return {vec_from_A_to_B, distance};
     }
 
-    void per_sphere(Memory_index& memory_index, Sim_sphere& current_sphere)
+    void per_sphere(const Memory_index& memory_index, const u64& i)
     {
+        Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
         d3 wall_correction = d3(0, 0, 0);
         d3 sphere_correction = d3(0, 0, 0);
-
-        // sprawdzanie ze ścianami
-        {
-        }
 
         for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
         {
@@ -240,15 +237,15 @@ public:
             auto [vec_from_A_to_B, distance] =
                 get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
 
+#ifdef TEMP_DISTRIBUTION
+
+#endif
+
 #ifdef COLLISION_RESOLUTION
             if (distance < (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())))
             {
                 vec_from_A_to_B.normalize();
                 vec_from_A_to_B.negate();
-
-# if COLLISION_RESOLUTION = 0
-                cout << "chuj" << endl;
-# endif
 
                 unit correction = (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())) - distance;
                 // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
@@ -260,26 +257,32 @@ public:
 #endif // COLLISION_RESOLUTION
         }
 
+#ifdef COLLISION_RESOLUTION
+        // sprawdzanie ze ścianami
+        {
+        }
+
         d3 old_pos = current_sphere.get_position(memory_index.get());
         d3 new_pos = old_pos + sphere_correction + wall_correction;
 
         // nadpisujemy następną pozycję
         current_sphere.set_new_position(new_pos, memory_index.get_next());
+#endif // COLLISION_RESOLUTION
     }
 
-    void collision_resolution(Memory_index& memory_index)
+    void collision_resolution(const Memory_index& memory_index)
     {
 
 #ifdef CPU
 # pragma omp parallel for schedule(static)
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
-            per_sphere(memory_index, *all_spheres_inside_box.get(i));
+            per_sphere(memory_index, i);
         }
 #endif // CPU
     }
 
-    void transform_to_My_Ray_Tracing_scene(Scene& scene, Memory_index& memory_index)
+    void transform_to_My_Ray_Tracing_scene(Scene& scene, const Memory_index& memory_index)
     {
         time_stamp("transform_to_My_Ray_Tracing_scene");
         SCENE_pos_vector =
