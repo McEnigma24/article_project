@@ -1,24 +1,26 @@
 #include "Nano_Timer.h"
 #include "visualizer.h"
+#include <omp.h>
 
 class Sim_sphere
 {
     d3 position[2];
-    unit r;
+    unit r[2];
     unit T[2];
 
 public:
     Sim_sphere() { memset(this, 0, sizeof(*this)); }
 
     d3 get_position(u8 index) const { return position[index]; }
-    unit get_r() const { return r; }
+    unit get_r(u8 index) const { return r[index]; }
     unit get_T(u8 index) const { return T[index]; }
 
     void init(const d3& _position, const unit& _r, const unit& _T)
     {
         position[0] = _position;
         position[1] = _position;
-        r = _r;
+        r[0] = _r;
+        r[1] = _r;
         T[0] = _T;
         T[1] = _T;
     }
@@ -113,9 +115,9 @@ private:
         unit smallest = u(1000000);
         unit largest = u(0);
 
-        for (u64 z{}; z < all_spheres_inside_box.get_depth(); z++)
-            for (u64 y{}; y < all_spheres_inside_box.get_height(); y++)
-                for (u64 x{}; x < all_spheres_inside_box.get_width(); x++)
+        for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
+            for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
+                for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
                 {
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
@@ -187,13 +189,13 @@ public:
         all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
 
         unit moving_z = starting_z000;
-        for (u64 z{}; z < how_many_spheres_fit_in_Z; z++)
+        for (u64 z = 0; z < how_many_spheres_fit_in_Z; z++)
         {
             unit moving_y = starting_y000;
-            for (u64 y{}; y < how_many_spheres_fit_in_Y; y++)
+            for (u64 y = 0; y < how_many_spheres_fit_in_Y; y++)
             {
                 unit moving_x = starting_x000;
-                for (u64 x{}; x < how_many_spheres_fit_in_X; x++)
+                for (u64 x = 0; x < how_many_spheres_fit_in_X; x++)
                 {
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
@@ -221,51 +223,56 @@ public:
         return {vec_from_A_to_B, distance};
     }
 
+    void per_sphere(Memory_index& memory_index, Sim_sphere& current_sphere)
+    {
+        d3 wall_correction = d3(0, 0, 0);
+        d3 sphere_correction = d3(0, 0, 0);
+
+        // sprawdzanie ze ścianami
+        {
+        }
+
+        for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
+        {
+            if (i == other_i) continue;
+            Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
+
+            auto [vec_from_A_to_B, distance] =
+                get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
+
+#ifdef COLLISION_RESOLUTION
+            if (distance < (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())))
+            {
+                vec_from_A_to_B.normalize();
+                vec_from_A_to_B.negate();
+
+                unit correction = (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())) - distance;
+                // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
+
+                vec_from_A_to_B *= correction;
+
+                sphere_correction += vec_from_A_to_B;
+            }
+#endif // COLLISION_RESOLUTION
+        }
+
+        d3 old_pos = current_sphere.get_position(memory_index.get());
+        d3 new_pos = old_pos + sphere_correction + wall_correction;
+
+        // nadpisujemy następną pozycję
+        current_sphere.set_new_position(new_pos, memory_index.get_next());
+    }
+
     void collision_resolution(Memory_index& memory_index)
     {
-        // #pragma omp parallel for schedule(static)
-        for (u64 i{}; i < all_spheres_inside_box.get_total_number(); i++)
+
+#ifdef CPU
+#pragma omp parallel for schedule(static)
+        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
-            Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
-
-            d3 wall_correction = d3(0, 0, 0);
-            d3 sphere_correction = d3(0, 0, 0);
-
-            // 1. obliczyć dystans do wszystkich innych sfer -> jeśli trzeba zrobić poprawkę to kalkulujemy vector 3d -> który jest na bieżąco sumowny
-            // 2. obliczyć dystana do ścian -- bez tego się tylko rozepchną i zostaną tak
-
-            for (u64 other_i{}; other_i < all_spheres_inside_box.get_total_number(); other_i++)
-            {
-                if (i == other_i) continue;
-                Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
-
-                auto [vec_from_A_to_B, distance] =
-                    get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
-
-                if (distance < (current_sphere.get_r() + other_sp.get_r()))
-                {
-                    vec_from_A_to_B.normalize();
-                    vec_from_A_to_B.negate();
-
-                    unit correction = (current_sphere.get_r() + other_sp.get_r()) - distance;
-                    // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
-
-                    vec_from_A_to_B *= correction;
-
-                    sphere_correction += vec_from_A_to_B;
-                }
-            }
-
-            // sprawdzanie ze ścianami
-            {
-            }
-
-            d3 old_pos = current_sphere.get_position(memory_index.get());
-            d3 new_pos = old_pos + sphere_correction + wall_correction;
-
-            // nadpisujemy następną pozycję
-            current_sphere.set_new_position(new_pos, memory_index.get_next());
+            per_sphere(memory_index, *all_spheres_inside_box.get(i));
         }
+#endif // CPU
     }
 
     void transform_to_My_Ray_Tracing_scene(Scene& scene, Memory_index& memory_index)
@@ -284,9 +291,9 @@ public:
 
         auto [smallest_T, largest_T] = get_smallest_and_largest_temp(memory_index);
 
-        for (u64 z{}; z < all_spheres_inside_box.get_depth(); z++)
-            for (u64 y{}; y < all_spheres_inside_box.get_height(); y++)
-                for (u64 x{}; x < all_spheres_inside_box.get_width(); x++)
+        for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
+            for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
+                for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
                 {
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 

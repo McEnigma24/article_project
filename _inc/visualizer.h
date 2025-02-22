@@ -43,7 +43,7 @@ public:
     {
         MovieWriter movie_writer(name, movie_WIDTH, movie_HEIGHT, frame_rate);
 
-        int how_many_added_frames{};
+        int how_many_added_frames = 0;
         for (int i = 0; i < saved_frames.size(); i++)
         {
             fill_frame_buffer(saved_frames[i]);
@@ -52,7 +52,7 @@ public:
             else if ((saved_frames.size() - 1) == i) { how_many_added_frames = 34; }
             else { how_many_added_frames = 5; }
 
-            for (int x{}; x < how_many_added_frames; x++)
+            for (int x = 0; x < how_many_added_frames; x++)
                 movie_writer.addFrame(&frame_buffer[0]);
         }
     }
@@ -80,7 +80,7 @@ public:
         G::Render::current_scene = &scene;
         render.RENDER();
 
-        static u64 frame_counter{};
+        static u64 frame_counter = 0;
         BMP_static::save("output/frame_" + to_string(frame_counter++) + ".bmp", (Bmp_RGB*)render.get_my_pixel_vec().data(), maker.get_WIDTH(),
                          maker.get_HEIGHT());
 

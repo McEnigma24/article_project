@@ -26,5 +26,7 @@ int main(int argc, char* argv[])
     );
     engine.start();
 
+    // OpenMP_GPU_test();
+
     return 0;
 }

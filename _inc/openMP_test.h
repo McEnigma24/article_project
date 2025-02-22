@@ -1,19 +1,18 @@
-#define CCE(x)                                                                                                         \
-    {                                                                                                                  \
-        cudaError_t err = x;                                                                                           \
-        if (err != cudaSuccess)                                                                                        \
-        {                                                                                                              \
-            const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n";                 \
-            cout << error;                                                                                             \
-            exit(EXIT_FAILURE);                                                                                        \
-        }                                                                                                              \
+#define CCE(x)                                                                                                                                       \
+    {                                                                                                                                                \
+        cudaError_t err = x;                                                                                                                         \
+        if (err != cudaSuccess)                                                                                                                      \
+        {                                                                                                                                            \
+            const string error = "CUDA ERROR - " + std::to_string(__LINE__) + " : " + __FILE__ + "\n";                                               \
+            cout << error;                                                                                                                           \
+            exit(EXIT_FAILURE);                                                                                                                      \
+        }                                                                                                                                            \
     }
 
 __global__ void test(int* a, int* b, int* result, int ARRAY_SIZE)
 {
     int i = threadIdx.x + blockIdx.x * blockDim.x;
-    if (!(i < ARRAY_SIZE))
-        return;
+    if (!(i < ARRAY_SIZE)) return;
 
     result[i] = a[i] + b[i];
 }
@@ -47,9 +46,9 @@ void OpenMP_GPU_test()
     time_stamp("Parallel");
 
     int byte_size = size * sizeof(int);
-    int* dev_a{};
-    int* dev_b{};
-    int* dev_result{};
+    int* dev_a = 0;
+    int* dev_b = 0;
+    int* dev_result = 0;
     CCE(cudaSetDevice(0));
     CCE(cudaMalloc((void**)&dev_a, byte_size));
     CCE(cudaMalloc((void**)&dev_b, byte_size));
