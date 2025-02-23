@@ -1,4 +1,5 @@
 #include "Nano_Timer.h"
+#include "Randoms.h"
 #include "visualizer.h"
 #include <omp.h>
 
@@ -111,24 +112,41 @@ class Computation_Box
     v3<Sim_sphere> all_spheres_inside_box;
 
 private:
-    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention) { return (u64)(space_dimention / (2 * SIM_initial_radious)); }
+    u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention)
+    {
+        // var(space_dimention);
+        // var(SIM_initial_radious);
+        // var((2 * SIM_initial_radious));
+        // var((space_dimention / (2 * SIM_initial_radious)));
+        return (u64)(space_dimention / (2 * SIM_initial_radious));
+    }
 
     tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index& memory_index)
     {
         unit smallest = u(1000000);
         unit largest = u(0);
 
-        for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
-            for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
-                for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
-                {
-                    Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
+        {
+            Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
 
-                    unit current_T = sim_sphere.get_T(memory_index.get());
+            unit current_T = sim_sphere.get_T(memory_index.get());
 
-                    if (current_T < smallest) smallest = current_T;
-                    if (current_T > largest) largest = current_T;
-                }
+            if (current_T < smallest) smallest = current_T;
+            if (current_T > largest) largest = current_T;
+        }
+
+        // for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
+        //     for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
+        //         for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
+        //         {
+        //             Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+
+        //             unit current_T = sim_sphere.get_T(memory_index.get());
+
+        //             if (current_T < smallest) smallest = current_T;
+        //             if (current_T > largest) largest = current_T;
+        //         }
 
         return {smallest, largest};
     }
@@ -211,8 +229,10 @@ public:
 
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
                                     SIM_initial_radious
-                                    // ,SIM_initial_temperature
-                                    , );
+                                    // Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.5 *
+                                    // SIM_initial_radious) ,SIM_initial_temperature
+                                    ,
+                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, 273));
 
                     moving_x += x_adding;
                 }
@@ -315,35 +335,43 @@ public:
 
         auto [smallest_T, largest_T] = get_smallest_and_largest_temp(memory_index);
 
-        for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
-            for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
-                for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
-                {
-                    Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+        // var(all_spheres_inside_box.get_depth())
+        // var(all_spheres_inside_box.get_height())
+        // var(all_spheres_inside_box.get_width())
 
-                    // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
-                    //              + do środka można też zaglądać nie generaując niektórych sfer
+        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
+        {
+            Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
 
-                    d3 scene_pos = sim_sphere.get_position(memory_index.get()) *
-                                   SCENE_sphere_separator; // to chyba rozszerza wszystko - oddzielać sfery od siebie
+            // for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
+            //     for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
+            //         for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
+            //         {
+            //             Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
-                    scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
+            // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
+            //              + do środka można też zaglądać nie generaując niektórych sfer
 
-                    scene_pos.rotate_up_down(d3(0, 0, 0), u(0.5));
+            d3 scene_pos =
+                sim_sphere.get_position(memory_index.get()) * SCENE_sphere_separator; // to chyba rozszerza wszystko - oddzielać sfery od siebie
 
-                    scene_pos.x += SCENE_pos_vector.x;
-                    scene_pos.y += SCENE_pos_vector.y;
-                    scene_pos.z += SCENE_pos_vector.z;
+            scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
 
-                    unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
+            scene_pos.rotate_up_down(d3(0, 0, 0), u(0.5));
 
-                    Bmp_RGB scene_color =
-                        // get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0,
-                        // 0))
-                        Bmp_RGB(255, 255, 255);
+            scene_pos.x += SCENE_pos_vector.x;
+            scene_pos.y += SCENE_pos_vector.y;
+            scene_pos.z += SCENE_pos_vector.z;
 
-                    scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
-                }
+            unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
+
+            Bmp_RGB scene_color =
+                // get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0,
+                // 0))
+                Bmp_RGB(255, 255, 255);
+
+            scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
+        }
 
         u64 light_limit = (u64)scene.get_lights().size();
         u64 sphere_limit = (u64)scene.get_spheres().size();
