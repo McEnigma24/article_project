@@ -16,3 +16,6 @@
 [submodule "external/Timers_lib"]
 	path = external/Timers_lib
 	url = https://github.com/McEnigma24/Timers_lib.git
+[submodule "external/Randoms_lib"]
+	path = external/Randoms_lib
+	url = https://github.com/McEnigma24/Randoms_lib.git

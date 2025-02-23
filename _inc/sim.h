@@ -212,8 +212,7 @@ public:
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
                                     SIM_initial_radious
                                     // ,SIM_initial_temperature
-                                    ,
-                                    rand() % 100 + 1);
+                                    , );
 
                     moving_x += x_adding;
                 }

@@ -23,15 +23,17 @@ pkg_check_modules(GDKPIXBUF REQUIRED gdk-pixbuf-2.0)
 set(LIBRARY_PATH_MOVIEMAKER_CPP ${CMAKE_CURRENT_SOURCE_DIR}/external/moviemaker-cpp/build/)
 set(LIBRARY_PATH_BMP ${CMAKE_CURRENT_SOURCE_DIR}/external/BMP_lib/build/)
 set(LIBRARY_PATH_TIMERS ${CMAKE_CURRENT_SOURCE_DIR}/external/Timers_lib/build/)
+set(LIBRARY_PATH_RANDOMS ${CMAKE_CURRENT_SOURCE_DIR}/external/Randoms_lib/build/)
 set(LIBRARY_PATH_MY_RAY_TRACER_CUDA ${CMAKE_CURRENT_SOURCE_DIR}/sacred_libs)
 
 # Dodajemy ścieżkę do katalogu, w którym jest ta biblioteka
 link_directories(${LIBRARY_PATH_MOVIEMAKER_CPP})
 link_directories(${LIBRARY_PATH_BMP})
 link_directories(${LIBRARY_PATH_TIMERS})
+link_directories(${LIBRARY_PATH_RANDOMS})
 link_directories(${LIBRARY_PATH_MY_RAY_TRACER_CUDA})
 
-include_directories(_inc _inc/base external/_Ray_Tracer/inc external/BMP_lib/_inc external/Timers_lib/_inc external/moviemaker-cpp/include)
+include_directories(_inc _inc/base external/_Ray_Tracer/inc external/BMP_lib/_inc external/Timers_lib/_inc external/Randoms_lib/_inc external/moviemaker-cpp/include)
 aux_source_directory(_src SOURCES)
 aux_source_directory(_src/base SOURCES)
 
@@ -75,6 +77,7 @@ target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
 ${LIBRARY_PATH_BMP}/libbmp.so
 ${LIBRARY_PATH_TIMERS}/libTimers.a
+${LIBRARY_PATH_RANDOMS}/libRandoms.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
 )
 
