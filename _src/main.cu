@@ -11,20 +11,13 @@ int main(int argc, char* argv[])
 {
     srand(time(NULL));
 
-    // proporcje obszaru obliczeniowego
-    // 10x * 4x * x
-
-    // r = 10;
-    // x = 100;
-    //           -> 40'000 sfer
-
-    show_sizeof_many(Sim_sphere, 36000 * 50);
+    // show_sizeof_many(Sim_sphere, 36000 * 50);
 
     // Engine engine(sm * u(40), sm * u(100), sm * u(20), // sim space params
-    Engine engine(u(50), u(50), u(50), // sim space params
-                                       // 1024, 768,                     // render params
-                  1000, 1000,          // render params
-                  "movie.mp4", 5       // movie params
+    Engine engine(u(120), u(120), u(30), // sim space params
+                                         // 1024, 768,                     // render params
+                  1000, 1000,            // render params
+                  "movie.mp4", 5         // movie params
     );
     engine.start();
 

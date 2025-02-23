@@ -1,6 +1,7 @@
 #include "Nano_Timer.h"
 #include "Randoms.h"
 #include "visualizer.h"
+#include <cmath>
 #include <omp.h>
 
 class Sim_sphere
@@ -135,18 +136,6 @@ private:
             if (current_T < smallest) smallest = current_T;
             if (current_T > largest) largest = current_T;
         }
-
-        // for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
-        //     for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
-        //         for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
-        //         {
-        //             Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
-
-        //             unit current_T = sim_sphere.get_T(memory_index.get());
-
-        //             if (current_T < smallest) smallest = current_T;
-        //             if (current_T > largest) largest = current_T;
-        //         }
 
         return {smallest, largest};
     }
@@ -311,7 +300,8 @@ public:
     void iteration_step(const Memory_index& memory_index)
     {
 #ifdef CPU
-# pragma omp parallel for schedule(static)
+        // # pragma omp parallel for schedule(static)
+        var(all_spheres_inside_box.get_total_number());
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
             per_sphere(memory_index, i);
@@ -342,18 +332,19 @@ public:
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
             Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
-
-            // for (u64 z = 0; z < all_spheres_inside_box.get_depth(); z++)
-            //     for (u64 y = 0; y < all_spheres_inside_box.get_height(); y++)
-            //         for (u64 x = 0; x < all_spheres_inside_box.get_width(); x++)
-            //         {
-            //             Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
-
             // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
             //              + do środka można też zaglądać nie generaując niektórych sfer
 
-            d3 scene_pos =
-                sim_sphere.get_position(memory_index.get()) * SCENE_sphere_separator; // to chyba rozszerza wszystko - oddzielać sfery od siebie
+            d3 scene_pos = sim_sphere.get_position(memory_index.get())
+                // * SCENE_sphere_separator
+                ; // to chyba rozszerza wszystko - oddzielać sfery od siebie
+
+#define check_nan(x)                                                                                                                                 \
+ if (std::isnan(x)) { FATAL_ERROR("found it"); }
+
+            check_nan(scene_pos.x);
+            check_nan(scene_pos.y);
+            check_nan(scene_pos.z);
 
             scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
 

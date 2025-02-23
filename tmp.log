@@ -1,0 +1,2306 @@
+[H[2J[3J
+Build (1/5) - Cleaning env
+
+Build (2/5) - Preparing env
+
+Build (3/5) - Building
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/womackow/cpp_projects/article_project/build
+[35m[1mConsolidate compiler generated dependencies of target gpu_CUDA_d.exe[0m
+[ 20%] [32mBuilding CUDA object CMakeFiles/gpu_CUDA_d.exe.dir/_src/main.cu.o[0m
+[ 40%] [32m[1mLinking CXX executable gpu_CUDA_d.exe[0m
+[100%] Built target gpu_CUDA_d.exe
+
+Build (4/5) - Testing
+*********************************
+No test configuration file found!
+*********************************
+Usage
+
+  ctest [options]
+
+
+Build (5/5) - Copying to exe
+
+
+
+RUN (1/1) - exe/gpu_CUDA_d.exe
+
+how_many_spheres_fit_in_X = 20
+how_many_spheres_fit_in_Y = 20
+how_many_spheres_fit_in_Z = 5
+total = 2000
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 0 collision_resolution                  19:48:54 (+ 408mili 130micro 55nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:54 (+ 20micro 814nano )
+
+TIME_STAMP: Iteration: 0 transform_to_My_Ray_Tracing_scene     19:48:54 (+ 49micro 183nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 0 add_scene                             19:48:55 (+ 944mili 107micro 919nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 1 collision_resolution                  19:48:55 (+ 8mili 357micro 676nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:55 (+ 15micro 513nano )
+
+TIME_STAMP: Iteration: 1 transform_to_My_Ray_Tracing_scene     19:48:55 (+ 50micro 124nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 1 add_scene                             19:48:56 (+ 912mili 259micro 156nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 2 collision_resolution                  19:48:56 (+ 8mili 189micro 687nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:56 (+ 5micro 581nano )
+
+TIME_STAMP: Iteration: 2 transform_to_My_Ray_Tracing_scene     19:48:56 (+ 54micro 385nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 2 add_scene                             19:48:57 (+ 907mili 897micro 856nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 3 collision_resolution                  19:48:57 (+ 8mili 173micro 688nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:57 (+ 13micro 867nano )
+
+TIME_STAMP: Iteration: 3 transform_to_My_Ray_Tracing_scene     19:48:57 (+ 55micro 26nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 3 add_scene                             19:48:58 (+ 967mili 361micro 91nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 4 collision_resolution                  19:48:58 (+ 8mili 114micro 977nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:58 (+ 13micro 616nano )
+
+TIME_STAMP: Iteration: 4 transform_to_My_Ray_Tracing_scene     19:48:58 (+ 48micro 413nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 4 add_scene                             19:48:59 (+ 1s 206mili 886micro 987nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 5 collision_resolution                  19:48:59 (+ 8mili 359micro 808nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:48:59 (+ 16micro 111nano )
+
+TIME_STAMP: Iteration: 5 transform_to_My_Ray_Tracing_scene     19:48:59 (+ 48micro 754nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 5 add_scene                             19:49:00 (+ 1s 237mili 128micro 394nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 6 collision_resolution                  19:49:00 (+ 8mili 104micro 813nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:00 (+ 15micro 327nano )
+
+TIME_STAMP: Iteration: 6 transform_to_My_Ray_Tracing_scene     19:49:00 (+ 54micro 127nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 6 add_scene                             19:49:02 (+ 1s 522mili 607micro 737nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 7 collision_resolution                  19:49:02 (+ 7mili 958micro 827nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:02 (+ 13micro 374nano )
+
+TIME_STAMP: Iteration: 7 transform_to_My_Ray_Tracing_scene     19:49:02 (+ 53micro 586nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 7 add_scene                             19:49:03 (+ 1s 599mili 297micro 607nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 8 collision_resolution                  19:49:03 (+ 8mili 255micro 530nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:03 (+ 6micro 151nano )
+
+TIME_STAMP: Iteration: 8 transform_to_My_Ray_Tracing_scene     19:49:03 (+ 55micro 821nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 8 add_scene                             19:49:05 (+ 1s 602mili 199micro 724nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 9 collision_resolution                  19:49:05 (+ 8mili 429micro 213nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:05 (+ 15micro 310nano )
+
+TIME_STAMP: Iteration: 9 transform_to_My_Ray_Tracing_scene     19:49:05 (+ 49micro 386nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 9 add_scene                             19:49:06 (+ 1s 610mili 614micro 445nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 10 collision_resolution                 19:49:06 (+ 8mili 189micro 568nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:06 (+ 13micro 907nano )
+
+TIME_STAMP: Iteration: 10 transform_to_My_Ray_Tracing_scene    19:49:06 (+ 47micro 693nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 10 add_scene                            19:49:08 (+ 1s 614mili 318micro 444nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 11 collision_resolution                 19:49:08 (+ 8mili 182micro 496nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:08 (+ 5micro 639nano )
+
+TIME_STAMP: Iteration: 11 transform_to_My_Ray_Tracing_scene    19:49:08 (+ 54micro 51nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 11 add_scene                            19:49:10 (+ 1s 621mili 883micro 956nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 12 collision_resolution                 19:49:10 (+ 8mili 216micro 800nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:10 (+ 13micro 923nano )
+
+TIME_STAMP: Iteration: 12 transform_to_My_Ray_Tracing_scene    19:49:10 (+ 48micro 81nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 12 add_scene                            19:49:11 (+ 1s 613mili 966micro 697nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 13 collision_resolution                 19:49:11 (+ 8mili 256micro 1nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:11 (+ 14micro 508nano )
+
+TIME_STAMP: Iteration: 13 transform_to_My_Ray_Tracing_scene    19:49:11 (+ 55micro 66nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 13 add_scene                            19:49:13 (+ 1s 628mili 558micro 721nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 14 collision_resolution                 19:49:13 (+ 8mili 216micro 324nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:13 (+ 15micro 801nano )
+
+TIME_STAMP: Iteration: 14 transform_to_My_Ray_Tracing_scene    19:49:13 (+ 49micro 706nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 14 add_scene                            19:49:15 (+ 1s 627mili 421micro 678nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 15 collision_resolution                 19:49:15 (+ 8mili 186micro 640nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:15 (+ 5micro 852nano )
+
+TIME_STAMP: Iteration: 15 transform_to_My_Ray_Tracing_scene    19:49:15 (+ 55micro 467nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 15 add_scene                            19:49:16 (+ 1s 636mili 309micro 563nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 16 collision_resolution                 19:49:16 (+ 8mili 578micro 243nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:16 (+ 5micro 449nano )
+
+TIME_STAMP: Iteration: 16 transform_to_My_Ray_Tracing_scene    19:49:16 (+ 54micro 732nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 16 add_scene                            19:49:18 (+ 1s 641mili 549micro 707nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 17 collision_resolution                 19:49:18 (+ 8mili 198micro 44nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:18 (+ 14micro 535nano )
+
+TIME_STAMP: Iteration: 17 transform_to_My_Ray_Tracing_scene    19:49:18 (+ 54micro 322nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 17 add_scene                            19:49:19 (+ 1s 652mili 452micro 565nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 18 collision_resolution                 19:49:19 (+ 8mili 234micro 868nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:19 (+ 14micro 588nano )
+
+TIME_STAMP: Iteration: 18 transform_to_My_Ray_Tracing_scene    19:49:19 (+ 54micro 664nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 18 add_scene                            19:49:21 (+ 1s 648mili 710micro 384nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 19 collision_resolution                 19:49:21 (+ 8mili 187micro 488nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:21 (+ 5micro 310nano )
+
+TIME_STAMP: Iteration: 19 transform_to_My_Ray_Tracing_scene    19:49:21 (+ 55micro 466nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 19 add_scene                            19:49:23 (+ 1s 650mili 361micro 932nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 20 collision_resolution                 19:49:23 (+ 7mili 956micro 712nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:23 (+ 14micro 47nano )
+
+TIME_STAMP: Iteration: 20 transform_to_My_Ray_Tracing_scene    19:49:23 (+ 53micro 602nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 20 add_scene                            19:49:24 (+ 1s 645mili 929micro 819nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 21 collision_resolution                 19:49:24 (+ 8mili 198micro 469nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:24 (+ 5micro 669nano )
+
+TIME_STAMP: Iteration: 21 transform_to_My_Ray_Tracing_scene    19:49:24 (+ 54micro 894nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 21 add_scene                            19:49:26 (+ 1s 661mili 175micro 618nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 22 collision_resolution                 19:49:26 (+ 8mili 220micro 604nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:26 (+ 14micro 315nano )
+
+TIME_STAMP: Iteration: 22 transform_to_My_Ray_Tracing_scene    19:49:26 (+ 48micro 773nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 22 add_scene                            19:49:28 (+ 1s 660mili 222micro 795nano )
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 23 collision_resolution                 19:49:28 (+ 8mili 239micro 650nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:28 (+ 14micro 377nano )
+
+TIME_STAMP: Iteration: 23 transform_to_My_Ray_Tracing_scene    19:49:28 (+ 48micro 2nano )
+&scene = 0x7ffcc75b2920
+
+TIME_STAMP: Iteration: 23 add_scene                            19:49:29 (+ 1s 674mili 756micro 444nano )
+scene_spheres.size() = 2001
+sphere.center_pos.x = 500 sphere.center_pos.y = 300 sphere.center_pos.z = -7000
+sphere.center_pos.x = 443.797 sphere.center_pos.y = 464.189 sphere.center_pos.z = -5997.85
+sphere.center_pos.x = 450.57 sphere.center_pos.y = 465.856 sphere.center_pos.z = -6000.91
+sphere.center_pos.x = 471.1 sphere.center_pos.y = 460.688 sphere.center_pos.z = -5991.45
+sphere.center_pos.x = 462.975 sphere.center_pos.y = 461.463 sphere.center_pos.z = -5992.86
+sphere.center_pos.x = 461.709 sphere.center_pos.y = 463.004 sphere.center_pos.z = -5995.68
+sphere.center_pos.x = 490.856 sphere.center_pos.y = 453.449 sphere.center_pos.z = -5978.2
+sphere.center_pos.x = 474.035 sphere.center_pos.y = 456.867 sphere.center_pos.z = -5984.45
+sphere.center_pos.x = 458.271 sphere.center_pos.y = 464.048 sphere.center_pos.z = -5997.6
+sphere.center_pos.x = 471.435 sphere.center_pos.y = 460.6 sphere.center_pos.z = -5991.29
+sphere.center_pos.x = 482.517 sphere.center_pos.y = 457.698 sphere.center_pos.z = -5985.97
+sphere.center_pos.x = 481.407 sphere.center_pos.y = 452.936 sphere.center_pos.z = -5977.26
+sphere.center_pos.x = 504.039 sphere.center_pos.y = 452.061 sphere.center_pos.z = -5975.65
+sphere.center_pos.x = 492.33 sphere.center_pos.y = 452.804 sphere.center_pos.z = -5977.02
+sphere.center_pos.x = 496.217 sphere.center_pos.y = 454.11 sphere.center_pos.z = -5979.4
+sphere.center_pos.x = 515.324 sphere.center_pos.y = 448.767 sphere.center_pos.z = -5969.62
+sphere.center_pos.x = 519.281 sphere.center_pos.y = 447.73 sphere.center_pos.z = -5967.73
+sphere.center_pos.x = 532.552 sphere.center_pos.y = 444.354 sphere.center_pos.z = -5961.55
+sphere.center_pos.x = 506.141 sphere.center_pos.y = 451.51 sphere.center_pos.z = -5974.65
+sphere.center_pos.x = 536.297 sphere.center_pos.y = 443.267 sphere.center_pos.z = -5959.56
+sphere.center_pos.x = 544.237 sphere.center_pos.y = 441.22 sphere.center_pos.z = -5955.81
+sphere.center_pos.x = 446.816 sphere.center_pos.y = 470.593 sphere.center_pos.z = -6000.65
+sphere.center_pos.x = 447 sphere.center_pos.y = 467 sphere.center_pos.z = -6003
+sphere.center_pos.x = 467.692 sphere.center_pos.y = 461.103 sphere.center_pos.z = -5992.2
+sphere.center_pos.x = 461.986 sphere.center_pos.y = 475.636 sphere.center_pos.z = -5987.82
+sphere.center_pos.x = 484.321 sphere.center_pos.y = 457.225 sphere.center_pos.z = -5985.11
+sphere.center_pos.x = 470.703 sphere.center_pos.y = 469.082 sphere.center_pos.z = -5987.11
+sphere.center_pos.x = 476.795 sphere.center_pos.y = 468.044 sphere.center_pos.z = -5983.23
+sphere.center_pos.x = 499.408 sphere.center_pos.y = 457.62 sphere.center_pos.z = -5972.5
+sphere.center_pos.x = 485.378 sphere.center_pos.y = 461.565 sphere.center_pos.z = -5979.18
+sphere.center_pos.x = 486.546 sphere.center_pos.y = 460.662 sphere.center_pos.z = -5981.84
+sphere.center_pos.x = 490.638 sphere.center_pos.y = 459.591 sphere.center_pos.z = -5979.88
+sphere.center_pos.x = 500.473 sphere.center_pos.y = 457.363 sphere.center_pos.z = -5971.22
+sphere.center_pos.x = 492.298 sphere.center_pos.y = 467.82 sphere.center_pos.z = -5974.35
+sphere.center_pos.x = 503.117 sphere.center_pos.y = 463.295 sphere.center_pos.z = -5969.86
+sphere.center_pos.x = 520.394 sphere.center_pos.y = 450.503 sphere.center_pos.z = -5965.86
+sphere.center_pos.x = 509.929 sphere.center_pos.y = 450.096 sphere.center_pos.z = -5972.06
+sphere.center_pos.x = 518.119 sphere.center_pos.y = 460.692 sphere.center_pos.z = -5961.29
+sphere.center_pos.x = 527.318 sphere.center_pos.y = 448.925 sphere.center_pos.z = -5961.99
+sphere.center_pos.x = 530.906 sphere.center_pos.y = 450.451 sphere.center_pos.z = -5959.03
+sphere.center_pos.x = 535.611 sphere.center_pos.y = 448.635 sphere.center_pos.z = -5957.09
+sphere.center_pos.x = 447 sphere.center_pos.y = 491.1 sphere.center_pos.z = -5989.83
+sphere.center_pos.x = 446.581 sphere.center_pos.y = 487.741 sphere.center_pos.z = -5990.79
+sphere.center_pos.x = 455.977 sphere.center_pos.y = 473.585 sphere.center_pos.z = -5993.02
+sphere.center_pos.x = 457.565 sphere.center_pos.y = 462.774 sphere.center_pos.z = -5995.26
+sphere.center_pos.x = 462.887 sphere.center_pos.y = 482.548 sphere.center_pos.z = -5983.82
+sphere.center_pos.x = 467.671 sphere.center_pos.y = 471.83 sphere.center_pos.z = -5986.77
+sphere.center_pos.x = 477.536 sphere.center_pos.y = 463.757 sphere.center_pos.z = -5985.76
+sphere.center_pos.x = 468.302 sphere.center_pos.y = 468.54 sphere.center_pos.z = -5988.9
+sphere.center_pos.x = 481.694 sphere.center_pos.y = 467.483 sphere.center_pos.z = -5981.12
+sphere.center_pos.x = 480.468 sphere.center_pos.y = 470.266 sphere.center_pos.z = -5978.56
+sphere.center_pos.x = 493.78 sphere.center_pos.y = 471.904 sphere.center_pos.z = -5971.2
+sphere.center_pos.x = 501.987 sphere.center_pos.y = 464.638 sphere.center_pos.z = -5968.67
+sphere.center_pos.x = 493.68 sphere.center_pos.y = 461.719 sphere.center_pos.z = -5976.83
+sphere.center_pos.x = 506.279 sphere.center_pos.y = 452.454 sphere.center_pos.z = -5974.04
+sphere.center_pos.x = 513.288 sphere.center_pos.y = 457.004 sphere.center_pos.z = -5965.89
+sphere.center_pos.x = 520.325 sphere.center_pos.y = 464.907 sphere.center_pos.z = -5957.71
+sphere.center_pos.x = 524.24 sphere.center_pos.y = 446.372 sphere.center_pos.z = -5965.24
+sphere.center_pos.x = 529.031 sphere.center_pos.y = 456.146 sphere.center_pos.z = -5957.06
+sphere.center_pos.x = 532.584 sphere.center_pos.y = 453.943 sphere.center_pos.z = -5956.08
+sphere.center_pos.x = 538.507 sphere.center_pos.y = 453.047 sphere.center_pos.z = -5952.88
+sphere.center_pos.x = 445.812 sphere.center_pos.y = 483.121 sphere.center_pos.z = -5991.72
+sphere.center_pos.x = 459.62 sphere.center_pos.y = 478.623 sphere.center_pos.z = -5987.66
+sphere.center_pos.x = 445.719 sphere.center_pos.y = 477.722 sphere.center_pos.z = -5994.47
+sphere.center_pos.x = 463.903 sphere.center_pos.y = 479.435 sphere.center_pos.z = -5984.94
+sphere.center_pos.x = 460.57 sphere.center_pos.y = 468.348 sphere.center_pos.z = -5992.99
+sphere.center_pos.x = 462.749 sphere.center_pos.y = 473.688 sphere.center_pos.z = -5988.76
+sphere.center_pos.x = 481.662 sphere.center_pos.y = 481.74 sphere.center_pos.z = -5972.95
+sphere.center_pos.x = 475.08 sphere.center_pos.y = 463.82 sphere.center_pos.z = -5979.88
+sphere.center_pos.x = 486.451 sphere.center_pos.y = 470.778 sphere.center_pos.z = -5976.38
+sphere.center_pos.x = 470.743 sphere.center_pos.y = 478.542 sphere.center_pos.z = -5981.13
+sphere.center_pos.x = 498.975 sphere.center_pos.y = 468.352 sphere.center_pos.z = -5969.91
+sphere.center_pos.x = 494.669 sphere.center_pos.y = 462.779 sphere.center_pos.z = -5973.85
+sphere.center_pos.x = 511.936 sphere.center_pos.y = 458.796 sphere.center_pos.z = -5967.06
+sphere.center_pos.x = 512.001 sphere.center_pos.y = 468.548 sphere.center_pos.z = -5961.69
+sphere.center_pos.x = 513.683 sphere.center_pos.y = 485.295 sphere.center_pos.z = -5950.95
+sphere.center_pos.x = 517.898 sphere.center_pos.y = 454.613 sphere.center_pos.z = -5964.73
+sphere.center_pos.x = 510.109 sphere.center_pos.y = 473.177 sphere.center_pos.z = -5960.34
+sphere.center_pos.x = 534.988 sphere.center_pos.y = 472.954 sphere.center_pos.z = -5944.2
+sphere.center_pos.x = 522.241 sphere.center_pos.y = 461.472 sphere.center_pos.z = -5958.4
+sphere.center_pos.x = 540.154 sphere.center_pos.y = 457.905 sphere.center_pos.z = -5949.2
+sphere.center_pos.x = 446.874 sphere.center_pos.y = 481.724 sphere.center_pos.z = -5994.69
+sphere.center_pos.x = 447 sphere.center_pos.y = 504.321 sphere.center_pos.z = -5982.61
+sphere.center_pos.x = 466.748 sphere.center_pos.y = 477.675 sphere.center_pos.z = -5984.08
+sphere.center_pos.x = 451.944 sphere.center_pos.y = 479.232 sphere.center_pos.z = -5992.42
+sphere.center_pos.x = 449.813 sphere.center_pos.y = 469.036 sphere.center_pos.z = -5999.37
+sphere.center_pos.x = 462.759 sphere.center_pos.y = 491.019 sphere.center_pos.z = -5979.21
+sphere.center_pos.x = 467.01 sphere.center_pos.y = 494.658 sphere.center_pos.z = -5973.95
+sphere.center_pos.x = 481.545 sphere.center_pos.y = 471.55 sphere.center_pos.z = -5977.62
+sphere.center_pos.x = 484.953 sphere.center_pos.y = 482.997 sphere.center_pos.z = -5968.77
+sphere.center_pos.x = 494.055 sphere.center_pos.y = 454.676 sphere.center_pos.z = -5980.44
+sphere.center_pos.x = 487.403 sphere.center_pos.y = 461.135 sphere.center_pos.z = -5978.61
+sphere.center_pos.x = 484.679 sphere.center_pos.y = 473.544 sphere.center_pos.z = -5975.97
+sphere.center_pos.x = 493.755 sphere.center_pos.y = 476.786 sphere.center_pos.z = -5966.35
+sphere.center_pos.x = 506.481 sphere.center_pos.y = 468.68 sphere.center_pos.z = -5964.86
+sphere.center_pos.x = 502.733 sphere.center_pos.y = 470.334 sphere.center_pos.z = -5964.12
+sphere.center_pos.x = 521.376 sphere.center_pos.y = 455.613 sphere.center_pos.z = -5962.22
+sphere.center_pos.x = 524.835 sphere.center_pos.y = 464.101 sphere.center_pos.z = -5955.35
+sphere.center_pos.x = 513.33 sphere.center_pos.y = 453.172 sphere.center_pos.z = -5968.52
+sphere.center_pos.x = 535.236 sphere.center_pos.y = 458.996 sphere.center_pos.z = -5951.67
+sphere.center_pos.x = 528.845 sphere.center_pos.y = 460.672 sphere.center_pos.z = -5954.73
+sphere.center_pos.x = 445.188 sphere.center_pos.y = 511.078 sphere.center_pos.z = -5975.14
+sphere.center_pos.x = 455.29 sphere.center_pos.y = 488.533 sphere.center_pos.z = -5986.08
+sphere.center_pos.x = 457.281 sphere.center_pos.y = 484.94 sphere.center_pos.z = -5986.08
+sphere.center_pos.x = 457.855 sphere.center_pos.y = 479.868 sphere.center_pos.z = -5988.43
+sphere.center_pos.x = 475.193 sphere.center_pos.y = 475.331 sphere.center_pos.z = -5980.04
+sphere.center_pos.x = 470.73 sphere.center_pos.y = 484.483 sphere.center_pos.z = -5977.92
+sphere.center_pos.x = 472.531 sphere.center_pos.y = 466.849 sphere.center_pos.z = -5986.37
+sphere.center_pos.x = 463.576 sphere.center_pos.y = 490.171 sphere.center_pos.z = -5979.33
+sphere.center_pos.x = 478.468 sphere.center_pos.y = 484.03 sphere.center_pos.z = -5973.27
+sphere.center_pos.x = 487.317 sphere.center_pos.y = 489.073 sphere.center_pos.z = -5965.84
+sphere.center_pos.x = 498.798 sphere.center_pos.y = 490.217 sphere.center_pos.z = -5957.05
+sphere.center_pos.x = 507.449 sphere.center_pos.y = 478.081 sphere.center_pos.z = -5958.86
+sphere.center_pos.x = 497.078 sphere.center_pos.y = 476.59 sphere.center_pos.z = -5966.59
+sphere.center_pos.x = 508.407 sphere.center_pos.y = 462.372 sphere.center_pos.z = -5966.47
+sphere.center_pos.x = 512.286 sphere.center_pos.y = 465.13 sphere.center_pos.z = -5963.38
+sphere.center_pos.x = 507.265 sphere.center_pos.y = 479.045 sphere.center_pos.z = -5957.72
+sphere.center_pos.x = 516.901 sphere.center_pos.y = 467.481 sphere.center_pos.z = -5958.44
+sphere.center_pos.x = 535.644 sphere.center_pos.y = 468.22 sphere.center_pos.z = -5946.37
+sphere.center_pos.x = 532.011 sphere.center_pos.y = 463.803 sphere.center_pos.z = -5951.05
+sphere.center_pos.x = 539.683 sphere.center_pos.y = 463.381 sphere.center_pos.z = -5946.5
+sphere.center_pos.x = 444.321 sphere.center_pos.y = 494.363 sphere.center_pos.z = -5982.46
+sphere.center_pos.x = 455.882 sphere.center_pos.y = 494.435 sphere.center_pos.z = -5981.83
+sphere.center_pos.x = 451.754 sphere.center_pos.y = 496.29 sphere.center_pos.z = -5984.04
+sphere.center_pos.x = 470.838 sphere.center_pos.y = 495.4 sphere.center_pos.z = -5972.22
+sphere.center_pos.x = 479.981 sphere.center_pos.y = 478.296 sphere.center_pos.z = -5974.81
+sphere.center_pos.x = 453.579 sphere.center_pos.y = 490.767 sphere.center_pos.z = -5985.1
+sphere.center_pos.x = 482.772 sphere.center_pos.y = 493.365 sphere.center_pos.z = -5965.6
+sphere.center_pos.x = 484.106 sphere.center_pos.y = 478.995 sphere.center_pos.z = -5971.32
+sphere.center_pos.x = 484.92 sphere.center_pos.y = 490.123 sphere.center_pos.z = -5966.2
+sphere.center_pos.x = 480.589 sphere.center_pos.y = 485.713 sphere.center_pos.z = -5971.18
+sphere.center_pos.x = 495.436 sphere.center_pos.y = 484.093 sphere.center_pos.z = -5961.56
+sphere.center_pos.x = 488.717 sphere.center_pos.y = 479.624 sphere.center_pos.z = -5970.13
+sphere.center_pos.x = 497.07 sphere.center_pos.y = 477.74 sphere.center_pos.z = -5965.48
+sphere.center_pos.x = 498.707 sphere.center_pos.y = 493.674 sphere.center_pos.z = -5955.86
+sphere.center_pos.x = 519.83 sphere.center_pos.y = 475.18 sphere.center_pos.z = -5952.46
+sphere.center_pos.x = 518.026 sphere.center_pos.y = 480.205 sphere.center_pos.z = -5950.77
+sphere.center_pos.x = 520.021 sphere.center_pos.y = 475.847 sphere.center_pos.z = -5951.99
+sphere.center_pos.x = 527.988 sphere.center_pos.y = 468.381 sphere.center_pos.z = -5951.05
+sphere.center_pos.x = 523.247 sphere.center_pos.y = 476.066 sphere.center_pos.z = -5949.8
+sphere.center_pos.x = 540.757 sphere.center_pos.y = 468.354 sphere.center_pos.z = -5943.12
+sphere.center_pos.x = 447 sphere.center_pos.y = 478.271 sphere.center_pos.z = -5996.84
+sphere.center_pos.x = 451.501 sphere.center_pos.y = 518.075 sphere.center_pos.z = -5969.29
+sphere.center_pos.x = 454.119 sphere.center_pos.y = 486.438 sphere.center_pos.z = -5987.95
+sphere.center_pos.x = 451.555 sphere.center_pos.y = 493.507 sphere.center_pos.z = -5978.3
+sphere.center_pos.x = 460.67 sphere.center_pos.y = 497.891 sphere.center_pos.z = -5976.22
+sphere.center_pos.x = 474.547 sphere.center_pos.y = 476.329 sphere.center_pos.z = -5980.06
+sphere.center_pos.x = 468.818 sphere.center_pos.y = 498.288 sphere.center_pos.z = -5970.29
+sphere.center_pos.x = 478.49 sphere.center_pos.y = 490.202 sphere.center_pos.z = -5969.92
+sphere.center_pos.x = 489.451 sphere.center_pos.y = 472.954 sphere.center_pos.z = -5972.36
+sphere.center_pos.x = 476.045 sphere.center_pos.y = 481.642 sphere.center_pos.z = -5976.14
+sphere.center_pos.x = 506.228 sphere.center_pos.y = 480.973 sphere.center_pos.z = -5957.09
+sphere.center_pos.x = 492.727 sphere.center_pos.y = 483.926 sphere.center_pos.z = -5963.9
+sphere.center_pos.x = 516.703 sphere.center_pos.y = 470.094 sphere.center_pos.z = -5954.63
+sphere.center_pos.x = 490.304 sphere.center_pos.y = 489.911 sphere.center_pos.z = -5963.53
+sphere.center_pos.x = 513.739 sphere.center_pos.y = 475.636 sphere.center_pos.z = -5956.22
+sphere.center_pos.x = 501.301 sphere.center_pos.y = 470.597 sphere.center_pos.z = -5966.17
+sphere.center_pos.x = 529.02 sphere.center_pos.y = 478.482 sphere.center_pos.z = -5944.89
+sphere.center_pos.x = 526.454 sphere.center_pos.y = 468.726 sphere.center_pos.z = -5951.78
+sphere.center_pos.x = 531.329 sphere.center_pos.y = 470.557 sphere.center_pos.z = -5947.78
+sphere.center_pos.x = 540.488 sphere.center_pos.y = 474.461 sphere.center_pos.z = -5939.95
+sphere.center_pos.x = 447 sphere.center_pos.y = 491.435 sphere.center_pos.z = -5989.65
+sphere.center_pos.x = 451.768 sphere.center_pos.y = 503.979 sphere.center_pos.z = -5976.93
+sphere.center_pos.x = 456.571 sphere.center_pos.y = 499.186 sphere.center_pos.z = -5979.44
+sphere.center_pos.x = 461.111 sphere.center_pos.y = 502.755 sphere.center_pos.z = -5974.68
+sphere.center_pos.x = 473.032 sphere.center_pos.y = 498.039 sphere.center_pos.z = -5967.97
+sphere.center_pos.x = 472.315 sphere.center_pos.y = 491.796 sphere.center_pos.z = -5972.86
+sphere.center_pos.x = 480.083 sphere.center_pos.y = 496.227 sphere.center_pos.z = -5965.87
+sphere.center_pos.x = 464.121 sphere.center_pos.y = 504.918 sphere.center_pos.z = -5970.67
+sphere.center_pos.x = 476.046 sphere.center_pos.y = 488.398 sphere.center_pos.z = -5972.48
+sphere.center_pos.x = 497.579 sphere.center_pos.y = 487.718 sphere.center_pos.z = -5957.06
+sphere.center_pos.x = 491.427 sphere.center_pos.y = 484.116 sphere.center_pos.z = -5965.99
+sphere.center_pos.x = 498.102 sphere.center_pos.y = 481.186 sphere.center_pos.z = -5963.44
+sphere.center_pos.x = 514.392 sphere.center_pos.y = 483.547 sphere.center_pos.z = -5951.35
+sphere.center_pos.x = 519.304 sphere.center_pos.y = 496.377 sphere.center_pos.z = -5941.94
+sphere.center_pos.x = 501.153 sphere.center_pos.y = 498.24 sphere.center_pos.z = -5952.22
+sphere.center_pos.x = 504.544 sphere.center_pos.y = 479.831 sphere.center_pos.z = -5960.17
+sphere.center_pos.x = 510.942 sphere.center_pos.y = 492.755 sphere.center_pos.z = -5948.6
+sphere.center_pos.x = 523.718 sphere.center_pos.y = 482.667 sphere.center_pos.z = -5945.91
+sphere.center_pos.x = 533.296 sphere.center_pos.y = 479.809 sphere.center_pos.z = -5941.5
+sphere.center_pos.x = 542.375 sphere.center_pos.y = 478.226 sphere.center_pos.z = -5936.72
+sphere.center_pos.x = 447 sphere.center_pos.y = 502.517 sphere.center_pos.z = -5983.6
+sphere.center_pos.x = 451.018 sphere.center_pos.y = 505.496 sphere.center_pos.z = -5979.47
+sphere.center_pos.x = 459.124 sphere.center_pos.y = 497.199 sphere.center_pos.z = -5977.13
+sphere.center_pos.x = 464.8 sphere.center_pos.y = 486.037 sphere.center_pos.z = -5980.73
+sphere.center_pos.x = 447 sphere.center_pos.y = 514.054 sphere.center_pos.z = -5977.29
+sphere.center_pos.x = 479.631 sphere.center_pos.y = 498.768 sphere.center_pos.z = -5965.33
+sphere.center_pos.x = 474.545 sphere.center_pos.y = 493.338 sphere.center_pos.z = -5970.78
+sphere.center_pos.x = 469.293 sphere.center_pos.y = 490.166 sphere.center_pos.z = -5975.69
+sphere.center_pos.x = 481.12 sphere.center_pos.y = 508.467 sphere.center_pos.z = -5955.95
+sphere.center_pos.x = 487.946 sphere.center_pos.y = 497.141 sphere.center_pos.z = -5959.47
+sphere.center_pos.x = 496.903 sphere.center_pos.y = 497.39 sphere.center_pos.z = -5953.99
+sphere.center_pos.x = 498.046 sphere.center_pos.y = 500.76 sphere.center_pos.z = -5951.6
+sphere.center_pos.x = 511.548 sphere.center_pos.y = 487.176 sphere.center_pos.z = -5951.24
+sphere.center_pos.x = 508.624 sphere.center_pos.y = 493.015 sphere.center_pos.z = -5948.74
+sphere.center_pos.x = 487.271 sphere.center_pos.y = 490.973 sphere.center_pos.z = -5963.36
+sphere.center_pos.x = 518.603 sphere.center_pos.y = 488.761 sphere.center_pos.z = -5945.71
+sphere.center_pos.x = 522.43 sphere.center_pos.y = 487.115 sphere.center_pos.z = -5944.27
+sphere.center_pos.x = 530.558 sphere.center_pos.y = 481.675 sphere.center_pos.z = -5942.19
+sphere.center_pos.x = 532.262 sphere.center_pos.y = 484.434 sphere.center_pos.z = -5939.62
+sphere.center_pos.x = 537.5 sphere.center_pos.y = 483.565 sphere.center_pos.z = -5936.83
+sphere.center_pos.x = 442.566 sphere.center_pos.y = 501.949 sphere.center_pos.z = -5974.66
+sphere.center_pos.x = 451.021 sphere.center_pos.y = 509.585 sphere.center_pos.z = -5977.23
+sphere.center_pos.x = 464.156 sphere.center_pos.y = 509.286 sphere.center_pos.z = -5969.22
+sphere.center_pos.x = 461.965 sphere.center_pos.y = 515.056 sphere.center_pos.z = -5967.43
+sphere.center_pos.x = 451.841 sphere.center_pos.y = 506.009 sphere.center_pos.z = -5976.23
+sphere.center_pos.x = 483.839 sphere.center_pos.y = 509.093 sphere.center_pos.z = -5956.05
+sphere.center_pos.x = 476.882 sphere.center_pos.y = 507.505 sphere.center_pos.z = -5960.32
+sphere.center_pos.x = 476.577 sphere.center_pos.y = 518.404 sphere.center_pos.z = -5955.1
+sphere.center_pos.x = 475.752 sphere.center_pos.y = 503.896 sphere.center_pos.z = -5964.95
+sphere.center_pos.x = 490.528 sphere.center_pos.y = 505.435 sphere.center_pos.z = -5953.56
+sphere.center_pos.x = 496.714 sphere.center_pos.y = 503.637 sphere.center_pos.z = -5950.95
+sphere.center_pos.x = 481.735 sphere.center_pos.y = 506.351 sphere.center_pos.z = -5958.47
+sphere.center_pos.x = 505.917 sphere.center_pos.y = 501.089 sphere.center_pos.z = -5947.19
+sphere.center_pos.x = 502.078 sphere.center_pos.y = 486.718 sphere.center_pos.z = -5957.36
+sphere.center_pos.x = 503.631 sphere.center_pos.y = 498.672 sphere.center_pos.z = -5949.37
+sphere.center_pos.x = 520.125 sphere.center_pos.y = 494.268 sphere.center_pos.z = -5941.11
+sphere.center_pos.x = 526.555 sphere.center_pos.y = 489.63 sphere.center_pos.z = -5940.33
+sphere.center_pos.x = 529.263 sphere.center_pos.y = 493.128 sphere.center_pos.z = -5936.74
+sphere.center_pos.x = 532.853 sphere.center_pos.y = 489.818 sphere.center_pos.z = -5936.31
+sphere.center_pos.x = 538.092 sphere.center_pos.y = 488.706 sphere.center_pos.z = -5933.66
+sphere.center_pos.x = 447 sphere.center_pos.y = 524.039 sphere.center_pos.z = -5971.84
+sphere.center_pos.x = 451.562 sphere.center_pos.y = 519.085 sphere.center_pos.z = -5967.95
+sphere.center_pos.x = 459.112 sphere.center_pos.y = 518.744 sphere.center_pos.z = -5965.81
+sphere.center_pos.x = 455.356 sphere.center_pos.y = 512.388 sphere.center_pos.z = -5971.22
+sphere.center_pos.x = 463.414 sphere.center_pos.y = 500.38 sphere.center_pos.z = -5974.55
+sphere.center_pos.x = 473.915 sphere.center_pos.y = 520.387 sphere.center_pos.z = -5956.61
+sphere.center_pos.x = 470.549 sphere.center_pos.y = 502.549 sphere.center_pos.z = -5968.92
+sphere.center_pos.x = 475.975 sphere.center_pos.y = 505.069 sphere.center_pos.z = -5962.78
+sphere.center_pos.x = 474.566 sphere.center_pos.y = 510.898 sphere.center_pos.z = -5961.86
+sphere.center_pos.x = 494.19 sphere.center_pos.y = 505.626 sphere.center_pos.z = -5951.34
+sphere.center_pos.x = 495.521 sphere.center_pos.y = 488.954 sphere.center_pos.z = -5959.39
+sphere.center_pos.x = 495.507 sphere.center_pos.y = 502.768 sphere.center_pos.z = -5952.59
+sphere.center_pos.x = 517.027 sphere.center_pos.y = 489.877 sphere.center_pos.z = -5946.41
+sphere.center_pos.x = 507.611 sphere.center_pos.y = 489.071 sphere.center_pos.z = -5953.21
+sphere.center_pos.x = 510.568 sphere.center_pos.y = 504.682 sphere.center_pos.z = -5940.96
+sphere.center_pos.x = 501.492 sphere.center_pos.y = 513.52 sphere.center_pos.z = -5943.04
+sphere.center_pos.x = 526.701 sphere.center_pos.y = 492.615 sphere.center_pos.z = -5938.76
+sphere.center_pos.x = 520.959 sphere.center_pos.y = 498.602 sphere.center_pos.z = -5939.05
+sphere.center_pos.x = 533.902 sphere.center_pos.y = 492.854 sphere.center_pos.z = -5934
+sphere.center_pos.x = 542.646 sphere.center_pos.y = 491.663 sphere.center_pos.z = -5929.21
+sphere.center_pos.x = 444.961 sphere.center_pos.y = 512.579 sphere.center_pos.z = -5973.85
+sphere.center_pos.x = 459.686 sphere.center_pos.y = 508.976 sphere.center_pos.z = -5972.17
+sphere.center_pos.x = 453.944 sphere.center_pos.y = 511.861 sphere.center_pos.z = -5974.17
+sphere.center_pos.x = 455.804 sphere.center_pos.y = 529.63 sphere.center_pos.z = -5963.3
+sphere.center_pos.x = 469.145 sphere.center_pos.y = 507.842 sphere.center_pos.z = -5964.71
+sphere.center_pos.x = 469.706 sphere.center_pos.y = 511.13 sphere.center_pos.z = -5964.75
+sphere.center_pos.x = 470.878 sphere.center_pos.y = 510.789 sphere.center_pos.z = -5963.73
+sphere.center_pos.x = 468.638 sphere.center_pos.y = 530.881 sphere.center_pos.z = -5951.36
+sphere.center_pos.x = 481.232 sphere.center_pos.y = 525.392 sphere.center_pos.z = -5949.13
+sphere.center_pos.x = 484.109 sphere.center_pos.y = 521.801 sphere.center_pos.z = -5949.41
+sphere.center_pos.x = 496.547 sphere.center_pos.y = 512.914 sphere.center_pos.z = -5946.56
+sphere.center_pos.x = 488.243 sphere.center_pos.y = 526.199 sphere.center_pos.z = -5944.48
+sphere.center_pos.x = 505.957 sphere.center_pos.y = 510.473 sphere.center_pos.z = -5941.73
+sphere.center_pos.x = 506.427 sphere.center_pos.y = 490.536 sphere.center_pos.z = -5951.52
+sphere.center_pos.x = 515.99 sphere.center_pos.y = 505.752 sphere.center_pos.z = -5938.11
+sphere.center_pos.x = 513.52 sphere.center_pos.y = 506.997 sphere.center_pos.z = -5938.89
+sphere.center_pos.x = 530.089 sphere.center_pos.y = 500.249 sphere.center_pos.z = -5932.33
+sphere.center_pos.x = 525.613 sphere.center_pos.y = 502.041 sphere.center_pos.z = -5934.14
+sphere.center_pos.x = 531.639 sphere.center_pos.y = 505.371 sphere.center_pos.z = -5928.57
+sphere.center_pos.x = 541.184 sphere.center_pos.y = 495.74 sphere.center_pos.z = -5927.89
+sphere.center_pos.x = 447 sphere.center_pos.y = 516.217 sphere.center_pos.z = -5976.11
+sphere.center_pos.x = 458.005 sphere.center_pos.y = 520.223 sphere.center_pos.z = -5966.84
+sphere.center_pos.x = 447.98 sphere.center_pos.y = 526.022 sphere.center_pos.z = -5970.15
+sphere.center_pos.x = 465.555 sphere.center_pos.y = 527.121 sphere.center_pos.z = -5958.61
+sphere.center_pos.x = 464.256 sphere.center_pos.y = 521.955 sphere.center_pos.z = -5962.04
+sphere.center_pos.x = 458.499 sphere.center_pos.y = 525.35 sphere.center_pos.z = -5963.13
+sphere.center_pos.x = 487.236 sphere.center_pos.y = 508.149 sphere.center_pos.z = -5955.09
+sphere.center_pos.x = 481.252 sphere.center_pos.y = 501.333 sphere.center_pos.z = -5962.92
+sphere.center_pos.x = 495.312 sphere.center_pos.y = 526.651 sphere.center_pos.z = -5940.34
+sphere.center_pos.x = 489.242 sphere.center_pos.y = 517.473 sphere.center_pos.z = -5947.44
+sphere.center_pos.x = 481.169 sphere.center_pos.y = 513.091 sphere.center_pos.z = -5955.97
+sphere.center_pos.x = 484.948 sphere.center_pos.y = 517.68 sphere.center_pos.z = -5951.69
+sphere.center_pos.x = 486.177 sphere.center_pos.y = 516.078 sphere.center_pos.z = -5950.17
+sphere.center_pos.x = 500.581 sphere.center_pos.y = 506.507 sphere.center_pos.z = -5947.26
+sphere.center_pos.x = 515.998 sphere.center_pos.y = 501.462 sphere.center_pos.z = -5940.43
+sphere.center_pos.x = 513.081 sphere.center_pos.y = 510.471 sphere.center_pos.z = -5937.34
+sphere.center_pos.x = 519.623 sphere.center_pos.y = 501.792 sphere.center_pos.z = -5938.01
+sphere.center_pos.x = 524 sphere.center_pos.y = 511.771 sphere.center_pos.z = -5929.83
+sphere.center_pos.x = 518.061 sphere.center_pos.y = 510.858 sphere.center_pos.z = -5934.03
+sphere.center_pos.x = 539.727 sphere.center_pos.y = 501.28 sphere.center_pos.z = -5925.77
+sphere.center_pos.x = 446.703 sphere.center_pos.y = 535.361 sphere.center_pos.z = -5965.03
+sphere.center_pos.x = 449.749 sphere.center_pos.y = 539.65 sphere.center_pos.z = -5961.13
+sphere.center_pos.x = 454.426 sphere.center_pos.y = 531.282 sphere.center_pos.z = -5961.95
+sphere.center_pos.x = 482.795 sphere.center_pos.y = 524.285 sphere.center_pos.z = -5948.88
+sphere.center_pos.x = 465.099 sphere.center_pos.y = 517.863 sphere.center_pos.z = -5961.59
+sphere.center_pos.x = 462.228 sphere.center_pos.y = 528.291 sphere.center_pos.z = -5960.04
+sphere.center_pos.x = 474.293 sphere.center_pos.y = 532.644 sphere.center_pos.z = -5949.41
+sphere.center_pos.x = 473.139 sphere.center_pos.y = 526.874 sphere.center_pos.z = -5953.51
+sphere.center_pos.x = 492.428 sphere.center_pos.y = 509.261 sphere.center_pos.z = -5951.63
+sphere.center_pos.x = 481.596 sphere.center_pos.y = 498.133 sphere.center_pos.z = -5962.98
+sphere.center_pos.x = 493.559 sphere.center_pos.y = 511.381 sphere.center_pos.z = -5948.7
+sphere.center_pos.x = 501.429 sphere.center_pos.y = 516.216 sphere.center_pos.z = -5940.34
+sphere.center_pos.x = 503.861 sphere.center_pos.y = 521.058 sphere.center_pos.z = -5937.29
+sphere.center_pos.x = 499.575 sphere.center_pos.y = 522.187 sphere.center_pos.z = -5939.33
+sphere.center_pos.x = 513.752 sphere.center_pos.y = 516.229 sphere.center_pos.z = -5933.77
+sphere.center_pos.x = 498.732 sphere.center_pos.y = 509.77 sphere.center_pos.z = -5946.57
+sphere.center_pos.x = 518.664 sphere.center_pos.y = 515.693 sphere.center_pos.z = -5931.01
+sphere.center_pos.x = 536.767 sphere.center_pos.y = 506.452 sphere.center_pos.z = -5924.79
+sphere.center_pos.x = 527.07 sphere.center_pos.y = 510.604 sphere.center_pos.z = -5928.56
+sphere.center_pos.x = 540.549 sphere.center_pos.y = 506.137 sphere.center_pos.z = -5922.6
+sphere.center_pos.x = 446.703 sphere.center_pos.y = 539.318 sphere.center_pos.z = -5962.87
+sphere.center_pos.x = 446.63 sphere.center_pos.y = 529.975 sphere.center_pos.z = -5967.82
+sphere.center_pos.x = 464.152 sphere.center_pos.y = 535.792 sphere.center_pos.z = -5953.96
+sphere.center_pos.x = 453.223 sphere.center_pos.y = 536.225 sphere.center_pos.z = -5960.41
+sphere.center_pos.x = 455.129 sphere.center_pos.y = 539.211 sphere.center_pos.z = -5957.79
+sphere.center_pos.x = 474.891 sphere.center_pos.y = 519.894 sphere.center_pos.z = -5955.55
+sphere.center_pos.x = 478.849 sphere.center_pos.y = 529.643 sphere.center_pos.z = -5948.15
+sphere.center_pos.x = 464.874 sphere.center_pos.y = 516.565 sphere.center_pos.z = -5963.74
+sphere.center_pos.x = 474.894 sphere.center_pos.y = 517.264 sphere.center_pos.z = -5958.18
+sphere.center_pos.x = 487.558 sphere.center_pos.y = 527.937 sphere.center_pos.z = -5943.63
+sphere.center_pos.x = 493.497 sphere.center_pos.y = 527.871 sphere.center_pos.z = -5939.32
+sphere.center_pos.x = 507.824 sphere.center_pos.y = 505.529 sphere.center_pos.z = -5943.46
+sphere.center_pos.x = 504.463 sphere.center_pos.y = 518.426 sphere.center_pos.z = -5938.29
+sphere.center_pos.x = 507.819 sphere.center_pos.y = 517.112 sphere.center_pos.z = -5936.98
+sphere.center_pos.x = 503.363 sphere.center_pos.y = 503.925 sphere.center_pos.z = -5946.88
+sphere.center_pos.x = 519.216 sphere.center_pos.y = 520.261 sphere.center_pos.z = -5928.17
+sphere.center_pos.x = 526.51 sphere.center_pos.y = 515.622 sphere.center_pos.z = -5926.16
+sphere.center_pos.x = 509.467 sphere.center_pos.y = 526.754 sphere.center_pos.z = -5930.69
+sphere.center_pos.x = 536.514 sphere.center_pos.y = 514.597 sphere.center_pos.z = -5920.5
+sphere.center_pos.x = 531.279 sphere.center_pos.y = 512.089 sphere.center_pos.z = -5925.12
+sphere.center_pos.x = 446.79 sphere.center_pos.y = 552.577 sphere.center_pos.z = -5955.81
+sphere.center_pos.x = 459.365 sphere.center_pos.y = 534.829 sphere.center_pos.z = -5957.36
+sphere.center_pos.x = 446.651 sphere.center_pos.y = 544.283 sphere.center_pos.z = -5960.05
+sphere.center_pos.x = 469.605 sphere.center_pos.y = 524.184 sphere.center_pos.z = -5957.69
+sphere.center_pos.x = 464.527 sphere.center_pos.y = 540.205 sphere.center_pos.z = -5951.32
+sphere.center_pos.x = 465.829 sphere.center_pos.y = 531.929 sphere.center_pos.z = -5955.02
+sphere.center_pos.x = 475.008 sphere.center_pos.y = 532.648 sphere.center_pos.z = -5948.98
+sphere.center_pos.x = 480.004 sphere.center_pos.y = 540.336 sphere.center_pos.z = -5941.61
+sphere.center_pos.x = 489.53 sphere.center_pos.y = 519.776 sphere.center_pos.z = -5947.17
+sphere.center_pos.x = 486.912 sphere.center_pos.y = 531.937 sphere.center_pos.z = -5941.9
+sphere.center_pos.x = 490.507 sphere.center_pos.y = 535.12 sphere.center_pos.z = -5937.92
+sphere.center_pos.x = 493.522 sphere.center_pos.y = 534.484 sphere.center_pos.z = -5936.55
+sphere.center_pos.x = 502.051 sphere.center_pos.y = 535.63 sphere.center_pos.z = -5930.46
+sphere.center_pos.x = 500.853 sphere.center_pos.y = 525.478 sphere.center_pos.z = -5936.75
+sphere.center_pos.x = 514.502 sphere.center_pos.y = 520.944 sphere.center_pos.z = -5930.73
+sphere.center_pos.x = 516.487 sphere.center_pos.y = 528.271 sphere.center_pos.z = -5925.49
+sphere.center_pos.x = 508.149 sphere.center_pos.y = 512.094 sphere.center_pos.z = -5939.53
+sphere.center_pos.x = 533.391 sphere.center_pos.y = 501.864 sphere.center_pos.z = -5929.4
+sphere.center_pos.x = 521.174 sphere.center_pos.y = 525.462 sphere.center_pos.z = -5924.11
+sphere.center_pos.x = 541.161 sphere.center_pos.y = 512.274 sphere.center_pos.z = -5918.87
+sphere.center_pos.x = 447 sphere.center_pos.y = 526.141 sphere.center_pos.z = -5970.69
+sphere.center_pos.x = 450.007 sphere.center_pos.y = 546.485 sphere.center_pos.z = -5956.82
+sphere.center_pos.x = 457.673 sphere.center_pos.y = 546.194 sphere.center_pos.z = -5952.29
+sphere.center_pos.x = 476.039 sphere.center_pos.y = 547.343 sphere.center_pos.z = -5940.25
+sphere.center_pos.x = 450.583 sphere.center_pos.y = 532.353 sphere.center_pos.z = -5964.32
+sphere.center_pos.x = 471.477 sphere.center_pos.y = 549.193 sphere.center_pos.z = -5942.08
+sphere.center_pos.x = 469.633 sphere.center_pos.y = 542.02 sphere.center_pos.z = -5947.15
+sphere.center_pos.x = 469.578 sphere.center_pos.y = 540.499 sphere.center_pos.z = -5947.98
+sphere.center_pos.x = 482.801 sphere.center_pos.y = 534.302 sphere.center_pos.z = -5943.17
+sphere.center_pos.x = 483.6 sphere.center_pos.y = 540.932 sphere.center_pos.z = -5939.05
+sphere.center_pos.x = 494.714 sphere.center_pos.y = 536.726 sphere.center_pos.z = -5934.43
+sphere.center_pos.x = 498.006 sphere.center_pos.y = 527.567 sphere.center_pos.z = -5937.51
+sphere.center_pos.x = 502.67 sphere.center_pos.y = 530.992 sphere.center_pos.z = -5932.61
+sphere.center_pos.x = 511.978 sphere.center_pos.y = 526.942 sphere.center_pos.z = -5929.03
+sphere.center_pos.x = 510.004 sphere.center_pos.y = 540.226 sphere.center_pos.z = -5923
+sphere.center_pos.x = 523.155 sphere.center_pos.y = 509.481 sphere.center_pos.z = -5931.61
+sphere.center_pos.x = 504.531 sphere.center_pos.y = 538.283 sphere.center_pos.z = -5927.47
+sphere.center_pos.x = 530.607 sphere.center_pos.y = 528.67 sphere.center_pos.z = -5916.48
+sphere.center_pos.x = 530.278 sphere.center_pos.y = 519.734 sphere.center_pos.z = -5921.57
+sphere.center_pos.x = 536.19 sphere.center_pos.y = 519.2 sphere.center_pos.z = -5918.18
+sphere.center_pos.x = 446.697 sphere.center_pos.y = 556.334 sphere.center_pos.z = -5953.56
+sphere.center_pos.x = 452.466 sphere.center_pos.y = 549.434 sphere.center_pos.z = -5953.79
+sphere.center_pos.x = 456.398 sphere.center_pos.y = 550.082 sphere.center_pos.z = -5950.98
+sphere.center_pos.x = 461.219 sphere.center_pos.y = 538.476 sphere.center_pos.z = -5954.32
+sphere.center_pos.x = 462.146 sphere.center_pos.y = 551.229 sphere.center_pos.z = -5946.78
+sphere.center_pos.x = 466.109 sphere.center_pos.y = 546.966 sphere.center_pos.z = -5946.64
+sphere.center_pos.x = 476.076 sphere.center_pos.y = 535.592 sphere.center_pos.z = -5946.65
+sphere.center_pos.x = 472.683 sphere.center_pos.y = 544.562 sphere.center_pos.z = -5943.86
+sphere.center_pos.x = 482.451 sphere.center_pos.y = 543.971 sphere.center_pos.z = -5938.1
+sphere.center_pos.x = 486.805 sphere.center_pos.y = 541.797 sphere.center_pos.z = -5936.58
+sphere.center_pos.x = 492.344 sphere.center_pos.y = 540.937 sphere.center_pos.z = -5933.6
+sphere.center_pos.x = 495.655 sphere.center_pos.y = 541.118 sphere.center_pos.z = -5931.44
+sphere.center_pos.x = 507.579 sphere.center_pos.y = 535.732 sphere.center_pos.z = -5926.96
+sphere.center_pos.x = 509.509 sphere.center_pos.y = 521.649 sphere.center_pos.z = -5933.45
+sphere.center_pos.x = 511.615 sphere.center_pos.y = 530.106 sphere.center_pos.z = -5927.52
+sphere.center_pos.x = 518.082 sphere.center_pos.y = 537.856 sphere.center_pos.z = -5919.26
+sphere.center_pos.x = 524.93 sphere.center_pos.y = 520.723 sphere.center_pos.z = -5924.36
+sphere.center_pos.x = 521.585 sphere.center_pos.y = 530.703 sphere.center_pos.z = -5920.99
+sphere.center_pos.x = 526.792 sphere.center_pos.y = 525.853 sphere.center_pos.z = -5920.4
+sphere.center_pos.x = 535.047 sphere.center_pos.y = 524.657 sphere.center_pos.z = -5915.91
+sphere.center_pos.x = 446.726 sphere.center_pos.y = 564.27 sphere.center_pos.z = -5949.29
+sphere.center_pos.x = 451.883 sphere.center_pos.y = 554.292 sphere.center_pos.z = -5951.49
+sphere.center_pos.x = 457.054 sphere.center_pos.y = 555.834 sphere.center_pos.z = -5947.43
+sphere.center_pos.x = 462.343 sphere.center_pos.y = 556.096 sphere.center_pos.z = -5944
+sphere.center_pos.x = 462.148 sphere.center_pos.y = 544.837 sphere.center_pos.z = -5950.27
+sphere.center_pos.x = 467.696 sphere.center_pos.y = 554.223 sphere.center_pos.z = -5941.69
+sphere.center_pos.x = 472.95 sphere.center_pos.y = 553.92 sphere.center_pos.z = -5938.58
+sphere.center_pos.x = 478.987 sphere.center_pos.y = 552.07 sphere.center_pos.z = -5935.83
+sphere.center_pos.x = 483.246 sphere.center_pos.y = 552.842 sphere.center_pos.z = -5932.76
+sphere.center_pos.x = 487.309 sphere.center_pos.y = 546.903 sphere.center_pos.z = -5933.48
+sphere.center_pos.x = 492.604 sphere.center_pos.y = 546.108 sphere.center_pos.z = -5930.61
+sphere.center_pos.x = 496.754 sphere.center_pos.y = 549.575 sphere.center_pos.z = -5926.14
+sphere.center_pos.x = 500.448 sphere.center_pos.y = 547.146 sphere.center_pos.z = -5925.17
+sphere.center_pos.x = 505.606 sphere.center_pos.y = 544.337 sphere.center_pos.z = -5923.49
+sphere.center_pos.x = 510.679 sphere.center_pos.y = 543.831 sphere.center_pos.z = -5920.61
+sphere.center_pos.x = 514.203 sphere.center_pos.y = 533.638 sphere.center_pos.z = -5923.98
+sphere.center_pos.x = 516.976 sphere.center_pos.y = 542.794 sphere.center_pos.z = -5917.25
+sphere.center_pos.x = 522.601 sphere.center_pos.y = 536.35 sphere.center_pos.z = -5917.27
+sphere.center_pos.x = 527.757 sphere.center_pos.y = 533.855 sphere.center_pos.z = -5915.43
+sphere.center_pos.x = 536.252 sphere.center_pos.y = 532.836 sphere.center_pos.z = -5910.69
+sphere.center_pos.x = 438.297 sphere.center_pos.y = 459.362 sphere.center_pos.z = -5989.02
+sphere.center_pos.x = 448.802 sphere.center_pos.y = 462.322 sphere.center_pos.z = -5994.44
+sphere.center_pos.x = 465.321 sphere.center_pos.y = 459.681 sphere.center_pos.z = -5989.6
+sphere.center_pos.x = 462.4 sphere.center_pos.y = 458.091 sphere.center_pos.z = -5986.69
+sphere.center_pos.x = 458.104 sphere.center_pos.y = 461.056 sphere.center_pos.z = -5992.12
+sphere.center_pos.x = 488.904 sphere.center_pos.y = 447.745 sphere.center_pos.z = -5967.75
+sphere.center_pos.x = 460.959 sphere.center_pos.y = 458.206 sphere.center_pos.z = -5986.9
+sphere.center_pos.x = 456.141 sphere.center_pos.y = 461.505 sphere.center_pos.z = -5992.94
+sphere.center_pos.x = 485.006 sphere.center_pos.y = 457.046 sphere.center_pos.z = -5984.78
+sphere.center_pos.x = 473.149 sphere.center_pos.y = 456.006 sphere.center_pos.z = -5982.88
+sphere.center_pos.x = 485.45 sphere.center_pos.y = 456.929 sphere.center_pos.z = -5984.57
+sphere.center_pos.x = 495.211 sphere.center_pos.y = 450.139 sphere.center_pos.z = -5972.14
+sphere.center_pos.x = 500.87 sphere.center_pos.y = 447.94 sphere.center_pos.z = -5968.11
+sphere.center_pos.x = 501.401 sphere.center_pos.y = 450.62 sphere.center_pos.z = -5973.02
+sphere.center_pos.x = 512.478 sphere.center_pos.y = 446.267 sphere.center_pos.z = -5965.05
+sphere.center_pos.x = 516.405 sphere.center_pos.y = 445.208 sphere.center_pos.z = -5963.11
+sphere.center_pos.x = 529.612 sphere.center_pos.y = 441.77 sphere.center_pos.z = -5956.82
+sphere.center_pos.x = 502.021 sphere.center_pos.y = 448.822 sphere.center_pos.z = -5969.73
+sphere.center_pos.x = 533.441 sphere.center_pos.y = 440.761 sphere.center_pos.z = -5954.97
+sphere.center_pos.x = 541.349 sphere.center_pos.y = 438.686 sphere.center_pos.z = -5951.17
+sphere.center_pos.x = 443.309 sphere.center_pos.y = 469.254 sphere.center_pos.z = -5994.07
+sphere.center_pos.x = 447 sphere.center_pos.y = 467 sphere.center_pos.z = -6003
+sphere.center_pos.x = 467.286 sphere.center_pos.y = 458.485 sphere.center_pos.z = -5986.17
+sphere.center_pos.x = 463.671 sphere.center_pos.y = 473.187 sphere.center_pos.z = -5980.05
+sphere.center_pos.x = 484.498 sphere.center_pos.y = 456.659 sphere.center_pos.z = -5984.07
+sphere.center_pos.x = 459.461 sphere.center_pos.y = 466.146 sphere.center_pos.z = -5988.19
+sphere.center_pos.x = 473.898 sphere.center_pos.y = 465.506 sphere.center_pos.z = -5978.61
+sphere.center_pos.x = 487.409 sphere.center_pos.y = 454.319 sphere.center_pos.z = -5972.62
+sphere.center_pos.x = 479.346 sphere.center_pos.y = 455.713 sphere.center_pos.z = -5979.01
+sphere.center_pos.x = 483.381 sphere.center_pos.y = 457.611 sphere.center_pos.z = -5976.54
+sphere.center_pos.x = 487.75 sphere.center_pos.y = 464.095 sphere.center_pos.z = -5972.2
+sphere.center_pos.x = 496.662 sphere.center_pos.y = 453.374 sphere.center_pos.z = -5967.77
+sphere.center_pos.x = 483.355 sphere.center_pos.y = 466.459 sphere.center_pos.z = -5970.2
+sphere.center_pos.x = 500.103 sphere.center_pos.y = 460.805 sphere.center_pos.z = -5965.08
+sphere.center_pos.x = 517.442 sphere.center_pos.y = 447.914 sphere.center_pos.z = -5961.12
+sphere.center_pos.x = 507.116 sphere.center_pos.y = 448.022 sphere.center_pos.z = -5968.26
+sphere.center_pos.x = 515.286 sphere.center_pos.y = 458.218 sphere.center_pos.z = -5956.76
+sphere.center_pos.x = 524.47 sphere.center_pos.y = 446.422 sphere.center_pos.z = -5957.41
+sphere.center_pos.x = 528.029 sphere.center_pos.y = 447.925 sphere.center_pos.z = -5954.41
+sphere.center_pos.x = 532.736 sphere.center_pos.y = 446.111 sphere.center_pos.z = -5952.47
+sphere.center_pos.x = 444.788 sphere.center_pos.y = 485.591 sphere.center_pos.z = -5988.23
+sphere.center_pos.x = 444.251 sphere.center_pos.y = 487.545 sphere.center_pos.z = -5984.64
+sphere.center_pos.x = 453.106 sphere.center_pos.y = 471.065 sphere.center_pos.z = -5988.41
+sphere.center_pos.x = 454.378 sphere.center_pos.y = 460.063 sphere.center_pos.z = -5990.3
+sphere.center_pos.x = 460.011 sphere.center_pos.y = 480.033 sphere.center_pos.z = -5979.2
+sphere.center_pos.x = 464.794 sphere.center_pos.y = 469.308 sphere.center_pos.z = -5982.14
+sphere.center_pos.x = 477.139 sphere.center_pos.y = 465.554 sphere.center_pos.z = -5977.49
+sphere.center_pos.x = 468.912 sphere.center_pos.y = 465.964 sphere.center_pos.z = -5982.99
+sphere.center_pos.x = 478.74 sphere.center_pos.y = 464.879 sphere.center_pos.z = -5976.4
+sphere.center_pos.x = 481.299 sphere.center_pos.y = 460.721 sphere.center_pos.z = -5975.95
+sphere.center_pos.x = 492.008 sphere.center_pos.y = 470.152 sphere.center_pos.z = -5966.42
+sphere.center_pos.x = 499.281 sphere.center_pos.y = 462.246 sphere.center_pos.z = -5964.34
+sphere.center_pos.x = 497.126 sphere.center_pos.y = 459.326 sphere.center_pos.z = -5971.59
+sphere.center_pos.x = 508.324 sphere.center_pos.y = 449.591 sphere.center_pos.z = -5969.55
+sphere.center_pos.x = 510.718 sphere.center_pos.y = 454.674 sphere.center_pos.z = -5961.69
+sphere.center_pos.x = 517.449 sphere.center_pos.y = 462.383 sphere.center_pos.z = -5953.09
+sphere.center_pos.x = 521.427 sphere.center_pos.y = 443.907 sphere.center_pos.z = -5960.73
+sphere.center_pos.x = 526.161 sphere.center_pos.y = 453.628 sphere.center_pos.z = -5952.45
+sphere.center_pos.x = 529.707 sphere.center_pos.y = 451.418 sphere.center_pos.z = -5951.46
+sphere.center_pos.x = 535.631 sphere.center_pos.y = 450.522 sphere.center_pos.z = -5948.26
+sphere.center_pos.x = 442.722 sphere.center_pos.y = 482.924 sphere.center_pos.z = -5985.38
+sphere.center_pos.x = 458.027 sphere.center_pos.y = 480.312 sphere.center_pos.z = -5979.67
+sphere.center_pos.x = 442.608 sphere.center_pos.y = 474.916 sphere.center_pos.z = -5989.52
+sphere.center_pos.x = 461.057 sphere.center_pos.y = 476.934 sphere.center_pos.z = -5980.36
+sphere.center_pos.x = 457.642 sphere.center_pos.y = 465.595 sphere.center_pos.z = -5988.54
+sphere.center_pos.x = 459.87 sphere.center_pos.y = 471.161 sphere.center_pos.z = -5984.14
+sphere.center_pos.x = 478.6 sphere.center_pos.y = 479.166 sphere.center_pos.z = -5968.2
+sphere.center_pos.x = 466.932 sphere.center_pos.y = 471.18 sphere.center_pos.z = -5978.07
+sphere.center_pos.x = 483.377 sphere.center_pos.y = 468.754 sphere.center_pos.z = -5971.48
+sphere.center_pos.x = 467.869 sphere.center_pos.y = 476.017 sphere.center_pos.z = -5976.51
+sphere.center_pos.x = 496.102 sphere.center_pos.y = 465.849 sphere.center_pos.z = -5965.1
+sphere.center_pos.x = 492.838 sphere.center_pos.y = 459.862 sphere.center_pos.z = -5967.95
+sphere.center_pos.x = 507.786 sphere.center_pos.y = 456.353 sphere.center_pos.z = -5960.23
+sphere.center_pos.x = 509.329 sphere.center_pos.y = 465.632 sphere.center_pos.z = -5955.77
+sphere.center_pos.x = 510.72 sphere.center_pos.y = 482.701 sphere.center_pos.z = -5946.12
+sphere.center_pos.x = 515.077 sphere.center_pos.y = 452.12 sphere.center_pos.z = -5960.19
+sphere.center_pos.x = 505.733 sphere.center_pos.y = 470.436 sphere.center_pos.z = -5955.11
+sphere.center_pos.x = 532.112 sphere.center_pos.y = 470.429 sphere.center_pos.z = -5939.57
+sphere.center_pos.x = 519.366 sphere.center_pos.y = 458.949 sphere.center_pos.z = -5953.78
+sphere.center_pos.x = 537.278 sphere.center_pos.y = 455.381 sphere.center_pos.z = -5944.58
+sphere.center_pos.x = 444.336 sphere.center_pos.y = 478.43 sphere.center_pos.z = -5991.2
+sphere.center_pos.x = 446.544 sphere.center_pos.y = 504.554 sphere.center_pos.z = -5981.53
+sphere.center_pos.x = 463.878 sphere.center_pos.y = 475.152 sphere.center_pos.z = -5979.46
+sphere.center_pos.x = 448.826 sphere.center_pos.y = 476.721 sphere.center_pos.z = -5987.95
+sphere.center_pos.x = 446.933 sphere.center_pos.y = 466.509 sphere.center_pos.z = -5994.74
+sphere.center_pos.x = 459.905 sphere.center_pos.y = 488.508 sphere.center_pos.z = -5974.63
+sphere.center_pos.x = 464.223 sphere.center_pos.y = 492.154 sphere.center_pos.z = -5969.5
+sphere.center_pos.x = 478.779 sphere.center_pos.y = 469.12 sphere.center_pos.z = -5973.17
+sphere.center_pos.x = 482.366 sphere.center_pos.y = 480.801 sphere.center_pos.z = -5964.59
+sphere.center_pos.x = 494.708 sphere.center_pos.y = 452.211 sphere.center_pos.z = -5975.93
+sphere.center_pos.x = 487.929 sphere.center_pos.y = 459.466 sphere.center_pos.z = -5975.37
+sphere.center_pos.x = 481.772 sphere.center_pos.y = 471.019 sphere.center_pos.z = -5971.34
+sphere.center_pos.x = 490.696 sphere.center_pos.y = 474.444 sphere.center_pos.z = -5961.7
+sphere.center_pos.x = 503.226 sphere.center_pos.y = 465.806 sphere.center_pos.z = -5959.89
+sphere.center_pos.x = 501.123 sphere.center_pos.y = 468.452 sphere.center_pos.z = -5961.6
+sphere.center_pos.x = 518.484 sphere.center_pos.y = 453.075 sphere.center_pos.z = -5957.57
+sphere.center_pos.x = 521.959 sphere.center_pos.y = 461.576 sphere.center_pos.z = -5950.73
+sphere.center_pos.x = 510.444 sphere.center_pos.y = 450.639 sphere.center_pos.z = -5963.88
+sphere.center_pos.x = 532.36 sphere.center_pos.y = 456.471 sphere.center_pos.z = -5947.05
+sphere.center_pos.x = 525.968 sphere.center_pos.y = 458.148 sphere.center_pos.z = -5950.11
+sphere.center_pos.x = 439.733 sphere.center_pos.y = 509.793 sphere.center_pos.z = -5964.47
+sphere.center_pos.x = 449.798 sphere.center_pos.y = 478.344 sphere.center_pos.z = -5987.54
+sphere.center_pos.x = 454.407 sphere.center_pos.y = 482.414 sphere.center_pos.z = -5981.45
+sphere.center_pos.x = 454.98 sphere.center_pos.y = 477.344 sphere.center_pos.z = -5983.81
+sphere.center_pos.x = 472.335 sphere.center_pos.y = 472.828 sphere.center_pos.z = -5975.46
+sphere.center_pos.x = 467.811 sphere.center_pos.y = 481.931 sphere.center_pos.z = -5973.24
+sphere.center_pos.x = 469.653 sphere.center_pos.y = 464.331 sphere.center_pos.z = -5981.75
+sphere.center_pos.x = 460.688 sphere.center_pos.y = 487.622 sphere.center_pos.z = -5974.69
+sphere.center_pos.x = 475.619 sphere.center_pos.y = 481.529 sphere.center_pos.z = -5968.69
+sphere.center_pos.x = 484.42 sphere.center_pos.y = 486.527 sphere.center_pos.z = -5961.24
+sphere.center_pos.x = 495.969 sphere.center_pos.y = 487.722 sphere.center_pos.z = -5952.51
+sphere.center_pos.x = 504.496 sphere.center_pos.y = 475.654 sphere.center_pos.z = -5953.87
+sphere.center_pos.x = 494.03 sphere.center_pos.y = 473.927 sphere.center_pos.z = -5961.69
+sphere.center_pos.x = 505.538 sphere.center_pos.y = 459.877 sphere.center_pos.z = -5961.9
+sphere.center_pos.x = 508.967 sphere.center_pos.y = 462.278 sphere.center_pos.z = -5958.11
+sphere.center_pos.x = 504.616 sphere.center_pos.y = 476.75 sphere.center_pos.z = -5953.52
+sphere.center_pos.x = 514.029 sphere.center_pos.y = 464.96 sphere.center_pos.z = -5953.82
+sphere.center_pos.x = 532.768 sphere.center_pos.y = 465.696 sphere.center_pos.z = -5941.75
+sphere.center_pos.x = 529.134 sphere.center_pos.y = 461.279 sphere.center_pos.z = -5946.43
+sphere.center_pos.x = 536.807 sphere.center_pos.y = 460.856 sphere.center_pos.z = -5941.88
+sphere.center_pos.x = 442.491 sphere.center_pos.y = 481.511 sphere.center_pos.z = -5985.67
+sphere.center_pos.x = 452.986 sphere.center_pos.y = 491.895 sphere.center_pos.z = -5977.21
+sphere.center_pos.x = 453.834 sphere.center_pos.y = 494.958 sphere.center_pos.z = -5975.94
+sphere.center_pos.x = 467.875 sphere.center_pos.y = 492.702 sphere.center_pos.z = -5967.48
+sphere.center_pos.x = 477.139 sphere.center_pos.y = 475.862 sphere.center_pos.z = -5970.36
+sphere.center_pos.x = 450.71 sphere.center_pos.y = 488.242 sphere.center_pos.z = -5980.48
+sphere.center_pos.x = 479.893 sphere.center_pos.y = 490.838 sphere.center_pos.z = -5960.97
+sphere.center_pos.x = 481.801 sphere.center_pos.y = 476.618 sphere.center_pos.z = -5967.15
+sphere.center_pos.x = 481.956 sphere.center_pos.y = 487.589 sphere.center_pos.z = -5961.54
+sphere.center_pos.x = 477.705 sphere.center_pos.y = 483.165 sphere.center_pos.z = -5966.54
+sphere.center_pos.x = 492.325 sphere.center_pos.y = 481.548 sphere.center_pos.z = -5956.8
+sphere.center_pos.x = 485.613 sphere.center_pos.y = 477.768 sphere.center_pos.z = -5966.82
+sphere.center_pos.x = 494.041 sphere.center_pos.y = 475.081 sphere.center_pos.z = -5960.69
+sphere.center_pos.x = 495.837 sphere.center_pos.y = 491.153 sphere.center_pos.z = -5951.25
+sphere.center_pos.x = 516.935 sphere.center_pos.y = 472.639 sphere.center_pos.z = -5947.81
+sphere.center_pos.x = 515.154 sphere.center_pos.y = 477.685 sphere.center_pos.z = -5946.16
+sphere.center_pos.x = 517.12 sphere.center_pos.y = 473.301 sphere.center_pos.z = -5947.33
+sphere.center_pos.x = 525.111 sphere.center_pos.y = 465.857 sphere.center_pos.z = -5946.43
+sphere.center_pos.x = 520.371 sphere.center_pos.y = 473.542 sphere.center_pos.z = -5945.18
+sphere.center_pos.x = 537.88 sphere.center_pos.y = 465.83 sphere.center_pos.z = -5938.5
+sphere.center_pos.x = 444.279 sphere.center_pos.y = 476.474 sphere.center_pos.z = -5992.15
+sphere.center_pos.x = 445.541 sphere.center_pos.y = 507.162 sphere.center_pos.z = -5969.83
+sphere.center_pos.x = 452.06 sphere.center_pos.y = 487.229 sphere.center_pos.z = -5981.86
+sphere.center_pos.x = 456.927 sphere.center_pos.y = 483.805 sphere.center_pos.z = -5977.41
+sphere.center_pos.x = 457.904 sphere.center_pos.y = 495.461 sphere.center_pos.z = -5971.77
+sphere.center_pos.x = 471.643 sphere.center_pos.y = 473.801 sphere.center_pos.z = -5975.42
+sphere.center_pos.x = 466.192 sphere.center_pos.y = 496.312 sphere.center_pos.z = -5966.11
+sphere.center_pos.x = 475.622 sphere.center_pos.y = 487.685 sphere.center_pos.z = -5965.31
+sphere.center_pos.x = 486.704 sphere.center_pos.y = 470.502 sphere.center_pos.z = -5967.87
+sphere.center_pos.x = 473.198 sphere.center_pos.y = 479.143 sphere.center_pos.z = -5971.57
+sphere.center_pos.x = 504.189 sphere.center_pos.y = 479.096 sphere.center_pos.z = -5953.81
+sphere.center_pos.x = 490.196 sphere.center_pos.y = 481.689 sphere.center_pos.z = -5959.69
+sphere.center_pos.x = 516.367 sphere.center_pos.y = 469.074 sphere.center_pos.z = -5952.88
+sphere.center_pos.x = 487.952 sphere.center_pos.y = 487.836 sphere.center_pos.z = -5959.74
+sphere.center_pos.x = 510.787 sphere.center_pos.y = 472.98 sphere.center_pos.z = -5951.4
+sphere.center_pos.x = 498.503 sphere.center_pos.y = 468.122 sphere.center_pos.z = -5961.67
+sphere.center_pos.x = 526.143 sphere.center_pos.y = 475.957 sphere.center_pos.z = -5940.27
+sphere.center_pos.x = 523.592 sphere.center_pos.y = 466.214 sphere.center_pos.z = -5947.18
+sphere.center_pos.x = 528.452 sphere.center_pos.y = 468.032 sphere.center_pos.z = -5943.16
+sphere.center_pos.x = 537.611 sphere.center_pos.y = 471.937 sphere.center_pos.z = -5935.33
+sphere.center_pos.x = 447 sphere.center_pos.y = 505.006 sphere.center_pos.z = -5982.24
+sphere.center_pos.x = 444.7 sphere.center_pos.y = 499.433 sphere.center_pos.z = -5976.7
+sphere.center_pos.x = 453.604 sphere.center_pos.y = 496.599 sphere.center_pos.z = -5974.72
+sphere.center_pos.x = 458.689 sphere.center_pos.y = 499.908 sphere.center_pos.z = -5969.83
+sphere.center_pos.x = 470.516 sphere.center_pos.y = 495.752 sphere.center_pos.z = -5963.8
+sphere.center_pos.x = 469.465 sphere.center_pos.y = 489.298 sphere.center_pos.z = -5968.28
+sphere.center_pos.x = 477.179 sphere.center_pos.y = 493.618 sphere.center_pos.z = -5961.22
+sphere.center_pos.x = 461.337 sphere.center_pos.y = 502.511 sphere.center_pos.z = -5966.18
+sphere.center_pos.x = 473.154 sphere.center_pos.y = 485.856 sphere.center_pos.z = -5967.84
+sphere.center_pos.x = 496.159 sphere.center_pos.y = 487.335 sphere.center_pos.z = -5955
+sphere.center_pos.x = 488.613 sphere.center_pos.y = 481.547 sphere.center_pos.z = -5961.36
+sphere.center_pos.x = 494.757 sphere.center_pos.y = 477.384 sphere.center_pos.z = -5958.37
+sphere.center_pos.x = 511.511 sphere.center_pos.y = 481.019 sphere.center_pos.z = -5946.72
+sphere.center_pos.x = 516.688 sphere.center_pos.y = 494.011 sphere.center_pos.z = -5937.58
+sphere.center_pos.x = 498.086 sphere.center_pos.y = 495.611 sphere.center_pos.z = -5947.16
+sphere.center_pos.x = 500.802 sphere.center_pos.y = 476.642 sphere.center_pos.z = -5954.28
+sphere.center_pos.x = 508.077 sphere.center_pos.y = 490.231 sphere.center_pos.z = -5944.01
+sphere.center_pos.x = 520.841 sphere.center_pos.y = 480.142 sphere.center_pos.z = -5941.28
+sphere.center_pos.x = 530.419 sphere.center_pos.y = 477.284 sphere.center_pos.z = -5936.88
+sphere.center_pos.x = 539.499 sphere.center_pos.y = 475.702 sphere.center_pos.z = -5932.1
+sphere.center_pos.x = 443.362 sphere.center_pos.y = 493.594 sphere.center_pos.z = -5980.88
+sphere.center_pos.x = 447.599 sphere.center_pos.y = 502.765 sphere.center_pos.z = -5974.15
+sphere.center_pos.x = 450.177 sphere.center_pos.y = 500.002 sphere.center_pos.z = -5973.87
+sphere.center_pos.x = 461.922 sphere.center_pos.y = 483.51 sphere.center_pos.z = -5976.11
+sphere.center_pos.x = 444.987 sphere.center_pos.y = 514.955 sphere.center_pos.z = -5972.6
+sphere.center_pos.x = 476.727 sphere.center_pos.y = 496.227 sphere.center_pos.z = -5960.73
+sphere.center_pos.x = 471.645 sphere.center_pos.y = 490.808 sphere.center_pos.z = -5966.14
+sphere.center_pos.x = 466.45 sphere.center_pos.y = 487.668 sphere.center_pos.z = -5971.11
+sphere.center_pos.x = 480.547 sphere.center_pos.y = 507.038 sphere.center_pos.z = -5953.98
+sphere.center_pos.x = 485.205 sphere.center_pos.y = 494.734 sphere.center_pos.z = -5954.99
+sphere.center_pos.x = 494.227 sphere.center_pos.y = 495.182 sphere.center_pos.z = -5949.87
+sphere.center_pos.x = 495.233 sphere.center_pos.y = 498.293 sphere.center_pos.z = -5947.08
+sphere.center_pos.x = 508.674 sphere.center_pos.y = 484.644 sphere.center_pos.z = -5946.62
+sphere.center_pos.x = 505.995 sphere.center_pos.y = 490.715 sphere.center_pos.z = -5944.53
+sphere.center_pos.x = 484.668 sphere.center_pos.y = 488.803 sphere.center_pos.z = -5959.27
+sphere.center_pos.x = 515.726 sphere.center_pos.y = 486.237 sphere.center_pos.z = -5941.09
+sphere.center_pos.x = 519.555 sphere.center_pos.y = 484.592 sphere.center_pos.z = -5939.65
+sphere.center_pos.x = 527.68 sphere.center_pos.y = 479.15 sphere.center_pos.z = -5937.57
+sphere.center_pos.x = 529.386 sphere.center_pos.y = 481.909 sphere.center_pos.z = -5935
+sphere.center_pos.x = 534.624 sphere.center_pos.y = 481.041 sphere.center_pos.z = -5932.21
+sphere.center_pos.x = 447 sphere.center_pos.y = 505.45 sphere.center_pos.z = -5981.99
+sphere.center_pos.x = 455.131 sphere.center_pos.y = 505.257 sphere.center_pos.z = -5970.01
+sphere.center_pos.x = 462.293 sphere.center_pos.y = 507.65 sphere.center_pos.z = -5964.43
+sphere.center_pos.x = 459.119 sphere.center_pos.y = 512.519 sphere.center_pos.z = -5962.63
+sphere.center_pos.x = 450.509 sphere.center_pos.y = 506.684 sphere.center_pos.z = -5972.87
+sphere.center_pos.x = 481.002 sphere.center_pos.y = 506.608 sphere.center_pos.z = -5951.51
+sphere.center_pos.x = 473.939 sphere.center_pos.y = 504.741 sphere.center_pos.z = -5955.58
+sphere.center_pos.x = 474.479 sphere.center_pos.y = 516.621 sphere.center_pos.z = -5951.81
+sphere.center_pos.x = 472.847 sphere.center_pos.y = 501.44 sphere.center_pos.z = -5960.31
+sphere.center_pos.x = 487.978 sphere.center_pos.y = 503.07 sphere.center_pos.z = -5949.45
+sphere.center_pos.x = 493.841 sphere.center_pos.y = 501.116 sphere.center_pos.z = -5946.33
+sphere.center_pos.x = 478.935 sphere.center_pos.y = 503.907 sphere.center_pos.z = -5953.95
+sphere.center_pos.x = 503.031 sphere.center_pos.y = 498.555 sphere.center_pos.z = -5942.55
+sphere.center_pos.x = 499.076 sphere.center_pos.y = 484.013 sphere.center_pos.z = -5952.45
+sphere.center_pos.x = 500.765 sphere.center_pos.y = 496.161 sphere.center_pos.z = -5944.78
+sphere.center_pos.x = 517.367 sphere.center_pos.y = 491.847 sphere.center_pos.z = -5936.67
+sphere.center_pos.x = 523.679 sphere.center_pos.y = 487.106 sphere.center_pos.z = -5935.71
+sphere.center_pos.x = 526.387 sphere.center_pos.y = 490.604 sphere.center_pos.z = -5932.12
+sphere.center_pos.x = 529.976 sphere.center_pos.y = 487.293 sphere.center_pos.z = -5931.69
+sphere.center_pos.x = 535.216 sphere.center_pos.y = 486.182 sphere.center_pos.z = -5929.04
+sphere.center_pos.x = 443.284 sphere.center_pos.y = 515.666 sphere.center_pos.z = -5968.66
+sphere.center_pos.x = 446.988 sphere.center_pos.y = 516.059 sphere.center_pos.z = -5964.45
+sphere.center_pos.x = 456.388 sphere.center_pos.y = 516.373 sphere.center_pos.z = -5961.47
+sphere.center_pos.x = 452.403 sphere.center_pos.y = 510.886 sphere.center_pos.z = -5965.25
+sphere.center_pos.x = 460.534 sphere.center_pos.y = 497.826 sphere.center_pos.z = -5969.91
+sphere.center_pos.x = 471.106 sphere.center_pos.y = 517.769 sphere.center_pos.z = -5951.64
+sphere.center_pos.x = 468.202 sphere.center_pos.y = 499.738 sphere.center_pos.z = -5965.66
+sphere.center_pos.x = 473.437 sphere.center_pos.y = 502.844 sphere.center_pos.z = -5958.57
+sphere.center_pos.x = 470.341 sphere.center_pos.y = 508.198 sphere.center_pos.z = -5956.7
+sphere.center_pos.x = 491.379 sphere.center_pos.y = 503.157 sphere.center_pos.z = -5946.82
+sphere.center_pos.x = 492.735 sphere.center_pos.y = 486.492 sphere.center_pos.z = -5954.88
+sphere.center_pos.x = 492.62 sphere.center_pos.y = 500.234 sphere.center_pos.z = -5947.95
+sphere.center_pos.x = 514.125 sphere.center_pos.y = 487.332 sphere.center_pos.z = -5941.76
+sphere.center_pos.x = 504.631 sphere.center_pos.y = 486.824 sphere.center_pos.z = -5948.15
+sphere.center_pos.x = 507.779 sphere.center_pos.y = 502.315 sphere.center_pos.z = -5936.59
+sphere.center_pos.x = 498.595 sphere.center_pos.y = 510.979 sphere.center_pos.z = -5938.39
+sphere.center_pos.x = 523.815 sphere.center_pos.y = 490.079 sphere.center_pos.z = -5934.12
+sphere.center_pos.x = 518.071 sphere.center_pos.y = 496.07 sphere.center_pos.z = -5934.41
+sphere.center_pos.x = 531.025 sphere.center_pos.y = 490.33 sphere.center_pos.z = -5929.38
+sphere.center_pos.x = 539.769 sphere.center_pos.y = 489.138 sphere.center_pos.z = -5924.59
+sphere.center_pos.x = 442.655 sphere.center_pos.y = 521.402 sphere.center_pos.z = -5964.22
+sphere.center_pos.x = 456.518 sphere.center_pos.y = 500.324 sphere.center_pos.z = -5968.41
+sphere.center_pos.x = 452.667 sphere.center_pos.y = 515.421 sphere.center_pos.z = -5968.61
+sphere.center_pos.x = 452.826 sphere.center_pos.y = 525.706 sphere.center_pos.z = -5956.55
+sphere.center_pos.x = 466.404 sphere.center_pos.y = 505.098 sphere.center_pos.z = -5960.07
+sphere.center_pos.x = 466.669 sphere.center_pos.y = 508.454 sphere.center_pos.z = -5959.86
+sphere.center_pos.x = 467.842 sphere.center_pos.y = 508.132 sphere.center_pos.z = -5958.94
+sphere.center_pos.x = 467.784 sphere.center_pos.y = 530.607 sphere.center_pos.z = -5949.48
+sphere.center_pos.x = 478.351 sphere.center_pos.y = 522.864 sphere.center_pos.z = -5944.51
+sphere.center_pos.x = 481.225 sphere.center_pos.y = 519.281 sphere.center_pos.z = -5944.78
+sphere.center_pos.x = 493.659 sphere.center_pos.y = 510.382 sphere.center_pos.z = -5941.92
+sphere.center_pos.x = 485.343 sphere.center_pos.y = 523.653 sphere.center_pos.z = -5939.83
+sphere.center_pos.x = 503.085 sphere.center_pos.y = 507.953 sphere.center_pos.z = -5937.12
+sphere.center_pos.x = 504.003 sphere.center_pos.y = 488.268 sphere.center_pos.z = -5947.59
+sphere.center_pos.x = 513.114 sphere.center_pos.y = 503.227 sphere.center_pos.z = -5933.48
+sphere.center_pos.x = 510.652 sphere.center_pos.y = 504.479 sphere.center_pos.z = -5934.28
+sphere.center_pos.x = 527.212 sphere.center_pos.y = 497.725 sphere.center_pos.z = -5927.71
+sphere.center_pos.x = 522.736 sphere.center_pos.y = 499.516 sphere.center_pos.z = -5929.52
+sphere.center_pos.x = 528.762 sphere.center_pos.y = 502.847 sphere.center_pos.z = -5923.95
+sphere.center_pos.x = 538.308 sphere.center_pos.y = 493.215 sphere.center_pos.z = -5923.27
+sphere.center_pos.x = 445.129 sphere.center_pos.y = 521.63 sphere.center_pos.z = -5969.25
+sphere.center_pos.x = 455.139 sphere.center_pos.y = 517.546 sphere.center_pos.z = -5962.07
+sphere.center_pos.x = 445.899 sphere.center_pos.y = 528.365 sphere.center_pos.z = -5965.38
+sphere.center_pos.x = 462.386 sphere.center_pos.y = 524.775 sphere.center_pos.z = -5952.72
+sphere.center_pos.x = 460.953 sphere.center_pos.y = 519.127 sphere.center_pos.z = -5957.07
+sphere.center_pos.x = 455.653 sphere.center_pos.y = 522.827 sphere.center_pos.z = -5958.56
+sphere.center_pos.x = 484.364 sphere.center_pos.y = 505.629 sphere.center_pos.z = -5950.48
+sphere.center_pos.x = 478.889 sphere.center_pos.y = 499.271 sphere.center_pos.z = -5959.13
+sphere.center_pos.x = 492.634 sphere.center_pos.y = 524.36 sphere.center_pos.z = -5935.97
+sphere.center_pos.x = 486.62 sphere.center_pos.y = 515.165 sphere.center_pos.z = -5943.23
+sphere.center_pos.x = 478.102 sphere.center_pos.y = 510.458 sphere.center_pos.z = -5951.06
+sphere.center_pos.x = 482.337 sphere.center_pos.y = 514.971 sphere.center_pos.z = -5946.65
+sphere.center_pos.x = 483.611 sphere.center_pos.y = 513.977 sphere.center_pos.z = -5946.23
+sphere.center_pos.x = 497.707 sphere.center_pos.y = 503.984 sphere.center_pos.z = -5942.64
+sphere.center_pos.x = 513.127 sphere.center_pos.y = 498.943 sphere.center_pos.z = -5935.81
+sphere.center_pos.x = 510.205 sphere.center_pos.y = 507.947 sphere.center_pos.z = -5932.71
+sphere.center_pos.x = 516.746 sphere.center_pos.y = 499.268 sphere.center_pos.z = -5933.39
+sphere.center_pos.x = 521.124 sphere.center_pos.y = 509.246 sphere.center_pos.z = -5925.21
+sphere.center_pos.x = 515.185 sphere.center_pos.y = 508.333 sphere.center_pos.z = -5929.4
+sphere.center_pos.x = 536.85 sphere.center_pos.y = 498.756 sphere.center_pos.z = -5921.15
+sphere.center_pos.x = 443.855 sphere.center_pos.y = 532.863 sphere.center_pos.z = -5960.46
+sphere.center_pos.x = 446.799 sphere.center_pos.y = 537.059 sphere.center_pos.z = -5956.4
+sphere.center_pos.x = 451.787 sphere.center_pos.y = 529.057 sphere.center_pos.z = -5957.74
+sphere.center_pos.x = 479.848 sphere.center_pos.y = 521.681 sphere.center_pos.z = -5944.04
+sphere.center_pos.x = 463.072 sphere.center_pos.y = 516.458 sphere.center_pos.z = -5959.01
+sphere.center_pos.x = 458.963 sphere.center_pos.y = 525.356 sphere.center_pos.z = -5954.77
+sphere.center_pos.x = 471.398 sphere.center_pos.y = 530.104 sphere.center_pos.z = -5944.76
+sphere.center_pos.x = 470.119 sphere.center_pos.y = 524.299 sphere.center_pos.z = -5948.68
+sphere.center_pos.x = 489.434 sphere.center_pos.y = 506.552 sphere.center_pos.z = -5946.57
+sphere.center_pos.x = 479.101 sphere.center_pos.y = 495.829 sphere.center_pos.z = -5958.9
+sphere.center_pos.x = 490.698 sphere.center_pos.y = 508.865 sphere.center_pos.z = -5944.11
+sphere.center_pos.x = 498.712 sphere.center_pos.y = 513.76 sphere.center_pos.z = -5935.98
+sphere.center_pos.x = 500.984 sphere.center_pos.y = 518.533 sphere.center_pos.z = -5932.67
+sphere.center_pos.x = 496.704 sphere.center_pos.y = 519.668 sphere.center_pos.z = -5934.72
+sphere.center_pos.x = 510.875 sphere.center_pos.y = 513.704 sphere.center_pos.z = -5929.15
+sphere.center_pos.x = 495.871 sphere.center_pos.y = 507.259 sphere.center_pos.z = -5941.98
+sphere.center_pos.x = 515.787 sphere.center_pos.y = 513.168 sphere.center_pos.z = -5926.39
+sphere.center_pos.x = 533.891 sphere.center_pos.y = 503.928 sphere.center_pos.z = -5920.17
+sphere.center_pos.x = 524.193 sphere.center_pos.y = 508.079 sphere.center_pos.z = -5923.94
+sphere.center_pos.x = 537.673 sphere.center_pos.y = 503.613 sphere.center_pos.z = -5917.98
+sphere.center_pos.x = 443.828 sphere.center_pos.y = 536.794 sphere.center_pos.z = -5958.26
+sphere.center_pos.x = 444.163 sphere.center_pos.y = 527.463 sphere.center_pos.z = -5964.05
+sphere.center_pos.x = 461.276 sphere.center_pos.y = 533.269 sphere.center_pos.z = -5949.34
+sphere.center_pos.x = 450.379 sphere.center_pos.y = 533.759 sphere.center_pos.z = -5955.87
+sphere.center_pos.x = 452.237 sphere.center_pos.y = 536.672 sphere.center_pos.z = -5953.14
+sphere.center_pos.x = 472.274 sphere.center_pos.y = 517.568 sphere.center_pos.z = -5951.36
+sphere.center_pos.x = 475.977 sphere.center_pos.y = 527.123 sphere.center_pos.z = -5943.54
+sphere.center_pos.x = 462.058 sphere.center_pos.y = 514.114 sphere.center_pos.z = -5959.23
+sphere.center_pos.x = 471.225 sphere.center_pos.y = 514 sphere.center_pos.z = -5952.28
+sphere.center_pos.x = 484.681 sphere.center_pos.y = 525.413 sphere.center_pos.z = -5939.01
+sphere.center_pos.x = 490.738 sphere.center_pos.y = 525.45 sphere.center_pos.z = -5934.89
+sphere.center_pos.x = 504.929 sphere.center_pos.y = 502.989 sphere.center_pos.z = -5938.81
+sphere.center_pos.x = 501.595 sphere.center_pos.y = 515.908 sphere.center_pos.z = -5933.68
+sphere.center_pos.x = 504.942 sphere.center_pos.y = 514.587 sphere.center_pos.z = -5932.36
+sphere.center_pos.x = 500.502 sphere.center_pos.y = 501.415 sphere.center_pos.z = -5942.29
+sphere.center_pos.x = 516.339 sphere.center_pos.y = 517.737 sphere.center_pos.z = -5923.55
+sphere.center_pos.x = 523.634 sphere.center_pos.y = 513.098 sphere.center_pos.z = -5921.54
+sphere.center_pos.x = 506.591 sphere.center_pos.y = 524.23 sphere.center_pos.z = -5926.07
+sphere.center_pos.x = 533.637 sphere.center_pos.y = 512.073 sphere.center_pos.z = -5915.87
+sphere.center_pos.x = 528.403 sphere.center_pos.y = 509.565 sphere.center_pos.z = -5920.5
+sphere.center_pos.x = 443.847 sphere.center_pos.y = 549.998 sphere.center_pos.z = -5951.08
+sphere.center_pos.x = 456.544 sphere.center_pos.y = 532.335 sphere.center_pos.z = -5952.84
+sphere.center_pos.x = 443.841 sphere.center_pos.y = 541.813 sphere.center_pos.z = -5955.54
+sphere.center_pos.x = 466.075 sphere.center_pos.y = 520.263 sphere.center_pos.z = -5952.62
+sphere.center_pos.x = 461.65 sphere.center_pos.y = 537.68 sphere.center_pos.z = -5946.7
+sphere.center_pos.x = 462.957 sphere.center_pos.y = 529.408 sphere.center_pos.z = -5950.41
+sphere.center_pos.x = 472.107 sphere.center_pos.y = 530.102 sphere.center_pos.z = -5944.32
+sphere.center_pos.x = 477.127 sphere.center_pos.y = 537.811 sphere.center_pos.z = -5936.99
+sphere.center_pos.x = 486.654 sphere.center_pos.y = 517.265 sphere.center_pos.z = -5942.58
+sphere.center_pos.x = 484.036 sphere.center_pos.y = 529.413 sphere.center_pos.z = -5937.28
+sphere.center_pos.x = 487.63 sphere.center_pos.y = 532.596 sphere.center_pos.z = -5933.3
+sphere.center_pos.x = 490.633 sphere.center_pos.y = 531.952 sphere.center_pos.z = -5931.9
+sphere.center_pos.x = 499.175 sphere.center_pos.y = 533.106 sphere.center_pos.z = -5925.84
+sphere.center_pos.x = 497.976 sphere.center_pos.y = 522.954 sphere.center_pos.z = -5932.13
+sphere.center_pos.x = 511.626 sphere.center_pos.y = 518.42 sphere.center_pos.z = -5926.11
+sphere.center_pos.x = 513.61 sphere.center_pos.y = 525.747 sphere.center_pos.z = -5920.87
+sphere.center_pos.x = 505.272 sphere.center_pos.y = 509.569 sphere.center_pos.z = -5934.91
+sphere.center_pos.x = 530.515 sphere.center_pos.y = 499.339 sphere.center_pos.z = -5924.77
+sphere.center_pos.x = 518.297 sphere.center_pos.y = 522.938 sphere.center_pos.z = -5919.49
+sphere.center_pos.x = 538.285 sphere.center_pos.y = 509.75 sphere.center_pos.z = -5914.25
+sphere.center_pos.x = 443.694 sphere.center_pos.y = 522.426 sphere.center_pos.z = -5965.82
+sphere.center_pos.x = 447.156 sphere.center_pos.y = 543.986 sphere.center_pos.z = -5952.24
+sphere.center_pos.x = 454.803 sphere.center_pos.y = 543.675 sphere.center_pos.z = -5947.67
+sphere.center_pos.x = 473.162 sphere.center_pos.y = 544.818 sphere.center_pos.z = -5935.63
+sphere.center_pos.x = 447.697 sphere.center_pos.y = 529.821 sphere.center_pos.z = -5959.68
+sphere.center_pos.x = 468.601 sphere.center_pos.y = 546.669 sphere.center_pos.z = -5937.46
+sphere.center_pos.x = 466.757 sphere.center_pos.y = 539.496 sphere.center_pos.z = -5942.53
+sphere.center_pos.x = 466.716 sphere.center_pos.y = 537.988 sphere.center_pos.z = -5943.38
+sphere.center_pos.x = 479.923 sphere.center_pos.y = 531.776 sphere.center_pos.z = -5938.55
+sphere.center_pos.x = 480.722 sphere.center_pos.y = 538.407 sphere.center_pos.z = -5934.43
+sphere.center_pos.x = 491.838 sphere.center_pos.y = 534.202 sphere.center_pos.z = -5929.81
+sphere.center_pos.x = 495.121 sphere.center_pos.y = 525.032 sphere.center_pos.z = -5932.88
+sphere.center_pos.x = 499.794 sphere.center_pos.y = 528.467 sphere.center_pos.z = -5927.99
+sphere.center_pos.x = 509.101 sphere.center_pos.y = 524.417 sphere.center_pos.z = -5924.4
+sphere.center_pos.x = 507.127 sphere.center_pos.y = 537.701 sphere.center_pos.z = -5918.38
+sphere.center_pos.x = 520.279 sphere.center_pos.y = 506.957 sphere.center_pos.z = -5926.99
+sphere.center_pos.x = 501.654 sphere.center_pos.y = 535.759 sphere.center_pos.z = -5922.84
+sphere.center_pos.x = 527.731 sphere.center_pos.y = 526.145 sphere.center_pos.z = -5911.86
+sphere.center_pos.x = 527.401 sphere.center_pos.y = 517.209 sphere.center_pos.z = -5916.95
+sphere.center_pos.x = 533.314 sphere.center_pos.y = 516.676 sphere.center_pos.z = -5913.56
+sphere.center_pos.x = 443.841 sphere.center_pos.y = 553.828 sphere.center_pos.z = -5948.98
+sphere.center_pos.x = 449.589 sphere.center_pos.y = 546.909 sphere.center_pos.z = -5949.16
+sphere.center_pos.x = 453.522 sphere.center_pos.y = 547.558 sphere.center_pos.z = -5946.36
+sphere.center_pos.x = 458.344 sphere.center_pos.y = 535.953 sphere.center_pos.z = -5949.7
+sphere.center_pos.x = 459.269 sphere.center_pos.y = 548.705 sphere.center_pos.z = -5942.16
+sphere.center_pos.x = 463.232 sphere.center_pos.y = 544.442 sphere.center_pos.z = -5942.02
+sphere.center_pos.x = 473.199 sphere.center_pos.y = 533.067 sphere.center_pos.z = -5942.03
+sphere.center_pos.x = 469.807 sphere.center_pos.y = 542.037 sphere.center_pos.z = -5939.24
+sphere.center_pos.x = 479.574 sphere.center_pos.y = 541.447 sphere.center_pos.z = -5933.48
+sphere.center_pos.x = 483.928 sphere.center_pos.y = 539.273 sphere.center_pos.z = -5931.96
+sphere.center_pos.x = 489.467 sphere.center_pos.y = 538.412 sphere.center_pos.z = -5928.98
+sphere.center_pos.x = 492.778 sphere.center_pos.y = 538.594 sphere.center_pos.z = -5926.82
+sphere.center_pos.x = 504.703 sphere.center_pos.y = 533.208 sphere.center_pos.z = -5922.34
+sphere.center_pos.x = 506.633 sphere.center_pos.y = 519.125 sphere.center_pos.z = -5928.83
+sphere.center_pos.x = 508.739 sphere.center_pos.y = 527.582 sphere.center_pos.z = -5922.9
+sphere.center_pos.x = 515.205 sphere.center_pos.y = 535.332 sphere.center_pos.z = -5914.64
+sphere.center_pos.x = 522.053 sphere.center_pos.y = 518.199 sphere.center_pos.z = -5919.74
+sphere.center_pos.x = 518.709 sphere.center_pos.y = 528.178 sphere.center_pos.z = -5916.37
+sphere.center_pos.x = 523.915 sphere.center_pos.y = 523.329 sphere.center_pos.z = -5915.78
+sphere.center_pos.x = 532.17 sphere.center_pos.y = 522.132 sphere.center_pos.z = -5911.29
+sphere.center_pos.x = 443.838 sphere.center_pos.y = 561.736 sphere.center_pos.z = -5944.65
+sphere.center_pos.x = 449.008 sphere.center_pos.y = 551.769 sphere.center_pos.z = -5946.87
+sphere.center_pos.x = 454.177 sphere.center_pos.y = 553.31 sphere.center_pos.z = -5942.81
+sphere.center_pos.x = 459.467 sphere.center_pos.y = 553.571 sphere.center_pos.z = -5939.38
+sphere.center_pos.x = 459.272 sphere.center_pos.y = 542.313 sphere.center_pos.z = -5945.65
+sphere.center_pos.x = 464.819 sphere.center_pos.y = 551.698 sphere.center_pos.z = -5937.07
+sphere.center_pos.x = 470.074 sphere.center_pos.y = 551.396 sphere.center_pos.z = -5933.96
+sphere.center_pos.x = 476.111 sphere.center_pos.y = 549.545 sphere.center_pos.z = -5931.21
+sphere.center_pos.x = 480.37 sphere.center_pos.y = 550.317 sphere.center_pos.z = -5928.14
+sphere.center_pos.x = 484.432 sphere.center_pos.y = 544.378 sphere.center_pos.z = -5928.86
+sphere.center_pos.x = 489.728 sphere.center_pos.y = 543.584 sphere.center_pos.z = -5925.99
+sphere.center_pos.x = 493.877 sphere.center_pos.y = 547.05 sphere.center_pos.z = -5921.52
+sphere.center_pos.x = 497.571 sphere.center_pos.y = 544.621 sphere.center_pos.z = -5920.54
+sphere.center_pos.x = 502.73 sphere.center_pos.y = 541.813 sphere.center_pos.z = -5918.87
+sphere.center_pos.x = 507.803 sphere.center_pos.y = 541.306 sphere.center_pos.z = -5915.99
+sphere.center_pos.x = 511.327 sphere.center_pos.y = 531.114 sphere.center_pos.z = -5919.36
+sphere.center_pos.x = 514.1 sphere.center_pos.y = 540.269 sphere.center_pos.z = -5912.63
+sphere.center_pos.x = 519.724 sphere.center_pos.y = 533.825 sphere.center_pos.z = -5912.65
+sphere.center_pos.x = 524.881 sphere.center_pos.y = 531.331 sphere.center_pos.z = -5910.8
+sphere.center_pos.x = 533.375 sphere.center_pos.y = 530.311 sphere.center_pos.z = -5906.07
+sphere.center_pos.x = 432.829 sphere.center_pos.y = 454.564 sphere.center_pos.z = -5980.24
+sphere.center_pos.x = 444.898 sphere.center_pos.y = 460.394 sphere.center_pos.z = -5990.91
+sphere.center_pos.x = 467.938 sphere.center_pos.y = 457.209 sphere.center_pos.z = -5985.08
+sphere.center_pos.x = 456.957 sphere.center_pos.y = 455.616 sphere.center_pos.z = -5982.16
+sphere.center_pos.x = 454.778 sphere.center_pos.y = 458.301 sphere.center_pos.z = -5987.08
+sphere.center_pos.x = 478.76 sphere.center_pos.y = 451.67 sphere.center_pos.z = -5974.94
+sphere.center_pos.x = 473.93 sphere.center_pos.y = 453.031 sphere.center_pos.z = -5977.43
+sphere.center_pos.x = 453.456 sphere.center_pos.y = 458.951 sphere.center_pos.z = -5988.27
+sphere.center_pos.x = 464.383 sphere.center_pos.y = 456.785 sphere.center_pos.z = -5984.3
+sphere.center_pos.x = 475.358 sphere.center_pos.y = 448.475 sphere.center_pos.z = -5969.09
+sphere.center_pos.x = 482.308 sphere.center_pos.y = 451.354 sphere.center_pos.z = -5974.36
+sphere.center_pos.x = 487.294 sphere.center_pos.y = 442.617 sphere.center_pos.z = -5958.37
+sphere.center_pos.x = 501.255 sphere.center_pos.y = 447.528 sphere.center_pos.z = -5967.36
+sphere.center_pos.x = 487.888 sphere.center_pos.y = 449.079 sphere.center_pos.z = -5970.2
+sphere.center_pos.x = 509.642 sphere.center_pos.y = 443.777 sphere.center_pos.z = -5960.49
+sphere.center_pos.x = 513.533 sphere.center_pos.y = 442.687 sphere.center_pos.z = -5958.49
+sphere.center_pos.x = 526.61 sphere.center_pos.y = 439.144 sphere.center_pos.z = -5952.01
+sphere.center_pos.x = 496.708 sphere.center_pos.y = 445.413 sphere.center_pos.z = -5963.48
+sphere.center_pos.x = 530.594 sphere.center_pos.y = 438.261 sphere.center_pos.z = -5950.39
+sphere.center_pos.x = 538.451 sphere.center_pos.y = 436.143 sphere.center_pos.z = -5946.52
+sphere.center_pos.x = 440.72 sphere.center_pos.y = 465.667 sphere.center_pos.z = -5990.63
+sphere.center_pos.x = 444.414 sphere.center_pos.y = 464.731 sphere.center_pos.z = -5998.85
+sphere.center_pos.x = 464.904 sphere.center_pos.y = 455.812 sphere.center_pos.z = -5982.15
+sphere.center_pos.x = 459.897 sphere.center_pos.y = 471.514 sphere.center_pos.z = -5976.77
+sphere.center_pos.x = 475.113 sphere.center_pos.y = 455.226 sphere.center_pos.z = -5981.45
+sphere.center_pos.x = 457.169 sphere.center_pos.y = 462.443 sphere.center_pos.z = -5981.43
+sphere.center_pos.x = 470.963 sphere.center_pos.y = 462.92 sphere.center_pos.z = -5973.88
+sphere.center_pos.x = 493.055 sphere.center_pos.y = 454.883 sphere.center_pos.z = -5970.94
+sphere.center_pos.x = 479.359 sphere.center_pos.y = 454.991 sphere.center_pos.z = -5972.17
+sphere.center_pos.x = 479.602 sphere.center_pos.y = 455.31 sphere.center_pos.z = -5972.39
+sphere.center_pos.x = 484.972 sphere.center_pos.y = 453.417 sphere.center_pos.z = -5967.21
+sphere.center_pos.x = 497.547 sphere.center_pos.y = 454.226 sphere.center_pos.z = -5966.51
+sphere.center_pos.x = 484.55 sphere.center_pos.y = 463.125 sphere.center_pos.z = -5964.99
+sphere.center_pos.x = 496.953 sphere.center_pos.y = 458.059 sphere.center_pos.z = -5960.05
+sphere.center_pos.x = 514.426 sphere.center_pos.y = 445.266 sphere.center_pos.z = -5956.27
+sphere.center_pos.x = 503.527 sphere.center_pos.y = 444.925 sphere.center_pos.z = -5962.59
+sphere.center_pos.x = 512.514 sphere.center_pos.y = 455.732 sphere.center_pos.z = -5952.21
+sphere.center_pos.x = 521.64 sphere.center_pos.y = 443.941 sphere.center_pos.z = -5952.86
+sphere.center_pos.x = 525.151 sphere.center_pos.y = 445.4 sphere.center_pos.z = -5949.79
+sphere.center_pos.x = 529.86 sphere.center_pos.y = 443.588 sphere.center_pos.z = -5947.85
+sphere.center_pos.x = 443.22 sphere.center_pos.y = 488.4 sphere.center_pos.z = -5983.42
+sphere.center_pos.x = 441.314 sphere.center_pos.y = 485.575 sphere.center_pos.z = -5980.57
+sphere.center_pos.x = 450.237 sphere.center_pos.y = 468.547 sphere.center_pos.z = -5983.8
+sphere.center_pos.x = 453.567 sphere.center_pos.y = 458.445 sphere.center_pos.z = -5987.34
+sphere.center_pos.x = 457.137 sphere.center_pos.y = 477.513 sphere.center_pos.z = -5974.59
+sphere.center_pos.x = 461.897 sphere.center_pos.y = 466.768 sphere.center_pos.z = -5977.49
+sphere.center_pos.x = 471.671 sphere.center_pos.y = 460.268 sphere.center_pos.z = -5975.74
+sphere.center_pos.x = 468.749 sphere.center_pos.y = 458.692 sphere.center_pos.z = -5979.9
+sphere.center_pos.x = 475.488 sphere.center_pos.y = 462.022 sphere.center_pos.z = -5971.18
+sphere.center_pos.x = 479.789 sphere.center_pos.y = 460.628 sphere.center_pos.z = -5973.89
+sphere.center_pos.x = 487.111 sphere.center_pos.y = 466.16 sphere.center_pos.z = -5960.5
+sphere.center_pos.x = 496.635 sphere.center_pos.y = 459.991 sphere.center_pos.z = -5960.17
+sphere.center_pos.x = 485.433 sphere.center_pos.y = 454.137 sphere.center_pos.z = -5963.44
+sphere.center_pos.x = 500.928 sphere.center_pos.y = 445 sphere.center_pos.z = -5962.73
+sphere.center_pos.x = 507.945 sphere.center_pos.y = 452.492 sphere.center_pos.z = -5957.49
+sphere.center_pos.x = 514.575 sphere.center_pos.y = 459.861 sphere.center_pos.z = -5948.48
+sphere.center_pos.x = 518.664 sphere.center_pos.y = 441.475 sphere.center_pos.z = -5956.28
+sphere.center_pos.x = 523.297 sphere.center_pos.y = 451.114 sphere.center_pos.z = -5947.85
+sphere.center_pos.x = 526.831 sphere.center_pos.y = 448.894 sphere.center_pos.z = -5946.84
+sphere.center_pos.x = 532.754 sphere.center_pos.y = 447.998 sphere.center_pos.z = -5943.64
+sphere.center_pos.x = 439.299 sphere.center_pos.y = 477.9 sphere.center_pos.z = -5980.98
+sphere.center_pos.x = 455.702 sphere.center_pos.y = 476.808 sphere.center_pos.z = -5976.49
+sphere.center_pos.x = 441.002 sphere.center_pos.y = 474.301 sphere.center_pos.z = -5986.5
+sphere.center_pos.x = 458.173 sphere.center_pos.y = 474.406 sphere.center_pos.z = -5975.73
+sphere.center_pos.x = 454.769 sphere.center_pos.y = 463.071 sphere.center_pos.z = -5983.93
+sphere.center_pos.x = 456.995 sphere.center_pos.y = 468.638 sphere.center_pos.z = -5979.52
+sphere.center_pos.x = 475.65 sphere.center_pos.y = 476.362 sphere.center_pos.z = -5963.12
+sphere.center_pos.x = 462.176 sphere.center_pos.y = 462.546 sphere.center_pos.z = -5973.26
+sphere.center_pos.x = 480.208 sphere.center_pos.y = 465.301 sphere.center_pos.z = -5966.3
+sphere.center_pos.x = 465.007 sphere.center_pos.y = 473.508 sphere.center_pos.z = -5971.91
+sphere.center_pos.x = 492.937 sphere.center_pos.y = 463.018 sphere.center_pos.z = -5959.83
+sphere.center_pos.x = 489.628 sphere.center_pos.y = 458.424 sphere.center_pos.z = -5966.08
+sphere.center_pos.x = 506.975 sphere.center_pos.y = 453.991 sphere.center_pos.z = -5957.46
+sphere.center_pos.x = 505.245 sphere.center_pos.y = 462.318 sphere.center_pos.z = -5950.91
+sphere.center_pos.x = 507.659 sphere.center_pos.y = 479.994 sphere.center_pos.z = -5941.43
+sphere.center_pos.x = 512.238 sphere.center_pos.y = 449.698 sphere.center_pos.z = -5955.67
+sphere.center_pos.x = 504.791 sphere.center_pos.y = 467.195 sphere.center_pos.z = -5949.14
+sphere.center_pos.x = 529.235 sphere.center_pos.y = 467.905 sphere.center_pos.z = -5934.95
+sphere.center_pos.x = 516.492 sphere.center_pos.y = 456.428 sphere.center_pos.z = -5949.16
+sphere.center_pos.x = 534.401 sphere.center_pos.y = 452.856 sphere.center_pos.z = -5939.96
+sphere.center_pos.x = 441.154 sphere.center_pos.y = 475.493 sphere.center_pos.z = -5986.17
+sphere.center_pos.x = 443.129 sphere.center_pos.y = 495.587 sphere.center_pos.z = -5979.31
+sphere.center_pos.x = 461.007 sphere.center_pos.y = 472.627 sphere.center_pos.z = -5974.85
+sphere.center_pos.x = 445.95 sphere.center_pos.y = 474.2 sphere.center_pos.z = -5983.34
+sphere.center_pos.x = 444.05 sphere.center_pos.y = 463.979 sphere.center_pos.z = -5990.11
+sphere.center_pos.x = 457.056 sphere.center_pos.y = 486.004 sphere.center_pos.z = -5970.05
+sphere.center_pos.x = 461.743 sphere.center_pos.y = 490.003 sphere.center_pos.z = -5965.47
+sphere.center_pos.x = 476.223 sphere.center_pos.y = 466.883 sphere.center_pos.z = -5969.03
+sphere.center_pos.x = 479.975 sphere.center_pos.y = 478.589 sphere.center_pos.z = -5960.82
+sphere.center_pos.x = 488.112 sphere.center_pos.y = 450.77 sphere.center_pos.z = -5973.29
+sphere.center_pos.x = 486.424 sphere.center_pos.y = 458.283 sphere.center_pos.z = -5969.41
+sphere.center_pos.x = 478.149 sphere.center_pos.y = 467.894 sphere.center_pos.z = -5965.55
+sphere.center_pos.x = 487.738 sphere.center_pos.y = 473.634 sphere.center_pos.z = -5960.54
+sphere.center_pos.x = 500.433 sphere.center_pos.y = 463.499 sphere.center_pos.z = -5954.62
+sphere.center_pos.x = 498.457 sphere.center_pos.y = 467.058 sphere.center_pos.z = -5957.59
+sphere.center_pos.x = 515.573 sphere.center_pos.y = 450.52 sphere.center_pos.z = -5952.89
+sphere.center_pos.x = 519.082 sphere.center_pos.y = 459.052 sphere.center_pos.z = -5946.11
+sphere.center_pos.x = 507.553 sphere.center_pos.y = 448.101 sphere.center_pos.z = -5959.23
+sphere.center_pos.x = 529.483 sphere.center_pos.y = 453.947 sphere.center_pos.z = -5942.42
+sphere.center_pos.x = 523.092 sphere.center_pos.y = 455.623 sphere.center_pos.z = -5945.49
+sphere.center_pos.x = 440.847 sphere.center_pos.y = 499.513 sphere.center_pos.z = -5972.4
+sphere.center_pos.x = 446.021 sphere.center_pos.y = 476.514 sphere.center_pos.z = -5980.68
+sphere.center_pos.x = 451.513 sphere.center_pos.y = 479.872 sphere.center_pos.z = -5976.79
+sphere.center_pos.x = 452.102 sphere.center_pos.y = 474.819 sphere.center_pos.z = -5979.19
+sphere.center_pos.x = 469.481 sphere.center_pos.y = 470.329 sphere.center_pos.z = -5970.88
+sphere.center_pos.x = 464.8 sphere.center_pos.y = 479.28 sphere.center_pos.z = -5968.38
+sphere.center_pos.x = 466.789 sphere.center_pos.y = 461.825 sphere.center_pos.z = -5977.16
+sphere.center_pos.x = 457.767 sphere.center_pos.y = 485.076 sphere.center_pos.z = -5969.99
+sphere.center_pos.x = 472.782 sphere.center_pos.y = 479.046 sphere.center_pos.z = -5964.14
+sphere.center_pos.x = 480.7 sphere.center_pos.y = 483.271 sphere.center_pos.z = -5955.06
+sphere.center_pos.x = 493.207 sphere.center_pos.y = 485.291 sphere.center_pos.z = -5948.02
+sphere.center_pos.x = 501.751 sphere.center_pos.y = 472.913 sphere.center_pos.z = -5949.3
+sphere.center_pos.x = 490.652 sphere.center_pos.y = 470.928 sphere.center_pos.z = -5956.25
+sphere.center_pos.x = 502.745 sphere.center_pos.y = 457.35 sphere.center_pos.z = -5957.29
+sphere.center_pos.x = 505.696 sphere.center_pos.y = 459.225 sphere.center_pos.z = -5952.65
+sphere.center_pos.x = 502.186 sphere.center_pos.y = 474.516 sphere.center_pos.z = -5949.4
+sphere.center_pos.x = 511.158 sphere.center_pos.y = 462.44 sphere.center_pos.z = -5949.21
+sphere.center_pos.x = 529.891 sphere.center_pos.y = 463.171 sphere.center_pos.z = -5937.13
+sphere.center_pos.x = 526.258 sphere.center_pos.y = 458.754 sphere.center_pos.z = -5941.81
+sphere.center_pos.x = 533.93 sphere.center_pos.y = 458.332 sphere.center_pos.z = -5937.26
+sphere.center_pos.x = 440.93 sphere.center_pos.y = 494.673 sphere.center_pos.z = -5975.22
+sphere.center_pos.x = 450.042 sphere.center_pos.y = 489.321 sphere.center_pos.z = -5972.48
+sphere.center_pos.x = 447.53 sphere.center_pos.y = 490.729 sphere.center_pos.z = -5974.13
+sphere.center_pos.x = 464.735 sphere.center_pos.y = 490.136 sphere.center_pos.z = -5962.39
+sphere.center_pos.x = 474.685 sphere.center_pos.y = 473.68 sphere.center_pos.z = -5966.33
+sphere.center_pos.x = 447.852 sphere.center_pos.y = 485.725 sphere.center_pos.z = -5975.89
+sphere.center_pos.x = 477.006 sphere.center_pos.y = 488.304 sphere.center_pos.z = -5956.33
+sphere.center_pos.x = 480.261 sphere.center_pos.y = 474.692 sphere.center_pos.z = -5963.29
+sphere.center_pos.x = 479.038 sphere.center_pos.y = 484.905 sphere.center_pos.z = -5956.67
+sphere.center_pos.x = 474.732 sphere.center_pos.y = 480.586 sphere.center_pos.z = -5961.78
+sphere.center_pos.x = 490.752 sphere.center_pos.y = 479.95 sphere.center_pos.z = -5953.89
+sphere.center_pos.x = 481.826 sphere.center_pos.y = 473.378 sphere.center_pos.z = -5959.19
+sphere.center_pos.x = 491.094 sphere.center_pos.y = 472.428 sphere.center_pos.z = -5955.75
+sphere.center_pos.x = 492.755 sphere.center_pos.y = 488.451 sphere.center_pos.z = -5946.3
+sphere.center_pos.x = 514.029 sphere.center_pos.y = 470.09 sphere.center_pos.z = -5943.14
+sphere.center_pos.x = 512.286 sphere.center_pos.y = 475.168 sphere.center_pos.z = -5941.55
+sphere.center_pos.x = 514.211 sphere.center_pos.y = 470.748 sphere.center_pos.z = -5942.66
+sphere.center_pos.x = 522.235 sphere.center_pos.y = 463.333 sphere.center_pos.z = -5941.81
+sphere.center_pos.x = 517.494 sphere.center_pos.y = 471.017 sphere.center_pos.z = -5940.56
+sphere.center_pos.x = 535.004 sphere.center_pos.y = 463.305 sphere.center_pos.z = -5933.87
+sphere.center_pos.x = 441.42 sphere.center_pos.y = 474.139 sphere.center_pos.z = -5987.46
+sphere.center_pos.x = 447.463 sphere.center_pos.y = 512.413 sphere.center_pos.z = -5967.9
+sphere.center_pos.x = 445.114 sphere.center_pos.y = 488.516 sphere.center_pos.z = -5978.32
+sphere.center_pos.x = 447.691 sphere.center_pos.y = 480.824 sphere.center_pos.z = -5972.29
+sphere.center_pos.x = 455.355 sphere.center_pos.y = 493.217 sphere.center_pos.z = -5967.64
+sphere.center_pos.x = 468.741 sphere.center_pos.y = 471.23 sphere.center_pos.z = -5970.73
+sphere.center_pos.x = 464.166 sphere.center_pos.y = 495.001 sphere.center_pos.z = -5962.21
+sphere.center_pos.x = 472.755 sphere.center_pos.y = 485.168 sphere.center_pos.z = -5960.71
+sphere.center_pos.x = 484.069 sphere.center_pos.y = 468.748 sphere.center_pos.z = -5963.52
+sphere.center_pos.x = 470.385 sphere.center_pos.y = 476.679 sphere.center_pos.z = -5967.05
+sphere.center_pos.x = 501.45 sphere.center_pos.y = 476.962 sphere.center_pos.z = -5949.99
+sphere.center_pos.x = 487.549 sphere.center_pos.y = 479.368 sphere.center_pos.z = -5955.68
+sphere.center_pos.x = 511.988 sphere.center_pos.y = 467.723 sphere.center_pos.z = -5950.55
+sphere.center_pos.x = 483.258 sphere.center_pos.y = 483.868 sphere.center_pos.z = -5952.34
+sphere.center_pos.x = 507.691 sphere.center_pos.y = 470.468 sphere.center_pos.z = -5946.67
+sphere.center_pos.x = 495.822 sphere.center_pos.y = 465.819 sphere.center_pos.z = -5957.39
+sphere.center_pos.x = 523.267 sphere.center_pos.y = 473.433 sphere.center_pos.z = -5935.65
+sphere.center_pos.x = 520.734 sphere.center_pos.y = 463.707 sphere.center_pos.z = -5942.6
+sphere.center_pos.x = 525.575 sphere.center_pos.y = 465.508 sphere.center_pos.z = -5938.54
+sphere.center_pos.x = 534.735 sphere.center_pos.y = 469.413 sphere.center_pos.z = -5930.71
+sphere.center_pos.x = 442.031 sphere.center_pos.y = 484.991 sphere.center_pos.z = -5982.81
+sphere.center_pos.x = 444.353 sphere.center_pos.y = 499.162 sphere.center_pos.z = -5969.83
+sphere.center_pos.x = 450.348 sphere.center_pos.y = 493.746 sphere.center_pos.z = -5969.5
+sphere.center_pos.x = 454.872 sphere.center_pos.y = 497.273 sphere.center_pos.z = -5964.61
+sphere.center_pos.x = 468.013 sphere.center_pos.y = 493.682 sphere.center_pos.z = -5960.02
+sphere.center_pos.x = 466.634 sphere.center_pos.y = 486.806 sphere.center_pos.z = -5963.73
+sphere.center_pos.x = 474.15 sphere.center_pos.y = 491.073 sphere.center_pos.z = -5956.35
+sphere.center_pos.x = 459.252 sphere.center_pos.y = 500.065 sphere.center_pos.z = -5961.86
+sphere.center_pos.x = 470.244 sphere.center_pos.y = 483.305 sphere.center_pos.z = -5963.16
+sphere.center_pos.x = 494.573 sphere.center_pos.y = 483.183 sphere.center_pos.z = -5952.16
+sphere.center_pos.x = 485.01 sphere.center_pos.y = 478.553 sphere.center_pos.z = -5955.74
+sphere.center_pos.x = 490.817 sphere.center_pos.y = 476.44 sphere.center_pos.z = -5951.83
+sphere.center_pos.x = 508.582 sphere.center_pos.y = 478.448 sphere.center_pos.z = -5942.02
+sphere.center_pos.x = 512.951 sphere.center_pos.y = 490.68 sphere.center_pos.z = -5931.55
+sphere.center_pos.x = 494.228 sphere.center_pos.y = 492.105 sphere.center_pos.z = -5941.03
+sphere.center_pos.x = 496.999 sphere.center_pos.y = 473.063 sphere.center_pos.z = -5947.61
+sphere.center_pos.x = 505.039 sphere.center_pos.y = 487.577 sphere.center_pos.z = -5939.15
+sphere.center_pos.x = 517.961 sphere.center_pos.y = 477.615 sphere.center_pos.z = -5936.66
+sphere.center_pos.x = 527.543 sphere.center_pos.y = 474.76 sphere.center_pos.z = -5932.26
+sphere.center_pos.x = 536.622 sphere.center_pos.y = 473.177 sphere.center_pos.z = -5927.47
+sphere.center_pos.x = 437.261 sphere.center_pos.y = 496.55 sphere.center_pos.z = -5966.54
+sphere.center_pos.x = 444.708 sphere.center_pos.y = 499.343 sphere.center_pos.z = -5970.06
+sphere.center_pos.x = 449.843 sphere.center_pos.y = 498.422 sphere.center_pos.z = -5971.89
+sphere.center_pos.x = 459.064 sphere.center_pos.y = 481.003 sphere.center_pos.z = -5971.52
+sphere.center_pos.x = 442.206 sphere.center_pos.y = 508.699 sphere.center_pos.z = -5970.22
+sphere.center_pos.x = 473.028 sphere.center_pos.y = 492.95 sphere.center_pos.z = -5954.55
+sphere.center_pos.x = 468.701 sphere.center_pos.y = 488.195 sphere.center_pos.z = -5961.37
+sphere.center_pos.x = 463.637 sphere.center_pos.y = 485.198 sphere.center_pos.z = -5966.6
+sphere.center_pos.x = 476.276 sphere.center_pos.y = 506.264 sphere.center_pos.z = -5950.95
+sphere.center_pos.x = 482.922 sphere.center_pos.y = 492.743 sphere.center_pos.z = -5951.6
+sphere.center_pos.x = 491.509 sphere.center_pos.y = 492.663 sphere.center_pos.z = -5945.34
+sphere.center_pos.x = 492.452 sphere.center_pos.y = 495.855 sphere.center_pos.z = -5942.62
+sphere.center_pos.x = 505.75 sphere.center_pos.y = 482.004 sphere.center_pos.z = -5941.88
+sphere.center_pos.x = 503.139 sphere.center_pos.y = 488.276 sphere.center_pos.z = -5940.03
+sphere.center_pos.x = 482.22 sphere.center_pos.y = 486.487 sphere.center_pos.z = -5955.2
+sphere.center_pos.x = 512.873 sphere.center_pos.y = 483.732 sphere.center_pos.z = -5936.5
+sphere.center_pos.x = 516.679 sphere.center_pos.y = 482.068 sphere.center_pos.z = -5935.04
+sphere.center_pos.x = 524.803 sphere.center_pos.y = 476.625 sphere.center_pos.z = -5932.95
+sphere.center_pos.x = 526.509 sphere.center_pos.y = 479.385 sphere.center_pos.z = -5930.38
+sphere.center_pos.x = 531.747 sphere.center_pos.y = 478.517 sphere.center_pos.z = -5927.59
+sphere.center_pos.x = 441.384 sphere.center_pos.y = 502.996 sphere.center_pos.z = -5971.62
+sphere.center_pos.x = 444.37 sphere.center_pos.y = 504.652 sphere.center_pos.z = -5964.49
+sphere.center_pos.x = 457.593 sphere.center_pos.y = 503.411 sphere.center_pos.z = -5958.53
+sphere.center_pos.x = 455.912 sphere.center_pos.y = 509.74 sphere.center_pos.z = -5957.35
+sphere.center_pos.x = 449.323 sphere.center_pos.y = 505.104 sphere.center_pos.z = -5966.93
+sphere.center_pos.x = 478.232 sphere.center_pos.y = 504.186 sphere.center_pos.z = -5947.02
+sphere.center_pos.x = 472.173 sphere.center_pos.y = 503.397 sphere.center_pos.z = -5952.64
+sphere.center_pos.x = 471.933 sphere.center_pos.y = 514.21 sphere.center_pos.z = -5948.02
+sphere.center_pos.x = 469.399 sphere.center_pos.y = 498.252 sphere.center_pos.z = -5954.7
+sphere.center_pos.x = 485.14 sphere.center_pos.y = 500.701 sphere.center_pos.z = -5944.91
+sphere.center_pos.x = 491.093 sphere.center_pos.y = 498.704 sphere.center_pos.z = -5941.91
+sphere.center_pos.x = 476.451 sphere.center_pos.y = 501.674 sphere.center_pos.z = -5950.02
+sphere.center_pos.x = 500.06 sphere.center_pos.y = 495.941 sphere.center_pos.z = -5937.76
+sphere.center_pos.x = 495.959 sphere.center_pos.y = 481.274 sphere.center_pos.z = -5947.65
+sphere.center_pos.x = 498.024 sphere.center_pos.y = 493.77 sphere.center_pos.z = -5940.41
+sphere.center_pos.x = 514.774 sphere.center_pos.y = 489.569 sphere.center_pos.z = -5932.5
+sphere.center_pos.x = 520.802 sphere.center_pos.y = 484.582 sphere.center_pos.z = -5931.09
+sphere.center_pos.x = 523.51 sphere.center_pos.y = 488.08 sphere.center_pos.z = -5927.49
+sphere.center_pos.x = 527.1 sphere.center_pos.y = 484.769 sphere.center_pos.z = -5927.07
+sphere.center_pos.x = 532.339 sphere.center_pos.y = 483.657 sphere.center_pos.z = -5924.42
+sphere.center_pos.x = 434.863 sphere.center_pos.y = 508.78 sphere.center_pos.z = -5954.86
+sphere.center_pos.x = 448.083 sphere.center_pos.y = 516.645 sphere.center_pos.z = -5963.2
+sphere.center_pos.x = 453.803 sphere.center_pos.y = 514.041 sphere.center_pos.z = -5957.3
+sphere.center_pos.x = 450.364 sphere.center_pos.y = 507.97 sphere.center_pos.z = -5963.45
+sphere.center_pos.x = 456.96 sphere.center_pos.y = 494.636 sphere.center_pos.z = -5964.13
+sphere.center_pos.x = 468.051 sphere.center_pos.y = 515.387 sphere.center_pos.z = -5947.05
+sphere.center_pos.x = 463.458 sphere.center_pos.y = 496.556 sphere.center_pos.z = -5957.97
+sphere.center_pos.x = 470.778 sphere.center_pos.y = 500.535 sphere.center_pos.z = -5954.56
+sphere.center_pos.x = 468.885 sphere.center_pos.y = 504.126 sphere.center_pos.z = -5950.34
+sphere.center_pos.x = 488.6 sphere.center_pos.y = 500.716 sphere.center_pos.z = -5942.36
+sphere.center_pos.x = 490.196 sphere.center_pos.y = 484.328 sphere.center_pos.z = -5950.94
+sphere.center_pos.x = 489.702 sphere.center_pos.y = 497.674 sphere.center_pos.z = -5943.27
+sphere.center_pos.x = 511.112 sphere.center_pos.y = 484.688 sphere.center_pos.z = -5936.92
+sphere.center_pos.x = 501.475 sphere.center_pos.y = 483.862 sphere.center_pos.z = -5943.24
+sphere.center_pos.x = 505.384 sphere.center_pos.y = 500.235 sphere.center_pos.z = -5932.73
+sphere.center_pos.x = 495.666 sphere.center_pos.y = 508.408 sphere.center_pos.z = -5933.68
+sphere.center_pos.x = 520.869 sphere.center_pos.y = 487.492 sphere.center_pos.z = -5929.38
+sphere.center_pos.x = 515.13 sphere.center_pos.y = 493.49 sphere.center_pos.z = -5929.69
+sphere.center_pos.x = 528.149 sphere.center_pos.y = 487.805 sphere.center_pos.z = -5924.76
+sphere.center_pos.x = 536.893 sphere.center_pos.y = 486.614 sphere.center_pos.z = -5919.97
+sphere.center_pos.x = 442.382 sphere.center_pos.y = 521.82 sphere.center_pos.z = -5963.42
+sphere.center_pos.x = 453.822 sphere.center_pos.y = 501.899 sphere.center_pos.z = -5962.93
+sphere.center_pos.x = 445.368 sphere.center_pos.y = 504.699 sphere.center_pos.z = -5960.76
+sphere.center_pos.x = 450.487 sphere.center_pos.y = 525.272 sphere.center_pos.z = -5953.68
+sphere.center_pos.x = 464.999 sphere.center_pos.y = 502.332 sphere.center_pos.z = -5959.02
+sphere.center_pos.x = 463.258 sphere.center_pos.y = 505.496 sphere.center_pos.z = -5954.42
+sphere.center_pos.x = 464.843 sphere.center_pos.y = 505.55 sphere.center_pos.z = -5953.99
+sphere.center_pos.x = 465.416 sphere.center_pos.y = 526.581 sphere.center_pos.z = -5947.38
+sphere.center_pos.x = 475.421 sphere.center_pos.y = 520.294 sphere.center_pos.z = -5939.8
+sphere.center_pos.x = 478.233 sphere.center_pos.y = 516.728 sphere.center_pos.z = -5940.04
+sphere.center_pos.x = 490.682 sphere.center_pos.y = 507.775 sphere.center_pos.z = -5937.14
+sphere.center_pos.x = 482.33 sphere.center_pos.y = 521.009 sphere.center_pos.z = -5935
+sphere.center_pos.x = 500.218 sphere.center_pos.y = 505.437 sphere.center_pos.z = -5932.51
+sphere.center_pos.x = 501.385 sphere.center_pos.y = 486.214 sphere.center_pos.z = -5943.5
+sphere.center_pos.x = 510.236 sphere.center_pos.y = 500.702 sphere.center_pos.z = -5928.86
+sphere.center_pos.x = 507.796 sphere.center_pos.y = 501.973 sphere.center_pos.z = -5929.7
+sphere.center_pos.x = 524.336 sphere.center_pos.y = 495.2 sphere.center_pos.z = -5923.09
+sphere.center_pos.x = 519.859 sphere.center_pos.y = 496.992 sphere.center_pos.z = -5924.9
+sphere.center_pos.x = 525.886 sphere.center_pos.y = 500.322 sphere.center_pos.z = -5919.33
+sphere.center_pos.x = 535.431 sphere.center_pos.y = 490.691 sphere.center_pos.z = -5918.65
+sphere.center_pos.x = 440.671 sphere.center_pos.y = 508.663 sphere.center_pos.z = -5967.04
+sphere.center_pos.x = 452.004 sphere.center_pos.y = 514.78 sphere.center_pos.z = -5957.04
+sphere.center_pos.x = 440.088 sphere.center_pos.y = 521.774 sphere.center_pos.z = -5958.66
+sphere.center_pos.x = 458.498 sphere.center_pos.y = 521.232 sphere.center_pos.z = -5947.79
+sphere.center_pos.x = 458.353 sphere.center_pos.y = 516.58 sphere.center_pos.z = -5951.81
+sphere.center_pos.x = 452.791 sphere.center_pos.y = 520.388 sphere.center_pos.z = -5953.95
+sphere.center_pos.x = 481.285 sphere.center_pos.y = 502.925 sphere.center_pos.z = -5945.53
+sphere.center_pos.x = 474.336 sphere.center_pos.y = 495.127 sphere.center_pos.z = -5951.74
+sphere.center_pos.x = 488.851 sphere.center_pos.y = 521.091 sphere.center_pos.z = -5929.94
+sphere.center_pos.x = 483.824 sphere.center_pos.y = 512.649 sphere.center_pos.z = -5938.74
+sphere.center_pos.x = 474.973 sphere.center_pos.y = 507.747 sphere.center_pos.z = -5946.25
+sphere.center_pos.x = 478.995 sphere.center_pos.y = 512.253 sphere.center_pos.z = -5941.73
+sphere.center_pos.x = 481.231 sphere.center_pos.y = 511.635 sphere.center_pos.z = -5942.16
+sphere.center_pos.x = 494.847 sphere.center_pos.y = 501.473 sphere.center_pos.z = -5938.05
+sphere.center_pos.x = 510.253 sphere.center_pos.y = 496.42 sphere.center_pos.z = -5931.2
+sphere.center_pos.x = 507.329 sphere.center_pos.y = 505.423 sphere.center_pos.z = -5928.1
+sphere.center_pos.x = 513.869 sphere.center_pos.y = 496.743 sphere.center_pos.z = -5928.76
+sphere.center_pos.x = 518.247 sphere.center_pos.y = 506.722 sphere.center_pos.z = -5920.59
+sphere.center_pos.x = 512.308 sphere.center_pos.y = 505.808 sphere.center_pos.z = -5924.78
+sphere.center_pos.x = 533.974 sphere.center_pos.y = 496.231 sphere.center_pos.z = -5916.53
+sphere.center_pos.x = 441.018 sphere.center_pos.y = 530.375 sphere.center_pos.z = -5955.9
+sphere.center_pos.x = 443.782 sphere.center_pos.y = 534.413 sphere.center_pos.z = -5951.55
+sphere.center_pos.x = 449.253 sphere.center_pos.y = 526.57 sphere.center_pos.z = -5953.57
+sphere.center_pos.x = 476.746 sphere.center_pos.y = 519.01 sphere.center_pos.z = -5939.35
+sphere.center_pos.x = 461.261 sphere.center_pos.y = 514.015 sphere.center_pos.z = -5955.08
+sphere.center_pos.x = 455.524 sphere.center_pos.y = 522.522 sphere.center_pos.z = -5949.29
+sphere.center_pos.x = 468.493 sphere.center_pos.y = 527.553 sphere.center_pos.z = -5940.09
+sphere.center_pos.x = 467.215 sphere.center_pos.y = 521.541 sphere.center_pos.z = -5943.96
+sphere.center_pos.x = 485.451 sphere.center_pos.y = 503.194 sphere.center_pos.z = -5940.44
+sphere.center_pos.x = 476.496 sphere.center_pos.y = 493.71 sphere.center_pos.z = -5954.82
+sphere.center_pos.x = 487.97 sphere.center_pos.y = 506.458 sphere.center_pos.z = -5939.73
+sphere.center_pos.x = 496.339 sphere.center_pos.y = 511.65 sphere.center_pos.z = -5932.12
+sphere.center_pos.x = 498.107 sphere.center_pos.y = 516.008 sphere.center_pos.z = -5928.05
+sphere.center_pos.x = 493.829 sphere.center_pos.y = 517.145 sphere.center_pos.z = -5930.1
+sphere.center_pos.x = 507.999 sphere.center_pos.y = 511.18 sphere.center_pos.z = -5924.53
+sphere.center_pos.x = 493.023 sphere.center_pos.y = 504.759 sphere.center_pos.z = -5937.4
+sphere.center_pos.x = 512.91 sphere.center_pos.y = 510.643 sphere.center_pos.z = -5921.77
+sphere.center_pos.x = 531.014 sphere.center_pos.y = 501.403 sphere.center_pos.z = -5915.55
+sphere.center_pos.x = 521.316 sphere.center_pos.y = 505.555 sphere.center_pos.z = -5919.31
+sphere.center_pos.x = 534.796 sphere.center_pos.y = 501.089 sphere.center_pos.z = -5913.36
+sphere.center_pos.x = 440.955 sphere.center_pos.y = 534.273 sphere.center_pos.z = -5953.64
+sphere.center_pos.x = 440.62 sphere.center_pos.y = 524.308 sphere.center_pos.z = -5958.38
+sphere.center_pos.x = 458.402 sphere.center_pos.y = 530.746 sphere.center_pos.z = -5944.72
+sphere.center_pos.x = 447.612 sphere.center_pos.y = 531.248 sphere.center_pos.z = -5951.35
+sphere.center_pos.x = 449.326 sphere.center_pos.y = 534.118 sphere.center_pos.z = -5948.46
+sphere.center_pos.x = 469.76 sphere.center_pos.y = 515.451 sphere.center_pos.z = -5947.24
+sphere.center_pos.x = 473.109 sphere.center_pos.y = 524.606 sphere.center_pos.z = -5938.93
+sphere.center_pos.x = 459.423 sphere.center_pos.y = 511.752 sphere.center_pos.z = -5954.96
+sphere.center_pos.x = 467.234 sphere.center_pos.y = 510.65 sphere.center_pos.z = -5945.61
+sphere.center_pos.x = 481.827 sphere.center_pos.y = 522.909 sphere.center_pos.z = -5934.43
+sphere.center_pos.x = 488.143 sphere.center_pos.y = 523.174 sphere.center_pos.z = -5930.72
+sphere.center_pos.x = 501.999 sphere.center_pos.y = 500.418 sphere.center_pos.z = -5934.11
+sphere.center_pos.x = 498.739 sphere.center_pos.y = 513.402 sphere.center_pos.z = -5929.09
+sphere.center_pos.x = 502.066 sphere.center_pos.y = 512.064 sphere.center_pos.z = -5927.74
+sphere.center_pos.x = 497.653 sphere.center_pos.y = 498.915 sphere.center_pos.z = -5937.71
+sphere.center_pos.x = 513.463 sphere.center_pos.y = 515.213 sphere.center_pos.z = -5918.93
+sphere.center_pos.x = 520.757 sphere.center_pos.y = 510.573 sphere.center_pos.z = -5916.92
+sphere.center_pos.x = 503.714 sphere.center_pos.y = 521.705 sphere.center_pos.z = -5921.45
+sphere.center_pos.x = 530.76 sphere.center_pos.y = 509.548 sphere.center_pos.z = -5911.25
+sphere.center_pos.x = 525.526 sphere.center_pos.y = 507.04 sphere.center_pos.z = -5915.88
+sphere.center_pos.x = 440.852 sphere.center_pos.y = 547.363 sphere.center_pos.z = -5946.27
+sphere.center_pos.x = 453.725 sphere.center_pos.y = 529.914 sphere.center_pos.z = -5948.28
+sphere.center_pos.x = 441.071 sphere.center_pos.y = 539.39 sphere.center_pos.z = -5951.09
+sphere.center_pos.x = 463.161 sphere.center_pos.y = 519.629 sphere.center_pos.z = -5946.43
+sphere.center_pos.x = 458.773 sphere.center_pos.y = 535.156 sphere.center_pos.z = -5942.08
+sphere.center_pos.x = 460.086 sphere.center_pos.y = 526.889 sphere.center_pos.z = -5945.79
+sphere.center_pos.x = 469.198 sphere.center_pos.y = 527.549 sphere.center_pos.z = -5939.65
+sphere.center_pos.x = 474.251 sphere.center_pos.y = 535.287 sphere.center_pos.z = -5932.37
+sphere.center_pos.x = 483.626 sphere.center_pos.y = 514.598 sphere.center_pos.z = -5937.72
+sphere.center_pos.x = 481.161 sphere.center_pos.y = 526.89 sphere.center_pos.z = -5932.66
+sphere.center_pos.x = 484.754 sphere.center_pos.y = 530.071 sphere.center_pos.z = -5928.68
+sphere.center_pos.x = 487.685 sphere.center_pos.y = 529.367 sphere.center_pos.z = -5927.17
+sphere.center_pos.x = 496.298 sphere.center_pos.y = 530.581 sphere.center_pos.z = -5921.22
+sphere.center_pos.x = 495.099 sphere.center_pos.y = 520.429 sphere.center_pos.z = -5927.51
+sphere.center_pos.x = 508.749 sphere.center_pos.y = 515.895 sphere.center_pos.z = -5921.49
+sphere.center_pos.x = 510.734 sphere.center_pos.y = 523.222 sphere.center_pos.z = -5916.25
+sphere.center_pos.x = 502.393 sphere.center_pos.y = 507.042 sphere.center_pos.z = -5930.28
+sphere.center_pos.x = 527.638 sphere.center_pos.y = 496.815 sphere.center_pos.z = -5920.15
+sphere.center_pos.x = 515.421 sphere.center_pos.y = 520.414 sphere.center_pos.z = -5914.87
+sphere.center_pos.x = 535.408 sphere.center_pos.y = 507.225 sphere.center_pos.z = -5909.63
+sphere.center_pos.x = 439.481 sphere.center_pos.y = 517.628 sphere.center_pos.z = -5959.66
+sphere.center_pos.x = 444.328 sphere.center_pos.y = 541.502 sphere.center_pos.z = -5947.69
+sphere.center_pos.x = 451.938 sphere.center_pos.y = 541.162 sphere.center_pos.z = -5943.07
+sphere.center_pos.x = 470.286 sphere.center_pos.y = 542.294 sphere.center_pos.z = -5931.01
+sphere.center_pos.x = 444.805 sphere.center_pos.y = 527.283 sphere.center_pos.z = -5955.04
+sphere.center_pos.x = 465.724 sphere.center_pos.y = 544.144 sphere.center_pos.z = -5932.84
+sphere.center_pos.x = 463.88 sphere.center_pos.y = 536.971 sphere.center_pos.z = -5937.91
+sphere.center_pos.x = 463.859 sphere.center_pos.y = 535.48 sphere.center_pos.z = -5938.79
+sphere.center_pos.x = 477.044 sphere.center_pos.y = 529.25 sphere.center_pos.z = -5933.92
+sphere.center_pos.x = 477.845 sphere.center_pos.y = 535.882 sphere.center_pos.z = -5929.81
+sphere.center_pos.x = 488.961 sphere.center_pos.y = 531.677 sphere.center_pos.z = -5925.18
+sphere.center_pos.x = 492.181 sphere.center_pos.y = 522.451 sphere.center_pos.z = -5928.15
+sphere.center_pos.x = 496.917 sphere.center_pos.y = 525.943 sphere.center_pos.z = -5923.36
+sphere.center_pos.x = 506.225 sphere.center_pos.y = 521.893 sphere.center_pos.z = -5919.78
+sphere.center_pos.x = 504.25 sphere.center_pos.y = 535.177 sphere.center_pos.z = -5913.76
+sphere.center_pos.x = 517.402 sphere.center_pos.y = 504.432 sphere.center_pos.z = -5922.36
+sphere.center_pos.x = 498.778 sphere.center_pos.y = 533.234 sphere.center_pos.z = -5918.22
+sphere.center_pos.x = 524.854 sphere.center_pos.y = 523.621 sphere.center_pos.z = -5907.24
+sphere.center_pos.x = 524.525 sphere.center_pos.y = 514.685 sphere.center_pos.z = -5912.33
+sphere.center_pos.x = 530.437 sphere.center_pos.y = 514.152 sphere.center_pos.z = -5908.94
+sphere.center_pos.x = 440.993 sphere.center_pos.y = 551.329 sphere.center_pos.z = -5944.4
+sphere.center_pos.x = 446.711 sphere.center_pos.y = 544.384 sphere.center_pos.z = -5944.54
+sphere.center_pos.x = 450.645 sphere.center_pos.y = 545.034 sphere.center_pos.z = -5941.74
+sphere.center_pos.x = 455.471 sphere.center_pos.y = 533.432 sphere.center_pos.z = -5945.08
+sphere.center_pos.x = 456.393 sphere.center_pos.y = 546.18 sphere.center_pos.z = -5937.54
+sphere.center_pos.x = 460.356 sphere.center_pos.y = 541.917 sphere.center_pos.z = -5937.4
+sphere.center_pos.x = 470.323 sphere.center_pos.y = 530.543 sphere.center_pos.z = -5937.41
+sphere.center_pos.x = 466.93 sphere.center_pos.y = 539.513 sphere.center_pos.z = -5934.62
+sphere.center_pos.x = 476.698 sphere.center_pos.y = 538.922 sphere.center_pos.z = -5928.86
+sphere.center_pos.x = 481.052 sphere.center_pos.y = 536.748 sphere.center_pos.z = -5927.34
+sphere.center_pos.x = 486.591 sphere.center_pos.y = 535.888 sphere.center_pos.z = -5924.36
+sphere.center_pos.x = 489.902 sphere.center_pos.y = 536.069 sphere.center_pos.z = -5922.2
+sphere.center_pos.x = 501.826 sphere.center_pos.y = 530.683 sphere.center_pos.z = -5917.72
+sphere.center_pos.x = 503.756 sphere.center_pos.y = 516.6 sphere.center_pos.z = -5924.21
+sphere.center_pos.x = 505.862 sphere.center_pos.y = 525.057 sphere.center_pos.z = -5918.28
+sphere.center_pos.x = 512.329 sphere.center_pos.y = 532.807 sphere.center_pos.z = -5910.02
+sphere.center_pos.x = 519.176 sphere.center_pos.y = 515.674 sphere.center_pos.z = -5915.12
+sphere.center_pos.x = 515.832 sphere.center_pos.y = 525.654 sphere.center_pos.z = -5911.75
+sphere.center_pos.x = 521.039 sphere.center_pos.y = 520.805 sphere.center_pos.z = -5911.16
+sphere.center_pos.x = 529.294 sphere.center_pos.y = 519.608 sphere.center_pos.z = -5906.67
+sphere.center_pos.x = 440.94 sphere.center_pos.y = 559.192 sphere.center_pos.z = -5940
+sphere.center_pos.x = 446.132 sphere.center_pos.y = 549.245 sphere.center_pos.z = -5942.25
+sphere.center_pos.x = 451.3 sphere.center_pos.y = 550.785 sphere.center_pos.z = -5938.19
+sphere.center_pos.x = 456.59 sphere.center_pos.y = 551.047 sphere.center_pos.z = -5934.75
+sphere.center_pos.x = 456.395 sphere.center_pos.y = 539.788 sphere.center_pos.z = -5941.03
+sphere.center_pos.x = 461.943 sphere.center_pos.y = 549.174 sphere.center_pos.z = -5932.45
+sphere.center_pos.x = 467.197 sphere.center_pos.y = 548.871 sphere.center_pos.z = -5929.34
+sphere.center_pos.x = 473.234 sphere.center_pos.y = 547.021 sphere.center_pos.z = -5926.59
+sphere.center_pos.x = 477.493 sphere.center_pos.y = 547.793 sphere.center_pos.z = -5923.52
+sphere.center_pos.x = 481.555 sphere.center_pos.y = 541.854 sphere.center_pos.z = -5924.24
+sphere.center_pos.x = 486.851 sphere.center_pos.y = 541.059 sphere.center_pos.z = -5921.37
+sphere.center_pos.x = 491 sphere.center_pos.y = 544.526 sphere.center_pos.z = -5916.9
+sphere.center_pos.x = 494.695 sphere.center_pos.y = 542.097 sphere.center_pos.z = -5915.92
+sphere.center_pos.x = 499.853 sphere.center_pos.y = 539.288 sphere.center_pos.z = -5914.25
+sphere.center_pos.x = 504.926 sphere.center_pos.y = 538.782 sphere.center_pos.z = -5911.37
+sphere.center_pos.x = 508.45 sphere.center_pos.y = 528.589 sphere.center_pos.z = -5914.74
+sphere.center_pos.x = 511.223 sphere.center_pos.y = 537.745 sphere.center_pos.z = -5908.01
+sphere.center_pos.x = 516.847 sphere.center_pos.y = 531.301 sphere.center_pos.z = -5908.03
+sphere.center_pos.x = 522.004 sphere.center_pos.y = 528.807 sphere.center_pos.z = -5906.18
+sphere.center_pos.x = 530.499 sphere.center_pos.y = 527.787 sphere.center_pos.z = -5901.45
+sphere.center_pos.x = 441.242 sphere.center_pos.y = 461.947 sphere.center_pos.z = -5993.75
+sphere.center_pos.x = 444.126 sphere.center_pos.y = 458.172 sphere.center_pos.z = -5986.84
+sphere.center_pos.x = 461.083 sphere.center_pos.y = 452.823 sphere.center_pos.z = -5977.05
+sphere.center_pos.x = 454.152 sphere.center_pos.y = 454.314 sphere.center_pos.z = -5979.78
+sphere.center_pos.x = 452.659 sphere.center_pos.y = 455.122 sphere.center_pos.z = -5981.26
+sphere.center_pos.x = 475.919 sphere.center_pos.y = 443.64 sphere.center_pos.z = -5960.24
+sphere.center_pos.x = 471.35 sphere.center_pos.y = 452.049 sphere.center_pos.z = -5975.63
+sphere.center_pos.x = 447.875 sphere.center_pos.y = 455 sphere.center_pos.z = -5981.03
+sphere.center_pos.x = 462.001 sphere.center_pos.y = 453.585 sphere.center_pos.z = -5978.44
+sphere.center_pos.x = 467.288 sphere.center_pos.y = 448.329 sphere.center_pos.z = -5968.82
+sphere.center_pos.x = 484.294 sphere.center_pos.y = 451.166 sphere.center_pos.z = -5974.02
+sphere.center_pos.x = 485.453 sphere.center_pos.y = 448.003 sphere.center_pos.z = -5968.23
+sphere.center_pos.x = 493.808 sphere.center_pos.y = 445.936 sphere.center_pos.z = -5964.44
+sphere.center_pos.x = 479.285 sphere.center_pos.y = 443.785 sphere.center_pos.z = -5960.51
+sphere.center_pos.x = 506.781 sphere.center_pos.y = 441.292 sphere.center_pos.z = -5955.94
+sphere.center_pos.x = 510.659 sphere.center_pos.y = 440.159 sphere.center_pos.z = -5953.87
+sphere.center_pos.x = 523.612 sphere.center_pos.y = 436.537 sphere.center_pos.z = -5947.24
+sphere.center_pos.x = 500.557 sphere.center_pos.y = 443.875 sphere.center_pos.z = -5960.67
+sphere.center_pos.x = 527.743 sphere.center_pos.y = 435.759 sphere.center_pos.z = -5945.81
+sphere.center_pos.x = 535.555 sphere.center_pos.y = 433.604 sphere.center_pos.z = -5941.87
+sphere.center_pos.x = 438.592 sphere.center_pos.y = 465.155 sphere.center_pos.z = -5986.47
+sphere.center_pos.x = 439.75 sphere.center_pos.y = 460.637 sphere.center_pos.z = -5991.35
+sphere.center_pos.x = 459.462 sphere.center_pos.y = 453.883 sphere.center_pos.z = -5978.99
+sphere.center_pos.x = 453.796 sphere.center_pos.y = 468.389 sphere.center_pos.z = -5974.62
+sphere.center_pos.x = 470.904 sphere.center_pos.y = 450.359 sphere.center_pos.z = -5972.54
+sphere.center_pos.x = 461.13 sphere.center_pos.y = 460.698 sphere.center_pos.z = -5971.78
+sphere.center_pos.x = 468.014 sphere.center_pos.y = 460.395 sphere.center_pos.z = -5969.14
+sphere.center_pos.x = 490.413 sphere.center_pos.y = 452.463 sphere.center_pos.z = -5968.18
+sphere.center_pos.x = 478.741 sphere.center_pos.y = 453.987 sphere.center_pos.z = -5968.24
+sphere.center_pos.x = 476.556 sphere.center_pos.y = 458.434 sphere.center_pos.z = -5965.86
+sphere.center_pos.x = 482.191 sphere.center_pos.y = 458.668 sphere.center_pos.z = -5959.1
+sphere.center_pos.x = 494.221 sphere.center_pos.y = 451.525 sphere.center_pos.z = -5960.82
+sphere.center_pos.x = 480.91 sphere.center_pos.y = 462.766 sphere.center_pos.z = -5965.34
+sphere.center_pos.x = 494.257 sphere.center_pos.y = 455.119 sphere.center_pos.z = -5955.38
+sphere.center_pos.x = 511.43 sphere.center_pos.y = 442.627 sphere.center_pos.z = -5951.43
+sphere.center_pos.x = 501.179 sphere.center_pos.y = 442.372 sphere.center_pos.z = -5957.92
+sphere.center_pos.x = 509.687 sphere.center_pos.y = 453.222 sphere.center_pos.z = -5947.6
+sphere.center_pos.x = 518.796 sphere.center_pos.y = 441.456 sphere.center_pos.z = -5948.32
+sphere.center_pos.x = 522.273 sphere.center_pos.y = 442.875 sphere.center_pos.z = -5945.16
+sphere.center_pos.x = 526.985 sphere.center_pos.y = 441.064 sphere.center_pos.z = -5943.23
+sphere.center_pos.x = 437.796 sphere.center_pos.y = 482.209 sphere.center_pos.z = -5975.49
+sphere.center_pos.x = 438.353 sphere.center_pos.y = 480.516 sphere.center_pos.z = -5977.58
+sphere.center_pos.x = 447.366 sphere.center_pos.y = 466.028 sphere.center_pos.z = -5979.19
+sphere.center_pos.x = 446.58 sphere.center_pos.y = 457.264 sphere.center_pos.z = -5985.18
+sphere.center_pos.x = 454.283 sphere.center_pos.y = 474.956 sphere.center_pos.z = -5969.98
+sphere.center_pos.x = 458.973 sphere.center_pos.y = 464.175 sphere.center_pos.z = -5972.85
+sphere.center_pos.x = 468.889 sphere.center_pos.y = 456.922 sphere.center_pos.z = -5972.16
+sphere.center_pos.x = 463.744 sphere.center_pos.y = 457.836 sphere.center_pos.z = -5971.71
+sphere.center_pos.x = 472.275 sphere.center_pos.y = 459.298 sphere.center_pos.z = -5965.93
+sphere.center_pos.x = 477.73 sphere.center_pos.y = 454.75 sphere.center_pos.z = -5966.09
+sphere.center_pos.x = 484.089 sphere.center_pos.y = 463.056 sphere.center_pos.z = -5955.12
+sphere.center_pos.x = 494.244 sphere.center_pos.y = 457.767 sphere.center_pos.z = -5955.95
+sphere.center_pos.x = 486.433 sphere.center_pos.y = 452.835 sphere.center_pos.z = -5958.11
+sphere.center_pos.x = 495.719 sphere.center_pos.y = 443.718 sphere.center_pos.z = -5957.88
+sphere.center_pos.x = 505.025 sphere.center_pos.y = 450.067 sphere.center_pos.z = -5952.98
+sphere.center_pos.x = 511.7 sphere.center_pos.y = 457.339 sphere.center_pos.z = -5943.86
+sphere.center_pos.x = 515.897 sphere.center_pos.y = 439.025 sphere.center_pos.z = -5951.79
+sphere.center_pos.x = 520.431 sphere.center_pos.y = 448.598 sphere.center_pos.z = -5943.24
+sphere.center_pos.x = 523.954 sphere.center_pos.y = 446.37 sphere.center_pos.z = -5942.21
+sphere.center_pos.x = 529.877 sphere.center_pos.y = 445.473 sphere.center_pos.z = -5939.02
+sphere.center_pos.x = 437.511 sphere.center_pos.y = 475.314 sphere.center_pos.z = -5978.67
+sphere.center_pos.x = 451.373 sphere.center_pos.y = 471.447 sphere.center_pos.z = -5974.45
+sphere.center_pos.x = 438.359 sphere.center_pos.y = 467.637 sphere.center_pos.z = -5984.63
+sphere.center_pos.x = 455.33 sphere.center_pos.y = 471.908 sphere.center_pos.z = -5971.16
+sphere.center_pos.x = 451.987 sphere.center_pos.y = 460.792 sphere.center_pos.z = -5979.22
+sphere.center_pos.x = 454.117 sphere.center_pos.y = 466.113 sphere.center_pos.z = -5974.9
+sphere.center_pos.x = 473.103 sphere.center_pos.y = 473.595 sphere.center_pos.z = -5958.17
+sphere.center_pos.x = 472.311 sphere.center_pos.y = 453.981 sphere.center_pos.z = -5974
+sphere.center_pos.x = 476.875 sphere.center_pos.y = 462.94 sphere.center_pos.z = -5961
+sphere.center_pos.x = 462.141 sphere.center_pos.y = 470.991 sphere.center_pos.z = -5967.3
+sphere.center_pos.x = 488.961 sphere.center_pos.y = 459.971 sphere.center_pos.z = -5954.91
+sphere.center_pos.x = 487.208 sphere.center_pos.y = 457.09 sphere.center_pos.z = -5960.93
+sphere.center_pos.x = 502.642 sphere.center_pos.y = 450.382 sphere.center_pos.z = -5952.79
+sphere.center_pos.x = 502.282 sphere.center_pos.y = 459.306 sphere.center_pos.z = -5946.66
+sphere.center_pos.x = 504.638 sphere.center_pos.y = 477.32 sphere.center_pos.z = -5936.86
+sphere.center_pos.x = 509.402 sphere.center_pos.y = 447.238 sphere.center_pos.z = -5951.13
+sphere.center_pos.x = 503.54 sphere.center_pos.y = 464.556 sphere.center_pos.z = -5944.78
+sphere.center_pos.x = 526.359 sphere.center_pos.y = 465.38 sphere.center_pos.z = -5930.33
+sphere.center_pos.x = 513.619 sphere.center_pos.y = 453.906 sphere.center_pos.z = -5944.55
+sphere.center_pos.x = 531.525 sphere.center_pos.y = 450.332 sphere.center_pos.z = -5935.34
+sphere.center_pos.x = 437.876 sphere.center_pos.y = 473.776 sphere.center_pos.z = -5980.27
+sphere.center_pos.x = 437.89 sphere.center_pos.y = 492.019 sphere.center_pos.z = -5970.33
+sphere.center_pos.x = 458.102 sphere.center_pos.y = 470.135 sphere.center_pos.z = -5970.24
+sphere.center_pos.x = 443.337 sphere.center_pos.y = 471.707 sphere.center_pos.z = -5978.64
+sphere.center_pos.x = 441.168 sphere.center_pos.y = 461.45 sphere.center_pos.z = -5985.48
+sphere.center_pos.x = 454.208 sphere.center_pos.y = 483.557 sphere.center_pos.z = -5965.45
+sphere.center_pos.x = 458.956 sphere.center_pos.y = 487.879 sphere.center_pos.z = -5961.33
+sphere.center_pos.x = 473.639 sphere.center_pos.y = 464.588 sphere.center_pos.z = -5964.84
+sphere.center_pos.x = 477.499 sphere.center_pos.y = 476.082 sphere.center_pos.z = -5956.85
+sphere.center_pos.x = 477.161 sphere.center_pos.y = 448.81 sphere.center_pos.z = -5969.7
+sphere.center_pos.x = 478.347 sphere.center_pos.y = 452.188 sphere.center_pos.z = -5963.25
+sphere.center_pos.x = 474.684 sphere.center_pos.y = 464.899 sphere.center_pos.z = -5960.16
+sphere.center_pos.x = 485.29 sphere.center_pos.y = 469.356 sphere.center_pos.z = -5954.15
+sphere.center_pos.x = 497.629 sphere.center_pos.y = 461.094 sphere.center_pos.z = -5949.73
+sphere.center_pos.x = 495.344 sphere.center_pos.y = 465.417 sphere.center_pos.z = -5953.83
+sphere.center_pos.x = 512.662 sphere.center_pos.y = 447.962 sphere.center_pos.z = -5948.23
+sphere.center_pos.x = 516.206 sphere.center_pos.y = 456.527 sphere.center_pos.z = -5941.49
+sphere.center_pos.x = 504.664 sphere.center_pos.y = 445.566 sphere.center_pos.z = -5954.59
+sphere.center_pos.x = 526.606 sphere.center_pos.y = 451.422 sphere.center_pos.z = -5937.8
+sphere.center_pos.x = 520.215 sphere.center_pos.y = 453.099 sphere.center_pos.z = -5940.87
+sphere.center_pos.x = 433.147 sphere.center_pos.y = 497.614 sphere.center_pos.z = -5957.38
+sphere.center_pos.x = 445.73 sphere.center_pos.y = 480.133 sphere.center_pos.z = -5970.75
+sphere.center_pos.x = 448.559 sphere.center_pos.y = 477.314 sphere.center_pos.z = -5972.16
+sphere.center_pos.x = 449.227 sphere.center_pos.y = 472.295 sphere.center_pos.z = -5974.57
+sphere.center_pos.x = 466.686 sphere.center_pos.y = 467.816 sphere.center_pos.z = -5966.28
+sphere.center_pos.x = 461.843 sphere.center_pos.y = 476.691 sphere.center_pos.z = -5963.62
+sphere.center_pos.x = 463.976 sphere.center_pos.y = 459.275 sphere.center_pos.z = -5972.56
+sphere.center_pos.x = 454.875 sphere.center_pos.y = 482.554 sphere.center_pos.z = -5965.25
+sphere.center_pos.x = 469.943 sphere.center_pos.y = 476.556 sphere.center_pos.z = -5959.59
+sphere.center_pos.x = 477.633 sphere.center_pos.y = 480.601 sphere.center_pos.z = -5949.61
+sphere.center_pos.x = 490.456 sphere.center_pos.y = 482.85 sphere.center_pos.z = -5943.53
+sphere.center_pos.x = 499.758 sphere.center_pos.y = 470.429 sphere.center_pos.z = -5944.62
+sphere.center_pos.x = 487.435 sphere.center_pos.y = 468.028 sphere.center_pos.z = -5951.05
+sphere.center_pos.x = 499.92 sphere.center_pos.y = 454.816 sphere.center_pos.z = -5952.66
+sphere.center_pos.x = 502.764 sphere.center_pos.y = 456.571 sphere.center_pos.z = -5947.82
+sphere.center_pos.x = 499.788 sphere.center_pos.y = 472.283 sphere.center_pos.z = -5945.22
+sphere.center_pos.x = 508.286 sphere.center_pos.y = 459.92 sphere.center_pos.z = -5944.59
+sphere.center_pos.x = 527.015 sphere.center_pos.y = 460.647 sphere.center_pos.z = -5932.51
+sphere.center_pos.x = 523.381 sphere.center_pos.y = 456.23 sphere.center_pos.z = -5937.18
+sphere.center_pos.x = 531.054 sphere.center_pos.y = 455.807 sphere.center_pos.z = -5932.64
+sphere.center_pos.x = 439.476 sphere.center_pos.y = 492.271 sphere.center_pos.z = -5973.5
+sphere.center_pos.x = 447.155 sphere.center_pos.y = 486.719 sphere.center_pos.z = -5967.75
+sphere.center_pos.x = 443.824 sphere.center_pos.y = 488.551 sphere.center_pos.z = -5970.49
+sphere.center_pos.x = 461.714 sphere.center_pos.y = 487.969 sphere.center_pos.z = -5957.41
+sphere.center_pos.x = 472.199 sphere.center_pos.y = 471.182 sphere.center_pos.z = -5962.21
+sphere.center_pos.x = 444.964 sphere.center_pos.y = 483.272 sphere.center_pos.z = -5971.29
+sphere.center_pos.x = 474.131 sphere.center_pos.y = 485.78 sphere.center_pos.z = -5951.69
+sphere.center_pos.x = 476.057 sphere.center_pos.y = 472.303 sphere.center_pos.z = -5957.83
+sphere.center_pos.x = 476.34 sphere.center_pos.y = 482.193 sphere.center_pos.z = -5951.97
+sphere.center_pos.x = 471.784 sphere.center_pos.y = 478.091 sphere.center_pos.z = -5957.05
+sphere.center_pos.x = 487.583 sphere.center_pos.y = 477.919 sphere.center_pos.z = -5949.94
+sphere.center_pos.x = 478.142 sphere.center_pos.y = 471.663 sphere.center_pos.z = -5954.67
+sphere.center_pos.x = 488.288 sphere.center_pos.y = 469.967 sphere.center_pos.z = -5950.73
+sphere.center_pos.x = 489.665 sphere.center_pos.y = 485.78 sphere.center_pos.z = -5941.42
+sphere.center_pos.x = 511.125 sphere.center_pos.y = 467.543 sphere.center_pos.z = -5938.48
+sphere.center_pos.x = 509.416 sphere.center_pos.y = 472.649 sphere.center_pos.z = -5936.94
+sphere.center_pos.x = 511.307 sphere.center_pos.y = 468.199 sphere.center_pos.z = -5937.99
+sphere.center_pos.x = 519.358 sphere.center_pos.y = 460.808 sphere.center_pos.z = -5937.19
+sphere.center_pos.x = 514.617 sphere.center_pos.y = 468.493 sphere.center_pos.z = -5935.94
+sphere.center_pos.x = 532.127 sphere.center_pos.y = 460.781 sphere.center_pos.z = -5929.25
+sphere.center_pos.x = 436.67 sphere.center_pos.y = 469.14 sphere.center_pos.z = -5980.28
+sphere.center_pos.x = 444.647 sphere.center_pos.y = 510.207 sphere.center_pos.z = -5965.13
+sphere.center_pos.x = 443.554 sphere.center_pos.y = 483.314 sphere.center_pos.z = -5970.36
+sphere.center_pos.x = 441.659 sphere.center_pos.y = 492.662 sphere.center_pos.z = -5971.95
+sphere.center_pos.x = 452.747 sphere.center_pos.y = 490.951 sphere.center_pos.z = -5963.44
+sphere.center_pos.x = 465.868 sphere.center_pos.y = 468.685 sphere.center_pos.z = -5965.99
+sphere.center_pos.x = 461.158 sphere.center_pos.y = 491.104 sphere.center_pos.z = -5956.83
+sphere.center_pos.x = 469.891 sphere.center_pos.y = 482.656 sphere.center_pos.z = -5956.11
+sphere.center_pos.x = 480.973 sphere.center_pos.y = 466.352 sphere.center_pos.z = -5958.83
+sphere.center_pos.x = 467.563 sphere.center_pos.y = 474.2 sphere.center_pos.z = -5962.52
+sphere.center_pos.x = 498.761 sphere.center_pos.y = 475.337 sphere.center_pos.z = -5945.52
+sphere.center_pos.x = 484.5 sphere.center_pos.y = 476.873 sphere.center_pos.z = -5951.72
+sphere.center_pos.x = 507.25 sphere.center_pos.y = 464.514 sphere.center_pos.z = -5944.84
+sphere.center_pos.x = 480.403 sphere.center_pos.y = 481.016 sphere.center_pos.z = -5947.05
+sphere.center_pos.x = 504.648 sphere.center_pos.y = 468.045 sphere.center_pos.z = -5942.08
+sphere.center_pos.x = 493.047 sphere.center_pos.y = 463.517 sphere.center_pos.z = -5953.02
+sphere.center_pos.x = 520.391 sphere.center_pos.y = 470.909 sphere.center_pos.z = -5931.03
+sphere.center_pos.x = 517.874 sphere.center_pos.y = 461.198 sphere.center_pos.z = -5938
+sphere.center_pos.x = 522.699 sphere.center_pos.y = 462.983 sphere.center_pos.z = -5933.92
+sphere.center_pos.x = 531.858 sphere.center_pos.y = 466.888 sphere.center_pos.z = -5926.09
+sphere.center_pos.x = 438.675 sphere.center_pos.y = 483.02 sphere.center_pos.z = -5976.88
+sphere.center_pos.x = 443.44 sphere.center_pos.y = 498.535 sphere.center_pos.z = -5965.87
+sphere.center_pos.x = 447.233 sphere.center_pos.y = 490.899 sphere.center_pos.z = -5964.26
+sphere.center_pos.x = 452.084 sphere.center_pos.y = 494.223 sphere.center_pos.z = -5959.34
+sphere.center_pos.x = 465.211 sphere.center_pos.y = 491.584 sphere.center_pos.z = -5956.03
+sphere.center_pos.x = 463.797 sphere.center_pos.y = 484.316 sphere.center_pos.z = -5959.17
+sphere.center_pos.x = 471.136 sphere.center_pos.y = 488.76 sphere.center_pos.z = -5951.62
+sphere.center_pos.x = 456.454 sphere.center_pos.y = 497.294 sphere.center_pos.z = -5957.19
+sphere.center_pos.x = 467.338 sphere.center_pos.y = 480.753 sphere.center_pos.z = -5958.5
+sphere.center_pos.x = 492.583 sphere.center_pos.y = 479.88 sphere.center_pos.z = -5948.21
+sphere.center_pos.x = 481.52 sphere.center_pos.y = 476.089 sphere.center_pos.z = -5950.78
+sphere.center_pos.x = 487.583 sphere.center_pos.y = 474.797 sphere.center_pos.z = -5946.98
+sphere.center_pos.x = 505.663 sphere.center_pos.y = 475.887 sphere.center_pos.z = -5937.33
+sphere.center_pos.x = 509.22 sphere.center_pos.y = 487.483 sphere.center_pos.z = -5926.01
+sphere.center_pos.x = 490.604 sphere.center_pos.y = 489.07 sphere.center_pos.z = -5935.84
+sphere.center_pos.x = 493.869 sphere.center_pos.y = 470.102 sphere.center_pos.z = -5942.06
+sphere.center_pos.x = 502.006 sphere.center_pos.y = 485 sphere.center_pos.z = -5934.31
+sphere.center_pos.x = 515.082 sphere.center_pos.y = 475.088 sphere.center_pos.z = -5932.03
+sphere.center_pos.x = 524.666 sphere.center_pos.y = 472.235 sphere.center_pos.z = -5927.64
+sphere.center_pos.x = 533.745 sphere.center_pos.y = 470.653 sphere.center_pos.z = -5922.85
+sphere.center_pos.x = 435.278 sphere.center_pos.y = 488.723 sphere.center_pos.z = -5966.68
+sphere.center_pos.x = 447.384 sphere.center_pos.y = 495.247 sphere.center_pos.z = -5963.91
+sphere.center_pos.x = 444.061 sphere.center_pos.y = 497.24 sphere.center_pos.z = -5963.84
+sphere.center_pos.x = 456.195 sphere.center_pos.y = 478.484 sphere.center_pos.z = -5966.91
+sphere.center_pos.x = 437.969 sphere.center_pos.y = 498.266 sphere.center_pos.z = -5967.08
+sphere.center_pos.x = 470.008 sphere.center_pos.y = 490.217 sphere.center_pos.z = -5949.1
+sphere.center_pos.x = 465.841 sphere.center_pos.y = 485.586 sphere.center_pos.z = -5956.66
+sphere.center_pos.x = 460.818 sphere.center_pos.y = 482.722 sphere.center_pos.z = -5962.06
+sphere.center_pos.x = 472.797 sphere.center_pos.y = 504.822 sphere.center_pos.z = -5946.92
+sphere.center_pos.x = 480.099 sphere.center_pos.y = 490.305 sphere.center_pos.z = -5947.8
+sphere.center_pos.x = 489.079 sphere.center_pos.y = 490.04 sphere.center_pos.z = -5940.96
+sphere.center_pos.x = 489.679 sphere.center_pos.y = 493.418 sphere.center_pos.z = -5938.16
+sphere.center_pos.x = 502.789 sphere.center_pos.y = 479.443 sphere.center_pos.z = -5937.13
+sphere.center_pos.x = 500.364 sphere.center_pos.y = 485.805 sphere.center_pos.z = -5935.59
+sphere.center_pos.x = 480.018 sphere.center_pos.y = 483.714 sphere.center_pos.z = -5950.73
+sphere.center_pos.x = 510.012 sphere.center_pos.y = 481.224 sphere.center_pos.z = -5931.91
+sphere.center_pos.x = 513.804 sphere.center_pos.y = 479.545 sphere.center_pos.z = -5930.42
+sphere.center_pos.x = 521.926 sphere.center_pos.y = 474.1 sphere.center_pos.z = -5928.32
+sphere.center_pos.x = 523.633 sphere.center_pos.y = 476.86 sphere.center_pos.z = -5925.76
+sphere.center_pos.x = 528.87 sphere.center_pos.y = 475.992 sphere.center_pos.z = -5922.97
+sphere.center_pos.x = 441.676 sphere.center_pos.y = 504.946 sphere.center_pos.z = -5971.17
+sphere.center_pos.x = 449.253 sphere.center_pos.y = 500.234 sphere.center_pos.z = -5956.9
+sphere.center_pos.x = 454.159 sphere.center_pos.y = 500.826 sphere.center_pos.z = -5953.12
+sphere.center_pos.x = 452.29 sphere.center_pos.y = 506.247 sphere.center_pos.z = -5952.46
+sphere.center_pos.x = 441.856 sphere.center_pos.y = 498.235 sphere.center_pos.z = -5960.8
+sphere.center_pos.x = 475.46 sphere.center_pos.y = 501.768 sphere.center_pos.z = -5942.53
+sphere.center_pos.x = 469.674 sphere.center_pos.y = 500.521 sphere.center_pos.z = -5948.74
+sphere.center_pos.x = 469.973 sphere.center_pos.y = 511.66 sphere.center_pos.z = -5943.59
+sphere.center_pos.x = 466.458 sphere.center_pos.y = 495.097 sphere.center_pos.z = -5949.77
+sphere.center_pos.x = 482.256 sphere.center_pos.y = 498.651 sphere.center_pos.z = -5940.5
+sphere.center_pos.x = 488.345 sphere.center_pos.y = 496.296 sphere.center_pos.z = -5937.56
+sphere.center_pos.x = 473.845 sphere.center_pos.y = 499.144 sphere.center_pos.z = -5945.98
+sphere.center_pos.x = 497.085 sphere.center_pos.y = 493.339 sphere.center_pos.z = -5933
+sphere.center_pos.x = 493.152 sphere.center_pos.y = 478.727 sphere.center_pos.z = -5943.12
+sphere.center_pos.x = 495.308 sphere.center_pos.y = 491.365 sphere.center_pos.z = -5935.99
+sphere.center_pos.x = 512.146 sphere.center_pos.y = 487.275 sphere.center_pos.z = -5928.31
+sphere.center_pos.x = 517.926 sphere.center_pos.y = 482.057 sphere.center_pos.z = -5926.47
+sphere.center_pos.x = 520.634 sphere.center_pos.y = 485.556 sphere.center_pos.z = -5922.87
+sphere.center_pos.x = 524.223 sphere.center_pos.y = 482.245 sphere.center_pos.z = -5922.45
+sphere.center_pos.x = 529.463 sphere.center_pos.y = 481.133 sphere.center_pos.z = -5919.79
+sphere.center_pos.x = 439.167 sphere.center_pos.y = 506.412 sphere.center_pos.z = -5965.13
+sphere.center_pos.x = 444.987 sphere.center_pos.y = 513.654 sphere.center_pos.z = -5957.53
+sphere.center_pos.x = 451.31 sphere.center_pos.y = 511.946 sphere.center_pos.z = -5953.07
+sphere.center_pos.x = 448.777 sphere.center_pos.y = 505.586 sphere.center_pos.z = -5958.36
+sphere.center_pos.x = 453.532 sphere.center_pos.y = 491.596 sphere.center_pos.z = -5958.74
+sphere.center_pos.x = 465.445 sphere.center_pos.y = 513.74 sphere.center_pos.z = -5942.35
+sphere.center_pos.x = 461.179 sphere.center_pos.y = 493.068 sphere.center_pos.z = -5953.53
+sphere.center_pos.x = 467.859 sphere.center_pos.y = 497.88 sphere.center_pos.z = -5950.6
+sphere.center_pos.x = 466.796 sphere.center_pos.y = 501.036 sphere.center_pos.z = -5945.56
+sphere.center_pos.x = 485.824 sphere.center_pos.y = 498.283 sphere.center_pos.z = -5937.9
+sphere.center_pos.x = 487.347 sphere.center_pos.y = 482.105 sphere.center_pos.z = -5946.88
+sphere.center_pos.x = 486.793 sphere.center_pos.y = 495.12 sphere.center_pos.z = -5938.59
+sphere.center_pos.x = 508.126 sphere.center_pos.y = 482.059 sphere.center_pos.z = -5932.07
+sphere.center_pos.x = 498.516 sphere.center_pos.y = 480.954 sphere.center_pos.z = -5938.89
+sphere.center_pos.x = 503.156 sphere.center_pos.y = 497.999 sphere.center_pos.z = -5928.72
+sphere.center_pos.x = 492.748 sphere.center_pos.y = 505.847 sphere.center_pos.z = -5929
+sphere.center_pos.x = 517.901 sphere.center_pos.y = 484.908 sphere.center_pos.z = -5924.66
+sphere.center_pos.x = 512.198 sphere.center_pos.y = 490.902 sphere.center_pos.z = -5924.97
+sphere.center_pos.x = 525.272 sphere.center_pos.y = 485.281 sphere.center_pos.z = -5920.14
+sphere.center_pos.x = 534.016 sphere.center_pos.y = 484.089 sphere.center_pos.z = -5915.34
+sphere.center_pos.x = 439.274 sphere.center_pos.y = 514.754 sphere.center_pos.z = -5960.8
+sphere.center_pos.x = 452.618 sphere.center_pos.y = 498.466 sphere.center_pos.z = -5963.46
+sphere.center_pos.x = 444.607 sphere.center_pos.y = 505.628 sphere.center_pos.z = -5955.31
+sphere.center_pos.x = 446.224 sphere.center_pos.y = 521.576 sphere.center_pos.z = -5949.02
+sphere.center_pos.x = 460.607 sphere.center_pos.y = 500.504 sphere.center_pos.z = -5952.5
+sphere.center_pos.x = 459.968 sphere.center_pos.y = 502.688 sphere.center_pos.z = -5949.22
+sphere.center_pos.x = 462.062 sphere.center_pos.y = 503.053 sphere.center_pos.z = -5948.98
+sphere.center_pos.x = 461.524 sphere.center_pos.y = 522.32 sphere.center_pos.z = -5941.69
+sphere.center_pos.x = 472.503 sphere.center_pos.y = 517.732 sphere.center_pos.z = -5935.11
+sphere.center_pos.x = 475.306 sphere.center_pos.y = 514.121 sphere.center_pos.z = -5935.29
+sphere.center_pos.x = 487.715 sphere.center_pos.y = 505.162 sphere.center_pos.z = -5932.37
+sphere.center_pos.x = 479.338 sphere.center_pos.y = 518.387 sphere.center_pos.z = -5930.14
+sphere.center_pos.x = 497.351 sphere.center_pos.y = 502.921 sphere.center_pos.z = -5927.91
+sphere.center_pos.x = 498.643 sphere.center_pos.y = 484.197 sphere.center_pos.z = -5939.16
+sphere.center_pos.x = 507.359 sphere.center_pos.y = 498.177 sphere.center_pos.z = -5924.24
+sphere.center_pos.x = 504.938 sphere.center_pos.y = 499.465 sphere.center_pos.z = -5925.11
+sphere.center_pos.x = 521.459 sphere.center_pos.y = 492.676 sphere.center_pos.z = -5918.47
+sphere.center_pos.x = 516.983 sphere.center_pos.y = 494.467 sphere.center_pos.z = -5920.28
+sphere.center_pos.x = 523.009 sphere.center_pos.y = 497.798 sphere.center_pos.z = -5914.71
+sphere.center_pos.x = 532.555 sphere.center_pos.y = 488.166 sphere.center_pos.z = -5914.03
+sphere.center_pos.x = 434.048 sphere.center_pos.y = 500.87 sphere.center_pos.z = -5957.48
+sphere.center_pos.x = 448.769 sphere.center_pos.y = 512.522 sphere.center_pos.z = -5952.34
+sphere.center_pos.x = 437.895 sphere.center_pos.y = 516.688 sphere.center_pos.z = -5954.01
+sphere.center_pos.x = 455.133 sphere.center_pos.y = 518.781 sphere.center_pos.z = -5943.55
+sphere.center_pos.x = 455.609 sphere.center_pos.y = 514.081 sphere.center_pos.z = -5946.93
+sphere.center_pos.x = 449.919 sphere.center_pos.y = 517.913 sphere.center_pos.z = -5949.32
+sphere.center_pos.x = 478.229 sphere.center_pos.y = 500.208 sphere.center_pos.z = -5940.65
+sphere.center_pos.x = 471.181 sphere.center_pos.y = 492.654 sphere.center_pos.z = -5946.44
+sphere.center_pos.x = 485.17 sphere.center_pos.y = 517.829 sphere.center_pos.z = -5924.4
+sphere.center_pos.x = 481.013 sphere.center_pos.y = 510.224 sphere.center_pos.z = -5934.29
+sphere.center_pos.x = 472.084 sphere.center_pos.y = 505.301 sphere.center_pos.z = -5941.72
+sphere.center_pos.x = 475.722 sphere.center_pos.y = 509.755 sphere.center_pos.z = -5937.35
+sphere.center_pos.x = 478.861 sphere.center_pos.y = 509.145 sphere.center_pos.z = -5937.85
+sphere.center_pos.x = 491.986 sphere.center_pos.y = 498.963 sphere.center_pos.z = -5933.45
+sphere.center_pos.x = 507.382 sphere.center_pos.y = 493.901 sphere.center_pos.z = -5926.59
+sphere.center_pos.x = 504.453 sphere.center_pos.y = 502.899 sphere.center_pos.z = -5923.48
+sphere.center_pos.x = 510.992 sphere.center_pos.y = 494.218 sphere.center_pos.z = -5924.14
+sphere.center_pos.x = 515.371 sphere.center_pos.y = 504.197 sphere.center_pos.z = -5915.97
+sphere.center_pos.x = 509.431 sphere.center_pos.y = 503.284 sphere.center_pos.z = -5920.16
+sphere.center_pos.x = 531.097 sphere.center_pos.y = 493.707 sphere.center_pos.z = -5911.91
+sphere.center_pos.x = 438.18 sphere.center_pos.y = 527.861 sphere.center_pos.z = -5951.35
+sphere.center_pos.x = 440.778 sphere.center_pos.y = 531.783 sphere.center_pos.z = -5946.71
+sphere.center_pos.x = 446.452 sphere.center_pos.y = 524.001 sphere.center_pos.z = -5949.06
+sphere.center_pos.x = 473.69 sphere.center_pos.y = 516.382 sphere.center_pos.z = -5934.77
+sphere.center_pos.x = 459.165 sphere.center_pos.y = 511.12 sphere.center_pos.z = -5951.39
+sphere.center_pos.x = 452.518 sphere.center_pos.y = 519.951 sphere.center_pos.z = -5944.46
+sphere.center_pos.x = 465.591 sphere.center_pos.y = 525.004 sphere.center_pos.z = -5935.43
+sphere.center_pos.x = 464.392 sphere.center_pos.y = 518.835 sphere.center_pos.z = -5939.38
+sphere.center_pos.x = 481.939 sphere.center_pos.y = 500.026 sphere.center_pos.z = -5935.25
+sphere.center_pos.x = 473.526 sphere.center_pos.y = 491.907 sphere.center_pos.z = -5950.3
+sphere.center_pos.x = 485.235 sphere.center_pos.y = 504.076 sphere.center_pos.z = -5935.32
+sphere.center_pos.x = 493.86 sphere.center_pos.y = 509.73 sphere.center_pos.z = -5928.09
+sphere.center_pos.x = 495.23 sphere.center_pos.y = 513.483 sphere.center_pos.z = -5923.43
+sphere.center_pos.x = 490.959 sphere.center_pos.y = 514.626 sphere.center_pos.z = -5925.49
+sphere.center_pos.x = 505.123 sphere.center_pos.y = 508.656 sphere.center_pos.z = -5919.91
+sphere.center_pos.x = 490.176 sphere.center_pos.y = 502.261 sphere.center_pos.z = -5932.83
+sphere.center_pos.x = 510.034 sphere.center_pos.y = 508.119 sphere.center_pos.z = -5917.15
+sphere.center_pos.x = 528.138 sphere.center_pos.y = 498.879 sphere.center_pos.z = -5910.92
+sphere.center_pos.x = 518.44 sphere.center_pos.y = 503.031 sphere.center_pos.z = -5914.69
+sphere.center_pos.x = 531.92 sphere.center_pos.y = 498.564 sphere.center_pos.z = -5908.74
+sphere.center_pos.x = 438.077 sphere.center_pos.y = 531.751 sphere.center_pos.z = -5949.01
+sphere.center_pos.x = 437.84 sphere.center_pos.y = 522.3 sphere.center_pos.z = -5953.68
+sphere.center_pos.x = 455.528 sphere.center_pos.y = 528.223 sphere.center_pos.z = -5940.1
+sphere.center_pos.x = 444.797 sphere.center_pos.y = 528.76 sphere.center_pos.z = -5946.81
+sphere.center_pos.x = 446.411 sphere.center_pos.y = 531.565 sphere.center_pos.z = -5943.8
+sphere.center_pos.x = 467.252 sphere.center_pos.y = 513.353 sphere.center_pos.z = -5943.05
+sphere.center_pos.x = 470.239 sphere.center_pos.y = 522.088 sphere.center_pos.z = -5934.32
+sphere.center_pos.x = 456.773 sphere.center_pos.y = 509.293 sphere.center_pos.z = -5950.6
+sphere.center_pos.x = 463.954 sphere.center_pos.y = 507.939 sphere.center_pos.z = -5940.04
+sphere.center_pos.x = 478.968 sphere.center_pos.y = 520.399 sphere.center_pos.z = -5929.83
+sphere.center_pos.x = 485.525 sphere.center_pos.y = 520.867 sphere.center_pos.z = -5926.53
+sphere.center_pos.x = 499.081 sphere.center_pos.y = 497.857 sphere.center_pos.z = -5929.42
+sphere.center_pos.x = 495.881 sphere.center_pos.y = 510.894 sphere.center_pos.z = -5924.5
+sphere.center_pos.x = 499.191 sphere.center_pos.y = 509.54 sphere.center_pos.z = -5923.12
+sphere.center_pos.x = 494.807 sphere.center_pos.y = 496.417 sphere.center_pos.z = -5933.14
+sphere.center_pos.x = 510.586 sphere.center_pos.y = 512.688 sphere.center_pos.z = -5914.31
+sphere.center_pos.x = 517.881 sphere.center_pos.y = 508.049 sphere.center_pos.z = -5912.3
+sphere.center_pos.x = 500.838 sphere.center_pos.y = 519.181 sphere.center_pos.z = -5916.83
+sphere.center_pos.x = 527.884 sphere.center_pos.y = 507.024 sphere.center_pos.z = -5906.63
+sphere.center_pos.x = 522.65 sphere.center_pos.y = 504.516 sphere.center_pos.z = -5911.26
+sphere.center_pos.x = 437.875 sphere.center_pos.y = 544.729 sphere.center_pos.z = -5941.5
+sphere.center_pos.x = 450.874 sphere.center_pos.y = 527.428 sphere.center_pos.z = -5943.67
+sphere.center_pos.x = 438.286 sphere.center_pos.y = 536.964 sphere.center_pos.z = -5946.6
+sphere.center_pos.x = 460.531 sphere.center_pos.y = 518.718 sphere.center_pos.z = -5941.96
+sphere.center_pos.x = 455.897 sphere.center_pos.y = 532.632 sphere.center_pos.z = -5937.46
+sphere.center_pos.x = 457.213 sphere.center_pos.y = 524.368 sphere.center_pos.z = -5941.18
+sphere.center_pos.x = 466.293 sphere.center_pos.y = 525.001 sphere.center_pos.z = -5934.98
+sphere.center_pos.x = 471.375 sphere.center_pos.y = 532.763 sphere.center_pos.z = -5927.75
+sphere.center_pos.x = 480.674 sphere.center_pos.y = 511.919 sphere.center_pos.z = -5932.88
+sphere.center_pos.x = 478.285 sphere.center_pos.y = 524.366 sphere.center_pos.z = -5928.04
+sphere.center_pos.x = 481.877 sphere.center_pos.y = 527.547 sphere.center_pos.z = -5924.06
+sphere.center_pos.x = 484.734 sphere.center_pos.y = 526.76 sphere.center_pos.z = -5922.44
+sphere.center_pos.x = 493.421 sphere.center_pos.y = 528.057 sphere.center_pos.z = -5916.6
+sphere.center_pos.x = 492.223 sphere.center_pos.y = 517.904 sphere.center_pos.z = -5922.89
+sphere.center_pos.x = 505.872 sphere.center_pos.y = 513.37 sphere.center_pos.z = -5916.87
+sphere.center_pos.x = 507.857 sphere.center_pos.y = 520.698 sphere.center_pos.z = -5911.63
+sphere.center_pos.x = 499.514 sphere.center_pos.y = 504.515 sphere.center_pos.z = -5925.66
+sphere.center_pos.x = 524.762 sphere.center_pos.y = 494.291 sphere.center_pos.z = -5915.53
+sphere.center_pos.x = 512.544 sphere.center_pos.y = 517.889 sphere.center_pos.z = -5910.25
+sphere.center_pos.x = 532.532 sphere.center_pos.y = 504.701 sphere.center_pos.z = -5905.01
+sphere.center_pos.x = 439.016 sphere.center_pos.y = 521.535 sphere.center_pos.z = -5956.56
+sphere.center_pos.x = 441.493 sphere.center_pos.y = 539.005 sphere.center_pos.z = -5943.15
+sphere.center_pos.x = 449.072 sphere.center_pos.y = 538.647 sphere.center_pos.z = -5938.47
+sphere.center_pos.x = 467.409 sphere.center_pos.y = 539.769 sphere.center_pos.z = -5926.39
+sphere.center_pos.x = 441.917 sphere.center_pos.y = 524.748 sphere.center_pos.z = -5950.4
+sphere.center_pos.x = 462.848 sphere.center_pos.y = 541.62 sphere.center_pos.z = -5928.22
+sphere.center_pos.x = 461.003 sphere.center_pos.y = 534.447 sphere.center_pos.z = -5933.29
+sphere.center_pos.x = 461 sphere.center_pos.y = 532.97 sphere.center_pos.z = -5934.2
+sphere.center_pos.x = 474.165 sphere.center_pos.y = 526.723 sphere.center_pos.z = -5929.3
+sphere.center_pos.x = 474.968 sphere.center_pos.y = 533.357 sphere.center_pos.z = -5925.18
+sphere.center_pos.x = 486.085 sphere.center_pos.y = 529.153 sphere.center_pos.z = -5920.56
+sphere.center_pos.x = 489.235 sphere.center_pos.y = 519.88 sphere.center_pos.z = -5923.43
+sphere.center_pos.x = 494.041 sphere.center_pos.y = 523.419 sphere.center_pos.z = -5918.74
+sphere.center_pos.x = 503.349 sphere.center_pos.y = 519.369 sphere.center_pos.z = -5915.16
+sphere.center_pos.x = 501.374 sphere.center_pos.y = 532.653 sphere.center_pos.z = -5909.13
+sphere.center_pos.x = 514.526 sphere.center_pos.y = 501.908 sphere.center_pos.z = -5917.74
+sphere.center_pos.x = 495.901 sphere.center_pos.y = 530.71 sphere.center_pos.z = -5913.6
+sphere.center_pos.x = 521.978 sphere.center_pos.y = 521.096 sphere.center_pos.z = -5902.62
+sphere.center_pos.x = 521.648 sphere.center_pos.y = 512.161 sphere.center_pos.z = -5907.71
+sphere.center_pos.x = 527.561 sphere.center_pos.y = 511.627 sphere.center_pos.z = -5904.32
+sphere.center_pos.x = 438.142 sphere.center_pos.y = 548.828 sphere.center_pos.z = -5939.82
+sphere.center_pos.x = 443.834 sphere.center_pos.y = 541.858 sphere.center_pos.z = -5939.92
+sphere.center_pos.x = 447.769 sphere.center_pos.y = 542.509 sphere.center_pos.z = -5937.12
+sphere.center_pos.x = 452.597 sphere.center_pos.y = 530.91 sphere.center_pos.z = -5940.46
+sphere.center_pos.x = 453.516 sphere.center_pos.y = 543.656 sphere.center_pos.z = -5932.92
+sphere.center_pos.x = 457.479 sphere.center_pos.y = 539.393 sphere.center_pos.z = -5932.78
+sphere.center_pos.x = 467.446 sphere.center_pos.y = 528.018 sphere.center_pos.z = -5932.79
+sphere.center_pos.x = 464.053 sphere.center_pos.y = 536.988 sphere.center_pos.z = -5930
+sphere.center_pos.x = 473.821 sphere.center_pos.y = 536.398 sphere.center_pos.z = -5924.24
+sphere.center_pos.x = 478.175 sphere.center_pos.y = 534.224 sphere.center_pos.z = -5922.72
+sphere.center_pos.x = 483.714 sphere.center_pos.y = 533.363 sphere.center_pos.z = -5919.74
+sphere.center_pos.x = 487.025 sphere.center_pos.y = 533.545 sphere.center_pos.z = -5917.58
+sphere.center_pos.x = 498.95 sphere.center_pos.y = 528.159 sphere.center_pos.z = -5913.1
+sphere.center_pos.x = 500.879 sphere.center_pos.y = 514.076 sphere.center_pos.z = -5919.59
+sphere.center_pos.x = 502.985 sphere.center_pos.y = 522.533 sphere.center_pos.z = -5913.66
+sphere.center_pos.x = 509.452 sphere.center_pos.y = 530.283 sphere.center_pos.z = -5905.4
+sphere.center_pos.x = 516.3 sphere.center_pos.y = 513.15 sphere.center_pos.z = -5910.5
+sphere.center_pos.x = 512.956 sphere.center_pos.y = 523.13 sphere.center_pos.z = -5907.13
+sphere.center_pos.x = 518.162 sphere.center_pos.y = 518.28 sphere.center_pos.z = -5906.54
+sphere.center_pos.x = 526.417 sphere.center_pos.y = 517.083 sphere.center_pos.z = -5902.05
+sphere.center_pos.x = 438.047 sphere.center_pos.y = 556.651 sphere.center_pos.z = -5935.35
+sphere.center_pos.x = 443.257 sphere.center_pos.y = 546.722 sphere.center_pos.z = -5937.63
+sphere.center_pos.x = 448.423 sphere.center_pos.y = 548.26 sphere.center_pos.z = -5933.57
+sphere.center_pos.x = 453.714 sphere.center_pos.y = 548.522 sphere.center_pos.z = -5930.13
+sphere.center_pos.x = 453.518 sphere.center_pos.y = 537.264 sphere.center_pos.z = -5936.41
+sphere.center_pos.x = 459.066 sphere.center_pos.y = 546.65 sphere.center_pos.z = -5927.82
+sphere.center_pos.x = 464.32 sphere.center_pos.y = 546.347 sphere.center_pos.z = -5924.72
+sphere.center_pos.x = 470.357 sphere.center_pos.y = 544.497 sphere.center_pos.z = -5921.97
+sphere.center_pos.x = 474.617 sphere.center_pos.y = 545.268 sphere.center_pos.z = -5918.9
+sphere.center_pos.x = 478.679 sphere.center_pos.y = 539.33 sphere.center_pos.z = -5919.61
+sphere.center_pos.x = 483.975 sphere.center_pos.y = 538.535 sphere.center_pos.z = -5916.75
+sphere.center_pos.x = 488.124 sphere.center_pos.y = 542.001 sphere.center_pos.z = -5912.28
+sphere.center_pos.x = 491.818 sphere.center_pos.y = 539.572 sphere.center_pos.z = -5911.3
+sphere.center_pos.x = 496.977 sphere.center_pos.y = 536.764 sphere.center_pos.z = -5909.63
+sphere.center_pos.x = 502.049 sphere.center_pos.y = 536.258 sphere.center_pos.z = -5906.74
+sphere.center_pos.x = 505.573 sphere.center_pos.y = 526.065 sphere.center_pos.z = -5910.12
+sphere.center_pos.x = 508.347 sphere.center_pos.y = 535.22 sphere.center_pos.z = -5903.39
+sphere.center_pos.x = 513.971 sphere.center_pos.y = 528.776 sphere.center_pos.z = -5903.41
+sphere.center_pos.x = 519.128 sphere.center_pos.y = 526.282 sphere.center_pos.z = -5901.56
+sphere.center_pos.x = 527.622 sphere.center_pos.y = 525.262 sphere.center_pos.z = -5896.83
+sphere.center_pos.x = 438.044 sphere.center_pos.y = 459.14 sphere.center_pos.z = -5988.61
+sphere.center_pos.x = 440.262 sphere.center_pos.y = 455.473 sphere.center_pos.z = -5981.9
+sphere.center_pos.x = 457.168 sphere.center_pos.y = 449.963 sphere.center_pos.z = -5971.81
+sphere.center_pos.x = 453.475 sphere.center_pos.y = 453.517 sphere.center_pos.z = -5978.32
+sphere.center_pos.x = 449.774 sphere.center_pos.y = 452.58 sphere.center_pos.z = -5976.6
+sphere.center_pos.x = 487.63 sphere.center_pos.y = 440.817 sphere.center_pos.z = -5955.07
+sphere.center_pos.x = 458.207 sphere.center_pos.y = 450.626 sphere.center_pos.z = -5973.03
+sphere.center_pos.x = 443.905 sphere.center_pos.y = 452.303 sphere.center_pos.z = -5976.1
+sphere.center_pos.x = 459.584 sphere.center_pos.y = 447.315 sphere.center_pos.z = -5966.97
+sphere.center_pos.x = 472.193 sphere.center_pos.y = 445.688 sphere.center_pos.z = -5963.99
+sphere.center_pos.x = 478.673 sphere.center_pos.y = 450.799 sphere.center_pos.z = -5973.34
+sphere.center_pos.x = 487.781 sphere.center_pos.y = 439.93 sphere.center_pos.z = -5953.45
+sphere.center_pos.x = 497.157 sphere.center_pos.y = 444.285 sphere.center_pos.z = -5961.42
+sphere.center_pos.x = 482.565 sphere.center_pos.y = 441.296 sphere.center_pos.z = -5955.95
+sphere.center_pos.x = 503.928 sphere.center_pos.y = 438.791 sphere.center_pos.z = -5951.36
+sphere.center_pos.x = 507.784 sphere.center_pos.y = 437.636 sphere.center_pos.z = -5949.25
+sphere.center_pos.x = 520.697 sphere.center_pos.y = 433.989 sphere.center_pos.z = -5942.57
+sphere.center_pos.x = 492.5 sphere.center_pos.y = 440.498 sphere.center_pos.z = -5954.49
+sphere.center_pos.x = 524.884 sphere.center_pos.y = 433.249 sphere.center_pos.z = -5941.22
+sphere.center_pos.x = 532.674 sphere.center_pos.y = 431.076 sphere.center_pos.z = -5937.24
+sphere.center_pos.x = 435.335 sphere.center_pos.y = 461.69 sphere.center_pos.z = -5981.57
+sphere.center_pos.x = 432.617 sphere.center_pos.y = 454.378 sphere.center_pos.z = -5979.9
+sphere.center_pos.x = 456.589 sphere.center_pos.y = 451.362 sphere.center_pos.z = -5974.37
+sphere.center_pos.x = 450.891 sphere.center_pos.y = 465.85 sphere.center_pos.z = -5969.96
+sphere.center_pos.x = 465.427 sphere.center_pos.y = 446.304 sphere.center_pos.z = -5965.12
+sphere.center_pos.x = 458.253 sphere.center_pos.y = 458.174 sphere.center_pos.z = -5967.16
+sphere.center_pos.x = 465.171 sphere.center_pos.y = 457.878 sphere.center_pos.z = -5964.5
+sphere.center_pos.x = 485.488 sphere.center_pos.y = 448.963 sphere.center_pos.z = -5960.32
+sphere.center_pos.x = 471.154 sphere.center_pos.y = 448.649 sphere.center_pos.z = -5962.5
+sphere.center_pos.x = 475.787 sphere.center_pos.y = 448.835 sphere.center_pos.z = -5962.3
+sphere.center_pos.x = 479.189 sphere.center_pos.y = 451.029 sphere.center_pos.z = -5958.68
+sphere.center_pos.x = 492.275 sphere.center_pos.y = 449.31 sphere.center_pos.z = -5956.37
+sphere.center_pos.x = 476.593 sphere.center_pos.y = 456.446 sphere.center_pos.z = -5959.52
+sphere.center_pos.x = 491.373 sphere.center_pos.y = 452.32 sphere.center_pos.z = -5950.73
+sphere.center_pos.x = 508.53 sphere.center_pos.y = 440.08 sphere.center_pos.z = -5946.77
+sphere.center_pos.x = 497.342 sphere.center_pos.y = 440.345 sphere.center_pos.z = -5954.21
+sphere.center_pos.x = 507.076 sphere.center_pos.y = 450.705 sphere.center_pos.z = -5943.04
+sphere.center_pos.x = 515.926 sphere.center_pos.y = 438.941 sphere.center_pos.z = -5943.72
+sphere.center_pos.x = 519.396 sphere.center_pos.y = 440.35 sphere.center_pos.z = -5940.54
+sphere.center_pos.x = 524.11 sphere.center_pos.y = 438.541 sphere.center_pos.z = -5938.61
+sphere.center_pos.x = 434.386 sphere.center_pos.y = 478.712 sphere.center_pos.z = -5970.29
+sphere.center_pos.x = 435.48 sphere.center_pos.y = 477.997 sphere.center_pos.z = -5972.96
+sphere.center_pos.x = 444.492 sphere.center_pos.y = 463.506 sphere.center_pos.z = -5974.57
+sphere.center_pos.x = 446.149 sphere.center_pos.y = 452.721 sphere.center_pos.z = -5976.86
+sphere.center_pos.x = 451.412 sphere.center_pos.y = 472.433 sphere.center_pos.z = -5965.37
+sphere.center_pos.x = 456.095 sphere.center_pos.y = 461.649 sphere.center_pos.z = -5968.23
+sphere.center_pos.x = 462.726 sphere.center_pos.y = 455.351 sphere.center_pos.z = -5964.34
+sphere.center_pos.x = 458.825 sphere.center_pos.y = 451.742 sphere.center_pos.z = -5969.41
+sphere.center_pos.x = 468.898 sphere.center_pos.y = 457.106 sphere.center_pos.z = -5961.32
+sphere.center_pos.x = 472.922 sphere.center_pos.y = 456.36 sphere.center_pos.z = -5959.87
+sphere.center_pos.x = 480.93 sphere.center_pos.y = 459.627 sphere.center_pos.z = -5949.84
+sphere.center_pos.x = 491.407 sphere.center_pos.y = 455.46 sphere.center_pos.z = -5951.6
+sphere.center_pos.x = 480.775 sphere.center_pos.y = 448.716 sphere.center_pos.z = -5953.01
+sphere.center_pos.x = 493.143 sphere.center_pos.y = 442.396 sphere.center_pos.z = -5952.95
+sphere.center_pos.x = 501.854 sphere.center_pos.y = 447.943 sphere.center_pos.z = -5948.54
+sphere.center_pos.x = 508.824 sphere.center_pos.y = 454.815 sphere.center_pos.z = -5939.24
+sphere.center_pos.x = 513.075 sphere.center_pos.y = 436.539 sphere.center_pos.z = -5947.24
+sphere.center_pos.x = 517.557 sphere.center_pos.y = 446.075 sphere.center_pos.z = -5938.63
+sphere.center_pos.x = 521.078 sphere.center_pos.y = 443.845 sphere.center_pos.z = -5937.59
+sphere.center_pos.x = 527 sphere.center_pos.y = 442.948 sphere.center_pos.z = -5934.4
+sphere.center_pos.x = 436.656 sphere.center_pos.y = 474.742 sphere.center_pos.z = -5977.19
+sphere.center_pos.x = 448.478 sphere.center_pos.y = 468.895 sphere.center_pos.z = -5969.8
+sphere.center_pos.x = 434.274 sphere.center_pos.y = 467.707 sphere.center_pos.z = -5976.07
+sphere.center_pos.x = 452.46 sphere.center_pos.y = 469.392 sphere.center_pos.z = -5966.55
+sphere.center_pos.x = 449.111 sphere.center_pos.y = 458.263 sphere.center_pos.z = -5974.6
+sphere.center_pos.x = 451.243 sphere.center_pos.y = 463.59 sphere.center_pos.z = -5970.28
+sphere.center_pos.x = 469.898 sphere.center_pos.y = 471.112 sphere.center_pos.z = -5953.63
+sphere.center_pos.x = 469.147 sphere.center_pos.y = 452.411 sphere.center_pos.z = -5967.85
+sphere.center_pos.x = 474.227 sphere.center_pos.y = 459.849 sphere.center_pos.z = -5956.2
+sphere.center_pos.x = 459.27 sphere.center_pos.y = 468.473 sphere.center_pos.z = -5962.69
+sphere.center_pos.x = 485.914 sphere.center_pos.y = 457.042 sphere.center_pos.z = -5949.86
+sphere.center_pos.x = 485.742 sphere.center_pos.y = 455.012 sphere.center_pos.z = -5955.39
+sphere.center_pos.x = 498.756 sphere.center_pos.y = 447.437 sphere.center_pos.z = -5948.34
+sphere.center_pos.x = 497.519 sphere.center_pos.y = 457.181 sphere.center_pos.z = -5941.61
+sphere.center_pos.x = 501.522 sphere.center_pos.y = 474.584 sphere.center_pos.z = -5932.46
+sphere.center_pos.x = 506.464 sphere.center_pos.y = 444.913 sphere.center_pos.z = -5946.5
+sphere.center_pos.x = 500.341 sphere.center_pos.y = 460.405 sphere.center_pos.z = -5937.39
+sphere.center_pos.x = 523.482 sphere.center_pos.y = 462.856 sphere.center_pos.z = -5925.71
+sphere.center_pos.x = 510.743 sphere.center_pos.y = 451.382 sphere.center_pos.z = -5939.93
+sphere.center_pos.x = 528.648 sphere.center_pos.y = 447.807 sphere.center_pos.z = -5930.72
+sphere.center_pos.x = 434.983 sphere.center_pos.y = 471.245 sphere.center_pos.z = -5975.61
+sphere.center_pos.x = 433.073 sphere.center_pos.y = 487.132 sphere.center_pos.z = -5962.95
+sphere.center_pos.x = 455.23 sphere.center_pos.y = 467.614 sphere.center_pos.z = -5965.62
+sphere.center_pos.x = 440.457 sphere.center_pos.y = 469.184 sphere.center_pos.z = -5974.02
+sphere.center_pos.x = 438.292 sphere.center_pos.y = 458.926 sphere.center_pos.z = -5980.86
+sphere.center_pos.x = 451.352 sphere.center_pos.y = 481.052 sphere.center_pos.z = -5960.86
+sphere.center_pos.x = 456.005 sphere.center_pos.y = 485.228 sphere.center_pos.z = -5956.6
+sphere.center_pos.x = 470.817 sphere.center_pos.y = 462.125 sphere.center_pos.z = -5960.3
+sphere.center_pos.x = 474.706 sphere.center_pos.y = 473.579 sphere.center_pos.z = -5952.27
+sphere.center_pos.x = 474.872 sphere.center_pos.y = 443.311 sphere.center_pos.z = -5959.64
+sphere.center_pos.x = 478.854 sphere.center_pos.y = 453.311 sphere.center_pos.z = -5956.18
+sphere.center_pos.x = 471.846 sphere.center_pos.y = 462.289 sphere.center_pos.z = -5955.38
+sphere.center_pos.x = 483.218 sphere.center_pos.y = 466.492 sphere.center_pos.z = -5949.57
+sphere.center_pos.x = 494.958 sphere.center_pos.y = 459.086 sphere.center_pos.z = -5944.88
+sphere.center_pos.x = 491.744 sphere.center_pos.y = 464.021 sphere.center_pos.z = -5947.79
+sphere.center_pos.x = 509.779 sphere.center_pos.y = 445.431 sphere.center_pos.z = -5943.6
+sphere.center_pos.x = 513.329 sphere.center_pos.y = 454.003 sphere.center_pos.z = -5936.87
+sphere.center_pos.x = 501.78 sphere.center_pos.y = 443.035 sphere.center_pos.z = -5949.96
+sphere.center_pos.x = 523.73 sphere.center_pos.y = 448.898 sphere.center_pos.z = -5933.18
+sphere.center_pos.x = 517.339 sphere.center_pos.y = 450.574 sphere.center_pos.z = -5936.25
+sphere.center_pos.x = 433.361 sphere.center_pos.y = 509.3 sphere.center_pos.z = -5951.44
+sphere.center_pos.x = 442.855 sphere.center_pos.y = 477.606 sphere.center_pos.z = -5966.13
+sphere.center_pos.x = 445.681 sphere.center_pos.y = 474.79 sphere.center_pos.z = -5967.53
+sphere.center_pos.x = 446.349 sphere.center_pos.y = 469.77 sphere.center_pos.z = -5969.95
+sphere.center_pos.x = 463.829 sphere.center_pos.y = 465.308 sphere.center_pos.z = -5961.69
+sphere.center_pos.x = 458.921 sphere.center_pos.y = 474.117 sphere.center_pos.z = -5958.9
+sphere.center_pos.x = 461.105 sphere.center_pos.y = 456.753 sphere.center_pos.z = -5967.95
+sphere.center_pos.x = 451.984 sphere.center_pos.y = 480.055 sphere.center_pos.z = -5960.61
+sphere.center_pos.x = 467.09 sphere.center_pos.y = 474.033 sphere.center_pos.z = -5954.99
+sphere.center_pos.x = 474.682 sphere.center_pos.y = 478.051 sphere.center_pos.z = -5944.46
+sphere.center_pos.x = 487.695 sphere.center_pos.y = 480.435 sphere.center_pos.z = -5939.09
+sphere.center_pos.x = 495.94 sphere.center_pos.y = 466.446 sphere.center_pos.z = -5940.11
+sphere.center_pos.x = 484.49 sphere.center_pos.y = 465.418 sphere.center_pos.z = -5946.3
+sphere.center_pos.x = 497.244 sphere.center_pos.y = 452.227 sphere.center_pos.z = -5947.97
+sphere.center_pos.x = 499.75 sphere.center_pos.y = 453.457 sphere.center_pos.z = -5942.54
+sphere.center_pos.x = 497.167 sphere.center_pos.y = 469.711 sphere.center_pos.z = -5940.47
+sphere.center_pos.x = 505.413 sphere.center_pos.y = 457.398 sphere.center_pos.z = -5939.98
+sphere.center_pos.x = 524.138 sphere.center_pos.y = 458.123 sphere.center_pos.z = -5927.89
+sphere.center_pos.x = 520.505 sphere.center_pos.y = 453.706 sphere.center_pos.z = -5932.56
+sphere.center_pos.x = 528.177 sphere.center_pos.y = 453.283 sphere.center_pos.z = -5928.02
+sphere.center_pos.x = 435.207 sphere.center_pos.y = 479.651 sphere.center_pos.z = -5971.49
+sphere.center_pos.x = 444.294 sphere.center_pos.y = 484.223 sphere.center_pos.z = -5963.1
+sphere.center_pos.x = 441.284 sphere.center_pos.y = 482.406 sphere.center_pos.z = -5962.91
+sphere.center_pos.x = 458.8 sphere.center_pos.y = 485.117 sphere.center_pos.z = -5952.89
+sphere.center_pos.x = 469.18 sphere.center_pos.y = 468.608 sphere.center_pos.z = -5957.48
+sphere.center_pos.x = 442.09 sphere.center_pos.y = 480.751 sphere.center_pos.z = -5966.67
+sphere.center_pos.x = 471.256 sphere.center_pos.y = 483.257 sphere.center_pos.z = -5947.06
+sphere.center_pos.x = 473.61 sphere.center_pos.y = 469.491 sphere.center_pos.z = -5953.29
+sphere.center_pos.x = 473.412 sphere.center_pos.y = 479.76 sphere.center_pos.z = -5947.34
+sphere.center_pos.x = 468.892 sphere.center_pos.y = 475.563 sphere.center_pos.z = -5952.47
+sphere.center_pos.x = 484.412 sphere.center_pos.y = 475.152 sphere.center_pos.z = -5944.97
+sphere.center_pos.x = 475.71 sphere.center_pos.y = 466.455 sphere.center_pos.z = -5948.18
+sphere.center_pos.x = 485.297 sphere.center_pos.y = 467.416 sphere.center_pos.z = -5945.96
+sphere.center_pos.x = 486.746 sphere.center_pos.y = 483.24 sphere.center_pos.z = -5936.77
+sphere.center_pos.x = 508.231 sphere.center_pos.y = 465.006 sphere.center_pos.z = -5933.83
+sphere.center_pos.x = 506.545 sphere.center_pos.y = 470.13 sphere.center_pos.z = -5932.33
+sphere.center_pos.x = 508.412 sphere.center_pos.y = 465.657 sphere.center_pos.z = -5933.34
+sphere.center_pos.x = 516.482 sphere.center_pos.y = 458.284 sphere.center_pos.z = -5932.57
+sphere.center_pos.x = 511.741 sphere.center_pos.y = 465.968 sphere.center_pos.z = -5931.32
+sphere.center_pos.x = 529.251 sphere.center_pos.y = 458.256 sphere.center_pos.z = -5924.63
+sphere.center_pos.x = 433.391 sphere.center_pos.y = 465.571 sphere.center_pos.z = -5975.39
+sphere.center_pos.x = 440.515 sphere.center_pos.y = 505.709 sphere.center_pos.z = -5957.32
+sphere.center_pos.x = 436.619 sphere.center_pos.y = 479.763 sphere.center_pos.z = -5967.92
+sphere.center_pos.x = 439.722 sphere.center_pos.y = 489.542 sphere.center_pos.z = -5965.88
+sphere.center_pos.x = 449.937 sphere.center_pos.y = 488.473 sphere.center_pos.z = -5958.9
+sphere.center_pos.x = 463.015 sphere.center_pos.y = 466.135 sphere.center_pos.z = -5961.34
+sphere.center_pos.x = 458.1 sphere.center_pos.y = 489.068 sphere.center_pos.z = -5952.25
+sphere.center_pos.x = 467.02 sphere.center_pos.y = 480.136 sphere.center_pos.z = -5951.5
+sphere.center_pos.x = 478.002 sphere.center_pos.y = 463.622 sphere.center_pos.z = -5954.58
+sphere.center_pos.x = 464.715 sphere.center_pos.y = 471.709 sphere.center_pos.z = -5957.95
+sphere.center_pos.x = 495.893 sphere.center_pos.y = 473.107 sphere.center_pos.z = -5940.97
+sphere.center_pos.x = 481.723 sphere.center_pos.y = 474.463 sphere.center_pos.z = -5947.29
+sphere.center_pos.x = 504.024 sphere.center_pos.y = 462.761 sphere.center_pos.z = -5940.81
+sphere.center_pos.x = 476.85 sphere.center_pos.y = 477.906 sphere.center_pos.z = -5941.35
+sphere.center_pos.x = 501.446 sphere.center_pos.y = 465.716 sphere.center_pos.z = -5937.54
+sphere.center_pos.x = 490.179 sphere.center_pos.y = 461.049 sphere.center_pos.z = -5948.45
+sphere.center_pos.x = 517.514 sphere.center_pos.y = 468.384 sphere.center_pos.z = -5926.41
+sphere.center_pos.x = 515.008 sphere.center_pos.y = 458.683 sphere.center_pos.z = -5933.4
+sphere.center_pos.x = 519.822 sphere.center_pos.y = 460.459 sphere.center_pos.z = -5929.3
+sphere.center_pos.x = 528.981 sphere.center_pos.y = 464.364 sphere.center_pos.z = -5921.46
+sphere.center_pos.x = 432.617 sphere.center_pos.y = 481.345 sphere.center_pos.z = -5965.16
+sphere.center_pos.x = 436.802 sphere.center_pos.y = 491.997 sphere.center_pos.z = -5960.2
+sphere.center_pos.x = 444.564 sphere.center_pos.y = 487.812 sphere.center_pos.z = -5959.69
+sphere.center_pos.x = 448.719 sphere.center_pos.y = 492.038 sphere.center_pos.z = -5954.5
+sphere.center_pos.x = 462.373 sphere.center_pos.y = 489.14 sphere.center_pos.z = -5951.44
+sphere.center_pos.x = 460.926 sphere.center_pos.y = 481.814 sphere.center_pos.z = -5954.57
+sphere.center_pos.x = 468.337 sphere.center_pos.y = 486.163 sphere.center_pos.z = -5947
+sphere.center_pos.x = 453.336 sphere.center_pos.y = 494.747 sphere.center_pos.z = -5952.93
+sphere.center_pos.x = 464.442 sphere.center_pos.y = 478.215 sphere.center_pos.z = -5953.86
+sphere.center_pos.x = 490.441 sphere.center_pos.y = 476.356 sphere.center_pos.z = -5943.74
+sphere.center_pos.x = 478.632 sphere.center_pos.y = 473.509 sphere.center_pos.z = -5946.05
+sphere.center_pos.x = 483.928 sphere.center_pos.y = 472.237 sphere.center_pos.z = -5940.62
+sphere.center_pos.x = 502.779 sphere.center_pos.y = 473.356 sphere.center_pos.z = -5932.7
+sphere.center_pos.x = 506.128 sphere.center_pos.y = 484.794 sphere.center_pos.z = -5921.23
+sphere.center_pos.x = 486.766 sphere.center_pos.y = 484.429 sphere.center_pos.z = -5929.95
+sphere.center_pos.x = 490.818 sphere.center_pos.y = 466.615 sphere.center_pos.z = -5936.98
+sphere.center_pos.x = 499.202 sphere.center_pos.y = 482.566 sphere.center_pos.z = -5929.83
+sphere.center_pos.x = 512.204 sphere.center_pos.y = 472.563 sphere.center_pos.z = -5927.41
+sphere.center_pos.x = 521.79 sphere.center_pos.y = 469.711 sphere.center_pos.z = -5923.02
+sphere.center_pos.x = 530.869 sphere.center_pos.y = 468.129 sphere.center_pos.z = -5918.23
+sphere.center_pos.x = 434.088 sphere.center_pos.y = 493.774 sphere.center_pos.z = -5961.44
+sphere.center_pos.x = 438.058 sphere.center_pos.y = 496.445 sphere.center_pos.z = -5959.78
+sphere.center_pos.x = 444.84 sphere.center_pos.y = 491.799 sphere.center_pos.z = -5957.99
+sphere.center_pos.x = 453.327 sphere.center_pos.y = 475.968 sphere.center_pos.z = -5962.3
+sphere.center_pos.x = 432.617 sphere.center_pos.y = 496.633 sphere.center_pos.z = -5956.81
+sphere.center_pos.x = 467.117 sphere.center_pos.y = 487.594 sphere.center_pos.z = -5943.95
+sphere.center_pos.x = 462.956 sphere.center_pos.y = 483.052 sphere.center_pos.z = -5952.07
+sphere.center_pos.x = 457.973 sphere.center_pos.y = 480.221 sphere.center_pos.z = -5957.5
+sphere.center_pos.x = 469.119 sphere.center_pos.y = 503.247 sphere.center_pos.z = -5942.33
+sphere.center_pos.x = 477.088 sphere.center_pos.y = 487.663 sphere.center_pos.z = -5942.97
+sphere.center_pos.x = 486.665 sphere.center_pos.y = 487.244 sphere.center_pos.z = -5936.3
+sphere.center_pos.x = 486.861 sphere.center_pos.y = 490.942 sphere.center_pos.z = -5933.63
+sphere.center_pos.x = 499.978 sphere.center_pos.y = 476.895 sphere.center_pos.z = -5932.54
+sphere.center_pos.x = 497.547 sphere.center_pos.y = 483.4 sphere.center_pos.z = -5931.25
+sphere.center_pos.x = 477.082 sphere.center_pos.y = 481.345 sphere.center_pos.z = -5946.23
+sphere.center_pos.x = 507.138 sphere.center_pos.y = 478.7 sphere.center_pos.z = -5927.29
+sphere.center_pos.x = 510.928 sphere.center_pos.y = 477.021 sphere.center_pos.z = -5925.8
+sphere.center_pos.x = 519.049 sphere.center_pos.y = 471.575 sphere.center_pos.z = -5923.7
+sphere.center_pos.x = 520.756 sphere.center_pos.y = 474.336 sphere.center_pos.z = -5921.14
+sphere.center_pos.x = 525.994 sphere.center_pos.y = 473.468 sphere.center_pos.z = -5918.35
+sphere.center_pos.x = 440.063 sphere.center_pos.y = 499.522 sphere.center_pos.z = -5970.76
+sphere.center_pos.x = 441.16 sphere.center_pos.y = 499.021 sphere.center_pos.z = -5956.13
+sphere.center_pos.x = 450.371 sphere.center_pos.y = 498.189 sphere.center_pos.z = -5947.8
+sphere.center_pos.x = 449.003 sphere.center_pos.y = 503.62 sphere.center_pos.z = -5947.39
+sphere.center_pos.x = 443.43 sphere.center_pos.y = 498.013 sphere.center_pos.z = -5953.81
+sphere.center_pos.x = 472.704 sphere.center_pos.y = 499.348 sphere.center_pos.z = -5938.08
+sphere.center_pos.x = 466.511 sphere.center_pos.y = 497.743 sphere.center_pos.z = -5943.77
+sphere.center_pos.x = 467.372 sphere.center_pos.y = 509.097 sphere.center_pos.z = -5939.08
+sphere.center_pos.x = 463.529 sphere.center_pos.y = 492.566 sphere.center_pos.z = -5945.04
+sphere.center_pos.x = 479.225 sphere.center_pos.y = 496.632 sphere.center_pos.z = -5935.8
+sphere.center_pos.x = 485.473 sphere.center_pos.y = 493.776 sphere.center_pos.z = -5932.97
+sphere.center_pos.x = 471.042 sphere.center_pos.y = 496.567 sphere.center_pos.z = -5941.55
+sphere.center_pos.x = 494.197 sphere.center_pos.y = 490.807 sphere.center_pos.z = -5928.36
+sphere.center_pos.x = 490.241 sphere.center_pos.y = 476.28 sphere.center_pos.z = -5938.53
+sphere.center_pos.x = 492.358 sphere.center_pos.y = 488.822 sphere.center_pos.z = -5931.34
+sphere.center_pos.x = 509.231 sphere.center_pos.y = 484.711 sphere.center_pos.z = -5923.61
+sphere.center_pos.x = 515.049 sphere.center_pos.y = 479.533 sphere.center_pos.z = -5921.85
+sphere.center_pos.x = 517.757 sphere.center_pos.y = 483.031 sphere.center_pos.z = -5918.25
+sphere.center_pos.x = 521.347 sphere.center_pos.y = 479.72 sphere.center_pos.z = -5917.83
+sphere.center_pos.x = 526.586 sphere.center_pos.y = 478.608 sphere.center_pos.z = -5915.17
+sphere.center_pos.x = 432.617 sphere.center_pos.y = 509.541 sphere.center_pos.z = -5949.76
+sphere.center_pos.x = 442.615 sphere.center_pos.y = 511.975 sphere.center_pos.z = -5953.05
+sphere.center_pos.x = 448.64 sphere.center_pos.y = 509.429 sphere.center_pos.z = -5948.74
+sphere.center_pos.x = 446.707 sphere.center_pos.y = 504.271 sphere.center_pos.z = -5952.78
+sphere.center_pos.x = 450.587 sphere.center_pos.y = 489.119 sphere.center_pos.z = -5953.96
+sphere.center_pos.x = 460.958 sphere.center_pos.y = 510.618 sphere.center_pos.z = -5937.78
+sphere.center_pos.x = 455.893 sphere.center_pos.y = 491.464 sphere.center_pos.z = -5946.85
+sphere.center_pos.x = 465.105 sphere.center_pos.y = 495.437 sphere.center_pos.z = -5946.18
+sphere.center_pos.x = 463.793 sphere.center_pos.y = 497.648 sphere.center_pos.z = -5939.26
+sphere.center_pos.x = 483.003 sphere.center_pos.y = 495.81 sphere.center_pos.z = -5933.37
+sphere.center_pos.x = 484.426 sphere.center_pos.y = 479.677 sphere.center_pos.z = -5942.44
+sphere.center_pos.x = 483.915 sphere.center_pos.y = 492.595 sphere.center_pos.z = -5933.96
+sphere.center_pos.x = 505.289 sphere.center_pos.y = 479.573 sphere.center_pos.z = -5927.54
+sphere.center_pos.x = 494.542 sphere.center_pos.y = 476.207 sphere.center_pos.z = -5933.57
+sphere.center_pos.x = 500.105 sphere.center_pos.y = 495.459 sphere.center_pos.z = -5923.82
+sphere.center_pos.x = 489.861 sphere.center_pos.y = 503.313 sphere.center_pos.z = -5924.36
+sphere.center_pos.x = 515.061 sphere.center_pos.y = 482.405 sphere.center_pos.z = -5920.08
+sphere.center_pos.x = 509.34 sphere.center_pos.y = 488.401 sphere.center_pos.z = -5920.38
+sphere.center_pos.x = 522.395 sphere.center_pos.y = 482.756 sphere.center_pos.z = -5915.52
+sphere.center_pos.x = 531.139 sphere.center_pos.y = 481.565 sphere.center_pos.z = -5910.72
+sphere.center_pos.x = 438.594 sphere.center_pos.y = 518.186 sphere.center_pos.z = -5957.5
+sphere.center_pos.x = 445.784 sphere.center_pos.y = 495.324 sphere.center_pos.z = -5957.46
+sphere.center_pos.x = 439.568 sphere.center_pos.y = 500.72 sphere.center_pos.z = -5950.25
+sphere.center_pos.x = 442.698 sphere.center_pos.y = 518.177 sphere.center_pos.z = -5944.59
+sphere.center_pos.x = 457.58 sphere.center_pos.y = 498.841 sphere.center_pos.z = -5947.85
+sphere.center_pos.x = 457 sphere.center_pos.y = 500.108 sphere.center_pos.z = -5944.46
+sphere.center_pos.x = 459.143 sphere.center_pos.y = 500.416 sphere.center_pos.z = -5944.21
+sphere.center_pos.x = 459.272 sphere.center_pos.y = 519.349 sphere.center_pos.z = -5937.79
+sphere.center_pos.x = 469.619 sphere.center_pos.y = 515.201 sphere.center_pos.z = -5930.48
+sphere.center_pos.x = 472.421 sphere.center_pos.y = 511.668 sphere.center_pos.z = -5930.7
+sphere.center_pos.x = 484.83 sphere.center_pos.y = 502.628 sphere.center_pos.z = -5927.74
+sphere.center_pos.x = 476.504 sphere.center_pos.y = 515.897 sphere.center_pos.z = -5925.61
+sphere.center_pos.x = 494.478 sphere.center_pos.y = 500.399 sphere.center_pos.z = -5923.29
+sphere.center_pos.x = 495.698 sphere.center_pos.y = 482.539 sphere.center_pos.z = -5934.55
+sphere.center_pos.x = 504.483 sphere.center_pos.y = 495.653 sphere.center_pos.z = -5919.62
+sphere.center_pos.x = 502.064 sphere.center_pos.y = 496.944 sphere.center_pos.z = -5920.49
+sphere.center_pos.x = 518.582 sphere.center_pos.y = 490.151 sphere.center_pos.z = -5913.85
+sphere.center_pos.x = 514.106 sphere.center_pos.y = 491.943 sphere.center_pos.z = -5915.66
+sphere.center_pos.x = 520.133 sphere.center_pos.y = 495.274 sphere.center_pos.z = -5910.09
+sphere.center_pos.x = 529.678 sphere.center_pos.y = 485.642 sphere.center_pos.z = -5909.41
+sphere.center_pos.x = 432.617 sphere.center_pos.y = 504.326 sphere.center_pos.z = -5952.61
+sphere.center_pos.x = 445.625 sphere.center_pos.y = 510.051 sphere.center_pos.z = -5947.67
+sphere.center_pos.x = 436.272 sphere.center_pos.y = 514.163 sphere.center_pos.z = -5949.14
+sphere.center_pos.x = 452.229 sphere.center_pos.y = 514.316 sphere.center_pos.z = -5938.59
+sphere.center_pos.x = 453.325 sphere.center_pos.y = 511.623 sphere.center_pos.z = -5942.09
+sphere.center_pos.x = 447.027 sphere.center_pos.y = 515.598 sphere.center_pos.z = -5944.61
+sphere.center_pos.x = 475.33 sphere.center_pos.y = 497.645 sphere.center_pos.z = -5936.01
+sphere.center_pos.x = 467.635 sphere.center_pos.y = 489.534 sphere.center_pos.z = -5940.74
+sphere.center_pos.x = 482.094 sphere.center_pos.y = 515.122 sphere.center_pos.z = -5919.62
+sphere.center_pos.x = 478.252 sphere.center_pos.y = 507.749 sphere.center_pos.z = -5929.96
+sphere.center_pos.x = 469.275 sphere.center_pos.y = 502.731 sphere.center_pos.z = -5937.13
+sphere.center_pos.x = 470.465 sphere.center_pos.y = 506.613 sphere.center_pos.z = -5931.95
+sphere.center_pos.x = 476.816 sphere.center_pos.y = 506.358 sphere.center_pos.z = -5933.29
+sphere.center_pos.x = 489.111 sphere.center_pos.y = 496.441 sphere.center_pos.z = -5928.84
+sphere.center_pos.x = 504.509 sphere.center_pos.y = 491.379 sphere.center_pos.z = -5921.97
+sphere.center_pos.x = 501.577 sphere.center_pos.y = 500.375 sphere.center_pos.z = -5918.85
+sphere.center_pos.x = 508.116 sphere.center_pos.y = 491.694 sphere.center_pos.z = -5919.52
+sphere.center_pos.x = 512.494 sphere.center_pos.y = 501.673 sphere.center_pos.z = -5911.35
+sphere.center_pos.x = 506.554 sphere.center_pos.y = 500.759 sphere.center_pos.z = -5915.54
+sphere.center_pos.x = 528.22 sphere.center_pos.y = 491.182 sphere.center_pos.z = -5907.29
+sphere.center_pos.x = 435.329 sphere.center_pos.y = 525.357 sphere.center_pos.z = -5946.78
+sphere.center_pos.x = 437.876 sphere.center_pos.y = 529.239 sphere.center_pos.z = -5942.04
+sphere.center_pos.x = 443.89 sphere.center_pos.y = 521.091 sphere.center_pos.z = -5944.67
+sphere.center_pos.x = 470.541 sphere.center_pos.y = 513.69 sphere.center_pos.z = -5930.38
+sphere.center_pos.x = 457.214 sphere.center_pos.y = 507.563 sphere.center_pos.z = -5945.46
+sphere.center_pos.x = 449.065 sphere.center_pos.y = 517.395 sphere.center_pos.z = -5939.14
+sphere.center_pos.x = 462.698 sphere.center_pos.y = 522.465 sphere.center_pos.z = -5930.79
+sphere.center_pos.x = 461.633 sphere.center_pos.y = 515.957 sphere.center_pos.z = -5934.87
+sphere.center_pos.x = 476.843 sphere.center_pos.y = 496.958 sphere.center_pos.z = -5929.28
+sphere.center_pos.x = 470.78 sphere.center_pos.y = 489.297 sphere.center_pos.z = -5945.81
+sphere.center_pos.x = 482.324 sphere.center_pos.y = 501.484 sphere.center_pos.z = -5930.66
+sphere.center_pos.x = 490.942 sphere.center_pos.y = 507.023 sphere.center_pos.z = -5923.21
+sphere.center_pos.x = 492.353 sphere.center_pos.y = 510.959 sphere.center_pos.z = -5918.81
+sphere.center_pos.x = 488.085 sphere.center_pos.y = 512.104 sphere.center_pos.z = -5920.87
+sphere.center_pos.x = 502.246 sphere.center_pos.y = 506.131 sphere.center_pos.z = -5915.29
+sphere.center_pos.x = 487.311 sphere.center_pos.y = 499.746 sphere.center_pos.z = -5928.22
+sphere.center_pos.x = 507.157 sphere.center_pos.y = 505.594 sphere.center_pos.z = -5912.52
+sphere.center_pos.x = 525.261 sphere.center_pos.y = 496.355 sphere.center_pos.z = -5906.3
+sphere.center_pos.x = 515.563 sphere.center_pos.y = 500.506 sphere.center_pos.z = -5910.07
+sphere.center_pos.x = 529.043 sphere.center_pos.y = 496.04 sphere.center_pos.z = -5904.12
+sphere.center_pos.x = 435.202 sphere.center_pos.y = 529.228 sphere.center_pos.z = -5944.4
+sphere.center_pos.x = 435.18 sphere.center_pos.y = 518.789 sphere.center_pos.z = -5950.05
+sphere.center_pos.x = 452.652 sphere.center_pos.y = 525.699 sphere.center_pos.z = -5935.48
+sphere.center_pos.x = 442.108 sphere.center_pos.y = 526.123 sphere.center_pos.z = -5942.2
+sphere.center_pos.x = 443.527 sphere.center_pos.y = 529.035 sphere.center_pos.z = -5939.17
+sphere.center_pos.x = 464.396 sphere.center_pos.y = 511.077 sphere.center_pos.z = -5938.29
+sphere.center_pos.x = 467.368 sphere.center_pos.y = 519.568 sphere.center_pos.z = -5929.71
+sphere.center_pos.x = 453.951 sphere.center_pos.y = 506.766 sphere.center_pos.z = -5946.02
+sphere.center_pos.x = 460.108 sphere.center_pos.y = 505.395 sphere.center_pos.z = -5934.91
+sphere.center_pos.x = 476.093 sphere.center_pos.y = 517.876 sphere.center_pos.z = -5925.21
+sphere.center_pos.x = 482.606 sphere.center_pos.y = 518.311 sphere.center_pos.z = -5921.83
+sphere.center_pos.x = 496.193 sphere.center_pos.y = 495.322 sphere.center_pos.z = -5924.78
+sphere.center_pos.x = 493.008 sphere.center_pos.y = 508.373 sphere.center_pos.z = -5919.88
+sphere.center_pos.x = 496.314 sphere.center_pos.y = 507.016 sphere.center_pos.z = -5918.5
+sphere.center_pos.x = 491.942 sphere.center_pos.y = 493.902 sphere.center_pos.z = -5928.53
+sphere.center_pos.x = 507.71 sphere.center_pos.y = 510.164 sphere.center_pos.z = -5909.69
+sphere.center_pos.x = 515.004 sphere.center_pos.y = 505.524 sphere.center_pos.z = -5907.68
+sphere.center_pos.x = 497.961 sphere.center_pos.y = 516.657 sphere.center_pos.z = -5912.21
+sphere.center_pos.x = 525.007 sphere.center_pos.y = 504.499 sphere.center_pos.z = -5902.01
+sphere.center_pos.x = 519.773 sphere.center_pos.y = 501.992 sphere.center_pos.z = -5906.64
+sphere.center_pos.x = 434.97 sphere.center_pos.y = 542.17 sphere.center_pos.z = -5936.84
+sphere.center_pos.x = 448.063 sphere.center_pos.y = 525.173 sphere.center_pos.z = -5939.1
+sphere.center_pos.x = 435.455 sphere.center_pos.y = 534.489 sphere.center_pos.z = -5942.05
+sphere.center_pos.x = 456.207 sphere.center_pos.y = 516.068 sphere.center_pos.z = -5934.46
+sphere.center_pos.x = 453.02 sphere.center_pos.y = 530.107 sphere.center_pos.z = -5932.83
+sphere.center_pos.x = 454.34 sphere.center_pos.y = 521.847 sphere.center_pos.z = -5936.56
+sphere.center_pos.x = 463.398 sphere.center_pos.y = 522.461 sphere.center_pos.z = -5930.33
+sphere.center_pos.x = 468.498 sphere.center_pos.y = 530.239 sphere.center_pos.z = -5923.13
+sphere.center_pos.x = 477.896 sphere.center_pos.y = 509.452 sphere.center_pos.z = -5928.41
+sphere.center_pos.x = 475.409 sphere.center_pos.y = 521.843 sphere.center_pos.z = -5923.42
+sphere.center_pos.x = 479.001 sphere.center_pos.y = 525.023 sphere.center_pos.z = -5919.44
+sphere.center_pos.x = 481.886 sphere.center_pos.y = 524.268 sphere.center_pos.z = -5917.86
+sphere.center_pos.x = 490.545 sphere.center_pos.y = 525.532 sphere.center_pos.z = -5911.97
+sphere.center_pos.x = 489.346 sphere.center_pos.y = 515.38 sphere.center_pos.z = -5918.27
+sphere.center_pos.x = 502.995 sphere.center_pos.y = 510.846 sphere.center_pos.z = -5912.25
+sphere.center_pos.x = 504.98 sphere.center_pos.y = 518.173 sphere.center_pos.z = -5907.01
+sphere.center_pos.x = 496.637 sphere.center_pos.y = 501.991 sphere.center_pos.z = -5921.03
+sphere.center_pos.x = 521.885 sphere.center_pos.y = 491.766 sphere.center_pos.z = -5910.91
+sphere.center_pos.x = 509.668 sphere.center_pos.y = 515.365 sphere.center_pos.z = -5905.63
+sphere.center_pos.x = 529.655 sphere.center_pos.y = 502.177 sphere.center_pos.z = -5900.39
+sphere.center_pos.x = 434.2 sphere.center_pos.y = 514.067 sphere.center_pos.z = -5950.59
+sphere.center_pos.x = 438.626 sphere.center_pos.y = 536.487 sphere.center_pos.z = -5938.55
+sphere.center_pos.x = 446.197 sphere.center_pos.y = 536.125 sphere.center_pos.z = -5933.85
+sphere.center_pos.x = 464.533 sphere.center_pos.y = 537.245 sphere.center_pos.z = -5921.77
+sphere.center_pos.x = 439.032 sphere.center_pos.y = 522.217 sphere.center_pos.z = -5945.77
+sphere.center_pos.x = 459.971 sphere.center_pos.y = 539.096 sphere.center_pos.z = -5923.6
+sphere.center_pos.x = 458.127 sphere.center_pos.y = 531.922 sphere.center_pos.z = -5928.66
+sphere.center_pos.x = 458.134 sphere.center_pos.y = 530.454 sphere.center_pos.z = -5929.6
+sphere.center_pos.x = 471.287 sphere.center_pos.y = 524.197 sphere.center_pos.z = -5924.67
+sphere.center_pos.x = 472.091 sphere.center_pos.y = 530.832 sphere.center_pos.z = -5920.56
+sphere.center_pos.x = 483.209 sphere.center_pos.y = 526.629 sphere.center_pos.z = -5915.94
+sphere.center_pos.x = 486.383 sphere.center_pos.y = 517.37 sphere.center_pos.z = -5918.85
+sphere.center_pos.x = 491.164 sphere.center_pos.y = 520.894 sphere.center_pos.z = -5914.12
+sphere.center_pos.x = 500.472 sphere.center_pos.y = 516.844 sphere.center_pos.z = -5910.54
+sphere.center_pos.x = 498.497 sphere.center_pos.y = 530.128 sphere.center_pos.z = -5904.51
+sphere.center_pos.x = 511.649 sphere.center_pos.y = 499.384 sphere.center_pos.z = -5913.12
+sphere.center_pos.x = 493.025 sphere.center_pos.y = 528.186 sphere.center_pos.z = -5908.98
+sphere.center_pos.x = 519.101 sphere.center_pos.y = 518.572 sphere.center_pos.z = -5898
+sphere.center_pos.x = 518.772 sphere.center_pos.y = 509.636 sphere.center_pos.z = -5903.09
+sphere.center_pos.x = 524.684 sphere.center_pos.y = 509.103 sphere.center_pos.z = -5899.7
+sphere.center_pos.x = 435.282 sphere.center_pos.y = 546.319 sphere.center_pos.z = -5935.23
+sphere.center_pos.x = 440.957 sphere.center_pos.y = 539.333 sphere.center_pos.z = -5935.3
+sphere.center_pos.x = 444.892 sphere.center_pos.y = 539.985 sphere.center_pos.z = -5932.5
+sphere.center_pos.x = 449.721 sphere.center_pos.y = 528.386 sphere.center_pos.z = -5935.84
+sphere.center_pos.x = 450.64 sphere.center_pos.y = 541.131 sphere.center_pos.z = -5928.29
+sphere.center_pos.x = 454.602 sphere.center_pos.y = 536.868 sphere.center_pos.z = -5928.16
+sphere.center_pos.x = 464.57 sphere.center_pos.y = 525.494 sphere.center_pos.z = -5928.17
+sphere.center_pos.x = 461.177 sphere.center_pos.y = 534.464 sphere.center_pos.z = -5925.38
+sphere.center_pos.x = 470.945 sphere.center_pos.y = 533.873 sphere.center_pos.z = -5919.62
+sphere.center_pos.x = 475.299 sphere.center_pos.y = 531.699 sphere.center_pos.z = -5918.1
+sphere.center_pos.x = 480.838 sphere.center_pos.y = 530.839 sphere.center_pos.z = -5915.12
+sphere.center_pos.x = 484.148 sphere.center_pos.y = 531.021 sphere.center_pos.z = -5912.96
+sphere.center_pos.x = 496.073 sphere.center_pos.y = 525.635 sphere.center_pos.z = -5908.48
+sphere.center_pos.x = 498.003 sphere.center_pos.y = 511.551 sphere.center_pos.z = -5914.97
+sphere.center_pos.x = 500.109 sphere.center_pos.y = 520.008 sphere.center_pos.z = -5909.04
+sphere.center_pos.x = 506.575 sphere.center_pos.y = 527.759 sphere.center_pos.z = -5900.78
+sphere.center_pos.x = 513.423 sphere.center_pos.y = 510.626 sphere.center_pos.z = -5905.88
+sphere.center_pos.x = 510.079 sphere.center_pos.y = 520.605 sphere.center_pos.z = -5902.51
+sphere.center_pos.x = 515.286 sphere.center_pos.y = 515.756 sphere.center_pos.z = -5901.91
+sphere.center_pos.x = 523.541 sphere.center_pos.y = 514.559 sphere.center_pos.z = -5897.43
+sphere.center_pos.x = 435.166 sphere.center_pos.y = 554.122 sphere.center_pos.z = -5930.72
+sphere.center_pos.x = 440.382 sphere.center_pos.y = 544.198 sphere.center_pos.z = -5933.02
+sphere.center_pos.x = 445.547 sphere.center_pos.y = 545.736 sphere.center_pos.z = -5928.95
+sphere.center_pos.x = 450.837 sphere.center_pos.y = 545.998 sphere.center_pos.z = -5925.51
+sphere.center_pos.x = 450.642 sphere.center_pos.y = 534.74 sphere.center_pos.z = -5931.78
+sphere.center_pos.x = 456.189 sphere.center_pos.y = 544.125 sphere.center_pos.z = -5923.2
+sphere.center_pos.x = 461.444 sphere.center_pos.y = 543.823 sphere.center_pos.z = -5920.1
+sphere.center_pos.x = 467.481 sphere.center_pos.y = 541.972 sphere.center_pos.z = -5917.35
+sphere.center_pos.x = 471.74 sphere.center_pos.y = 542.744 sphere.center_pos.z = -5914.28
+sphere.center_pos.x = 475.802 sphere.center_pos.y = 536.805 sphere.center_pos.z = -5914.99
+sphere.center_pos.x = 481.098 sphere.center_pos.y = 536.01 sphere.center_pos.z = -5912.13
+sphere.center_pos.x = 485.247 sphere.center_pos.y = 539.477 sphere.center_pos.z = -5907.65
+sphere.center_pos.x = 488.942 sphere.center_pos.y = 537.048 sphere.center_pos.z = -5906.68
+sphere.center_pos.x = 494.1 sphere.center_pos.y = 534.239 sphere.center_pos.z = -5905.01
+sphere.center_pos.x = 499.173 sphere.center_pos.y = 533.733 sphere.center_pos.z = -5902.12
+sphere.center_pos.x = 502.697 sphere.center_pos.y = 523.54 sphere.center_pos.z = -5905.5
+sphere.center_pos.x = 505.47 sphere.center_pos.y = 532.696 sphere.center_pos.z = -5898.77
+sphere.center_pos.x = 511.094 sphere.center_pos.y = 526.252 sphere.center_pos.z = -5898.79
+sphere.center_pos.x = 516.251 sphere.center_pos.y = 523.758 sphere.center_pos.z = -5896.94
+sphere.center_pos.x = 524.746 sphere.center_pos.y = 522.738 sphere.center_pos.z = -5892.21
+end
+all_spheres_inside_box.get_total_number() = 2000
+
+TIME_STAMP: Iteration: 24 collision_resolution                 19:49:29 (+ 19mili 330micro 820nano )
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  19:49:29 (+ 15micro 810nano )
+FATAL ERROR - 364 : /home/womackow/cpp_projects/article_project/_inc/sim.h -> found it
+Program          - took: 00:00:43

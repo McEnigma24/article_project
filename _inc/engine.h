@@ -22,7 +22,7 @@ public:
         Nano_Timer::Timer timer_Scene_Creation;
         Nano_Timer::Timer timer_Ray_Tracing;
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 30; i++)
         {
             Scene current_scene;
             // Setuper::setup_scene_0(&current_scene, "first");
@@ -51,6 +51,21 @@ public:
             }
             timer_Ray_Tracing.stop();
 #endif
+
+            if (i == 23 || i == 24)
+            {
+                auto& scene_spheres = current_scene.get_spheres();
+                var(scene_spheres.size());
+
+                for (auto& sphere : scene_spheres)
+                {
+                    varr(sphere.center_pos.x);
+                    varr(sphere.center_pos.y);
+                    var(sphere.center_pos.z);
+                }
+
+                if (i == 24) break;
+            }
 
             memory_index.switch_to_next();
 
