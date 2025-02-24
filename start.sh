@@ -105,7 +105,7 @@ env_prep()
     create_dir "$dir_log"
     create_dir "$dir_run_time_config"
 
-    if [[ "$CALLING_ARGUMENT" == "-c" ]]; then
+    if [[ "$CALLING_ARGUMENT" == *"-c"* ]]; then
         clear_dir "$dir_build"
     fi
 

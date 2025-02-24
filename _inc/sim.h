@@ -28,7 +28,8 @@ public:
     }
 
     void set_new_position(const d3& new_pos, u8 index) { position[index] = new_pos; }
-    void set_new_T(const unit& _T, u8 index) { T[index] = _T; }
+    void set_new_temperature(const unit& _T, u8 index) { T[index] = _T; }
+    void set_new_radius(const unit& _r, u8 index) { r[index] = _r; }
 };
 
 // na początku można zrobić z tymi prymitywnymi RÓWNOLEGŁYMI //
@@ -124,20 +125,22 @@ private:
 
     tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index& memory_index)
     {
-        unit smallest = u(1000000);
-        unit largest = u(0);
+        return {0, 3 * SIM_initial_temperature}; // blocking the accomodation to different ranges of temperatures
 
-        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
-        {
-            Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
+        // unit smallest = u(1000000);
+        // unit largest = u(0);
 
-            unit current_T = sim_sphere.get_T(memory_index.get());
+        // for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
+        // {
+        //     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
 
-            if (current_T < smallest) smallest = current_T;
-            if (current_T > largest) largest = current_T;
-        }
+        //     unit current_T = sim_sphere.get_T(memory_index.get());
 
-        return {smallest, largest};
+        //     if (current_T < smallest) smallest = current_T;
+        //     if (current_T > largest) largest = current_T;
+        // }
+
+        // return {smallest, largest};
     }
 
     // Function to interpolate between two colors based on temperature
@@ -167,9 +170,9 @@ public:
     Computation_Box()
     {
         SIM_scale = u(1);
-        SIM_initial_sphere_separation = u(0.8);
+        SIM_initial_sphere_separation = u(1.0);
         SIM_initial_radious = u(3);
-        SIM_initial_temperature = u(273.15);
+        SIM_initial_temperature = u(100);
 
         SCENE_scale = u(1);
         SCENE_sphere_separator = u(1);
@@ -218,12 +221,12 @@ public:
 
                     // clang-format off
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
-                                    // SIM_initial_radious
-                                    Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.5 * SIM_initial_radious)
+                                    SIM_initial_radious
+                                    // Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 3 * SIM_initial_radious)
 
                                     ,
                                     // SIM_initial_temperature
-                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, 273)
+                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, SIM_initial_temperature)
                                 );
 
                     // clang-format on
@@ -246,15 +249,18 @@ public:
     void per_sphere(const Memory_index& memory_index, const u64& i)
     {
         Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
-        d3 sphere_correction = d3(0, 0, 0);
+        const auto& current_pos = current_sphere.get_position(memory_index.get());
+        const auto& current_r = current_sphere.get_r(memory_index.get());
 
+        d3 sphere_correction = d3(0, 0, 0);
         for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
         {
             if (i == other_i) continue;
             Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
+            const auto& other_pos = other_sp.get_position(memory_index.get());
+            const auto& other_r = other_sp.get_r(memory_index.get());
 
-            auto [vec_from_A_to_B, distance] =
-                get_distance_and_vec_A_to_B(current_sphere.get_position(memory_index.get()), other_sp.get_position(memory_index.get()));
+            auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
 
 #ifdef TEMP_DISTRIBUTION
 
@@ -266,10 +272,13 @@ public:
             // + zapis stanu pod koniec do pamięci
             // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje i później zczyta jako tablica v3)
 
-#endif
+            // WSZYSTKIE WZORY //
+            // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
+
+#endif // TEMP_DISTRIBUTION
 
 #ifdef COLLISION_RESOLUTION
-            if (distance < (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())))
+            if (distance < (current_r + other_r))
             {
                 // nline;
                 // nline;
@@ -289,8 +298,8 @@ public:
                 // varr(vec_from_A_to_B.y);
                 // var (vec_from_A_to_B.z);
 
-                unit correction = (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())) - distance;
-                // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
+                unit correction = (current_r + other_r) - distance;
+                correction *= (current_r) / (current_r + other_r); // womackow - taking size into account when moving
 
                 // var(correction);
 
@@ -315,8 +324,7 @@ public:
 
 #ifdef COLLISION_RESOLUTION
 
-        d3 old_pos = current_sphere.get_position(memory_index.get());
-        d3 new_pos = old_pos + sphere_correction;
+        d3 new_pos = current_pos + sphere_correction;
 
         // sprawdzanie ze ścianami
         {
@@ -329,9 +337,19 @@ public:
         check_nan(new_pos.y);
         check_nan(new_pos.z);
 
-        // nadpisujemy następną pozycję
+        // nadpisujemy następne wartości
         current_sphere.set_new_position(new_pos, memory_index.get_next());
+
 #endif // COLLISION_RESOLUTION
+
+#ifdef TEMP_DISTRIBUTION
+
+        unit new_r = current_r * (1 + a(T i - T 0));
+
+        current_sphere.set_new_temperature(, memory_index.get_next());
+        current_sphere.set_new_radius(new_r, memory_index.get_next());
+
+#endif // TEMP_DISTRIBUTION
     }
 
     void iteration_step(const Memory_index& memory_index)
@@ -390,10 +408,12 @@ public:
 
             unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
 
+            // clang-format off
             Bmp_RGB scene_color =
-                // get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0,
-                // 0))
-                Bmp_RGB(255, 255, 255);
+                get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0, 0))
+                // Bmp_RGB(255, 255, 255)
+            ;
+            // clang-format on
 
             scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
         }
