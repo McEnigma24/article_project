@@ -216,14 +216,17 @@ public:
                 {
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
+                    // clang-format off
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
                                     // SIM_initial_radious
                                     Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.5 * SIM_initial_radious)
 
-                                        ,
+                                    ,
                                     // SIM_initial_temperature
-                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, 273));
+                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, 273)
+                                );
 
+                    // clang-format on
                     moving_x += x_adding;
                 }
                 moving_y += y_adding;
