@@ -1,7 +1,7 @@
 #pragma once
 #include "_constants_.h"
 #include "_shortcut_logs_.h"
-#include "_type_definitions_.h"
+#include "base/_type_definitions_.h"
 
 #include "RT_RGB_float.h"
 #include <random>

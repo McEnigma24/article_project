@@ -1,5 +1,5 @@
 #pragma once
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 #include <math.h>
 #include <vector>
 
@@ -24,10 +24,8 @@ public:
 
     void push(u64 p)
     {
-        if (p < min)
-            min = p;
-        if (max < p)
-            max = p;
+        if (p < min) min = p;
+        if (max < p) max = p;
 
         sum += p;
         count++;

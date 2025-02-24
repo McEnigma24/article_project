@@ -1,7 +1,7 @@
 #pragma once
 #include "CTRL_STATS_Stat_Record.h"
 #include "CTRL_Timer.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 #include <barrier>
 
 class Renderer;
@@ -51,14 +51,13 @@ public:
     // PREPARATIONS
     vector<loop_info_per_thread> prepare_subsets_for_threads_solid_blocks(u64 num_of_threads, u64 array_size);
     vector<loop_info_per_thread> prepare_subsets_for_threads_subsequent(u64 num_of_threads, u64 array_size);
-    vector<loop_info_per_thread> prepare_subsets_for_threads_subsequent_blocks(u64 num_of_threads, u64 block_size,
-                                                                               u64 array_size);
+    vector<loop_info_per_thread> prepare_subsets_for_threads_subsequent_blocks(u64 num_of_threads, u64 block_size, u64 array_size);
 
     Parallel_CPU(Renderer* _ptr);
 
     // MAIN FUNCTION
-    void thread_group_host_and_round_keeper(int round_counter, const int num_of_threads, u16 parallel_schema,
-                                            int custom_block_size, work_group& stats);
+    void thread_group_host_and_round_keeper(int round_counter, const int num_of_threads, u16 parallel_schema, int custom_block_size,
+                                            work_group& stats);
 
 private:
     Renderer* ptr;

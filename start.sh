@@ -10,6 +10,8 @@ dir_log="log"
 SCRIPT="./run.sh"
 LOG="../output/start.log"
 
+CALLING_ARGUMENT="$1"
+
 dir_run_time_config="run_time_config"
 path_DONE_installed="${dir_run_time_config}/DONE_installed.txt"
 
@@ -102,6 +104,10 @@ env_prep()
     create_dir "$dir_exe"
     create_dir "$dir_log"
     create_dir "$dir_run_time_config"
+
+    if [[ "$CALLING_ARGUMENT" == "-c" ]]; then
+        clear_dir "$dir_build"
+    fi
 
     chmod +x scripts/*.sh
 

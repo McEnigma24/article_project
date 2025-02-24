@@ -1,7 +1,7 @@
 #pragma once
 #include "RT_Hit_info_and_position.h"
 #include "RT_Ray.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 struct Hit_sphere : public Hit_info_and_position
 {
@@ -30,18 +30,13 @@ struct Hit_sphere : public Hit_info_and_position
     }
 
     GPU_LINE(__host__ __device__)
-    Hit_sphere(bool b = false, const d3& int_pos = -1) : Hit_info_and_position(b, int_pos), normal(), sphere_index(-1)
-    {
-    }
+    Hit_sphere(bool b = false, const d3& int_pos = -1) : Hit_info_and_position(b, int_pos), normal(), sphere_index(-1) {}
 
     GPU_LINE(__host__ __device__)
     void add_sphere_index(const u64& _sphere_index) { sphere_index = _sphere_index; }
 
     GPU_LINE(__host__ __device__)
-    void add_normal__provide_sphere_center(const d3& _center_pos)
-    {
-        normal.modify_after_construction(_center_pos, intersection_pos);
-    }
+    void add_normal__provide_sphere_center(const d3& _center_pos) { normal.modify_after_construction(_center_pos, intersection_pos); }
 
     GPU_LINE(__host__ __device__)
     Hit_sphere& operator=(const Hit_sphere& other)

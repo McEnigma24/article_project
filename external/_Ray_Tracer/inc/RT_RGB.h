@@ -1,5 +1,5 @@
 #pragma once
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 #include <random>
 
 class RGB
@@ -27,10 +27,7 @@ public:
         return ret;
     }
     GPU_LINE(__host__ __device__)
-    Color gradient_between_neg_1_to_1(RGB col_1, RGB col_2, unit percent)
-    {
-        return gradient_between_0_to_1(col_1, col_2, (percent + 1) / 2);
-    }
+    Color gradient_between_neg_1_to_1(RGB col_1, RGB col_2, unit percent) { return gradient_between_0_to_1(col_1, col_2, (percent + 1) / 2); }
     GPU_LINE(__host__ __device__)
     operator Color() { return Color(r, g, b); }
     GPU_LINE(__host__ __device__)
@@ -92,8 +89,5 @@ public:
     RGB operator-(const RGB& other) { return RGB(r - other.r, g - other.g, b - other.b); }
 
     GPU_LINE(__host__ __device__)
-    RGB operator*(unit multi)
-    {
-        return {static_cast<u8>(r * multi), static_cast<u8>(g * multi), static_cast<u8>(b * multi)};
-    }
+    RGB operator*(unit multi) { return {static_cast<u8>(r * multi), static_cast<u8>(g * multi), static_cast<u8>(b * multi)}; }
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include "RT_RGB_float.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 class RGB_float_sum_and_avg
 {
@@ -44,8 +44,7 @@ public:
     GPU_LINE(__host__ __device__)
     static void make_average(RGB_float_sum_and_avg& main)
     {
-        if (main.counter <= 1)
-            return;
+        if (main.counter <= 1) return;
 
         main.r /= main.counter;
         main.g /= main.counter;
@@ -97,8 +96,7 @@ public:
     GPU_LINE(__host__ __device__)
     void make_average()
     {
-        if (counter <= 1)
-            return;
+        if (counter <= 1) return;
 
         r /= counter;
         g /= counter;

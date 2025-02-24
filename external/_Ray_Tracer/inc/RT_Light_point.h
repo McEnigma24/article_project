@@ -2,7 +2,7 @@
 #include "RT_Dimensions.h"
 #include "RT_RGB.h"
 #include "RT_RGB_float.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 struct Light_point
 {

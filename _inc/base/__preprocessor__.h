@@ -16,11 +16,17 @@ using namespace std;
 
 #define path_run_time_config "../run_time_config"
 
-#define var(x) cout << #x << " = " << x << '\n';
-#define varr(x) cout << #x << " = " << x << ' ';
-#define line(x) cout << x << '\n';
-#define linee(x) cout << x << ' ';
-#define nline cout << '\n';
+// #define var(x) cout << #x << " = " << x << '\n';
+// #define varr(x) cout << #x << " = " << x << ' ';
+// #define line(x) cout << x << '\n';
+// #define linee(x) cout << x << ' ';
+// #define nline cout << '\n';
+
+#define var(x)
+#define varr(x)
+#define line(x)
+#define linee(x)
+#define nline
 
 int my_sum(int a, int b);
 
@@ -91,6 +97,9 @@ typedef double unit;
  if (x) FATAL_ERROR(#x)
 #define ASSERT_ER_IF_NULL(x)                                                                                                                         \
  if (x == null) FATAL_ERROR(#x)
+
+#define check_nan(x)                                                                                                                                 \
+ if (std::isnan(x)) { FATAL_ERROR("found it"); }
 
 #define SAFETY_CHECK(x) x;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "RT_RGB_float.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 struct Object
 {
@@ -12,8 +12,7 @@ struct Object
 
 public:
     Object(unit transparent, unit reflective, bool light, RGB_float col, Surface_type s_type)
-        : transparent_param(transparent), reflective_param(reflective), ligth_source(light), color(col),
-          surface_type(s_type)
+        : transparent_param(transparent), reflective_param(reflective), ligth_source(light), color(col), surface_type(s_type)
     {
     }
 };

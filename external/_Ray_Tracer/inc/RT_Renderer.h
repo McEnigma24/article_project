@@ -4,7 +4,7 @@
 #include "CTRL_Scene_Controller.h"
 #include "RT_Light_calculations.h"
 #include "RT_Ray.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 class Renderer
 {
@@ -38,19 +38,16 @@ public:
     WIN_LINE(void set_pixel_hack_for_showing_schema(const u64& coord, const Color& color);)
 
     GPU_LINE(__host__ __device__)
-    void per_pixel_starting(const i64 CAM_POS_X, const i64 CAM_POS_Y, const i64 CAM_POS_Z, const u64& WIDTH,
-                            const u64& coord, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights,
-                            Sphere* current_scene_spheres, details* current_scene_details);
+    void per_pixel_starting(const i64 CAM_POS_X, const i64 CAM_POS_Y, const i64 CAM_POS_Z, const u64& WIDTH, const u64& coord, Scene* current_scene,
+                            RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details);
 
     GPU_LINE(__host__ __device__)
-    void per_pixel(const u64 WIDTH, const i64 CAM_POS_X, const i64 CAM_POS_Y, const i64 CAM_POS_Z, const u64& x,
-                   const u64& y, Scene* current_scene, RGB* my_pixel, Light_point* current_scene_lights,
-                   Sphere* current_scene_spheres, details* current_scene_details);
+    void per_pixel(const u64 WIDTH, const i64 CAM_POS_X, const i64 CAM_POS_Y, const i64 CAM_POS_Z, const u64& x, const u64& y, Scene* current_scene,
+                   RGB* my_pixel, Light_point* current_scene_lights, Sphere* current_scene_spheres, details* current_scene_details);
 
     GPU_LINE(__host__ __device__)
-    void ray_looking_for_sphere(Hit_sphere& hit, const Ray& ray, Scene* current_scene,
-                                Light_point* current_scene_lights, Sphere* current_scene_spheres,
-                                details* current_scene_details);
+    void ray_looking_for_sphere(Hit_sphere& hit, const Ray& ray, Scene* current_scene, Light_point* current_scene_lights,
+                                Sphere* current_scene_spheres, details* current_scene_details);
 
     friend class Parallel_CPU;
 };

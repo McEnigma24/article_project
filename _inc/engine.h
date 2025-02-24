@@ -52,21 +52,6 @@ public:
             timer_Ray_Tracing.stop();
 #endif
 
-            if (i == 23 || i == 24)
-            {
-                auto& scene_spheres = current_scene.get_spheres();
-                var(scene_spheres.size());
-
-                for (auto& sphere : scene_spheres)
-                {
-                    varr(sphere.center_pos.x);
-                    varr(sphere.center_pos.y);
-                    var(sphere.center_pos.z);
-                }
-
-                if (i == 24) break;
-            }
-
             memory_index.switch_to_next();
 
             line("end");

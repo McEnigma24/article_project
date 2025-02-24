@@ -9,17 +9,17 @@
 #define print_var_name cout << var_name << " -> ";
 #define call_print(x) x.print(#x);
 
-#define perc(x) cout << #x << " = " << std::setprecision(2) << std::fixed << static_cast<float>(x) << "%\n";
-#define percc(x) cout << #x << " = " << std::setprecision(2) << std::fixed << static_cast<float>(x) << "% ";
-#define var(x) cout << #x << " = " << x << '\n';
-#define varr(x) cout << #x << " = " << x << ' ';
-#define coord(x, y) cout << "(" << x << ", " << y << ")" << '\n';
-#define line(x) cout << x << '\n';
-#define linee(x) cout << x << ' ';
-#define nline cout << '\n';
-#define my_loge cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   \n";
-#define my_log(x) cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   " << x << "\n";
-#define my_logg(x) cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   " << x << " ";
+// #define perc(x) cout << #x << " = " << std::setprecision(2) << std::fixed << static_cast<float>(x) << "%\n";
+// #define percc(x) cout << #x << " = " << std::setprecision(2) << std::fixed << static_cast<float>(x) << "% ";
+// #define var(x) cout << #x << " = " << x << '\n';
+// #define varr(x) cout << #x << " = " << x << ' ';
+// #define coord(x, y) cout << "(" << x << ", " << y << ")" << '\n';
+// #define line(x) cout << x << '\n';
+// #define linee(x) cout << x << ' ';
+// #define nline cout << '\n';
+// #define my_loge cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   \n";
+// #define my_log(x) cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   " << x << "\n";
+// #define my_logg(x) cout << "LOG: " << __FILENAME__ << " " << __LINE__ << "   " << x << " ";
 
 #define var_tuple(x)                                                                                                   \
     {                                                                                                                  \

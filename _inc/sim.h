@@ -217,10 +217,11 @@ public:
                     Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
 
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
-                                    SIM_initial_radious
-                                    // Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.5 *
-                                    // SIM_initial_radious) ,SIM_initial_temperature
-                                    ,
+                                    // SIM_initial_radious
+                                    Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.5 * SIM_initial_radious)
+
+                                        ,
+                                    // SIM_initial_temperature
                                     Randoms::Random_floating_point<double>::random_floating_in_range(0, 273));
 
                     moving_x += x_adding;
@@ -267,15 +268,44 @@ public:
 #ifdef COLLISION_RESOLUTION
             if (distance < (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())))
             {
+                // nline;
+                // nline;
+                // varr(vec_from_A_to_B.x);
+                // varr(vec_from_A_to_B.y);
+                // var (vec_from_A_to_B.z);
+
                 vec_from_A_to_B.normalize();
+
+                // varr(vec_from_A_to_B.x);
+                // varr(vec_from_A_to_B.y);
+                // var (vec_from_A_to_B.z);
+
                 vec_from_A_to_B.negate();
+
+                // varr(vec_from_A_to_B.x);
+                // varr(vec_from_A_to_B.y);
+                // var (vec_from_A_to_B.z);
 
                 unit correction = (current_sphere.get_r(memory_index.get()) + other_sp.get_r(memory_index.get())) - distance;
                 // correction *= ; // później uwzględniamy proporcję przesunięcia do rozmiaru sfer -> rA + rB
 
+                // var(correction);
+
                 vec_from_A_to_B *= correction;
 
+                // varr(vec_from_A_to_B.x);
+                // varr(vec_from_A_to_B.y);
+                // var (vec_from_A_to_B.z);
+
+                // varr(sphere_correction.x);
+                // varr(sphere_correction.y);
+                // var(sphere_correction.z);
+
                 sphere_correction += vec_from_A_to_B;
+
+                // varr(sphere_correction.x);
+                // varr(sphere_correction.y);
+                // var(sphere_correction.z);
             }
 #endif // COLLISION_RESOLUTION
         }
@@ -291,6 +321,10 @@ public:
             new_pos.y = my_clamp(new_pos.y, 0, space_HEIGHT);
             new_pos.z = my_clamp(new_pos.z, 0, space_DEPTH);
         }
+
+        check_nan(new_pos.x);
+        check_nan(new_pos.y);
+        check_nan(new_pos.z);
 
         // nadpisujemy następną pozycję
         current_sphere.set_new_position(new_pos, memory_index.get_next());
@@ -338,9 +372,6 @@ public:
             d3 scene_pos = sim_sphere.get_position(memory_index.get())
                 // * SCENE_sphere_separator
                 ; // to chyba rozszerza wszystko - oddzielać sfery od siebie
-
-#define check_nan(x)                                                                                                                                 \
- if (std::isnan(x)) { FATAL_ERROR("found it"); }
 
             check_nan(scene_pos.x);
             check_nan(scene_pos.y);

@@ -1,5 +1,5 @@
 #pragma once
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 #include <limits>
 
@@ -96,6 +96,7 @@ public:
     void normalize()
     {
         unit distance = d3::distance(*this);
+        if (distance == 0) return;
 
         x /= distance;
         y /= distance;

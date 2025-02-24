@@ -4,7 +4,7 @@
 #include "RT_Hit_sphere.h"
 #include "RT_Object.h"
 #include "RT_Ray.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 struct Sphere : public Object
 {
@@ -27,8 +27,7 @@ public:
 
         a = pow2(ray.d.x) + pow2(ray.d.y) + pow2(ray.d.z);
 
-        b = 2 * (ray.d.x * (ray.s.x - center_pos.x) + ray.d.y * (ray.s.y - center_pos.y) +
-                 ray.d.z * (ray.s.z - center_pos.z));
+        b = 2 * (ray.d.x * (ray.s.x - center_pos.x) + ray.d.y * (ray.s.y - center_pos.y) + ray.d.z * (ray.s.z - center_pos.z));
 
         c = pow2(center_pos.x) + pow2(center_pos.y) + pow2(center_pos.z) +
 
@@ -51,10 +50,7 @@ public:
 
         unit t = ((-b - sqrt(delta)) / (2 * a));
 
-        if (t < 0.1)
-        {
-            t = ((-b + sqrt(delta)) / (2 * a));
-        }
+        if (t < 0.1) { t = ((-b + sqrt(delta)) / (2 * a)); }
 
         if (t < 0.01)
         {

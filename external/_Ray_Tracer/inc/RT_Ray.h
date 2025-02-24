@@ -1,7 +1,7 @@
 #pragma once
 #include "FUNC_Random_functions.h"
 #include "RT_Dimensions.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 struct Ray
 {
@@ -11,18 +11,18 @@ struct Ray
     bool uninitialized_values;
 
 public:
-#define ray_prep                                                                                                       \
-    {                                                                                                                  \
-        d.x = ending_pos.x - starting_pos.x;                                                                           \
-        d.y = ending_pos.y - starting_pos.y;                                                                           \
-        d.z = ending_pos.z - starting_pos.z;                                                                           \
-                                                                                                                       \
-        distance = d3::distance(d);                                                                                    \
-                                                                                                                       \
-        d.x /= distance;                                                                                               \
-        d.y /= distance;                                                                                               \
-        d.z /= distance;                                                                                               \
-    }
+#define ray_prep                                                                                                                                     \
+ {                                                                                                                                                   \
+  d.x = ending_pos.x - starting_pos.x;                                                                                                               \
+  d.y = ending_pos.y - starting_pos.y;                                                                                                               \
+  d.z = ending_pos.z - starting_pos.z;                                                                                                               \
+                                                                                                                                                     \
+  distance = d3::distance(d);                                                                                                                        \
+                                                                                                                                                     \
+  d.x /= distance;                                                                                                                                   \
+  d.y /= distance;                                                                                                                                   \
+  d.z /= distance;                                                                                                                                   \
+ }
 
     GPU_LINE(__host__ __device__)
     unit dot_prod(const Ray& other) const
@@ -115,8 +115,7 @@ public:
     }
 
     GPU_LINE(__host__ __device__)
-    static void modify_after_construction_random_in_normal_hemisphere(Ray& main, const d3& starting_pos,
-                                                                      const Ray& normal)
+    static void modify_after_construction_random_in_normal_hemisphere(Ray& main, const d3& starting_pos, const Ray& normal)
     {
         main.uninitialized_values = false;
         d3::assign(main.s, starting_pos);
@@ -129,15 +128,11 @@ public:
 
         main.d.normalize();
 
-        if (Ray::dot_prod(main, normal) < 0)
-        {
-            main.d.negate();
-        }
+        if (Ray::dot_prod(main, normal) < 0) { main.d.negate(); }
     }
 
     GPU_LINE(__host__ __device__)
-    static void modify_after_constructionp_perfect_mirror(Ray& main, const d3& starting_pos,
-                                                          const d3& hit_ray_direction, const Ray& normal)
+    static void modify_after_constructionp_perfect_mirror(Ray& main, const d3& starting_pos, const d3& hit_ray_direction, const Ray& normal)
     {
         main.uninitialized_values = false;
         d3::assign(main.s, starting_pos);
@@ -205,15 +200,11 @@ public:
 
         d.normalize();
 
-        if (dot_prod(*this, normal) < 0)
-        {
-            d.negate();
-        }
+        if (dot_prod(*this, normal) < 0) { d.negate(); }
     }
 
     GPU_LINE(__host__ __device__)
-    void modify_after_constructionp_perfect_mirror(const d3& starting_pos, const d3& hit_ray_direction,
-                                                   const Ray& normal)
+    void modify_after_constructionp_perfect_mirror(const d3& starting_pos, const d3& hit_ray_direction, const Ray& normal)
     {
         uninitialized_values = false;
 

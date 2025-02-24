@@ -1,5 +1,5 @@
 #pragma once
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 class Timer
 {
@@ -9,8 +9,7 @@ class Timer
 private:
     string how_many_spaces_before(const u64& number);
     static tuple<u64, u64, u64, u64, u64> convert_nano_to_all_units_remainer(const u64& all_in_nano_seconds);
-    static tuple<double, double, double, double, double>
-    convert_nano_to_all_units_just_devisions(const u64& all_in_nano_seconds);
+    static tuple<double, double, double, double, double> convert_nano_to_all_units_just_devisions(const u64& all_in_nano_seconds);
     tuple<u64, u64, u64, u64, u64> remaining_time();
 
     static void log_cout(tuple<u64, u64, u64, u64, u64> all, u64 all_nano);

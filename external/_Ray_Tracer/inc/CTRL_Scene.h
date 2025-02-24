@@ -3,7 +3,7 @@
 #include "CTRL_Scene_exe_details.h"
 #include "RT_Light_point.h"
 #include "RT_Sphere.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 class Scene
 {
@@ -78,8 +78,7 @@ public:
 
     void add_light(const d3& pos, const RGB& light_color);
 
-    void add_sphere(const d3& c_pos, const unit& rad, const unit& transparent, const unit& reflective,
-                    Surface_type s_type, const RGB& col);
+    void add_sphere(const d3& c_pos, const unit& rad, const unit& transparent, const unit& reflective, Surface_type s_type, const RGB& col);
 
     friend class Renderer;
 };

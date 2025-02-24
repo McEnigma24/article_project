@@ -1,7 +1,7 @@
 #pragma once
 #include "RT_Dimensions.h"
 #include "RT_Sphere.h"
-#include "_preprocessor_.h"
+#include "base/_preprocessor_.h"
 
 class Distance_contest_spheres
 {
@@ -14,10 +14,7 @@ class Distance_contest_spheres
 
 public:
     GPU_LINE(__host__ __device__)
-    Distance_contest_spheres()
-        : WIDTH(0), HEIGHT(0), counter(0), current_closest_distance(-1), current_closest_hit_sphere(false)
-    {
-    }
+    Distance_contest_spheres() : WIDTH(0), HEIGHT(0), counter(0), current_closest_distance(-1), current_closest_hit_sphere(false) {}
 
     GPU_LINE(__host__ __device__)
     static void init(Distance_contest_spheres& obj, u64 _WIDTH, u64 _HEIGHT)
@@ -41,11 +38,7 @@ public:
         else
         {
             // liczymy po raz pierwszy dystans do wczeœniej na œlepo wziêtego punktu przeciêcia
-            if (counter == 1)
-            {
-                current_closest_distance =
-                    d3::distance_between(def_CAM_POS, current_closest_hit_sphere.intersection_pos);
-            }
+            if (counter == 1) { current_closest_distance = d3::distance_between(def_CAM_POS, current_closest_hit_sphere.intersection_pos); }
 
             unit distance_to_new_sphere = d3::distance_between(def_CAM_POS, hit_sphere.intersection_pos);
 
