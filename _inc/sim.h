@@ -4,6 +4,8 @@
 #include <cmath>
 #include <omp.h>
 
+#define M_PI (3.14159265358979323846)
+
 class Sim_sphere
 {
     d3 position[2];
@@ -103,6 +105,14 @@ class Computation_Box
     unit SIM_initial_radious;
     unit SIM_initial_temperature;
 
+    unit SIM_density;
+    unit SIM_heat_capacity;    // ciepło właściwe
+    unit SIM_wall_heat_reach;  // odległość od wybranej ściany, do której działa ogrzewanie
+    unit SIM_wall_heat_value;  // ilość ogrzewania od ściany
+    unit SIM_constant_cooling; // ciągłe wychładzanie
+
+    unit SIM_radious_change_proportion; // im większe tym szybciej rosną sfery i na odwrót
+
     unit SCENE_scale;
     unit SCENE_sphere_separator;
     d3 SCENE_pos_vector;
@@ -146,6 +156,9 @@ private:
     // Function to interpolate between two colors based on temperature
     Bmp_RGB get_color_from_temperature(unit temperature, unit smallest_T, unit largest_T, const Bmp_RGB& color_min, const Bmp_RGB& color_max)
     {
+        if (largest_T < temperature) return color_max;
+        if (temperature < smallest_T) return color_min;
+
         // Normalize the temperature value between 0 and 1
         float normalized_temp = (temperature - smallest_T) / (largest_T - smallest_T);
 
@@ -159,7 +172,7 @@ private:
         return Bmp_RGB(r, g, b);
     }
 
-    unit my_clamp(unit value, unit low, unit high)
+    unit my_clamp(const unit value, const unit low, const unit high)
     {
         if (high < value) return high;
         if (value < low) return low;
@@ -170,14 +183,21 @@ public:
     Computation_Box()
     {
         SIM_scale = u(1);
-        SIM_initial_sphere_separation = u(1.0);
+        SIM_initial_sphere_separation = u(1);
         SIM_initial_radious = u(3);
         SIM_initial_temperature = u(100);
 
-        SCENE_scale = u(1);
+        SIM_density = u(1);
+        SIM_heat_capacity = u(1);
+        SIM_wall_heat_reach = u(50);
+        SIM_wall_heat_value = u(20);
+        SIM_constant_cooling = u(10);
+
+        SIM_radious_change_proportion = u(0.003);
+
+        SCENE_scale = u(2);
         SCENE_sphere_separator = u(1);
     }
-
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
     {
         SIM_initial_radious *= SIM_scale;
@@ -186,9 +206,9 @@ public:
         space_HEIGHT = _space_HEIGHT * SIM_scale;
         space_DEPTH = _space_DEPTH * SIM_scale;
 
-        const unit starting_x000 = SIM_initial_radious;
-        const unit starting_y000 = SIM_initial_radious;
-        const unit starting_z000 = SIM_initial_radious;
+        const unit starting_x000 = 0; // SIM_initial_radious
+        const unit starting_y000 = 0; // SIM_initial_radious
+        const unit starting_z000 = 0; // SIM_initial_radious
 
         const unit x_adding = 2 * SIM_initial_radious * SIM_initial_sphere_separation;
         const unit y_adding = 2 * SIM_initial_radious * SIM_initial_sphere_separation;
@@ -222,11 +242,11 @@ public:
                     // clang-format off
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
                                     SIM_initial_radious
-                                    // Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 3 * SIM_initial_radious)
+                                    // Randoms::Random_floating_point<double>::random_floating_in_range(SIM_initial_radious, 1.2 * SIM_initial_radious)
 
                                     ,
-                                    // SIM_initial_temperature
-                                    Randoms::Random_floating_point<double>::random_floating_in_range(0, SIM_initial_temperature)
+                                    SIM_initial_temperature / 2
+                                    // Randoms::Random_floating_point<double>::random_floating_in_range(0, SIM_initial_temperature)
                                 );
 
                     // clang-format on
@@ -237,7 +257,6 @@ public:
             moving_z += z_adding;
         }
     }
-
     tuple<d3, unit> get_distance_and_vec_A_to_B(const d3& posA, const d3& posB)
     {
         d3 vec_from_A_to_B = posB - posA;
@@ -245,12 +264,72 @@ public:
 
         return {vec_from_A_to_B, distance};
     }
+    unit sphere_volume(const unit& r) { return (4.0 / 3.0) * M_PI * pow3(r); }
+    unit one_over_mass_and_heat_capasity(const unit& r)
+    {
+        return 1; // simplification
+
+        unit mass = sphere_volume(r) * SIM_density;
+
+        var(sphere_volume(r));
+        var(SIM_density);
+        var(mass);
+
+        var(SIM_heat_capacity);
+        var(mass * SIM_heat_capacity);
+        var((1 / (mass * SIM_heat_capacity)));
+
+        FATAL_ERROR("test");
+
+        return (1 / (mass * SIM_heat_capacity));
+    }
+    bool value_in_between(const unit value, const unit smaller_bound, const unit higher_bound)
+    {
+        return ((smaller_bound <= value) && (value <= higher_bound));
+    }
+
+    unit wall_influence_with_chosen_dimention(const unit dimention_value, const unit max_value)
+    {
+        // zakładam, że nie ma sytuacji w której przedziały się na siebie na chodzą (zawsze dostajemy ciepło tylko z jednej ze ścian)
+
+        if (value_in_between(dimention_value, 0, SIM_wall_heat_reach))
+        {
+            unit proportion = 1 - (dimention_value / SIM_wall_heat_reach);
+
+            return (proportion * SIM_wall_heat_value);
+        }
+        else if (value_in_between(dimention_value, max_value - SIM_wall_heat_reach, max_value))
+        {
+            unit proportion = ((dimention_value - (max_value - SIM_wall_heat_reach)) / SIM_wall_heat_reach);
+
+            return (proportion * SIM_wall_heat_value);
+        }
+        return 0;
+    }
+
+    unit enviroument_influence(const d3& pos)
+    {
+        unit change_in_T{};
+
+        // change_in_T += wall_influence_with_chosen_dimention(pos.x, space_WIDTH);
+        change_in_T += wall_influence_with_chosen_dimention(pos.y, space_HEIGHT);
+        // change_in_T += wall_influence_with_chosen_dimention(pos.z, space_DEPTH);
+
+        change_in_T -= SIM_constant_cooling; // womackow - to też można uzależnić od np. odległości do najbliższej ściany
+                                             //          - wtedy przekrój będzie lepiej wyglądał, że w środku trzyma ciepło
+
+        return change_in_T;
+    }
 
     void per_sphere(const Memory_index& memory_index, const u64& i)
     {
         Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
         const auto& current_pos = current_sphere.get_position(memory_index.get());
         const auto& current_r = current_sphere.get_r(memory_index.get());
+        const auto& current_T = current_sphere.get_T(memory_index.get());
+
+        unit running_sum_of_heat_change_due_to_radiation{};
+        unit running_sum_of_heat_change_due_to_conductivity{};
 
         d3 sphere_correction = d3(0, 0, 0);
         for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
@@ -259,6 +338,7 @@ public:
             Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
             const auto& other_pos = other_sp.get_position(memory_index.get());
             const auto& other_r = other_sp.get_r(memory_index.get());
+            const auto& other_T = other_sp.get_T(memory_index.get());
 
             auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
 
@@ -274,6 +354,12 @@ public:
 
             // WSZYSTKIE WZORY //
             // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
+
+            if (distance < ((current_r + other_r) * (1.3)))
+            {
+                // running_sum_of_heat_change_due_to_radiation +=
+                // running_sum_of_heat_change_due_to_conductivity +=
+            }
 
 #endif // TEMP_DISTRIBUTION
 
@@ -326,7 +412,7 @@ public:
 
         d3 new_pos = current_pos + sphere_correction;
 
-        // sprawdzanie ze ścianami
+        // wall correction
         {
             new_pos.x = my_clamp(new_pos.x, 0, space_WIDTH);
             new_pos.y = my_clamp(new_pos.y, 0, space_HEIGHT);
@@ -344,9 +430,27 @@ public:
 
 #ifdef TEMP_DISTRIBUTION
 
-        unit new_r = current_r * (1 + a(T i - T 0));
+        unit new_T =
+            current_T +
+            (one_over_mass_and_heat_capasity(current_r) *
+             (running_sum_of_heat_change_due_to_conductivity + running_sum_of_heat_change_due_to_radiation + enviroument_influence(current_pos)));
 
-        current_sphere.set_new_temperature(, memory_index.get_next());
+        new_T = std::max(u(0), new_T); // keeping temp above absolute zero
+
+        unit new_r =
+            current_r *
+            (1 + (SIM_radious_change_proportion *
+                  ((new_T - current_T)))); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
+                                           // i jeśli na nie trafimy to skip
+                                           // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
+                                           // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
+
+        new_r = std::min(1.5 * SIM_initial_radious, new_r); // womackow - tylko na teraz żeby nie rozbuchały,
+                                                            // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
+                                                            // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
+                                                            // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
+
+        current_sphere.set_new_temperature(new_T, memory_index.get_next());
         current_sphere.set_new_radius(new_r, memory_index.get_next());
 
 #endif // TEMP_DISTRIBUTION
@@ -356,7 +460,6 @@ public:
     {
 #ifdef CPU
         // # pragma omp parallel for schedule(static)
-        var(all_spheres_inside_box.get_total_number());
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
             per_sphere(memory_index, i);
@@ -368,7 +471,7 @@ public:
     {
         time_stamp("transform_to_My_Ray_Tracing_scene");
         SCENE_pos_vector =
-            d3(u(G::WIDTH / 2 - SIM_initial_radious - 50), u(G::HEIGHT / 2 - SIM_initial_radious - 30), u(-6000 - SIM_initial_radious));
+            d3(u(G::WIDTH / 2 - SIM_initial_radious - 100), u(G::HEIGHT / 2 - SIM_initial_radious - 50), u(-6000 - SIM_initial_radious));
 
         scene.assign_name("iteration");
 
@@ -397,6 +500,10 @@ public:
             check_nan(scene_pos.x);
             check_nan(scene_pos.y);
             check_nan(scene_pos.z);
+
+            scene_pos.x *= SCENE_scale;
+            scene_pos.y *= SCENE_scale;
+            scene_pos.z *= SCENE_scale;
 
             scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
 

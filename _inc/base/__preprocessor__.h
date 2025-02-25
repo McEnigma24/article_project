@@ -16,17 +16,17 @@ using namespace std;
 
 #define path_run_time_config "../run_time_config"
 
-// #define var(x) cout << #x << " = " << x << '\n';
-// #define varr(x) cout << #x << " = " << x << ' ';
-// #define line(x) cout << x << '\n';
-// #define linee(x) cout << x << ' ';
-// #define nline cout << '\n';
+#define var(x) cout << #x << " = " << x << '\n';
+#define varr(x) cout << #x << " = " << x << ' ';
+#define line(x) cout << x << '\n';
+#define linee(x) cout << x << ' ';
+#define nline cout << '\n';
 
-#define var(x)
-#define varr(x)
-#define line(x)
-#define linee(x)
-#define nline
+// #define var(x)
+// #define varr(x)
+// #define line(x)
+// #define linee(x)
+// #define nline
 
 int my_sum(int a, int b);
 
@@ -49,6 +49,7 @@ typedef double unit;
 
 #define null nullptr
 #define pow2(x) ((x) * (x))
+#define pow3(x) ((x) * (x) * (x))
 #define base_0(x) (x - 1)
 
 #define c_init(x) x(_##x)

@@ -22,10 +22,9 @@ public:
         Nano_Timer::Timer timer_Scene_Creation;
         Nano_Timer::Timer timer_Ray_Tracing;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 19; i++)
         {
             Scene current_scene;
-            // Setuper::setup_scene_0(&current_scene, "first");
 
             string current_i = "Iteration: " + to_string(i) + " ";
 
