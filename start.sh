@@ -81,6 +81,7 @@ install_packages()
         libgdk-pixbuf2.0-dev
         libgtk-3-dev
         libavfilter-dev
+        libnuma-dev
     )
 
     # Aktualizacja listy pakietów
