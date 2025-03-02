@@ -39,8 +39,8 @@ public:
 //                              ograniczone o jakiś dystans
 // collision_resolution      -> wszystkie, i poprawki tylko dla tych co się nachodzą
 
-#define BOUND_CHECKS_V3(...) __VA_ARGS__
-// #define BOUND_CHECKS_V3(...)
+// #define BOUND_CHECKS_V3(...) __VA_ARGS__
+#define BOUND_CHECKS_V3(...)
 
 template <typename T>
 class v3
@@ -51,7 +51,7 @@ class v3
     vector<T> buffer;
 
     bool bound_checks(u64 x, u64 y, u64 z) { return (0 <= x && x < WIDTH) && (0 <= y && y < HEIGHT) && (0 <= z && z < DEPTH); }
-    u64 d3_to_d1(u64 x, u64 y, u64 z) const { return x + y * (HEIGHT) + z * (WIDTH * HEIGHT); }
+    u64 d3_to_d1(u64 x, u64 y, u64 z) const { return x + y * (WIDTH) + z * (WIDTH * HEIGHT); }
 
 public:
     v3() : WIDTH(0), HEIGHT(0), DEPTH(0) {}
@@ -132,7 +132,6 @@ private:
         // var((space_dimention / (2 * SIM_initial_radious)));
         return (u64)(space_dimention / (2 * SIM_initial_radious));
     }
-
     tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index& memory_index)
     {
         return {0, 3 * SIM_initial_temperature}; // blocking the accomodation to different ranges of temperatures
@@ -152,7 +151,6 @@ private:
 
         // return {smallest, largest};
     }
-
     // Function to interpolate between two colors based on temperature
     Bmp_RGB get_color_from_temperature(unit temperature, unit smallest_T, unit largest_T, const Bmp_RGB& color_min, const Bmp_RGB& color_max)
     {
@@ -171,7 +169,6 @@ private:
 
         return Bmp_RGB(r, g, b);
     }
-
     unit my_clamp(const unit value, const unit low, const unit high)
     {
         if (high < value) return high;
@@ -195,7 +192,7 @@ public:
 
         SIM_radious_change_proportion = u(0.003);
 
-        SCENE_scale = u(2);
+        SCENE_scale = u(1);
         SCENE_sphere_separator = u(1);
     }
     void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
@@ -291,18 +288,19 @@ public:
     unit wall_influence_with_chosen_dimention(const unit dimention_value, const unit max_value)
     {
         // zakładam, że nie ma sytuacji w której przedziały się na siebie na chodzą (zawsze dostajemy ciepło tylko z jednej ze ścian)
+        unit reach_start = (max_value - SIM_wall_heat_reach);
 
         if (value_in_between(dimention_value, 0, SIM_wall_heat_reach))
         {
-            unit proportion = 1 - (dimention_value / SIM_wall_heat_reach);
+            unit proportion = u(1) - (dimention_value / SIM_wall_heat_reach);
 
             return (proportion * SIM_wall_heat_value);
         }
-        else if (value_in_between(dimention_value, max_value - SIM_wall_heat_reach, max_value))
+        else if (value_in_between(dimention_value, reach_start, max_value))
         {
-            unit proportion = ((dimention_value - (max_value - SIM_wall_heat_reach)) / SIM_wall_heat_reach);
+            unit proportion = ((dimention_value - reach_start) / SIM_wall_heat_reach);
 
-            return (proportion * SIM_wall_heat_value);
+            return (proportion * SIM_wall_heat_value) * 1.6;
         }
         return 0;
     }
@@ -459,7 +457,7 @@ public:
     void iteration_step(const Memory_index& memory_index)
     {
 #ifdef CPU
-        // # pragma omp parallel for schedule(static)
+# pragma omp parallel for schedule(static)
         for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
         {
             per_sphere(memory_index, i);

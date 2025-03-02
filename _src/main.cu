@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     unit times = u(1);
 
     // Engine engine(sm * u(40), sm * u(100), sm * u(20), // sim space params
-    Engine engine(times * u(120), times * u(120), times * u(30), // sim space params
+    Engine engine(times * u(120), times * u(220), times * u(30), // sim space params
                                                                  // 1024, 768,                     // render params
                   1000, 1000,                                    // render params
                   "movie.mp4", 5                                 // movie params
