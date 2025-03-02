@@ -355,7 +355,15 @@ public:
 
             if (distance < ((current_r + other_r) * (1.3)))
             {
+                // - ogarniamy ile energii trafia w sferę w zależności od jej odległości i rozmiaru -
+
                 // running_sum_of_heat_change_due_to_radiation +=
+            }
+
+            if (distance < (current_r + other_r))
+            {
+                // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
+
                 // running_sum_of_heat_change_due_to_conductivity +=
             }
 
