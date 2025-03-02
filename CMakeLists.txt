@@ -75,7 +75,7 @@ target_compile_definitions(${target_name} PRIVATE LINUX COLLISION_RESOLUTION TEM
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-${LIBRARY_PATH_BMP}/libbmp.so
+${LIBRARY_PATH_BMP}/libBMP.so
 ${LIBRARY_PATH_TIMERS}/libTimers.so
 ${LIBRARY_PATH_RANDOMS}/libRandoms.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
