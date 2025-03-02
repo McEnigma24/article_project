@@ -428,17 +428,27 @@ public:
 
 #ifdef TEMP_DISTRIBUTION
 
-        unit new_T =
-            current_T +
-            (one_over_mass_and_heat_capasity(current_r) *
-             (running_sum_of_heat_change_due_to_conductivity + running_sum_of_heat_change_due_to_radiation + enviroument_influence(current_pos)));
+        // clang-format off
+        unit new_T = current_T +
+            (
+                one_over_mass_and_heat_capasity(current_r) *
+                (
+                    running_sum_of_heat_change_due_to_conductivity +
+                    running_sum_of_heat_change_due_to_radiation
+
+                    + enviroument_influence(current_pos)
+                )
+            );
 
         new_T = std::max(u(0), new_T); // keeping temp above absolute zero
 
-        unit new_r =
-            current_r *
-            (1 + (SIM_radious_change_proportion *
-                  ((new_T - current_T)))); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
+        unit new_r = current_r *
+            (
+                1 + (
+                        SIM_radious_change_proportion *
+                        (new_T - current_T)
+                    )
+            ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
                                            // i jeśli na nie trafimy to skip
                                            // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
                                            // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
@@ -450,6 +460,7 @@ public:
 
         current_sphere.set_new_temperature(new_T, memory_index.get_next());
         current_sphere.set_new_radius(new_r, memory_index.get_next());
+        // clang-format on
 
 #endif // TEMP_DISTRIBUTION
     }
