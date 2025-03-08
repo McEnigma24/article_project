@@ -338,6 +338,10 @@ public:
             const auto& other_r = other_sp.get_r(memory_index.get());
             const auto& other_T = other_sp.get_T(memory_index.get());
 
+            const unit r_sum = current_r + other_r;
+            const unit r_smaller = std::min(current_r, other_r);
+            const unit r_bigger = std::max(current_r, other_r);
+
             auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
 
 #ifdef TEMP_DISTRIBUTION
@@ -353,14 +357,25 @@ public:
             // WSZYSTKIE WZORY //
             // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
 
-            if (distance < ((current_r + other_r) * (1.3)))
+            if (distance < (r_bigger * u(2)))
             {
                 // - ogarniamy ile energii trafia w sferę w zależności od jej odległości i rozmiaru -
 
-                // running_sum_of_heat_change_due_to_radiation +=
+                // AKTUALNIE - ten sposób przekazuje także kiedy sfery się nachodzą //
+
+                // OTHER - emmits //
+                // CURRENT - calculates how much it gets //
+
+                const unit tan_value = current_r / distance;
+                const unit alfa = 2 * atan(tan_value);
+                const unit percent_of_captured_energy = alfa / (2 * M_PI);
+
+                unit other_sphere_total_emmited_enery = 10;
+
+                running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_enery * percent_of_captured_energy;
             }
 
-            if (distance < (current_r + other_r))
+            if (distance < r_sum)
             {
                 // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
 
@@ -370,7 +385,7 @@ public:
 #endif // TEMP_DISTRIBUTION
 
 #ifdef COLLISION_RESOLUTION
-            if (distance < (current_r + other_r))
+            if (distance < r_sum)
             {
                 // nline;
                 // nline;
@@ -390,8 +405,8 @@ public:
                 // varr(vec_from_A_to_B.y);
                 // var (vec_from_A_to_B.z);
 
-                unit correction = (current_r + other_r) - distance;
-                correction *= (current_r) / (current_r + other_r); // womackow - taking size into account when moving
+                unit correction = r_sum - distance;
+                correction *= (current_r) / r_sum; // womackow - taking size into account when moving
 
                 // var(correction);
 
