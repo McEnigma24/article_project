@@ -6,6 +6,7 @@
 
 #define M_PI (3.14159265358979323846)
 
+#ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
 class Sim_sphere
 {
     d3 position[2];
@@ -15,9 +16,9 @@ class Sim_sphere
 public:
     Sim_sphere() { memset(this, 0, sizeof(*this)); }
 
-    d3 get_position(u8 index) const { return position[index]; }
-    unit get_r(u8 index) const { return r[index]; }
-    unit get_T(u8 index) const { return T[index]; }
+    d3& get_position(u8 index) { return position[index]; }
+    unit& get_r(u8 index) { return r[index]; }
+    unit& get_T(u8 index) { return T[index]; }
 
     void init(const d3& _position, const unit& _r, const unit& _T)
     {
@@ -28,11 +29,29 @@ public:
         T[0] = _T;
         T[1] = _T;
     }
-
-    void set_new_position(const d3& new_pos, u8 index) { position[index] = new_pos; }
-    void set_new_temperature(const unit& _T, u8 index) { T[index] = _T; }
-    void set_new_radius(const unit& _r, u8 index) { r[index] = _r; }
 };
+#else
+class Sim_sphere
+{
+    d3 position;
+    unit r;
+    unit T;
+
+public:
+    Sim_sphere() { memset(this, 0, sizeof(*this)); }
+
+    d3& get_position() { return position; }
+    unit& get_r() { return r; }
+    unit& get_T() { return T; }
+
+    void init(const d3& _position, const unit& _r, const unit& _T)
+    {
+        position = _position;
+        r = _r;
+        T = _T;
+    }
+};
+#endif
 
 // na początku można zrobić z tymi prymitywnymi RÓWNOLEGŁYMI //
 // temp_dist                -> dla wszystkich par (nowe pary, jeśli ilość sfer się zmieni)
@@ -85,17 +104,18 @@ public:
     }
 };
 
-class Memory_index
+class Memory_index_cyclic
 {
-    u8 index;
+    u64 index;
+    const u64 cyclic_length;
 
 public:
-    Memory_index() : index(0) {}
+    Memory_index_cyclic(const u64 _cyclic_length) : index(0), cyclic_length(_cyclic_length) {}
 
-    u8 get() const { return index; }
-    u8 get_next() const { return (index + 1) % 2; }
+    u64 get() const { return index; }
+    u64 get_next() const { return (index + 1) % cyclic_length; }
 
-    void switch_to_next() { index = (index + 1) % 2; }
+    void switch_to_next() { index = get_next(); }
 };
 
 class Computation_Box
@@ -122,6 +142,7 @@ class Computation_Box
     unit space_DEPTH;
 
     v3<Sim_sphere> all_spheres_inside_box;
+    vector<v3<Sim_sphere>> all_spheres_inside_box_ALL_iterations;
 
 private:
     u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention)
@@ -132,7 +153,7 @@ private:
         // var((space_dimention / (2 * SIM_initial_radious)));
         return (u64)(space_dimention / (2 * SIM_initial_radious));
     }
-    tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index& memory_index)
+    tuple<unit, unit> get_smallest_and_largest_temp(const Memory_index_cyclic& memory_index)
     {
         return {0, 3 * SIM_initial_temperature}; // blocking the accomodation to different ranges of temperatures
 
@@ -188,14 +209,14 @@ public:
         SIM_heat_capacity = u(1);
         SIM_wall_heat_reach = u(50);
         SIM_wall_heat_value = u(20);
-        SIM_constant_cooling = u(10);
+        SIM_constant_cooling = u(0);
 
         SIM_radious_change_proportion = u(0.003);
 
         SCENE_scale = u(1);
         SCENE_sphere_separator = u(1);
     }
-    void fill_space_with_spheres(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH)
+    void fill_space_with_spheres(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, const u64 number_of_iterations)
     {
         SIM_initial_radious *= SIM_scale;
 
@@ -223,7 +244,13 @@ public:
         u64 total = how_many_spheres_fit_in_X * how_many_spheres_fit_in_Y * how_many_spheres_fit_in_Z;
         var(total);
 
-        all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
+        all_spheres_inside_box_ALL_iterations.resize(number_of_iterations);
+        for (auto& sim_iterations : all_spheres_inside_box_ALL_iterations)
+        {
+            sim_iterations.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
+        }
+
+        // all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
 
         unit moving_z = starting_z000;
         for (u64 z = 0; z < how_many_spheres_fit_in_Z; z++)
@@ -234,7 +261,8 @@ public:
                 unit moving_x = starting_x000;
                 for (u64 x = 0; x < how_many_spheres_fit_in_X; x++)
                 {
-                    Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+                    // Sim_sphere& sim_sphere = *all_spheres_inside_box.get(x, y, z);
+                    Sim_sphere& sim_sphere = *((all_spheres_inside_box_ALL_iterations[0]).get(x, y, z));
 
                     // clang-format off
                     sim_sphere.init(d3(moving_x, moving_y, moving_z),
@@ -319,187 +347,7 @@ public:
         return change_in_T;
     }
 
-    void per_sphere(const Memory_index& memory_index, const u64& i)
-    {
-        Sim_sphere& current_sphere = *all_spheres_inside_box.get(i);
-        const auto& current_pos = current_sphere.get_position(memory_index.get());
-        const auto& current_r = current_sphere.get_r(memory_index.get());
-        const auto& current_T = current_sphere.get_T(memory_index.get());
-
-        unit running_sum_of_heat_change_due_to_radiation{};
-        unit running_sum_of_heat_change_due_to_conductivity{};
-
-        d3 sphere_correction = d3(0, 0, 0);
-        for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
-        {
-            if (i == other_i) continue;
-            Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
-            const auto& other_pos = other_sp.get_position(memory_index.get());
-            const auto& other_r = other_sp.get_r(memory_index.get());
-            const auto& other_T = other_sp.get_T(memory_index.get());
-
-            const unit r_sum = current_r + other_r;
-            const unit r_smaller = std::min(current_r, other_r);
-            const unit r_bigger = std::max(current_r, other_r);
-
-            auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
-
-#ifdef TEMP_DISTRIBUTION
-
-            // jeśli dystans się zgadza i jest np. mniejszy niż 2 * r Current_sfery to bierzemy sferę do obliczeń
-            // tak samo jak collision, sumujemy wszystkie zmiany albo jakiś inny mechanizm i pod koniec pętli zmieniamy następny memory index
-            // tak samo promień, zmieniamy tego następnego
-
-            // dla GPU - można wykonać najpierw wszystkie kroki iteracyjne i tylko synchronizować je po przeiterowaniu i wykonaniu jednej per_sphere
-            // + zapis stanu pod koniec do pamięci
-            // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje i później zczyta jako tablica v3)
-
-            // WSZYSTKIE WZORY //
-            // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
-
-            if (distance < (r_bigger * u(2)))
-            {
-                // - ogarniamy ile energii trafia w sferę w zależności od jej odległości i rozmiaru -
-
-                // AKTUALNIE - ten sposób przekazuje także kiedy sfery się nachodzą //
-
-                // OTHER - emmits //
-                // CURRENT - calculates how much it gets //
-
-                const unit tan_value = current_r / distance;
-                const unit alfa = 2 * atan(tan_value);
-                const unit percent_of_captured_energy = alfa / (2 * M_PI);
-
-                unit other_sphere_total_emmited_enery = 10;
-
-                running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_enery * percent_of_captured_energy;
-            }
-
-            if (distance < r_sum)
-            {
-                // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
-
-                // running_sum_of_heat_change_due_to_conductivity +=
-            }
-
-#endif // TEMP_DISTRIBUTION
-
-#ifdef COLLISION_RESOLUTION
-            if (distance < r_sum)
-            {
-                // nline;
-                // nline;
-                // varr(vec_from_A_to_B.x);
-                // varr(vec_from_A_to_B.y);
-                // var (vec_from_A_to_B.z);
-
-                vec_from_A_to_B.normalize();
-
-                // varr(vec_from_A_to_B.x);
-                // varr(vec_from_A_to_B.y);
-                // var (vec_from_A_to_B.z);
-
-                vec_from_A_to_B.negate();
-
-                // varr(vec_from_A_to_B.x);
-                // varr(vec_from_A_to_B.y);
-                // var (vec_from_A_to_B.z);
-
-                unit correction = r_sum - distance;
-                correction *= (current_r) / r_sum; // womackow - taking size into account when moving
-
-                // var(correction);
-
-                vec_from_A_to_B *= correction;
-
-                // varr(vec_from_A_to_B.x);
-                // varr(vec_from_A_to_B.y);
-                // var (vec_from_A_to_B.z);
-
-                // varr(sphere_correction.x);
-                // varr(sphere_correction.y);
-                // var(sphere_correction.z);
-
-                sphere_correction += vec_from_A_to_B;
-
-                // varr(sphere_correction.x);
-                // varr(sphere_correction.y);
-                // var(sphere_correction.z);
-            }
-#endif // COLLISION_RESOLUTION
-        }
-
-#ifdef COLLISION_RESOLUTION
-
-        d3 new_pos = current_pos + sphere_correction;
-
-        // wall correction
-        {
-            new_pos.x = my_clamp(new_pos.x, 0, space_WIDTH);
-            new_pos.y = my_clamp(new_pos.y, 0, space_HEIGHT);
-            new_pos.z = my_clamp(new_pos.z, 0, space_DEPTH);
-        }
-
-        check_nan(new_pos.x);
-        check_nan(new_pos.y);
-        check_nan(new_pos.z);
-
-        // nadpisujemy następne wartości
-        current_sphere.set_new_position(new_pos, memory_index.get_next());
-
-#endif // COLLISION_RESOLUTION
-
-#ifdef TEMP_DISTRIBUTION
-
-        // clang-format off
-        unit new_T = current_T +
-            (
-                one_over_mass_and_heat_capasity(current_r) *
-                (
-                    running_sum_of_heat_change_due_to_conductivity +
-                    running_sum_of_heat_change_due_to_radiation
-
-                    + enviroument_influence(current_pos)
-                )
-            );
-
-        new_T = std::max(u(0), new_T); // keeping temp above absolute zero
-
-        unit new_r = current_r *
-            (
-                1 + (
-                        SIM_radious_change_proportion *
-                        (new_T - current_T)
-                    )
-            ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
-                                           // i jeśli na nie trafimy to skip
-                                           // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
-                                           // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
-
-        new_r = std::min(1.5 * SIM_initial_radious, new_r); // womackow - tylko na teraz żeby nie rozbuchały,
-                                                            // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
-                                                            // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
-                                                            // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
-
-        current_sphere.set_new_temperature(new_T, memory_index.get_next());
-        current_sphere.set_new_radius(new_r, memory_index.get_next());
-        // clang-format on
-
-#endif // TEMP_DISTRIBUTION
-    }
-
-    void iteration_step(const Memory_index& memory_index)
-    {
-#ifdef CPU
-# pragma omp parallel for schedule(static)
-        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
-        {
-            per_sphere(memory_index, i);
-        }
-#endif // CPU
-    }
-
-    void transform_to_My_Ray_Tracing_scene(Scene& scene, const Memory_index& memory_index)
+    void transform_to_My_Ray_Tracing_scene(Scene& scene, const Memory_index_cyclic& memory_index)
     {
         time_stamp("transform_to_My_Ray_Tracing_scene");
         SCENE_pos_vector =
@@ -563,5 +411,237 @@ public:
 
         scene.add_scene_detail(light_limit, sphere_limit, bounce_limit);
         scene.add_thread_group(16, 0, 0);
+    }
+
+    // clang-format off
+    void cpu_double_buffering(const u64& number_of_iterations)
+    {
+        #pragma omp parallel
+        {
+            Memory_index_cyclic memory_index_cyclic(2);
+
+            for(u64 iter=1; iter < number_of_iterations; iter++)
+            {
+                #pragma omp for schedule(static)
+                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box.get_total_number(); sphere_index++)
+                {
+                    per_sphere(memory_index_cyclic, sphere_index);
+                }
+
+                memory_index_cyclic.switch_to_next();
+                #pragma omp barrier
+                #pragma omp master
+                {
+                    // kopiujemy 0 do indexów 1 - 25 //
+
+                    
+                }
+                #pragma omp barrier
+            }
+        }
+    }
+
+    // SAME PROGRAM - different functions
+
+    // N-buffering      -> tab*, tab_index (0, 1, 2, ...), current_sphere_index     - next value is in other obj
+    // Double-buffering -> tab*, tab_index (0, 1, 0, ...), current_sphere_index     - next value is in other obj
+
+    // DIFFERENT PROGRAM - later - leave and create new code
+    // Double-buffering -> tab*, current_sphere_index (0, 1, 0, ...)                - next value is same obj
+
+    void per_sphere(const Memory_index_cyclic& memory_index, const u64& sphere_index)
+    {
+        #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+            Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[0].get(sphere_index));             // always using 0 index
+            Sim_sphere& current_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[0].get(sphere_index));
+            
+            const auto& current_pos = current_sphere.get_position(memory_index.get());
+            const auto& current_r = current_sphere.get_r(memory_index.get());
+            const auto& current_T = current_sphere.get_T(memory_index.get());
+
+            auto& current_pos_NEXT_VALUE = current_sphere_NEXT_VALUE.get_position(memory_index.get_next()); // getting from the same memory
+            auto& current_r_NEXT_VALUE = current_sphere_NEXT_VALUE.get_r(memory_index.get_next());
+            auto& current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T(memory_index.get_next());
+
+        #else
+
+            Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(sphere_index));
+            Sim_sphere& current_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[memory_index.get_next()].get(sphere_index));
+
+            const auto& current_pos = current_sphere.get_position();
+            const auto& current_r = current_sphere.get_r();
+            const auto& current_T = current_sphere.get_T();
+
+            auto& current_pos_NEXT_VALUE = current_sphere_NEXT_VALUE.get_position(); // getting from different memory
+            auto& current_r_NEXT_VALUE = current_sphere_NEXT_VALUE.get_r();
+            auto& current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T();
+        #endif
+
+        unit running_sum_of_heat_change_due_to_radiation{};
+        unit running_sum_of_heat_change_due_to_conductivity{};
+
+        d3 sphere_correction = d3(0, 0, 0);
+        for (u64 other_i = 0; other_i < all_spheres_inside_box.get_total_number(); other_i++)
+        {
+            if (sphere_index == other_i) continue;
+
+            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+                Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[0].get(other_i));
+                
+                const auto& other_pos = current_sphere.get_position(memory_index.get());
+                const auto& other_r = current_sphere.get_r(memory_index.get());
+                const auto& other_T = current_sphere.get_T(memory_index.get());
+            #else
+
+                Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(other_i));                
+
+                const auto& other_pos = current_sphere.get_position();
+                const auto& other_r = current_sphere.get_r();
+                const auto& other_T = current_sphere.get_T();
+            #endif
+
+            // Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
+
+            // #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+            //     const auto& other_pos = other_sp.get_position(memory_index.get());
+            //     const auto& other_r = other_sp.get_r(memory_index.get());
+            //     const auto& other_T = other_sp.get_T(memory_index.get());
+            // #endif
+
+            const unit r_sum = current_r + other_r;
+            const unit r_smaller = std::min(current_r, other_r);
+            const unit r_bigger = std::max(current_r, other_r);
+
+            auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
+
+            #ifdef TEMP_DISTRIBUTION
+
+                // jeśli dystans się zgadza sphere_index jest np. mniejszy niż 2 * r Current_sfery to bierzemy sferę do obliczeń
+                // tak samo jak collision, sumujemy wszystkie zmiany albo jakiś inny mechanizm sphere_index pod koniec pętli zmieniamy następny memory index
+                // tak samo promień, zmieniamy tego następnego
+
+                // dla GPU - można wykonać najpierw wszystkie kroki iteracyjne sphere_index tylko synchronizować je po przeiterowaniu sphere_index wykonaniu jednej per_sphere
+                // + zapis stanu pod koniec do pamięci
+                // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje sphere_index później zczyta jako tablica v3)
+
+                // WSZYSTKIE WZORY //
+                // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
+
+                if (distance < (r_bigger * u(2)))
+                {
+                    // - ogarniamy ile energii trafia w sferę w zależności od jej odległości sphere_index rozmiaru -
+
+                    // AKTUALNIE - ten sposób przekazuje także kiedy sfery się nachodzą //
+
+                    // OTHER - emmits //
+                    // CURRENT - calculates how much it gets //
+
+                    const unit tan_value = current_r / distance;
+                    const unit alfa = 2 * atan(tan_value);
+                    const unit percent_of_captured_energy = alfa / (2 * M_PI);
+
+                    unit other_sphere_total_emmited_energy = 10;
+
+                    running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_energy * percent_of_captured_energy;
+                }
+
+                if (distance < r_sum)
+                {
+                    // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
+
+                    // running_sum_of_heat_change_due_to_conductivity +=
+                }
+
+            #endif // TEMP_DISTRIBUTION
+
+            #ifdef COLLISION_RESOLUTION
+                if (distance < r_sum)
+                {
+                    vec_from_A_to_B.normalize();
+                    vec_from_A_to_B.negate();
+                    
+                    unit correction = r_sum - distance;
+                    correction *= (current_r) / r_sum; // womackow - taking size into account when moving
+
+                    vec_from_A_to_B *= correction;
+                    sphere_correction += vec_from_A_to_B;
+                }
+            #endif // COLLISION_RESOLUTION
+
+            #ifdef VOLUME_TRANSFER
+                // tutaj będzie przeszukiwanie najgorętszej sfery w okolicy
+
+                // trzeba złapać do niej pointer, bo będziemy musieli jej później nadpisać wartości
+
+            #endif // VOLUME_TRANSFER
+        }
+
+        #ifdef COLLISION_RESOLUTION
+
+            d3 new_pos = current_pos + sphere_correction;
+
+            // wall correction
+            {
+                new_pos.x = my_clamp(new_pos.x, 0, space_WIDTH);
+                new_pos.y = my_clamp(new_pos.y, 0, space_HEIGHT);
+                new_pos.z = my_clamp(new_pos.z, 0, space_DEPTH);
+            }
+
+            check_nan(new_pos.x);
+            check_nan(new_pos.y);
+            check_nan(new_pos.z);
+
+            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+                current_pos_NEXT_VALUE = new_pos;
+            #endif
+
+        #endif // COLLISION_RESOLUTION
+
+        #ifdef TEMP_DISTRIBUTION
+
+            // clang-format off
+            unit new_T = current_T +
+                (
+                    one_over_mass_and_heat_capasity(current_r) *
+                    (
+                        running_sum_of_heat_change_due_to_conductivity +
+                        running_sum_of_heat_change_due_to_radiation
+
+                        + enviroument_influence(current_pos)
+                    )
+                );
+
+            new_T = std::max(u(0), new_T); // keeping temp above absolute zero
+
+            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+                current_T_NEXT_VALUE = new_T;
+            #endif
+        #endif // TEMP_DISTRIBUTION
+
+        #ifdef VOLUME_TRANSFER
+
+            // ZARÓWNO zmiana CURRENT_next_value musi być zrobiona atomowa
+            // tak samo OTHER_next_value musi
+
+            unit new_r = current_r *
+                (
+                    1 + (
+                            SIM_radious_change_proportion *
+                            (new_T - current_T)
+                        )
+                ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
+                                            // sphere_index jeśli na nie trafimy to skip
+                                            // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
+                                            // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
+
+            new_r = std::min(1.5 * SIM_initial_radious, new_r); // womackow - tylko na teraz żeby nie rozbuchały,
+                                                                // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
+                                                                // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
+                                                                // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
+
+            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+                current_r_NEXT_VALUE = new_r;
+            #endif
+        #endif // VOLUME_TRANSFER
     }
 };

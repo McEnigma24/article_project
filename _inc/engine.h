@@ -8,62 +8,65 @@ class Engine
     INPUT_scene_OUTPUT_movie movie;
 
 public:
-    Engine(unit _space_WIDTH, unit _space_HEIGHT, unit _space_DEPTH, u64 _WIDTH, u64 _HEIGHT, const string& _name, int _frame_rate = 1)
-        : movie(_WIDTH, _HEIGHT, _name, _frame_rate)
-    {
-        computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH);
-    }
+    Engine(u64 _WIDTH, u64 _HEIGHT, const string& _name, int _frame_rate = 1) : movie(_WIDTH, _HEIGHT, _name, _frame_rate) {}
 
-    void start()
+    void start(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, const u64 number_of_iterations = 25)
     {
-        Memory_index memory_index;
-        Nano_Timer::Timer timer_sim_Temp_Dirt;
-        Nano_Timer::Timer timer_sim_Collision_Res;
+        Nano_Timer::Timer timer_SIM;
         Nano_Timer::Timer timer_Scene_Creation;
         Nano_Timer::Timer timer_Ray_Tracing;
 
-        for (int i = 0; i < 19; i++)
+        computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
+
+        timer_SIM.start();
         {
-            Scene current_scene;
-
-            string current_i = "Iteration: " + to_string(i) + " ";
-
-            timer_sim_Collision_Res.start();
-            {
-                computation_box.iteration_step(memory_index);
-                time_stamp(current_i + "collision_resolution");
-            }
-            timer_sim_Collision_Res.stop();
-
-#ifdef RENDER_ACTIVE
-            timer_Scene_Creation.start();
-            {
-                computation_box.transform_to_My_Ray_Tracing_scene(current_scene, memory_index);
-                time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
-            }
-            timer_Scene_Creation.stop();
-
-            timer_Ray_Tracing.start();
-            {
-                movie.add_scene(current_scene);
-                time_stamp(current_i + "add_scene");
-            }
-            timer_Ray_Tracing.stop();
-#endif
-
-            memory_index.switch_to_next();
-
-            line("end");
+            computation_box.;
+            time_stamp(current_i + "collision_resolution");
         }
+        timer_SIM.stop();
 
-#ifdef RENDER_ACTIVE
-        movie.combine_to_movie();
-        time_stamp("combine_to_movie");
-#endif
+        //         for (int i = 0; i < 19; i++)
+        //         {
+
+        //             string current_i = "Iteration: " + to_string(i) + " ";
+
+        //             timer_SIM.start();
+        //             {
+        //                 computation_box.iteration_step(memory_index);
+        //                 time_stamp(current_i + "collision_resolution");
+        //             }
+        //             timer_SIM.stop();
+
+        // #ifdef RENDER_ACTIVE
+        //             Scene current_scene;
+        //             timer_Scene_Creation.start();
+        //             {
+        //                 computation_box.transform_to_My_Ray_Tracing_scene(current_scene, memory_index);
+        //                 time_stamp(current_i + "transform_to_My_Ray_Tracing_scene");
+        //             }
+        //             timer_Scene_Creation.stop();
+
+        //             timer_Ray_Tracing.start();
+        //             {
+        //                 movie.add_scene(current_scene);
+        //                 time_stamp(current_i + "add_scene");
+        //             }
+        //             timer_Ray_Tracing.stop();
+        // #endif
+
+        //             memory_index.switch_to_next();
+
+        //             line("end");
+        //         }
+
+        // #ifdef RENDER_ACTIVE
+        //         movie.combine_to_movie();
+        //         time_stamp("combine_to_movie");
+        // #endif
 
         nline;
-        line("timer_sim_Collision_Res");
-        timer_sim_Collision_Res.log();
+        line("timer_SIM");
+        timer_SIM.log();
         nline;
         line("timer_Scene_Creation");
         timer_Scene_Creation.log();
