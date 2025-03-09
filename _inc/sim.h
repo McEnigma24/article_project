@@ -1,3 +1,4 @@
+#include "Multithreaded_Memcpy.h"
 #include "Nano_Timer.h"
 #include "Randoms.h"
 #include "visualizer.h"
@@ -88,6 +89,7 @@ public:
     u64 get_height() const { return HEIGHT; }
     u64 get_depth() const { return DEPTH; }
     u64 get_total_number() const { return buffer.size(); }
+    T* data() { return buffer.data(); }
 
     T* get(u64 x, u64 y, u64 z)
     {
@@ -434,7 +436,14 @@ public:
                 {
                     // kopiujemy 0 do indexów 1 - 25 //
 
-                    
+                    // Multithreaded_Memcpy::cpy
+
+                    memcpy(                       (void*) all_spheres_inside_box_ALL_iterations[0].data()
+                                                , (void*) all_spheres_inside_box_ALL_iterations[iter].data()
+
+                                                , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
+                                                // , 12
+                                            );
                 }
                 #pragma omp barrier
             }

@@ -19,3 +19,6 @@
 [submodule "external/Randoms_lib"]
 	path = external/Randoms_lib
 	url = https://github.com/McEnigma24/Randoms_lib.git
+[submodule "external/Multithreaded_Memcpy_lib"]
+	path = external/Multithreaded_Memcpy_lib
+	url = https://github.com/McEnigma24/Multithreaded_Memcpy_lib.git
