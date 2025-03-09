@@ -81,7 +81,7 @@ ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
 ${LIBRARY_PATH_BMP}/libBMP.so
 ${LIBRARY_PATH_TIMERS}/libTimers.so
 ${LIBRARY_PATH_RANDOMS}/libRandoms.so
-${LIBRARY_PATH_Multithreaded_Memcpy}/libLIBRARY_PATH_Multithreaded_Memcpy.so
+${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
 )
 

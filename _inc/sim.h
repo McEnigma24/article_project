@@ -145,6 +145,7 @@ class Computation_Box
 
     v3<Sim_sphere> all_spheres_inside_box;
     vector<v3<Sim_sphere>> all_spheres_inside_box_ALL_iterations;
+    u64 best_memcpy_thread_number;
 
 private:
     u64 check_how_many_spheres_fit_in_this_dimention(unit space_dimention)
@@ -200,7 +201,7 @@ private:
     }
 
 public:
-    Computation_Box()
+    Computation_Box() : best_memcpy_thread_number(0)
     {
         SIM_scale = u(1);
         SIM_initial_sphere_separation = u(1);
@@ -251,6 +252,12 @@ public:
         {
             sim_iterations.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
         }
+
+        size_t size_for_one_memcpy = all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere);
+
+        line("Checking how many threads perform memcpy best");
+        best_memcpy_thread_number = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_for_one_memcpy);
+        var(best_memcpy_thread_number);
 
         // all_spheres_inside_box.set_sizes(how_many_spheres_fit_in_X, how_many_spheres_fit_in_Y, how_many_spheres_fit_in_Z);
 
@@ -349,71 +356,71 @@ public:
         return change_in_T;
     }
 
-    void transform_to_My_Ray_Tracing_scene(Scene& scene, const Memory_index_cyclic& memory_index)
-    {
-        time_stamp("transform_to_My_Ray_Tracing_scene");
-        SCENE_pos_vector =
-            d3(u(G::WIDTH / 2 - SIM_initial_radious - 100), u(G::HEIGHT / 2 - SIM_initial_radious - 50), u(-6000 - SIM_initial_radious));
+    // void transform_to_My_Ray_Tracing_scene(Scene& scene, const Memory_index_cyclic& memory_index)
+    // {
+    //     time_stamp("transform_to_My_Ray_Tracing_scene");
+    //     SCENE_pos_vector =
+    //         d3(u(G::WIDTH / 2 - SIM_initial_radious - 100), u(G::HEIGHT / 2 - SIM_initial_radious - 50), u(-6000 - SIM_initial_radious));
 
-        scene.assign_name("iteration");
+    //     scene.assign_name("iteration");
 
-        {
-            Bmp_RGB light_color = Bmp_RGB(255, 255, 255); // im więcej na minusie, tym bliżej kamery
+    //     {
+    //         Bmp_RGB light_color = Bmp_RGB(255, 255, 255); // im więcej na minusie, tym bliżej kamery
 
-            scene.add_light(d3(u(G::WIDTH / 2), u(G::HEIGHT / 2 - 200), u(-7000)), (*(const RGB*)(&light_color)));
-        }
+    //         scene.add_light(d3(u(G::WIDTH / 2), u(G::HEIGHT / 2 - 200), u(-7000)), (*(const RGB*)(&light_color)));
+    //     }
 
-        auto [smallest_T, largest_T] = get_smallest_and_largest_temp(memory_index);
+    //     auto [smallest_T, largest_T] = get_smallest_and_largest_temp(memory_index);
 
-        // var(all_spheres_inside_box.get_depth())
-        // var(all_spheres_inside_box.get_height())
-        // var(all_spheres_inside_box.get_width())
+    //     // var(all_spheres_inside_box.get_depth())
+    //     // var(all_spheres_inside_box.get_height())
+    //     // var(all_spheres_inside_box.get_width())
 
-        for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
-        {
-            Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
-            // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
-            //              + do środka można też zaglądać nie generaując niektórych sfer
+    //     for (u64 i = 0; i < all_spheres_inside_box.get_total_number(); i++)
+    //     {
+    //         Sim_sphere& sim_sphere = *all_spheres_inside_box.get(i);
+    //         // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
+    //         //              + do środka można też zaglądać nie generaując niektórych sfer
 
-            d3 scene_pos = sim_sphere.get_position(memory_index.get())
-                // * SCENE_sphere_separator
-                ; // to chyba rozszerza wszystko - oddzielać sfery od siebie
+    //         d3 scene_pos = sim_sphere.get_position(memory_index.get())
+    //             // * SCENE_sphere_separator
+    //             ; // to chyba rozszerza wszystko - oddzielać sfery od siebie
 
-            check_nan(scene_pos.x);
-            check_nan(scene_pos.y);
-            check_nan(scene_pos.z);
+    //         check_nan(scene_pos.x);
+    //         check_nan(scene_pos.y);
+    //         check_nan(scene_pos.z);
 
-            scene_pos.x *= SCENE_scale;
-            scene_pos.y *= SCENE_scale;
-            scene_pos.z *= SCENE_scale;
+    //         scene_pos.x *= SCENE_scale;
+    //         scene_pos.y *= SCENE_scale;
+    //         scene_pos.z *= SCENE_scale;
 
-            scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
+    //         scene_pos.rotate_left_right(d3(0, 0, 0), u(0.5));
 
-            scene_pos.rotate_up_down(d3(0, 0, 0), u(0.5));
+    //         scene_pos.rotate_up_down(d3(0, 0, 0), u(0.5));
 
-            scene_pos.x += SCENE_pos_vector.x;
-            scene_pos.y += SCENE_pos_vector.y;
-            scene_pos.z += SCENE_pos_vector.z;
+    //         scene_pos.x += SCENE_pos_vector.x;
+    //         scene_pos.y += SCENE_pos_vector.y;
+    //         scene_pos.z += SCENE_pos_vector.z;
 
-            unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
+    //         unit scene_r = sim_sphere.get_r(memory_index.get()) * SCENE_scale;
 
-            // clang-format off
-            Bmp_RGB scene_color =
-                get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0, 0))
-                // Bmp_RGB(255, 255, 255)
-            ;
-            // clang-format on
+    //         // clang-format off
+    //         Bmp_RGB scene_color =
+    //             get_color_from_temperature(sim_sphere.get_T(memory_index.get()), smallest_T, largest_T, Bmp_RGB(0, 0, 255), Bmp_RGB(255, 0, 0))
+    //             // Bmp_RGB(255, 255, 255)
+    //         ;
+    //         // clang-format on
 
-            scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
-        }
+    //         scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
+    //     }
 
-        u64 light_limit = (u64)scene.get_lights().size();
-        u64 sphere_limit = (u64)scene.get_spheres().size();
-        u64 bounce_limit = 5;
+    //     u64 light_limit = (u64)scene.get_lights().size();
+    //     u64 sphere_limit = (u64)scene.get_spheres().size();
+    //     u64 bounce_limit = 5;
 
-        scene.add_scene_detail(light_limit, sphere_limit, bounce_limit);
-        scene.add_thread_group(16, 0, 0);
-    }
+    //     scene.add_scene_detail(light_limit, sphere_limit, bounce_limit);
+    //     scene.add_thread_group(16, 0, 0);
+    // }
 
     // clang-format off
     void cpu_double_buffering(const u64& number_of_iterations)
@@ -436,13 +443,13 @@ public:
                 {
                     // kopiujemy 0 do indexów 1 - 25 //
 
-                    // Multithreaded_Memcpy::cpy
-
-                    memcpy(                       (void*) all_spheres_inside_box_ALL_iterations[0].data()
-                                                , (void*) all_spheres_inside_box_ALL_iterations[iter].data()
+                    Multithreaded_Memcpy::cpy
+                    // memcpy
+                                            (     (char*) all_spheres_inside_box_ALL_iterations[0].data()
+                                                , (char*) all_spheres_inside_box_ALL_iterations[iter].data()
 
                                                 , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
-                                                // , 12
+                                                , best_memcpy_thread_number
                                             );
                 }
                 #pragma omp barrier

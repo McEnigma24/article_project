@@ -12,16 +12,15 @@ public:
 
     void start(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, const u64 number_of_iterations = 25)
     {
-        Nano_Timer::Timer timer_SIM;
         Nano_Timer::Timer timer_Scene_Creation;
         Nano_Timer::Timer timer_Ray_Tracing;
 
+        Nano_Timer::Timer timer_SIM;
         computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
 
         timer_SIM.start();
         {
-            computation_box.;
-            time_stamp(current_i + "collision_resolution");
+            computation_box.cpu_double_buffering(number_of_iterations);
         }
         timer_SIM.stop();
 
