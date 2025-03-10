@@ -17,8 +17,8 @@ public:
 
         timer_SIM.start();
         {
-            // computation_box.cpu_double_buffering(number_of_iterations);
-            computation_box.cpu_N_buffering(number_of_iterations);
+            computation_box.cpu_double_buffering(number_of_iterations);
+            // computation_box.cpu_N_buffering(number_of_iterations);
         }
         timer_SIM.stop();
 

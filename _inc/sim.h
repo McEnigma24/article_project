@@ -454,8 +454,9 @@ public:
 
                     Multithreaded_Memcpy::cpy
                     // memcpy
-                                            (     (char*) all_spheres_inside_box_ALL_iterations[0].data()
-                                                , (char*) all_spheres_inside_box_ALL_iterations[iter].data()
+                                            (
+                                                (char*) all_spheres_inside_box_ALL_iterations[iter].data()
+                                                , (char*) all_spheres_inside_box_ALL_iterations[0].data()
 
                                                 , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
                                                 , best_memcpy_thread_number
