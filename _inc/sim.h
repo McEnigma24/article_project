@@ -246,6 +246,10 @@ public:
         var(how_many_spheres_fit_in_Z);
         u64 total = how_many_spheres_fit_in_X * how_many_spheres_fit_in_Y * how_many_spheres_fit_in_Z;
         var(total);
+        nline;
+        var(space_WIDTH);
+        var(space_HEIGHT);
+        var(space_DEPTH);
 
         all_spheres_inside_box_ALL_iterations.resize(number_of_iterations);
         for (auto& sim_iterations : all_spheres_inside_box_ALL_iterations)
@@ -256,7 +260,9 @@ public:
         size_t size_for_one_memcpy = all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere);
 
         time_stamp("Checking how many threads perform memcpy best");
-        best_memcpy_thread_number = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_for_one_memcpy);
+        best_memcpy_thread_number =
+            // Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_for_one_memcpy)
+            8;
         var(best_memcpy_thread_number);
         time_stamp("");
 
@@ -395,6 +401,8 @@ public:
             unit sphere_T = sim_sphere.get_T();
 #endif
 
+            check_nan(sphere_r);
+            check_nan(sphere_T);
             check_nan(scene_pos.x);
             check_nan(scene_pos.y);
             check_nan(scene_pos.z);
@@ -420,6 +428,12 @@ public:
             ;
             // clang-format on
 
+            // varr(scene_pos.x);
+            // varr(scene_pos.y);
+            // varr(scene_pos.z);
+            // varr(sphere_r);
+            // var(sphere_T);
+
             scene.add_sphere(scene_pos, scene_r, 0.0f, 0.0f, Surface_type::diffuse, (*(const RGB*)(&scene_color)));
         }
 
@@ -434,11 +448,13 @@ public:
     // clang-format off
     void cpu_double_buffering(const u64& number_of_iterations)
     {
+        omp_set_nested(true);
+
         #pragma omp parallel
         {
             Memory_index_cyclic memory_index_cyclic(2);
 
-            for(u64 iter=1; iter < number_of_iterations; iter++)
+            for(u64 iter=2; iter < number_of_iterations; iter++)
             {
                 #pragma omp for schedule(static)
                 for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
@@ -446,23 +462,20 @@ public:
                     per_sphere(memory_index_cyclic, sphere_index);
                 }
 
-                memory_index_cyclic.switch_to_next();
                 #pragma omp barrier
                 #pragma omp master
                 {
-                    // kopiujemy 0 do indexów 1 - 25 //
-
                     Multithreaded_Memcpy::cpy
-                    // memcpy
-                                            (
-                                                (char*) all_spheres_inside_box_ALL_iterations[iter].data()
-                                                , (char*) all_spheres_inside_box_ALL_iterations[0].data()
-
-                                                , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
-                                                , best_memcpy_thread_number
-                                            );
+                    (
+                        (char*) all_spheres_inside_box_ALL_iterations[iter].data()
+                        , (char*) all_spheres_inside_box_ALL_iterations[memory_index_cyclic.get()].data()
+                        
+                        , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
+                        , best_memcpy_thread_number
+                    );
                 }
                 #pragma omp barrier
+                memory_index_cyclic.switch_to_next();
             }
         }
     }
@@ -510,18 +523,36 @@ public:
             auto& current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T(memory_index.get_next());
 
         #else
-
+        
             Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(sphere_index));
             Sim_sphere& current_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[memory_index.get_next()].get(sphere_index));
-
+            
             const auto& current_pos = current_sphere.get_position();
             const auto& current_r = current_sphere.get_r();
             const auto& current_T = current_sphere.get_T();
-
+            
             auto& current_pos_NEXT_VALUE = current_sphere_NEXT_VALUE.get_position(); // getting from different memory
             auto& current_r_NEXT_VALUE = current_sphere_NEXT_VALUE.get_r();
             auto& current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T();
+        
         #endif
+
+        // varr(memory_index.get());
+        // varr(memory_index.get_next());
+
+        // varr(current_pos.x);
+        // varr(current_pos.y);
+        // varr(current_pos.z);
+        
+        // varr(current_r);
+        // varr(current_T);
+
+        // varr(current_pos_NEXT_VALUE.x);
+        // varr(current_pos_NEXT_VALUE.y);
+        // varr(current_pos_NEXT_VALUE.z);
+        
+        // varr(current_r_NEXT_VALUE);
+        // var(current_T_NEXT_VALUE);
 
         unit running_sum_of_heat_change_due_to_radiation{};
         unit running_sum_of_heat_change_due_to_conductivity{};
@@ -534,16 +565,16 @@ public:
             #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
                 Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[0].get(other_i));
                 
-                const auto& other_pos = current_sphere.get_position(memory_index.get());
-                const auto& other_r = current_sphere.get_r(memory_index.get());
-                const auto& other_T = current_sphere.get_T(memory_index.get());
+                const auto& other_pos = other_sp.get_position(memory_index.get());
+                const auto& other_r = other_sp.get_r(memory_index.get());
+                const auto& other_T = other_sp.get_T(memory_index.get());
             #else
 
                 Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(other_i));                
 
-                const auto& other_pos = current_sphere.get_position();
-                const auto& other_r = current_sphere.get_r();
-                const auto& other_T = current_sphere.get_T();
+                const auto& other_pos = other_sp.get_position();
+                const auto& other_r = other_sp.get_r();
+                const auto& other_T = other_sp.get_T();
             #endif
 
             // Sim_sphere& other_sp = *all_spheres_inside_box.get(other_i);
@@ -589,6 +620,15 @@ public:
                     unit other_sphere_total_emmited_energy = 10;
 
                     running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_energy * percent_of_captured_energy;
+
+                    // varr(distance);
+                    // varr(r_bigger);
+                    // varr(r_smaller);
+                    // varr(r_bigger * u(2));
+
+                    // varr(tan_value);
+                    // varr(alfa);
+                    // var(percent_of_captured_energy);
                 }
 
                 if (distance < r_sum)
@@ -637,9 +677,8 @@ public:
             check_nan(new_pos.y);
             check_nan(new_pos.z);
 
-            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
-                current_pos_NEXT_VALUE = new_pos;
-            #endif
+            // TO NEXT ITERATION //
+            current_pos_NEXT_VALUE = new_pos;
 
         #endif // COLLISION_RESOLUTION
 
@@ -657,11 +696,18 @@ public:
                     )
                 );
 
+            // varr(current_T);
+            // varr(one_over_mass_and_heat_capasity(current_r));
+            // varr(running_sum_of_heat_change_due_to_conductivity);
+            // varr(running_sum_of_heat_change_due_to_radiation);
+            // varr(enviroument_influence(current_pos));
+            // varr(new_T);
+            
             new_T = std::max(u(0), new_T); // keeping temp above absolute zero
-
-            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
-                current_T_NEXT_VALUE = new_T;
-            #endif
+            
+            // TO NEXT ITERATION //
+            current_T_NEXT_VALUE = new_T;
+            
         #endif // TEMP_DISTRIBUTION
 
         #ifdef VOLUME_TRANSFER
@@ -685,9 +731,10 @@ public:
                                                                 // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
                                                                 // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
 
-            #ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
-                current_r_NEXT_VALUE = new_r;
-            #endif
+            // TO NEXT ITERATION //
+            current_r_NEXT_VALUE = new_r;
+            // current_r_NEXT_VALUE = current_r;         // no changes for now
+            
         #endif // VOLUME_TRANSFER
     }
 };

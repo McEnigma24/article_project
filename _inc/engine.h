@@ -10,15 +10,20 @@ class Engine
 public:
     Engine(u64 _WIDTH, u64 _HEIGHT, const string& _name, int _frame_rate = 1) : movie(_WIDTH, _HEIGHT, _name, _frame_rate) {}
 
-    void start(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, const u64 number_of_iterations = 25)
+    void start(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, u64 number_of_iterations = 25)
     {
         Nano_Timer::Timer timer_SIM;
-        computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
 
+        int i = 0;
+
+        number_of_iterations += 2; // double
+        i += 2;
+
+        computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
         timer_SIM.start();
         {
-            computation_box.cpu_double_buffering(number_of_iterations);
             // computation_box.cpu_N_buffering(number_of_iterations);
+            computation_box.cpu_double_buffering(number_of_iterations);
         }
         timer_SIM.stop();
 
@@ -27,7 +32,7 @@ public:
         Nano_Timer::Timer timer_Ray_Tracing;
         timer_Ray_Tracing.start();
         {
-            for (int i = 0; i < number_of_iterations; i++)
+            for (; i < number_of_iterations; i++)
             {
                 Scene scene;
                 computation_box.transform_to_My_Ray_Tracing_scene(scene, i);

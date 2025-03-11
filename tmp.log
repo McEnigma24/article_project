@@ -1,0 +1,354 @@
+
+Build (1/5) - Cleaning env
+
+Build (2/5) - Preparing env
+
+Build (3/5) - Building
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/womackow/cpp_projects/article_project/build
+[35m[1mConsolidate compiler generated dependencies of target gpu_CUDA_d.exe[0m
+[ 20%] [32mBuilding CUDA object CMakeFiles/gpu_CUDA_d.exe.dir/_src/main.cu.o[0m
+[ 40%] [32m[1mLinking CXX executable gpu_CUDA_d.exe[0m
+[100%] Built target gpu_CUDA_d.exe
+
+Build (4/5) - Testing
+*********************************
+No test configuration file found!
+*********************************
+Usage
+
+  ctest [options]
+
+
+Build (5/5) - Copying to exe
+
+
+
+RUN (1/1) - exe/gpu_CUDA_d.exe
+
+how_many_spheres_fit_in_X = 20
+how_many_spheres_fit_in_Y = 36
+how_many_spheres_fit_in_Z = 5
+total = 3600
+
+space_WIDTH = 120
+space_HEIGHT = 220
+space_DEPTH = 30
+
+TIME_STAMP: Checking how many threads perform memcpy best      23:54:27 (+ 384mili 50micro 749nano )
+best_memcpy_thread_number = 8
+
+TIME_STAMP:                                                    23:54:27 (+ 26micro 122nano )
+iter = 1
+iter = 1
+iter = 1
+iter = 2
+iter = 2
+iter = 2
+iter = 3
+iter = 3
+iter = 3
+iter = 4
+iter = 4
+iter = 4
+iter = 5
+iter = 5
+iter = 5
+iter = 6
+iter = 6
+iter = 6
+iter = 7
+iter = 7
+iter = 7
+iter = 8
+iter = 8
+iter = 8
+iter = 9
+iter = 9
+iter = 9
+iter = 10
+iter = 10
+iter = 10
+iter = 11
+iter = 11
+iter = 11
+iter = 12
+iter = 12
+iter = 12
+iter = 13
+iter = 13
+iter = 13
+iter = 14
+iter = 14
+iter = 14
+iter = 15
+iter = 15
+iter = 15
+iter = 16
+iter = 16
+iter = 16
+iter = 17
+iter = 17
+iter = 17
+iter = 18
+iter = 18
+iter = 18
+iter = 19
+iter = 19
+iter = 19
+iter = 20
+iter = 20
+iter = 20
+iter = 21
+iter = 21
+iter = 21
+iter = 22
+iter = 22
+iter = 22
+iter = 23
+iter = 23
+iter = 23
+iter = 24
+iter = 24
+iter = 24
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:28 (+ 650mili 81micro 66nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:30 (+ 2s 567mili 344micro 207nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:33 (+ 2s 460mili 788micro 408nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:35 (+ 2s 598mili 13micro 676nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:39 (+ 3s 878mili 793micro 246nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:43 (+ 3s 480mili 131micro 161nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:45 (+ 2s 455mili 329micro 934nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:48 (+ 2s 436mili 475micro 812nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:50 (+ 2s 414mili 760micro 909nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:53 (+ 2s 557mili 972micro 594nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:54:57 (+ 3s 950mili 320micro 944nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:01 (+ 4s 119mili 71micro 55nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:05 (+ 4s 3mili 909micro 828nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:09 (+ 4s 155mili 109micro 919nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:13 (+ 3s 935mili 549micro 535nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:17 (+ 3s 942mili 222micro 60nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:21 (+ 4s 225mili 897micro 26nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:25 (+ 4s 276mili 347micro 156nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:30 (+ 4s 513mili 888micro 464nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:34 (+ 4s 424mili 822micro 59nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:38 (+ 4s 35mili 734micro 88nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:42 (+ 4s 55mili 227micro 310nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:46 (+ 4s 42mili 688micro 480nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:50 (+ 4s 33mili 448micro 150nano )
+&scene = 0x7ffe0a772ba0
+
+TIME_STAMP: transform_to_My_Ray_Tracing_scene                  23:55:54 (+ 4s 7mili 476micro 721nano )
+&scene = 0x7ffe0a772ba0
+[48;5;0m[38;5;51m[libvpx-vp9 @ 0x5600e4a16580] [0mv1.11.0
+Output #0, mp4, to 'movie.mp4':
+  Stream #0:0: Video: vp9 (libvpx-vp9), yuv420p, 1000x1000, q=-1--1, 5 tbn
+[48;5;0m[38;5;153m[swscaler @ 0x5600e4733040] [0m[48;5;0m[38;5;226mWarning: data is not aligned! This can lead to a speed loss
+[0mWriting frame 0 (size = 102150)
+Writing frame 1 (size = 45)
+Writing frame 2 (size = 37)
+Writing frame 3 (size = 37)
+Writing frame 4 (size = 37)
+Writing frame 5 (size = 37)
+Writing frame 6 (size = 37)
+Writing frame 7 (size = 37)
+Writing frame 8 (size = 37)
+Writing frame 9 (size = 37)
+Writing frame 10 (size = 37)
+Writing frame 11 (size = 37)
+Writing frame 12 (size = 37)
+Writing frame 13 (size = 37)
+Writing frame 14 (size = 37)
+Writing frame 15 (size = 37)
+Writing frame 16 (size = 37)
+Writing frame 17 (size = 37)
+Writing frame 18 (size = 37)
+Writing frame 19 (size = 37)
+Writing frame 20 (size = 37)
+Writing frame 21 (size = 37)
+Writing frame 22 (size = 37)
+Writing frame 23 (size = 37)
+Writing frame 24 (size = 37)
+Writing frame 25 (size = 37)
+Writing frame 26 (size = 45475)
+Writing frame 27 (size = 43)
+Writing frame 28 (size = 41)
+Writing frame 29 (size = 41)
+Writing frame 30 (size = 41)
+Writing frame 31 (size = 46806)
+Writing frame 32 (size = 66)
+Writing frame 33 (size = 39)
+Writing frame 34 (size = 37)
+Writing frame 35 (size = 37)
+Writing frame 36 (size = 51665)
+Writing frame 37 (size = 85)
+Writing frame 38 (size = 43)
+Writing frame 39 (size = 41)
+Writing frame 40 (size = 41)
+Writing frame 41 (size = 63634)
+Writing frame 42 (size = 76)
+Writing frame 43 (size = 37)
+Writing frame 44 (size = 37)
+Writing frame 45 (size = 37)
+Writing frame 46 (size = 62559)
+Writing frame 47 (size = 63)
+Writing frame 48 (size = 41)
+Writing frame 49 (size = 41)
+Writing frame 50 (size = 41)
+Writing frame 51 (size = 72973)
+Writing frame 52 (size = 62)
+Writing frame 53 (size = 41)
+Writing frame 54 (size = 41)
+Writing frame 55 (size = 41)
+Writing frame 56 (size = 70789)
+Writing frame 57 (size = 43)
+Writing frame 58 (size = 41)
+Writing frame 59 (size = 41)
+Writing frame 60 (size = 41)
+Writing frame 61 (size = 72431)
+Writing frame 62 (size = 43)
+Writing frame 63 (size = 41)
+Writing frame 64 (size = 41)
+Writing frame 65 (size = 41)
+Writing frame 66 (size = 77112)
+Writing frame 67 (size = 43)
+Writing frame 68 (size = 41)
+Writing frame 69 (size = 41)
+Writing frame 70 (size = 41)
+Writing frame 71 (size = 81053)
+Writing frame 72 (size = 43)
+Writing frame 73 (size = 41)
+Writing frame 74 (size = 41)
+Writing frame 75 (size = 41)
+Writing frame 76 (size = 85475)
+Writing frame 77 (size = 43)
+Writing frame 78 (size = 41)
+Writing frame 79 (size = 41)
+Writing frame 80 (size = 41)
+Writing frame 81 (size = 88234)
+Writing frame 82 (size = 43)
+Writing frame 83 (size = 41)
+Writing frame 84 (size = 41)
+Writing frame 85 (size = 41)
+Writing frame 86 (size = 86421)
+Writing frame 87 (size = 50)
+Writing frame 88 (size = 41)
+Writing frame 89 (size = 41)
+Writing frame 90 (size = 41)
+Writing frame 91 (size = 86102)
+Writing frame 92 (size = 59)
+Writing frame 93 (size = 41)
+Writing frame 94 (size = 41)
+Writing frame 95 (size = 41)
+Writing frame 96 (size = 86599)
+Writing frame 97 (size = 65)
+Writing frame 98 (size = 73)
+Writing frame 99 (size = 41)
+Writing frame 100 (size = 41)
+Writing frame 101 (size = 87864)
+Writing frame 102 (size = 340)
+Writing frame 103 (size = 58)
+Writing frame 104 (size = 37)
+Writing frame 105 (size = 37)
+Writing frame 106 (size = 89693)
+Writing frame 107 (size = 415)
+Writing frame 108 (size = 136)
+Writing frame 109 (size = 48)
+Writing frame 110 (size = 37)
+Writing frame 111 (size = 92155)
+Writing frame 112 (size = 88)
+Writing frame 113 (size = 41)
+Writing frame 114 (size = 41)
+Writing frame 115 (size = 41)
+Writing frame 116 (size = 93798)
+Writing frame 117 (size = 64)
+Writing frame 118 (size = 41)
+Writing frame 119 (size = 41)
+Writing frame 120 (size = 41)
+Writing frame 121 (size = 95235)
+Writing frame 122 (size = 184)
+Writing frame 123 (size = 65)
+Writing frame 124 (size = 41)
+Writing frame 125 (size = 41)
+Writing frame 126 (size = 103434)
+Writing frame 127 (size = 90)
+Writing frame 128 (size = 124222)
+Writing frame 129 (size = 49)
+Writing frame 130 (size = 41)
+Writing frame 131 (size = 96916)
+Writing frame 132 (size = 40)
+Writing frame 133 (size = 37)
+Writing frame 134 (size = 37)
+Writing frame 135 (size = 37)
+Writing frame 136 (size = 97302)
+Writing frame 137 (size = 40)
+Writing frame 138 (size = 37)
+Writing frame 139 (size = 37)
+Writing frame 140 (size = 37)
+Writing frame 141 (size = 98692)
+Writing frame 142 (size = 40)
+Writing frame 143 (size = 37)
+Writing frame 144 (size = 37)
+Writing frame 145 (size = 37)
+Writing frame 146 (size = 37)
+Writing frame 147 (size = 37)
+Writing frame 148 (size = 37)
+Writing frame 149 (size = 37)
+Writing frame 150 (size = 37)
+Writing frame 151 (size = 37)
+
+timer_SIM
+    0m  0s 650mil  31mic 135n  -  650031135
+
+timer_Ray_Tracing
+    1m 30s 573mil 366mic 761n  -  90573366761
+
+Saving collected stats
+Program          - took: 00:01:52
