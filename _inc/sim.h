@@ -827,13 +827,11 @@ public:
             
             // change_current_r_NEXT_VALUE = current_r; // no changes
 
-            // change_current_r_NEXT_VALUE = new_r; // zmiana wymaga modyfikacji, change_current_r = 0 WYPIERDALA SYMULACJĘ
-                                          // bo wtedy inne obiekty, patrzą na te i o zero
-
-                                          // czyli trzeba to zmieniać w przerwie, dla DIFF buffer memset 0 na cały obiekt
-                                          // dla SAME -> funkcje wielowątkową co zmienia tylko konkretnemu indexowi w każdym obiekcie
-
             // TO NEXT ITERATION //
+
+            // CPU - #pragma omp atomic
+            // GPU - atomidAdd(&adding_to, value)
+
             change_current_r_NEXT_VALUE += new_r; // NEXT_VALUE has to be zero - adding because r must allow other spheres to modify it's value
                                            // current will add his
                                            // while others might add their portions
