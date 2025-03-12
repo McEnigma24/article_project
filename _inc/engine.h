@@ -16,8 +16,14 @@ public:
 
         int i = 0;
 
-        number_of_iterations += 2; // double
+// double //
+#ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+        number_of_iterations += 1;
+        i += 1;
+#else
+        number_of_iterations += 2;
         i += 2;
+#endif
 
         computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
         timer_SIM.start();

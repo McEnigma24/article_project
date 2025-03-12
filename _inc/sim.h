@@ -389,11 +389,12 @@ public:
             // womackow -> BARDZO UŻYTECZNE !!! - do i zerknięcia jak jest w środku
             //              + do środka można też zaglądać nie generaując niektórych sfer
 
-            d3 scene_pos = sim_sphere.get_position(memory_index.get())
+            u8 memory_index = iter_index % 2;
+            d3 scene_pos = sim_sphere.get_position(memory_index)
                 // * SCENE_sphere_separator
                 ; // to chyba rozszerza wszystko - oddzielać sfery od siebie
-            unit sphere_r = sim_sphere.get_r(memory_index.get());
-            unit sphere_T = sim_sphere.get_T(memory_index.get());
+            unit sphere_r = sim_sphere.get_r(memory_index);
+            unit sphere_T = sim_sphere.get_T(memory_index);
 #else
 
             d3 scene_pos = sim_sphere.get_position();
@@ -446,6 +447,41 @@ public:
     }
 
     // clang-format off
+#ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
+    void cpu_double_buffering(const u64& number_of_iterations)
+    {
+        omp_set_nested(true);
+
+        #pragma omp parallel
+        {
+            Memory_index_cyclic memory_index_cyclic(2);
+
+            for(u64 iter=1; iter < number_of_iterations; iter++)
+            {
+                #pragma omp for schedule(static)
+                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
+                {
+                    per_sphere(memory_index_cyclic, sphere_index);
+                }
+
+                memory_index_cyclic.switch_to_next();
+                #pragma omp barrier
+                #pragma omp single
+                {
+                    Multithreaded_Memcpy::cpy
+                    (
+                        (char*) all_spheres_inside_box_ALL_iterations[iter].data()
+                        , (char*) all_spheres_inside_box_ALL_iterations[0].data()
+                        
+                        , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
+                        , best_memcpy_thread_number
+                    );
+                }
+                #pragma omp barrier
+            }
+        }
+    }
+#else
     void cpu_double_buffering(const u64& number_of_iterations)
     {
         omp_set_nested(true);
@@ -462,23 +498,24 @@ public:
                     per_sphere(memory_index_cyclic, sphere_index);
                 }
 
+                memory_index_cyclic.switch_to_next();
                 #pragma omp barrier
-                #pragma omp master
+                #pragma omp single
                 {
                     Multithreaded_Memcpy::cpy
                     (
                         (char*) all_spheres_inside_box_ALL_iterations[iter].data()
-                        , (char*) all_spheres_inside_box_ALL_iterations[memory_index_cyclic.get()].data()
+                        , (char*) all_spheres_inside_box_ALL_iterations[memory_index_cyclic.get_next()].data()
                         
                         , ( all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere) )
                         , best_memcpy_thread_number
                     );
                 }
                 #pragma omp barrier
-                memory_index_cyclic.switch_to_next();
             }
         }
     }
+#endif
 
     void cpu_N_buffering(const u64& number_of_iterations)
     {
