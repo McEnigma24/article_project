@@ -57,25 +57,17 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -fopenmp -O3 -march=native -w")
 
 
 
-# set(target_name "gpu_CUDA_f.exe")
-# add_executable(${target_name} ${SOURCES})
-# target_include_directories(${target_name} PRIVATE)
-# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_FLOAT)
-# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
-
-# ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-# ${LIBRARY_PATH_BMP}/libbmp.so
-# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_f.exe.a
-# )
-
-set(target_name "gpu_CUDA_d.exe")
+# TARGET 1 #
+set(target_name "cpu_n-buff.exe")
 add_executable(${target_name} ${SOURCES})
 target_include_directories(${target_name} PRIVATE)
-# target_compile_definitions(${target_name} PRIVATE LINUX NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING COLLISION_RESOLUTION TEMP_DISTRIBUTION VOLUME_TRANSFER RENDER_ACTIVE CPU UNIT_DOUBLE)
-target_compile_definitions(${target_name} PRIVATE LINUX COLLISION_RESOLUTION TEMP_DISTRIBUTION VOLUME_TRANSFER RENDER_ACTIVE CPU UNIT_DOUBLE)
-# target_compile_definitions(${target_name} PRIVATE LINUX COLLISION_RESOLUTION TEMP_DISTRIBUTION RENDER_ACTIVE CPU UNIT_DOUBLE)
-# target_compile_definitions(${target_name} PRIVATE LINUX COLLISION_RESOLUTION TEMP_DISTRIBUTION CPU UNIT_DOUBLE)
-# target_compile_definitions(${target_name} PRIVATE LINUX GPU UNIT_DOUBLE)
+target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+
+CPU
+N_BUFF
+
+RENDER_ACTIVE
+)
 target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
 ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
@@ -86,18 +78,67 @@ ${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
 )
 
+# TARGET 2 #
+set(target_name "cpu_d-buff-same-obj.exe")
+add_executable(${target_name} ${SOURCES})
+target_include_directories(${target_name} PRIVATE)
+target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
 
-# Włączenie testów
-# enable_testing()
+CPU
+D_BUFF
+D_BUFF_SAME_OBJ
 
-# # Pobieranie jako submoduł
-# add_subdirectory(external/googletest)
+RENDER_ACTIVE
+)
+target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
-# # Dodanie testów
-# set(TEST_EXE_NAME "test.texe")  # Nazwa binarki testowej
-# add_executable(${TEST_EXE_NAME} ${TEST_SOURCES})
-# target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main)
+${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+${LIBRARY_PATH_BMP}/libBMP.so
+${LIBRARY_PATH_TIMERS}/libTimers.so
+${LIBRARY_PATH_RANDOMS}/libRandoms.so
+${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
+${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+)
 
-# # Rejestracja testów
-# include(GoogleTest)
-# gtest_discover_tests(${TEST_EXE_NAME})
+# TARGET 3 #
+set(target_name "cpu_d-buff-diff-obj.exe")
+add_executable(${target_name} ${SOURCES})
+target_include_directories(${target_name} PRIVATE)
+target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+
+CPU
+D_BUFF
+D_BUFF_DIFF_OBJ
+
+RENDER_ACTIVE
+)
+target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+
+${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+${LIBRARY_PATH_BMP}/libBMP.so
+${LIBRARY_PATH_TIMERS}/libTimers.so
+${LIBRARY_PATH_RANDOMS}/libRandoms.so
+${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
+${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+)
+
+# # TARGET 4 #
+# set(target_name "gpu_n-buff.exe")
+# add_executable(${target_name} ${SOURCES})
+# target_include_directories(${target_name} PRIVATE)
+# target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+
+# GPU
+# N_BUFF
+
+# RENDER_ACTIVE
+# )
+# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+
+# ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+# ${LIBRARY_PATH_BMP}/libBMP.so
+# ${LIBRARY_PATH_TIMERS}/libTimers.so
+# ${LIBRARY_PATH_RANDOMS}/libRandoms.so
+# ${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
+# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+# )

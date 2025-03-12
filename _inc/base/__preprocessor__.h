@@ -40,12 +40,14 @@ typedef int16_t i16;
 typedef int32_t i32;
 typedef int64_t i64;
 
-#ifdef UNIT_FLOAT
-typedef float unit;
+#ifdef UNIT_SIM_FLOAT
+typedef float sim_unit;
 #endif
-#ifdef UNIT_DOUBLE
-typedef double unit;
+#ifdef UNIT_SIM_DOUBLE
+typedef double sim_unit;
 #endif
+
+#define sim_u(x) (static_cast<sim_unit>(x))
 
 #define null nullptr
 #define pow2(x) ((x) * (x))

@@ -10,31 +10,43 @@ class Engine
 public:
     Engine(u64 _WIDTH, u64 _HEIGHT, const string& _name, int _frame_rate = 1) : movie(_WIDTH, _HEIGHT, _name, _frame_rate) {}
 
-    void start(const unit _space_WIDTH, const unit _space_HEIGHT, const unit _space_DEPTH, u64 number_of_iterations = 25)
+    void start(const sim_unit _space_WIDTH, const sim_unit _space_HEIGHT, const sim_unit _space_DEPTH, u64 number_of_iterations = 25)
     {
         Nano_Timer::Timer timer_SIM;
-
         int i = 0;
 
-// double //
-#ifdef NEXT_VALUE_IN_SAME_OBJ___ONLY_FOR_D_BUFFERING
-        number_of_iterations += 1;
-        i += 1;
-#else
-        number_of_iterations += 2;
-        i += 2;
+#if defined(CPU) && defined(D_BUFF_DIFF_OBJ)
+        {
+            number_of_iterations += 2;
+            i += 2;
+        }
+#endif
+
+#if defined(CPU) && defined(D_BUFF_SAME_OBJ)
+        {
+            number_of_iterations += 1;
+            i += 1;
+        }
 #endif
 
         computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
         timer_SIM.start();
         {
-            // computation_box.cpu_N_buffering(number_of_iterations);
-            computation_box.cpu_double_buffering(number_of_iterations);
+#if defined(CPU)
+            {
+                computation_box.cpu(number_of_iterations);
+            }
+#endif
+
+#if defined(GPU)
+            {
+            }
+#endif
         }
         timer_SIM.stop();
 
 #ifdef RENDER_ACTIVE
-
+        time_stamp("Rendering started...");
         Nano_Timer::Timer timer_Ray_Tracing;
         timer_Ray_Tracing.start();
         {
@@ -46,9 +58,10 @@ public:
             }
         }
         timer_Ray_Tracing.stop();
+        time_stamp("Rendering finished");
 
         movie.combine_to_movie();
-
+        time_stamp("combine_to_movie");
 #endif
 
         nline;

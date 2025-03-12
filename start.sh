@@ -112,6 +112,8 @@ env_prep()
     fi
 
     chmod +x scripts/*.sh
+
+    rm -f *.mp4
 }
 create_my_libraries()
 {
