@@ -39,7 +39,7 @@ public:
 
             #if defined(GPU)
             {
-                computation_box.gpu(number_of_iterations);
+                computation_box.gpu_classic(number_of_iterations);
             }
             #endif
         }

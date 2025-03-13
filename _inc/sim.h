@@ -120,6 +120,40 @@ public:
     void switch_to_next() { index = get_next(); }
 };
 
+// OPTYMALIZACJA -> __constant__ int	ProjectIntParams[ PROJECT_INT_PARAMETERS_COUNT ];
+// cudaMemcpyToSymbol( ProjectIntParams, &constHostIntParams[0], PROJECT_INT_PARAMETERS_COUNT * sizeof( int ), 0 );
+
+// zrobić z parametrów constanty i z tablicy pointerów, tylko całe kroki iteracyjne kopiować // sprawdzić czy przyspieszy
+
+// lepiej -> nie to będzie w pamięci shared !!!
+
+class Computation_Box;
+
+#if defined(GPU)
+__global__ void sim_kernel(const u64 ARRAY_SIZE, const u64 number_of_iterations, Computation_Box* dev_Computation_Box,
+                           Sim_sphere** dev_iter_pointers_tab)
+{
+    // int sphere_index = threadIdx.x + blockIdx.x * blockDim.x;
+
+    int sphere_index = threadIdx.x; // ONE BLOCK - solution
+    if (!(sphere_index < ARRAY_SIZE)) return;
+
+    Memory_index_cyclic memory_index_cyclic(number_of_iterations);
+
+    for (int i = 0; i < number_of_iterations; i++)
+    {
+        dev_Computation_Box->per_pixel(ARRAY_SIZE, memory_index_cyclic, sphere_index, dev_Computation_Box, dev_iter_pointers_tab);
+
+        __syncthreads(); // ONE BLOCK - solution
+    }
+}
+
+// możliwe, że trzeba będzie zrobić kernel, który calluje pozostałe, i czeka aż iteracja się skończy przed rozpoczęciem następnego
+
+// albo te cooperative groups
+
+#endif
+
 class Computation_Box
 {
     sim_unit SIM_scale;
@@ -193,12 +227,19 @@ private:
 
         return Bmp_RGB(r, g, b);
     }
+
+    GPU_LINE(__device__)
     sim_unit my_clamp(const sim_unit value, const sim_unit low, const sim_unit high)
     {
         if (high < value) return high;
         if (value < low) return low;
         return value;
     }
+
+    GPU_LINE(__device__)
+    sim_unit my_min(const sim_unit a, const sim_unit b) { return a > b ? b : a; }
+    GPU_LINE(__device__)
+    sim_unit my_max(const sim_unit a, const sim_unit b) { return a > b ? a : b; }
 
 public:
     Computation_Box() : best_memcpy_thread_number(0)
@@ -299,6 +340,8 @@ public:
             moving_z += z_adding;
         }
     }
+
+    GPU_LINE(__device__)
     tuple<d3, sim_unit> get_distance_and_vec_A_to_B(const d3& posA, const d3& posB)
     {
         d3 vec_from_A_to_B = posB - posA;
@@ -306,60 +349,71 @@ public:
 
         return {vec_from_A_to_B, distance};
     }
+
+    GPU_LINE(__device__)
     sim_unit sphere_volume(const sim_unit& r) { return (4.0 / 3.0) * M_PI * pow3(r); }
-    sim_unit one_over_mass_and_heat_capasity(const sim_unit& r)
+
+    GPU_LINE(__device__)
+    sim_unit one_over_mass_and_heat_capasity(const sim_unit& r, Computation_Box* this_ptr = nullptr)
     {
         return 1; // simplification
 
-        sim_unit mass = sphere_volume(r) * SIM_density;
+        // sim_unit mass = sphere_volume(r) * SIM_density;
 
-        var(sphere_volume(r));
-        var(SIM_density);
-        var(mass);
+        // var(sphere_volume(r));
+        // var(SIM_density);
+        // var(mass);
 
-        var(SIM_heat_capacity);
-        var(mass * SIM_heat_capacity);
-        var((1 / (mass * SIM_heat_capacity)));
+        // var(SIM_heat_capacity);
+        // var(mass * SIM_heat_capacity);
+        // var((1 / (mass * SIM_heat_capacity)));
 
-        FATAL_ERROR("test");
+        // FATAL_ERROR("test");
 
-        return (1 / (mass * SIM_heat_capacity));
+        // return (1 / (mass * SIM_heat_capacity));
     }
+
+    GPU_LINE(__device__)
     bool value_in_between(const sim_unit value, const sim_unit smaller_bound, const sim_unit higher_bound)
     {
         return ((smaller_bound <= value) && (value <= higher_bound));
     }
 
-    sim_unit wall_influence_with_chosen_dimention(const sim_unit dimention_value, const sim_unit max_value)
+    GPU_LINE(__device__)
+    sim_unit wall_influence_with_chosen_dimention(const sim_unit dimention_value, const sim_unit max_value, Computation_Box* this_ptr = nullptr)
     {
+        const auto value_SIM_wall_heat_reach = this_ptr->SIM_wall_heat_reach;
+        const auto value_SIM_wall_heat_value = this_ptr->SIM_wall_heat_value;
+
         // zakładam, że nie ma sytuacji w której przedziały się na siebie na chodzą (zawsze dostajemy ciepło tylko z jednej ze ścian)
-        sim_unit reach_start = (max_value - SIM_wall_heat_reach);
+        sim_unit reach_start = (max_value - value_SIM_wall_heat_reach);
 
-        if (value_in_between(dimention_value, 0, SIM_wall_heat_reach))
+        if (value_in_between(dimention_value, 0, value_SIM_wall_heat_reach))
         {
-            sim_unit proportion = sim_u(1) - (dimention_value / SIM_wall_heat_reach);
+            sim_unit proportion = sim_u(1) - (dimention_value / value_SIM_wall_heat_reach);
 
-            return (proportion * SIM_wall_heat_value);
+            return (proportion * value_SIM_wall_heat_value);
         }
         else if (value_in_between(dimention_value, reach_start, max_value))
         {
-            sim_unit proportion = ((dimention_value - reach_start) / SIM_wall_heat_reach);
+            sim_unit proportion = ((dimention_value - reach_start) / value_SIM_wall_heat_reach);
 
-            return (proportion * SIM_wall_heat_value) * 1.6;
+            return (proportion * value_SIM_wall_heat_value) * 1.6;
         }
         return 0;
     }
 
-    sim_unit enviroument_influence(const d3& pos)
+    GPU_LINE(__device__)
+    sim_unit enviroument_influence(const d3& pos, Computation_Box* this_ptr = nullptr)
     {
         sim_unit change_in_T{};
 
         // change_in_T += wall_influence_with_chosen_dimention(pos.x, space_WIDTH);
-        change_in_T += wall_influence_with_chosen_dimention(pos.y, space_HEIGHT);
+        change_in_T += wall_influence_with_chosen_dimention(pos.y, space_HEIGHT, this_ptr);
         // change_in_T += wall_influence_with_chosen_dimention(pos.z, space_DEPTH);
 
-        change_in_T -= SIM_constant_cooling; // womackow - to też można uzależnić od np. odległości do najbliższej ściany
-                                             //          - wtedy przekrój będzie lepiej wyglądał, że w środku trzyma ciepło
+        change_in_T -= this_ptr->SIM_constant_cooling; // womackow - to też można uzależnić od np. odległości do najbliższej ściany
+                                                       //          - wtedy przekrój będzie lepiej wyglądał, że w środku trzyma ciepło
 
         return change_in_T;
     }
@@ -450,7 +504,8 @@ public:
     #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
     void cpu(const u64& number_of_iterations)
     {
-        size_t byte_size = all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere);
+        size_t ARRAY_SIZE = all_spheres_inside_box_ALL_iterations[0].get_total_number();
+        size_t byte_size = ARRAY_SIZE * sizeof(Sim_sphere);
         omp_set_nested(true);
 
         #pragma omp parallel
@@ -460,9 +515,9 @@ public:
             for(u64 iter=1; iter < number_of_iterations; iter++)
             {
                 #pragma omp for schedule(static)
-                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
+                for (u64 sphere_index = 0; sphere_index < ARRAY_SIZE; sphere_index++)
                 {
-                    per_sphere(memory_index_cyclic, sphere_index);
+                    per_sphere(ARRAY_SIZE, memory_index_cyclic, sphere_index);
                 }
 
                 memory_index_cyclic.switch_to_next();
@@ -480,7 +535,7 @@ public:
                 }
                 // setting current iteration values to 0 for correct summing
                 #pragma omp for schedule(static)
-                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
+                for (u64 sphere_index = 0; sphere_index < ARRAY_SIZE; sphere_index++)
                 {
                     Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[0].get(sphere_index));
 
@@ -501,7 +556,8 @@ public:
     #if defined(CPU) && defined(D_BUFF_DIFF_OBJ)
     void cpu(const u64& number_of_iterations)
     {
-        size_t byte_size = all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere);
+        size_t ARRAY_SIZE = all_spheres_inside_box_ALL_iterations[0].get_total_number();
+        size_t byte_size = ARRAY_SIZE * sizeof(Sim_sphere);
         omp_set_nested(true);
 
         #pragma omp parallel
@@ -511,9 +567,9 @@ public:
             for(u64 iter=2; iter < number_of_iterations; iter++)
             {
                 #pragma omp for schedule(static)
-                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
+                for (u64 sphere_index = 0; sphere_index < ARRAY_SIZE; sphere_index++)
                 {
-                    per_sphere(memory_index_cyclic, sphere_index);
+                    per_sphere(ARRAY_SIZE, memory_index_cyclic, sphere_index);
                 }
 
                 memory_index_cyclic.switch_to_next();
@@ -546,6 +602,8 @@ public:
     #if defined(CPU) && defined(N_BUFF)
     void cpu(const u64& number_of_iterations)
     {
+        size_t ARRAY_SIZE = all_spheres_inside_box_ALL_iterations[0].get_total_number();
+
         #pragma omp parallel
         {
             Memory_index_cyclic memory_index_cyclic(number_of_iterations);
@@ -553,9 +611,9 @@ public:
             for(u64 iter=1; iter < number_of_iterations; iter++)
             {
                 #pragma omp for schedule(static)
-                for (u64 sphere_index = 0; sphere_index < all_spheres_inside_box_ALL_iterations[0].get_total_number(); sphere_index++)
+                for (u64 sphere_index = 0; sphere_index < ARRAY_SIZE; sphere_index++)
                 {
-                    per_sphere(memory_index_cyclic, sphere_index);
+                    per_sphere(ARRAY_SIZE, memory_index_cyclic, sphere_index);
                 }
 
                 memory_index_cyclic.switch_to_next();
@@ -566,100 +624,62 @@ public:
     #endif
 
     #if defined(GPU)
-    void gpu(const u64& number_of_iterations)
+    void gpu_classic(const u64& number_of_iterations)
     {
-        // MAIN //
+        size_t sphere_count = all_spheres_inside_box_ALL_iterations[0].get_total_number();
+        size_t byte_size;
 
         int BLOCK_SIZE = 64; // 32 - 64 - 128 - 256
-        int NUMBER_OF_BLOCKS = PIXEL_ARRAY_SIZE / BLOCK_SIZE + 1; // zeby pokrywalo wszystko -> przez to musi byc warunek
-        size_t byte_size;
+        int NUMBER_OF_BLOCKS = sphere_count / BLOCK_SIZE + 1; // zeby pokrywalo wszystko -> przez to musi byc warunek
 
         byte_size = sizeof(*this);
         Computation_Box* dev_Computation_Box{};
-        CCE(cudaMalloc((void**)&dev_Computation_Box, byte_size));
+        CCE(cudaMalloc((void**)&dev_Computation_Box, byte_size));                       // parametry symulacji
         CCE(cudaMemcpy(dev_Computation_Box, this, byte_size, cudaMemcpyHostToDevice));
 
-        byte_size = all_spheres_inside_box_ALL_iterations[0].get_total_number() * sizeof(Sim_sphere);
-        RGB* dev_My_Pixels{};                                                               // v3<Sim_sphere> -> używajmy jak raw tablicy
-        CCE(cudaMalloc((void**)&dev_My_Pixels, size));                                      // przekopiujemy każdy blok pamięci i będzie jego dev_ptr
-        CCE(cudaMemcpy(dev_My_Pixels, get_my_pixel(), size, cudaMemcpyHostToDevice));       // którego wpiszemy do innej tablicy
-                                                                                            // w ten sposób na GPU, będziemy mieli wiele instancji
-        Light_point* dev_Current_Scene_lights{};
+        byte_size = sphere_count * sizeof(Sim_sphere);
+        Sim_sphere* dev_memory_locations_for_iter_step[number_of_iterations];
+
+        for(int i=0; i<number_of_iterations; i++)
         {
-            Light_point* host_ptr = G::Render::current_scene->get_lights_ptr();
-            auto& host_vec_ref = G::Render::current_scene->get_lights();
-            size = sizeof(Light_point) * host_vec_ref.size();
-            CCE(cudaMalloc((void**)&dev_Current_Scene_lights, size));
-            CCE(cudaMemcpy(dev_Current_Scene_lights, host_ptr, size, cudaMemcpyHostToDevice));
+            CCE(cudaMalloc((void**)&(dev_memory_locations_for_iter_step[i]), byte_size));               // kroki iteracji
+            CCE(cudaMemcpy(dev_memory_locations_for_iter_step[i], all_spheres_inside_box_ALL_iterations[i].data(), byte_size, cudaMemcpyHostToDevice));
         }
 
-        Sphere* dev_Current_Scene_spheres{};
-        {
-            Sphere* host_ptr = G::Render::current_scene->get_spheres_ptr();
-            auto& host_vec_ref = G::Render::current_scene->get_spheres();
-            size = sizeof(Sphere) * host_vec_ref.size();
-            CCE(cudaMalloc((void**)&dev_Current_Scene_spheres, size));
-            CCE(cudaMemcpy(dev_Current_Scene_spheres, host_ptr, size, cudaMemcpyHostToDevice));
-        }
-
-        details* dev_Current_Scene_details{};
-        {
-            details* host_ptr = G::Render::current_scene->get_details_ptr();
-            auto& host_vec_ref = G::Render::current_scene->get_details();
-            size = sizeof(details) * host_vec_ref.size();
-            CCE(cudaMalloc((void**)&dev_Current_Scene_details, size));
-            CCE(cudaMemcpy(dev_Current_Scene_details, host_ptr, size, cudaMemcpyHostToDevice));
-        }
+        byte_size = sizeof(Sim_sphere*) * number_of_iterations;
+        Sim_sphere** dev_iter_pointers_tab{};
+        CCE(cudaMalloc((void**)&dev_iter_pointers_tab, byte_size));                       // tablica z pointerami do kolejnych kroków iteracji
+        CCE(cudaMemcpy(dev_iter_pointers_tab, this, byte_size, cudaMemcpyHostToDevice));
 
         CCE(cudaDeviceSynchronize());
-        for (int i = 0; i < G::REP_NUMBER; i++)
         {
-            Timer kernel_timer;
-
-            kernel_timer.start();
-            {
-                render_kernel<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(
-                    (G::WIDTH / 2), (G::HEIGHT / 2), (-10000.0), WIDTH, PIXEL_ARRAY_SIZE, dev_Renderer, dev_My_Pixels,
-                    dev_Current_Scene, dev_Current_Scene_lights, dev_Current_Scene_spheres, dev_Current_Scene_details);
-                CCE(cudaDeviceSynchronize());
-            }
-            kernel_timer.end();
-
-            G::Render::current_scene_stats->get_stats().push_whole(kernel_timer.get_all_in_nano());
+            // sim_kernel<<<NUMBER_OF_BLOCKS, BLOCK_SIZE>>>(sphere_count, number_of_iterations, dev_Computation_Box, dev_iter_pointers_tab);
+            sim_kernel<<<1, sphere_count>>>(sphere_count, number_of_iterations, dev_Computation_Box, dev_iter_pointers_tab);
+            CCE(cudaDeviceSynchronize());
         }
 
-        CCE(cudaMemcpy(get_my_pixel(), dev_My_Pixels, sizeof(RGB) * PIXEL_ARRAY_SIZE, cudaMemcpyDeviceToHost));
+        // CCE(cudaMemcpy(get_my_pixel(), dev_My_Pixels, sizeof(RGB) * PIXEL_ARRAY_SIZE, cudaMemcpyDeviceToHost));
 
-        // zwalnia od razu wszystko
-        // CCE(cudaDeviceReset());
+        // CLEANUP //
 
-        CCE(cudaFree(dev_Renderer));
-        CCE(cudaFree(dev_My_Pixels));
-        CCE(cudaFree(dev_Current_Scene));
-        CCE(cudaFree(dev_Current_Scene_lights));
-        CCE(cudaFree(dev_Current_Scene_spheres));
-        CCE(cudaFree(dev_Current_Scene_details));
+        CCE(cudaFree(dev_Computation_Box));
+        for(int i=0; i<number_of_iterations; i++)
+        {
+            CCE(cudaFree(dev_memory_locations_for_iter_step[i]));
+        }        
+        CCE(cudaFree(dev_iter_pointers_tab));
     }
     #endif
 
     GPU_LINE(__device__)
-    void per_sphere(const Memory_index_cyclic& memory_index, const u64& sphere_index)
+    void per_sphere(const u64 ARRAY_SIZE, const Memory_index_cyclic& memory_index, const u64& sphere_index, Computation_Box* dev_Computation_Box = nullptr, Sim_sphere** dev_iter_pointers_tab = nullptr)
     {
-        #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
-            Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[0].get(sphere_index));             // always using 0 index
-            
-            const auto& current_pos = current_sphere.get_position(memory_index.get());
-            const auto& current_r = current_sphere.get_r(memory_index.get());
-            const auto& current_T = current_sphere.get_T(memory_index.get());
+        CPU_LINE(Computation_Box* this_ptr = this);
+        GPU_LINE(Computation_Box* this_ptr = dev_Computation_Box);
 
-            auto& change_current_pos_NEXT_VALUE = current_sphere.get_position(memory_index.get_next()); // getting from the same memory
-            auto& change_current_r_NEXT_VALUE = current_sphere.get_r(memory_index.get_next());
-            auto& change_current_T_NEXT_VALUE = current_sphere.get_T(memory_index.get_next());
-
-        #else
-        
-            Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(sphere_index));
-            Sim_sphere& current_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[memory_index.get_next()].get(sphere_index));
+        #if defined(GPU)
+            Sim_sphere& current_sphere = dev_iter_pointers_tab[memory_index.get()][sphere_index];
+            Sim_sphere& current_sphere_NEXT_VALUE = dev_iter_pointers_tab[memory_index.get_next()][sphere_index];
             
             const auto& current_pos = current_sphere.get_position();
             const auto& current_r = current_sphere.get_r();
@@ -668,35 +688,67 @@ public:
             auto& change_current_pos_NEXT_VALUE = current_sphere_NEXT_VALUE.get_position(); // getting from different memory
             auto& change_current_r_NEXT_VALUE = current_sphere_NEXT_VALUE.get_r();
             auto& change_current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T();
-        
+        #else
+            #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
+                Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[0].get(sphere_index));             // always using 0 index
+                
+                const auto& current_pos = current_sphere.get_position(memory_index.get());
+                const auto& current_r = current_sphere.get_r(memory_index.get());
+                const auto& current_T = current_sphere.get_T(memory_index.get());
+
+                auto& change_current_pos_NEXT_VALUE = current_sphere.get_position(memory_index.get_next()); // getting from the same memory
+                auto& change_current_r_NEXT_VALUE = current_sphere.get_r(memory_index.get_next());
+                auto& change_current_T_NEXT_VALUE = current_sphere.get_T(memory_index.get_next());
+
+            #else
+                Sim_sphere& current_sphere = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(sphere_index));
+                Sim_sphere& current_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[memory_index.get_next()].get(sphere_index));
+                
+                const auto& current_pos = current_sphere.get_position();
+                const auto& current_r = current_sphere.get_r();
+                const auto& current_T = current_sphere.get_T();
+
+                auto& change_current_pos_NEXT_VALUE = current_sphere_NEXT_VALUE.get_position(); // getting from different memory
+                auto& change_current_r_NEXT_VALUE = current_sphere_NEXT_VALUE.get_r();
+                auto& change_current_T_NEXT_VALUE = current_sphere_NEXT_VALUE.get_T();
+            #endif
         #endif
+        
 
         sim_unit running_sum_of_heat_change_due_to_radiation{};
         sim_unit running_sum_of_heat_change_due_to_conductivity{};
 
         d3 sphere_correction = d3(0, 0, 0);
-        for (u64 other_i = 0; other_i < all_spheres_inside_box_ALL_iterations[0].get_total_number(); other_i++)
+        for (u64 other_i = 0; other_i < ARRAY_SIZE; other_i++)
         {
             if (sphere_index == other_i) continue;
 
-            #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
-                Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[0].get(other_i));
-                
-                const auto& other_pos = other_sp.get_position(memory_index.get());
-                const auto& other_r = other_sp.get_r(memory_index.get());
-                const auto& other_T = other_sp.get_T(memory_index.get());
-            #else
-
-                Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(other_i));                
+            #if defined(GPU)
+                Sim_sphere& other_sp = dev_iter_pointers_tab[memory_index.get()][other_i];
 
                 const auto& other_pos = other_sp.get_position();
                 const auto& other_r = other_sp.get_r();
                 const auto& other_T = other_sp.get_T();
+            #else
+                #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
+                    Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[0].get(other_i));
+                    
+                    const auto& other_pos = other_sp.get_position(memory_index.get());
+                    const auto& other_r = other_sp.get_r(memory_index.get());
+                    const auto& other_T = other_sp.get_T(memory_index.get());
+                #else
+
+                    Sim_sphere& other_sp = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(other_i));
+
+                    const auto& other_pos = other_sp.get_position();
+                    const auto& other_r = other_sp.get_r();
+                    const auto& other_T = other_sp.get_T();
+                #endif
             #endif
-            
+
             const sim_unit r_sum = current_r + other_r;
-            const sim_unit r_smaller = std::min(current_r, other_r);
-            const sim_unit r_bigger = std::max(current_r, other_r);
+            const sim_unit r_smaller = my_min(current_r, other_r);
+            const sim_unit r_bigger = my_max(current_r, other_r);
 
             auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
 
@@ -784,16 +836,16 @@ public:
             
             sim_unit new_T = current_T +
                 (
-                    one_over_mass_and_heat_capasity(current_r) *
+                    one_over_mass_and_heat_capasity(current_r, this_ptr) *
                     (
                         running_sum_of_heat_change_due_to_conductivity +
                         running_sum_of_heat_change_due_to_radiation
 
-                        + enviroument_influence(current_pos)
+                        + enviroument_influence(current_pos, this_ptr)
                     )
                 );
             
-            new_T = std::max(sim_u(0), new_T); // keeping temp above absolute zero
+            new_T = my_max(sim_u(0), new_T); // keeping temp above absolute zero
             
             // change_current_T_NEXT_VALUE = current_T; // no changes
 
@@ -810,7 +862,7 @@ public:
             sim_unit new_r = current_r *
                 (
                     1 + (
-                            SIM_radious_change_proportion *
+                            this_ptr->SIM_radious_change_proportion *
                             (new_T - current_T)
                         )
                 ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
@@ -818,7 +870,7 @@ public:
                                             // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
                                             // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
 
-            new_r = std::min(sim_u(1.5 * SIM_initial_radious), new_r); // womackow - tylko na teraz żeby nie rozbuchały,
+            new_r = my_min(sim_u(1.5 * this_ptr->SIM_initial_radious), new_r); // womackow - tylko na teraz żeby nie rozbuchały,
                                                                 // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
                                                                 // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
                                                                 // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
@@ -828,14 +880,23 @@ public:
             // change_current_r_NEXT_VALUE = current_r; // no changes
 
             // TO NEXT ITERATION //
+            
+            #if defined(CPU)
+                #pragma omp atomic
+                change_current_r_NEXT_VALUE += new_r; // NEXT_VALUE has to be zero - adding because r must allow other spheres to modify it's value
+                                                      //   current will add his
+                                                      //     while others might add their portions
+            #endif
 
-            // CPU - #pragma omp atomic
-            // GPU - atomidAdd(&adding_to, value)
-
-            change_current_r_NEXT_VALUE += new_r; // NEXT_VALUE has to be zero - adding because r must allow other spheres to modify it's value
-                                           // current will add his
-                                           // while others might add their portions
+            #if defined(GPU)
+                atomicAdd(&change_current_pos_NEXT_VALUE, new_r);
+            #endif
             
         #endif // VOLUME_TRANSFER
     }
 };
+
+
+// errory w kompilacji GPU -> trzeba będzie przenieść do pliku .cu, tak żeby Computation_Box nie był incomplete type
+
+// atomicAdd -> coś zmienić, bo narzeka

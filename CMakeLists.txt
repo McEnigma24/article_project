@@ -78,49 +78,49 @@ ${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
 ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
 )
 
-# TARGET 2 #
-set(target_name "cpu_d-buff-same-obj.exe")
-add_executable(${target_name} ${SOURCES})
-target_include_directories(${target_name} PRIVATE)
-target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+# # TARGET 2 #
+# set(target_name "cpu_d-buff-same-obj.exe")
+# add_executable(${target_name} ${SOURCES})
+# target_include_directories(${target_name} PRIVATE)
+# target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
 
-CPU
-D_BUFF
-D_BUFF_SAME_OBJ
+# CPU
+# D_BUFF
+# D_BUFF_SAME_OBJ
 
-RENDER_ACTIVE
-)
-target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+# RENDER_ACTIVE
+# )
+# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
-${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-${LIBRARY_PATH_BMP}/libBMP.so
-${LIBRARY_PATH_TIMERS}/libTimers.so
-${LIBRARY_PATH_RANDOMS}/libRandoms.so
-${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
-${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
-)
+# ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+# ${LIBRARY_PATH_BMP}/libBMP.so
+# ${LIBRARY_PATH_TIMERS}/libTimers.so
+# ${LIBRARY_PATH_RANDOMS}/libRandoms.so
+# ${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
+# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+# )
 
-# TARGET 3 #
-set(target_name "cpu_d-buff-diff-obj.exe")
-add_executable(${target_name} ${SOURCES})
-target_include_directories(${target_name} PRIVATE)
-target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+# # TARGET 3 #
+# set(target_name "cpu_d-buff-diff-obj.exe")
+# add_executable(${target_name} ${SOURCES})
+# target_include_directories(${target_name} PRIVATE)
+# target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
 
-CPU
-D_BUFF
-D_BUFF_DIFF_OBJ
+# CPU
+# D_BUFF
+# D_BUFF_DIFF_OBJ
 
-RENDER_ACTIVE
-)
-target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
+# RENDER_ACTIVE
+# )
+# target_link_libraries(${target_name} PUBLIC OpenMP::OpenMP_CXX CUDA::cudart
 
-${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
-${LIBRARY_PATH_BMP}/libBMP.so
-${LIBRARY_PATH_TIMERS}/libTimers.so
-${LIBRARY_PATH_RANDOMS}/libRandoms.so
-${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
-${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
-)
+# ${LIBRARY_PATH_MOVIEMAKER_CPP}/libmoviemaker-cpp.so
+# ${LIBRARY_PATH_BMP}/libBMP.so
+# ${LIBRARY_PATH_TIMERS}/libTimers.so
+# ${LIBRARY_PATH_RANDOMS}/libRandoms.so
+# ${LIBRARY_PATH_Multithreaded_Memcpy}/libMultithreaded_Memcpy.so
+# ${LIBRARY_PATH_MY_RAY_TRACER_CUDA}/libgpu_CUDA_d.exe.a
+# )
 
 # # TARGET 4 #
 # set(target_name "gpu_n-buff.exe")
