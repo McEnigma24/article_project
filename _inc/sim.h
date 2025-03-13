@@ -889,7 +889,7 @@ public:
             #endif
 
             #if defined(GPU)
-                atomicAdd(&change_current_pos_NEXT_VALUE, new_r);
+                atomicAdd(&change_current_r_NEXT_VALUE, new_r);
             #endif
             
         #endif // VOLUME_TRANSFER
@@ -899,4 +899,4 @@ public:
 
 // errory w kompilacji GPU -> trzeba będzie przenieść do pliku .cu, tak żeby Computation_Box nie był incomplete type
 
-// atomicAdd -> coś zmienić, bo narzeka
+// synchronizacja pewnie będzie do zmiany
