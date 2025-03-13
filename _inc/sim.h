@@ -566,7 +566,7 @@ public:
     #endif
 
     #if defined(GPU)
-    void gpu()
+    void gpu(const u64& number_of_iterations)
     {
         // MAIN //
 

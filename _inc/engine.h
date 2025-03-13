@@ -1,6 +1,5 @@
 #include "sim.h"
-
-// whole iteration after iteration -> rendering
+// clang-format off
 
 class Engine
 {
@@ -15,54 +14,55 @@ public:
         Nano_Timer::Timer timer_SIM;
         int i = 0;
 
-#if defined(CPU) && defined(D_BUFF_DIFF_OBJ)
+        #if defined(CPU) && defined(D_BUFF_DIFF_OBJ)
         {
             number_of_iterations += 2;
             i += 2;
         }
-#endif
+        #endif
 
-#if defined(CPU) && defined(D_BUFF_SAME_OBJ)
+        #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
         {
             number_of_iterations += 1;
             i += 1;
         }
-#endif
+        #endif
 
         computation_box.fill_space_with_spheres(_space_WIDTH, _space_HEIGHT, _space_DEPTH, number_of_iterations);
         timer_SIM.start();
         {
-#if defined(CPU)
+            #if defined(CPU)
             {
                 computation_box.cpu(number_of_iterations);
             }
-#endif
+            #endif
 
-#if defined(GPU)
+            #if defined(GPU)
             {
+                computation_box.gpu(number_of_iterations);
             }
-#endif
+            #endif
         }
         timer_SIM.stop();
 
-#ifdef RENDER_ACTIVE
-        time_stamp("Rendering started...");
-        Nano_Timer::Timer timer_Ray_Tracing;
-        timer_Ray_Tracing.start();
-        {
-            for (; i < number_of_iterations; i++)
+        #ifdef RENDER_ACTIVE
+            time_stamp("Rendering started...");
+            Nano_Timer::Timer timer_Ray_Tracing;
+            timer_Ray_Tracing.start();
             {
-                Scene scene;
-                computation_box.transform_to_My_Ray_Tracing_scene(scene, i);
-                movie.add_scene(scene);
+                for (; i < number_of_iterations; i++)
+                {
+                    Scene scene;
+                    computation_box.transform_to_My_Ray_Tracing_scene(scene, i);
+                    movie.add_scene(scene);
+                }
             }
-        }
-        timer_Ray_Tracing.stop();
-        time_stamp("Rendering finished");
+            timer_Ray_Tracing.stop();
+            time_stamp("Rendering finished");
 
-        movie.combine_to_movie();
-        time_stamp("combine_to_movie");
-#endif
+            movie.combine_to_movie();
+            time_stamp("combine_to_movie");
+        #endif
 
         nline;
         line("timer_SIM");
