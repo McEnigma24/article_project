@@ -57,14 +57,14 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -fopenmp -O3 -march=native -w")
 
 
 
-option(TARGET_1 "cpu_n-buff" OFF)
+option(TARGET_1 "cpu_n-buff" ON)
 if(TARGET_1)
 
     # TARGET 1 #
     set(target_name "cpu_n-buff.exe")
     add_executable(${target_name} ${SOURCES})
     target_include_directories(${target_name} PRIVATE)
-    target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_FLOAT
+    target_compile_definitions(${target_name} PRIVATE LINUX UNIT_DOUBLE UNIT_SIM_DOUBLE
 
     CPU
     N_BUFF

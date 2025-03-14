@@ -714,9 +714,11 @@ public:
             #endif
         #endif
         
-
         sim_unit running_sum_of_heat_change_due_to_radiation{};
         sim_unit running_sum_of_heat_change_due_to_conductivity{};
+
+        u64 hottest_sphere_index = 0;
+        sim_unit hottest_sphere_temp = 0;
 
         d3 sphere_correction = d3(0, 0, 0);
         for (u64 other_i = 0; other_i < ARRAY_SIZE; other_i++)
@@ -752,46 +754,6 @@ public:
 
             auto [vec_from_A_to_B, distance] = get_distance_and_vec_A_to_B(current_pos, other_pos);
 
-            #ifdef TEMP_DISTRIBUTION
-
-                // jeśli dystans się zgadza sphere_index jest np. mniejszy niż 2 * r Current_sfery to bierzemy sferę do obliczeń
-                // tak samo jak collision, sumujemy wszystkie zmiany albo jakiś inny mechanizm sphere_index pod koniec pętli zmieniamy następny memory index
-                // tak samo promień, zmieniamy tego następnego
-
-                // dla GPU - można wykonać najpierw wszystkie kroki iteracyjne sphere_index tylko synchronizować je po przeiterowaniu sphere_index wykonaniu jednej per_sphere
-                // + zapis stanu pod koniec do pamięci
-                // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje sphere_index później zczyta jako tablica v3)
-
-                // WSZYSTKIE WZORY //
-                // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
-
-                if (distance < (r_bigger * sim_u(2)))
-                {
-                    // - ogarniamy ile energii trafia w sferę w zależności od jej odległości sphere_index rozmiaru -
-
-                    // AKTUALNIE - ten sposób przekazuje także kiedy sfery się nachodzą //
-
-                    // OTHER - emmits //
-                    // CURRENT - calculates how much it gets //
-
-                    const sim_unit tan_value = current_r / distance;
-                    const sim_unit alfa = 2 * atan(tan_value);
-                    const sim_unit percent_of_captured_energy = alfa / (2 * M_PI);
-
-                    sim_unit other_sphere_total_emmited_energy = 10;
-
-                    running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_energy * percent_of_captured_energy;
-                }
-
-                if (distance < r_sum)
-                {
-                    // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
-
-                    // running_sum_of_heat_change_due_to_conductivity +=
-                }
-
-            #endif // TEMP_DISTRIBUTION
-
             #ifdef COLLISION_RESOLUTION
                 if (distance < r_sum)
                 {
@@ -806,11 +768,53 @@ public:
                 }
             #endif // COLLISION_RESOLUTION
 
+            #ifdef TEMP_DISTRIBUTION
+                if (distance < (r_bigger * sim_u(2)))
+                {
+                    // jeśli dystans się zgadza sphere_index jest np. mniejszy niż 2 * r Current_sfery to bierzemy sferę do obliczeń
+                    // tak samo jak collision, sumujemy wszystkie zmiany albo jakiś inny mechanizm sphere_index pod koniec pętli zmieniamy następny memory index
+                    // tak samo promień, zmieniamy tego następnego
+
+                    // dla GPU - można wykonać najpierw wszystkie kroki iteracyjne sphere_index tylko synchronizować je po przeiterowaniu sphere_index wykonaniu jednej per_sphere
+                    // + zapis stanu pod koniec do pamięci
+                    // sam v3 (będzie znana ilość iteracji, więc przed startem się to alokuje sphere_index później zczyta jako tablica v3)
+
+                    // WSZYSTKIE WZORY //
+                    // https://chatgpt.com/c/67a8e634-cec8-8009-8a2f-4942550ab331
+
+                    // - ogarniamy ile energii trafia w sferę w zależności od jej odległości sphere_index rozmiaru -
+
+                    // AKTUALNIE - ten sposób przekazuje także kiedy sfery się nachodzą //
+
+                    // OTHER - emmits //
+                    // CURRENT - calculates how much it gets //
+
+                    const sim_unit tan_value = current_r / distance;
+                    const sim_unit alfa = 2 * atan(tan_value);
+                    const sim_unit percent_of_captured_energy = alfa / (2 * M_PI);
+
+                    sim_unit other_sphere_total_emmited_energy = 10;
+
+                    running_sum_of_heat_change_due_to_radiation += other_sphere_total_emmited_energy * percent_of_captured_energy;
+
+                    // if (distance < r_sum)
+                    // {
+                    //     // - ogarniamy powierzchnię tego styku dla różnych rozmiarów sfer -
+
+                    //     // running_sum_of_heat_change_due_to_conductivity +=
+                    // }
+                }
+            #endif // TEMP_DISTRIBUTION
+
             #ifdef VOLUME_TRANSFER
-                // tutaj będzie przeszukiwanie najgorętszej sfery w okolicy
-
-                // trzeba złapać do niej pointer, bo będziemy musieli jej później nadpisać wartości
-
+                if(distance < (r_bigger * 2))
+                {
+                    if(hottest_sphere_temp < other_T && current_T < other_T)
+                    {
+                        hottest_sphere_temp = other_T;
+                        hottest_sphere_index = other_i;
+                    }
+                }
             #endif // VOLUME_TRANSFER
         }
 
@@ -859,37 +863,82 @@ public:
             // ZARÓWNO zmiana CURRENT_next_value musi być zrobiona atomowa
             // tak samo OTHER_next_value musi
 
-            sim_unit new_r = current_r *
-                (
-                    1 + (
-                            this_ptr->SIM_radious_change_proportion *
-                            (new_T - current_T)
-                        )
-                ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
-                                            // sphere_index jeśli na nie trafimy to skip
-                                            // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
-                                            // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
+            // sim_unit new_r = current_r
+            //     *
+            //     (
+            //         1 + (
+            //                 this_ptr->SIM_radious_change_proportion *
+            //                 (new_T - current_T)
+            //             )
+            //     ); // womackow - decyzja o tym czy usuwamy sferę czy nie, może być tylko pole w SIM_sphere
+            //                                 // sphere_index jeśli na nie trafimy to skip
+            //                                 // to nie działa dla różnych punktów startowych, jeśli sfery są zainicjowane różnymi temperaturami,
+            //                                 // potrzebujemy jakiejś funcji, co jasno określa jakich rozmiarów w danej temperaturz ma być sfera
 
-            new_r = my_min(sim_u(1.5 * this_ptr->SIM_initial_radious), new_r); // womackow - tylko na teraz żeby nie rozbuchały,
-                                                                // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
-                                                                // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
-                                                                // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
+            // new_r = my_min(sim_u(1.5 * this_ptr->SIM_initial_radious), new_r); // womackow - tylko na teraz żeby nie rozbuchały,
+            //                                                     // później to trzeba będzie zrobić tak, że nawet w tych ciepłych
+            //                                                     // jedne rosną, a inne maleją, bo są wchłaniane przez sąsiadów
+            //                                                     // to bez sensu jeśli to prostu znikąd rosną, ta masa musi się skądś wziąć
             
             
             
             // change_current_r_NEXT_VALUE = current_r; // no changes
 
             // TO NEXT ITERATION //
+
+            // NEXT_VALUE has to be zero - adding because r must allow other spheres to modify it's value
+            //   current will add his
+            //     while others might add their portions
+
+            #if defined(GPU)
+                Sim_sphere& hottest_sphere = dev_iter_pointers_tab[memory_index.get()][hottest_sphere_index];
+                const auto& hottest_sphere_r = hottest_sphere.get_r();
+                
+                Sim_sphere& hottest_sphere_NEXT_VALUE = dev_iter_pointers_tab[memory_index.get_next()][hottest_sphere_index];
+                auto& change_hottest_sphere_r_NEXT_VALUE = hottest_sphere_NEXT_VALUE.get_r();
+            #else
+                #if defined(CPU) && defined(D_BUFF_SAME_OBJ)
+
+                    Sim_sphere& hottest_sphere_NEXT_VALUE = all_spheres_inside_box_ALL_iterations[0].get(hottest_sphere_index);                    
+                    const auto& hottest_sphere_r = hottest_sphere_NEXT_VALUE.get_r(memory_index.get());
+                    auto& change_hottest_sphere_r_NEXT_VALUE = hottest_sphere_NEXT_VALUE.get_r(memory_index.get_next());
+
+                #else
+                    Sim_sphere& hottest_sphere = *(all_spheres_inside_box_ALL_iterations[memory_index.get()].get(hottest_sphere_index));
+                    Sim_sphere& hottest_sphere_NEXT_VALUE = *(all_spheres_inside_box_ALL_iterations[memory_index.get_next()].get(hottest_sphere_index));
+                    
+                    const auto& hottest_sphere_r = hottest_sphere.get_r();
+                    auto& change_hottest_sphere_r_NEXT_VALUE = hottest_sphere_NEXT_VALUE.get_r();
+                #endif
+            #endif
+
+            sim_unit new_r = current_r;
+            sim_unit new_hottest_r_change = 0;
+
+            if(hottest_sphere_temp != 0 && (abs(hottest_sphere_temp - current_T) > 50))
+            {
+                new_r *= 0.9;
+                new_hottest_r_change += current_r * 0.1;
+            }
             
             #if defined(CPU)
+                // change_current_r_NEXT_VALUE = new_r;
+                // change_hottest_sphere_r_NEXT_VALUE = new_hottest_r_change;
+
+
                 #pragma omp atomic
-                change_current_r_NEXT_VALUE += new_r; // NEXT_VALUE has to be zero - adding because r must allow other spheres to modify it's value
-                                                      //   current will add his
-                                                      //     while others might add their portions
+                change_current_r_NEXT_VALUE += new_r;
+
+                #pragma omp atomic
+                change_hottest_sphere_r_NEXT_VALUE += new_hottest_r_change;  // jak tutaj dodawałem całą jedno wartość
+                                                                             // to efektywnie ta sfera robiła zawsze x2
+                                                                             // raz jest jako current i sam sobie nadpisuje
+                                                                             // raz jest dla innej jako hottest_sphere i jeszcze raz dostaje
             #endif
 
             #if defined(GPU)
                 atomicAdd(&change_current_r_NEXT_VALUE, new_r);
+                atomicAdd(&change_hottest_sphere_r_NEXT_VALUE, new_hottest_r_change);
             #endif
             
         #endif // VOLUME_TRANSFER
